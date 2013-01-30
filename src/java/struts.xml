@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!DOCTYPE struts PUBLIC '-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN' 'http://struts.apache.org/dtds/struts-2.1.7.dtd'>
+<struts>
+    <constant name="struts.custom.i18n.resources" value="mess"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.action.extension" value="do" />
+    <package name="defaultAction" extends="struts-default">
+	<global-results>
+	    <result name="alert">/alert.jsp</result>
+	</global-results>
+    </package>
+    <package name="rootAction" extends="defaultAction" namespace="">
+	<action name="index" class="cn.edu.tsinghua.sthu.action.RedirectAction">
+	    <result name="success">/index.jsp</result>
+	</action>
+    </package>
+    <package name="testAction" extends="defaultAction" namespace="/test">
+	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">
+	    <result name="success">/test/welcome.jsp</result>
+	</action>
+	<action name="addUser" class="cn.edu.tsinghua.sthu.action.AddUserAction">
+	</action>
+    </package>
+</struts>

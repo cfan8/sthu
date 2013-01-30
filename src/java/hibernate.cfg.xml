@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 指定Hibernate配置文件的DTD信息 -->
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- hibernate- configuration是连接配置文件的根元素 -->
+<hibernate-configuration>
+    <session-factory>
+	<!-- 数据库言 -->
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+	<!-- 将Session扔到线程里去处理 -->
+	<property name="current_session_context_class">thread</property>
+	<!-- 在控制台打印SQL语句 -->
+	<property name="show_sql">true</property>
+	<!-- 自动把实体类与属性映射成数据库中的表与列 -->
+	<property name="hbm2ddl.auto">none</property>
+    </session-factory>
+</hibernate-configuration>
