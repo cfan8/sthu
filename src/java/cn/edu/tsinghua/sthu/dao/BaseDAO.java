@@ -47,6 +47,11 @@ public class BaseDAO<T>
 	sessionFactory.getCurrentSession().save(t);
     }
 
+    protected Criteria select()
+    {
+	return sessionFactory.getCurrentSession().createCriteria(entityClass);
+    }
+    
     protected void delete(T t)
     {
 	sessionFactory.getCurrentSession().delete(t);

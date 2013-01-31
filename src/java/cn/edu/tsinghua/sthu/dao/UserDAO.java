@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.dao;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +33,7 @@ public class UserDAO extends BaseDAO<UserEntity>
 
     public UserEntity getUserByUsername(String username)
     {
-	List<UserEntity> list = getCurrentSession().createCriteria(UserEntity.class).add(Restrictions.eq("username", username)).list();
+	List<UserEntity> list = select().add(Restrictions.eq("username", username)).list();
 	if (list.size() == 1)
 	{
 	    return list.get(0);
