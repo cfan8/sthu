@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.service;
 
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.LoginMessage;
@@ -20,6 +21,7 @@ public class UserService extends BaseService{
     @Transactional
     public UserEntity userLogin(String username, String password)
     {
+	password = Util.getMD5(password);
 	UserEntity entity = userDAO.getUserByUsername(username);
 	if (entity != null && entity.getPassword().equals(password))
 	{
@@ -35,6 +37,7 @@ public class UserService extends BaseService{
     @Transactional
     public boolean addUser(String username, String password, String nickname)
     {
+	password = Util.getMD5(password);
 	UserEntity entity = userDAO.getUserByUsername(username);
 	if (entity == null)
 	{

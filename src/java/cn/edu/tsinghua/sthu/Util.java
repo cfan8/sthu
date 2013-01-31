@@ -6,10 +6,13 @@ package cn.edu.tsinghua.sthu;
 
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.BaseMessage;
+import com.mchange.lang.ByteUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import java.io.*;
 import java.lang.reflect.Field;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
@@ -49,6 +52,23 @@ public class Util
 	{
 	    return (T) request.getAttribute(fieldName);
 	}
+    }
+    
+    public static String getMD5(String input)
+    {
+	String output = null;
+	try {
+	    byte[] hashBytes = MessageDigest.getInstance("MD5").digest(input.getBytes());
+	    StringBuffer buffer = new StringBuffer();
+	    for (int i = 0; i < hashBytes.length; i++)
+	    {
+		buffer.append(Integer.toHexString((int)(hashBytes[i] & 0xFF)));
+	    }
+	    output = buffer.toString();
+	} catch (NoSuchAlgorithmException ex) {
+	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return output;
     }
 
     /*

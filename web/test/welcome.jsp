@@ -19,7 +19,7 @@ LoginMessage message = Util.getMessage(LoginAction.class);
         <title>Login OK</title>
     </head>
     <body>
-        <h1><%=message.getLoginDate() %></h1>
+        <h1><%=message.getLoginDate().toString() %></h1>
         <h1><%=message.getNickName() %></h1>
     </body>
 </html>

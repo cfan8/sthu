@@ -28,7 +28,10 @@ public class UserEntity extends BaseEntity
 
     @Column(name="lastlogintime")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date lastlogintime;
+    private Date lastLoginTime;
+    
+    @Column(name="lastloginip", length=20)
+    private String lastLoginIP;
 
     public UserEntity()
     {
@@ -73,11 +76,11 @@ public class UserEntity extends BaseEntity
 
     public Date getLastlogintime()
     {
-	return lastlogintime;
+	return lastLoginTime;
     }
 
     public void setLastlogintime(Date lastlogintime)
     {
-	this.lastlogintime = lastlogintime;
+	this.lastLoginTime = lastlogintime;
     }
 }

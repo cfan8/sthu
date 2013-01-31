@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.service.UserService;
 
