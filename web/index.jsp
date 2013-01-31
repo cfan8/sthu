@@ -12,6 +12,7 @@
         <title>Index</title>
     </head>
     <body>
-	<a href="test/login.jsp">Login</a>
+	<a href="test/login.jsp">登录</a>
+	<a href="test/add_user.jsp">新增用户</a>
     </body>
 </html>

@@ -11,9 +11,9 @@ package cn.edu.tsinghua.sthu.message;
 public class AlertMessage
 {
     private String alertTitle;
-    private String redirectURL;
+    private String redirectURL = REFERER_URL;
     private String alertContent;
-    private int alertType;
+    private int alertType = ALERT_TYPE;
 
     public AlertMessage()
     {
@@ -40,6 +40,12 @@ public class AlertMessage
 
     public void setAlertTitle(String alertTitle) {
 	this.alertTitle = alertTitle;
+    }
+
+    public void setAlertTitleContent(String content)
+    {
+	this.alertTitle = content;
+	this.alertContent = content;
     }
 
     public String getAlertContent() {

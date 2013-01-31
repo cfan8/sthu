@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.service;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.LoginMessage;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -16,6 +17,7 @@ public class UserService extends BaseService{
 
     private UserDAO userDAO;
 
+    @Transactional
     public UserEntity userLogin(String username, String password)
     {
 	UserEntity entity = userDAO.getUserByUsername(username);
@@ -30,6 +32,7 @@ public class UserService extends BaseService{
 	}
     }
 
+    @Transactional
     public boolean addUser(String username, String password, String nickname)
     {
 	UserEntity entity = userDAO.getUserByUsername(username);

@@ -34,7 +34,6 @@
     <% }
 	else if (message.getAlertType() == AlertMessage.BOX_TYPE)
 	{%>
-	</head>
     <%@include file="/templates/general_header.jsp" %>
     <div id="title">
 	<%=message.getAlertTitle()%>

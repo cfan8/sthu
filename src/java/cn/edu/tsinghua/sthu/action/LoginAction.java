@@ -16,7 +16,7 @@ import java.util.Date;
  *
  * @author linangran
  */
-public class LoginAction extends BaseAction implements Action {
+public class LoginAction extends BaseAction {
     private String username;
     private String password;
     private UserService userService;
@@ -42,9 +42,10 @@ public class LoginAction extends BaseAction implements Action {
 	this.password = password;
     }
 
+    @Override
     public String onExecute()
     {
-	UserEntity entity = getUserService().userLogin(getUsername(), getPassword());
+	UserEntity entity = getUserService().userLogin(username, password);
 	if (entity != null)
 	{
 	    getLoginMessage().setLoginDate(entity.getLastlogintime());
@@ -77,5 +78,19 @@ public class LoginAction extends BaseAction implements Action {
     public void setLoginMessage(LoginMessage loginMessage)
     {
 	this.loginMessage = loginMessage;
+    }
+
+    @Override
+    public boolean valid()
+    {
+	if (isValid(username) && isValid(password))
+	{
+	    return true;
+	}
+	else
+	{
+	    alertMessage.setAlertTitleContent("请输入用户名密码！");
+	    return false;
+	}
     }
 }

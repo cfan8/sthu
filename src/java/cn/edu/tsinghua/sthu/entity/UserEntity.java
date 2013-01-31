@@ -34,12 +34,6 @@ public class UserEntity extends BaseEntity
     {
     }
 
-    @PrePersist
-    public void onCreate()
-    {
-	lastlogintime = new Date();
-    }
-
     public UserEntity(String username, String password, String nickname)
     {
 	this.username = username;

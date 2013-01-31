@@ -78,4 +78,18 @@ public class AddUserAction extends BaseAction
 	this.userService = userService;
     }
 
+    @Override
+    public boolean valid()
+    {
+	if (isValid(username) && isValid(password) && isValid(nickname))
+	{
+	    return true;
+	}
+	else
+	{
+	    alertMessage.setAlertTitleContent("输入数据有误！");
+	    return false;
+	}
+    }
+
 }

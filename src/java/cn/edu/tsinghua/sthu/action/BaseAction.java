@@ -29,7 +29,14 @@ public abstract class BaseAction implements Action
     @Override
     public String execute() throws Exception
     {
-	return onExecute();
+	if (valid())
+	{
+	    return onExecute();
+	}
+	else
+	{
+	    return ALERT;
+	}
     }
 
     public abstract String onExecute();
@@ -61,4 +68,6 @@ public abstract class BaseAction implements Action
 	else
 	    return true;
     }
+
+    public abstract boolean valid();
 }

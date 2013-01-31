@@ -14,14 +14,14 @@ and open the template in the editor.
 	    <result name="alert">/alert.jsp</result>
 	</global-results>
     </package>
-    <package name="rootAction" extends="defaultAction" namespace="">
+    <package name="rootActionPackage" extends="defaultAction" namespace="">
 	<action name="index" class="cn.edu.tsinghua.sthu.action.RedirectAction">
 	    <result name="success">/index.jsp</result>
 	</action>
     </package>
-    <package name="testAction" extends="defaultAction" namespace="/test">
+    <package name="testActionPackage" extends="defaultAction" namespace="/test">
 	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">
-	    <result name="success">/test/welcome.jsp</result>
+	    <result name="success">welcome.jsp</result>
 	</action>
 	<action name="addUser" class="cn.edu.tsinghua.sthu.action.AddUserAction">
 	</action>

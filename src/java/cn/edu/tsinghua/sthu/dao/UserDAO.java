@@ -22,14 +22,14 @@ public class UserDAO extends BaseDAO<UserEntity>
 	super(UserEntity.class);
     }
 
-    @Transactional
+
     public void addUser(String username, String password, String nickname)
     {
 	UserEntity entity = new UserEntity(username, password, nickname);
 	insert(entity);
     }
 
-    @Transactional
+
     public UserEntity getUserByUsername(String username)
     {
 	List<UserEntity> list = getCurrentSession().createCriteria(UserEntity.class).add(Restrictions.eq("username", username)).list();
@@ -43,13 +43,13 @@ public class UserDAO extends BaseDAO<UserEntity>
 	}
     }
 
-    @Transactional
+
     public UserEntity getUserById(int userid)
     {
 	return queryById(userid);
     }
 
-    @Transactional
+
     public void updateLoginTime(int userid)
     {
 	UserEntity entity = getUserById(userid);
