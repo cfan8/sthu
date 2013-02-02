@@ -20,8 +20,8 @@ ShowLoginPageMessage message = Util.getMessage(ShowLoginPageAction.class);
     <%@include file="/templates/general_header.jsp" %>
     <form action="checkUser.do?redirectURL=<%=message.getRedirectURL() %>" method="post">
 	用户名：<input type="text" name="username"/>
-	密码：<input type="text" name="password"/>
-	<input type="submit"/>
+	密码：<input type="password" name="password"/>
+	<input type="submit" value="登录"/>
     </form>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

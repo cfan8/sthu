@@ -56,6 +56,21 @@ public class UserService extends BaseService{
     {
 	userDAO.updateUserEntity(entity);
     }
+    
+    @Transactional
+    public boolean updateUserPassword(String oldPassword, String newPassword, UserEntity entity)
+    {
+	if (Util.getMD5(oldPassword).equals(entity.getPassword()))
+	{
+	    entity.setPassword(Util.getMD5(newPassword));
+	    userDAO.updateUserEntity(entity);
+	    return true;
+	}
+	else
+	{
+	    return false;
+	}
+    }
         
     public UserDAO getUserDAO()
     {

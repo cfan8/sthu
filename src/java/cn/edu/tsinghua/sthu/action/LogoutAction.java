@@ -5,7 +5,6 @@
 package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.Util;
-import cn.edu.tsinghua.sthu.message.AlertMessage;
 
 /**
  *
@@ -28,7 +27,7 @@ public class LogoutAction extends BaseAction {
     @Override
     public boolean valid() {
 	if (isValid(redirectURL) == false) {
-	    redirectURL = getReferer();
+	    redirectURL = "/index.do";
 	} else {
 	    redirectURL = Util.decodeURL(redirectURL);
 	}
