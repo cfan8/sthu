@@ -32,6 +32,9 @@ public class UserEntity extends BaseEntity
     
     @Column(name="lastloginip", length=20)
     private String lastLoginIP;
+    
+    @OneToOne(cascade={CascadeType.ALL})
+    private AuthEntity auth;
 
     public UserEntity()
     {
@@ -82,5 +85,13 @@ public class UserEntity extends BaseEntity
     public void setLastlogintime(Date lastlogintime)
     {
 	this.lastLoginTime = lastlogintime;
+    }
+
+    public AuthEntity getAuth() {
+	return auth;
+    }
+
+    public void setAuth(AuthEntity auth) {
+	this.auth = auth;
     }
 }

@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.dao;
 
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.Date;
 import java.util.List;
@@ -24,9 +25,10 @@ public class UserDAO extends BaseDAO<UserEntity>
     }
 
 
-    public void addUser(String username, String password, String nickname)
+    public void addUser(String username, String password, String nickname, AuthEntity auth)
     {
 	UserEntity entity = new UserEntity(username, password, nickname);
+	entity.setAuth(auth);
 	insert(entity);
     }
 
@@ -55,6 +57,11 @@ public class UserDAO extends BaseDAO<UserEntity>
     {
 	UserEntity entity = getUserById(userid);
 	entity.setLastlogintime(new Date());
+	update(entity);
+    }
+    
+    public void updateUserEntity(UserEntity entity)
+    {
 	update(entity);
     }
 }

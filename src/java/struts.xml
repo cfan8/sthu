@@ -25,5 +25,7 @@ and open the template in the editor.
 	</action>
 	<action name="addUser" class="cn.edu.tsinghua.sthu.action.AddUserAction">
 	</action>
+	<action name="setAuth" class="cn.edu.tsinghua.sthu.action.SetUserAuthAction">
+	</action>
     </package>
 </struts>

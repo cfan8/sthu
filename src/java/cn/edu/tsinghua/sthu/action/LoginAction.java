@@ -93,7 +93,7 @@ public class LoginAction extends BaseAction {
 	}
 	else
 	{
-	    alertMessage.setAlertTitleContent("请输入用户名密码！");
+	    alertMessage.setSimpleAlert("请输入用户名密码！");
 	    return false;
 	}
     }

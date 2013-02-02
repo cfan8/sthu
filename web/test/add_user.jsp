@@ -13,9 +13,9 @@
     </head>
     <body>
         <form action="addUser.do" method="post">
-	    用户名：<input type="text" name="username" />
-	    密码：<input type="text" name="password" />
-	    昵称：<input type="text" name="nickname" />
+	    用户名：<input type="text" name="username" /><br/>
+	    密码：<input type="text" name="password" /><br/>
+	    昵称：<input type="text" name="nickname" /><br/>
 	    <input type="submit" value="提交">
 	</form>
     </body>

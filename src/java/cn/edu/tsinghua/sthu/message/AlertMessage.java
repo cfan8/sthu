@@ -42,10 +42,20 @@ public class AlertMessage
 	this.alertTitle = alertTitle;
     }
 
-    public void setAlertTitleContent(String content)
+    public void setSimpleAlert(String content)
     {
 	this.alertTitle = content;
 	this.alertContent = content;
+	this.alertType = AlertMessage.ALERT_TYPE;
+	this.redirectURL = AlertMessage.REFERER_URL;
+    }
+    
+     public void setSimpleAlert(String content, String redirectURL)
+    {
+	this.alertTitle = content;
+	this.alertContent = content;
+	this.alertType = AlertMessage.ALERT_TYPE;
+	this.redirectURL = redirectURL;
     }
 
     public String getAlertContent() {

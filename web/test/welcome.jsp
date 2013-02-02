@@ -21,5 +21,6 @@ LoginMessage message = Util.getMessage(LoginAction.class);
     <body>
         <h1><%=message.getLoginDate().toString() %></h1>
         <h1><%=message.getNickName() %></h1>
+	<a href="set_auth.jsp" target="_blank">设置用户权限</a>
     </body>
 </html>

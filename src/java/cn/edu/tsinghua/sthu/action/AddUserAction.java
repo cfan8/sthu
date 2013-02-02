@@ -17,7 +17,7 @@ public class AddUserAction extends BaseAction
     private String username;
     private String password;
     private String nickname;
-
+       
     private UserService userService;
 
     @Override
@@ -88,9 +88,8 @@ public class AddUserAction extends BaseAction
 	}
 	else
 	{
-	    alertMessage.setAlertTitleContent("输入数据有误！");
+	    alertMessage.setSimpleAlert("输入数据有误！");
 	    return false;
 	}
     }
-
 }
