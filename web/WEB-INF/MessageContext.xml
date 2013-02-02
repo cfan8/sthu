@@ -5,5 +5,6 @@
     <bean id="alertMessage" class="cn.edu.tsinghua.sthu.message.AlertMessage" scope="prototype" autowire="byName" />
     <bean id="loginMessage" class="cn.edu.tsinghua.sthu.message.LoginMessage" scope="prototype" autowire="byName" />
     <bean id="showLoginPageMessage" class="cn.edu.tsinghua.sthu.message.ShowLoginPageMessage" scope="prototype" autowire="byName" />
+    <bean id="homeMessage" class="cn.edu.tsinghua.sthu.message.HomeMessage" scope="prototype" autowire="byName" />
 </beans>
 
