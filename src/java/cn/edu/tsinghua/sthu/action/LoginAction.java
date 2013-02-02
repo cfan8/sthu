@@ -19,49 +19,48 @@ import java.util.Date;
  * @author linangran
  */
 public class LoginAction extends BaseAction {
+
     private String username;
     private String password;
+    private String redirectURL;
     private UserService userService;
     private LoginMessage loginMessage;
 
-    public String getUsername()
-    {
+    public String getUsername() {
 	return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
 	this.username = username;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
 	return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
 	this.password = password;
     }
 
     @Override
-    public String onExecute()
-    {
+    public String onExecute() {
 	UserEntity entity = getUserService().userLogin(username, password);
-	if (entity != null)
-	{
+	if (entity != null) {
+	    if (isValid(redirectURL) == false) {
+		redirectURL = "/index.do";
+	    } else {
+		redirectURL = Util.decodeURL(redirectURL);
+	    }
 	    getLoginMessage().setLoginDate(entity.getLastlogintime());
 	    getLoginMessage().setNickName(entity.getNickname());
 	    setSession("isLogin", true);
 	    setSession("userinfo", entity);
 	    return SUCCESS;
-	}
-	else
-	{
+	} else {
 	    getAlertMessage().setAlertType(AlertMessage.BOX_TYPE);
 	    getAlertMessage().setAlertTitle("用户名密码错误");
 	    getAlertMessage().setAlertContent("请重新输入用户名密码！");
-	    getAlertMessage().setRedirectURL(AlertMessage.REFERER_URL);
+	    getAlertMessage().setRedirectURL("/login.do");
 	    return ALERT;
 	}
     }
@@ -74,27 +73,34 @@ public class LoginAction extends BaseAction {
 	this.userService = userService;
     }
 
-    public LoginMessage getLoginMessage()
-    {
+    public LoginMessage getLoginMessage() {
 	return loginMessage;
     }
 
-    public void setLoginMessage(LoginMessage loginMessage)
-    {
+    public void setLoginMessage(LoginMessage loginMessage) {
 	this.loginMessage = loginMessage;
     }
 
     @Override
-    public boolean valid()
-    {
-	if (isValid(username) && isValid(password))
-	{
+    public boolean valid() {
+	if (isValid(username) && isValid(password)) {
 	    return true;
-	}
-	else
-	{
+	} else {
 	    alertMessage.setSimpleAlert("请输入用户名密码！");
 	    return false;
 	}
+    }
+
+    public String getRedirectURL() {
+	return redirectURL;
+    }
+
+    public void setRedirectURL(String redirectURL) {
+	this.redirectURL = redirectURL;
+    }
+
+    @Override
+    public boolean needLogin() {
+	return false;
     }
 }

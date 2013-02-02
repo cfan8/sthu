@@ -12,11 +12,21 @@ and open the template in the editor.
     <package name="defaultAction" extends="struts-default">
 	<global-results>
 	    <result name="alert">/alert.jsp</result>
+	    <result name="login_redirect" type="redirect">/login.do</result>
 	</global-results>
     </package>
     <package name="rootActionPackage" extends="defaultAction" namespace="">
 	<action name="index" class="cn.edu.tsinghua.sthu.action.RedirectAction">
 	    <result name="success">/index.jsp</result>
+	</action>
+	<action name="login" class="cn.edu.tsinghua.sthu.action.ShowLoginPageAction">
+	    <result name="redirect" type="redirect">${url}</result>
+	    <result name="success">/login.jsp</result>
+	</action>
+	<action name="checkUser" class="cn.edu.tsinghua.sthu.action.LoginAction">
+	    <result name="success" type="redirect">${redirectURL}</result>
+	</action>
+	<action name="logout" class="cn.edu.tsinghua.sthu.action.LogoutAction">
 	</action>
     </package>
     <package name="testActionPackage" extends="defaultAction" namespace="/test">
@@ -26,6 +36,8 @@ and open the template in the editor.
 	<action name="addUser" class="cn.edu.tsinghua.sthu.action.AddUserAction">
 	</action>
 	<action name="setAuth" class="cn.edu.tsinghua.sthu.action.SetUserAuthAction">
+	</action>
+	<action name="logout" class="cn.edu.tsinghua.sthu.action.LogoutAction">
 	</action>
     </package>
 </struts>

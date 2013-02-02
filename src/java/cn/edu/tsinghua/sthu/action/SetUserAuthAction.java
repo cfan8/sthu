@@ -79,17 +79,16 @@ public class SetUserAuthAction extends BaseAction{
 	return true;
     }
     
-    @Override
-    public boolean hasAuth()
-    {
-	return isLogin();
-    }
-
     public UserService getUserService() {
 	return userService;
     }
 
     public void setUserService(UserService userService) {
 	this.userService = userService;
+    }
+
+    @Override
+    public boolean needLogin() {
+	return true;
     }
 }

@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu;
 
+import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.BaseMessage;
 import com.mchange.lang.ByteUtils;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import java.io.*;
 import java.lang.reflect.Field;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
@@ -31,7 +34,7 @@ public class Util
 	return (AlertMessage)request.getAttribute("alertMessage");
     }
 
-    public static <T, P> T getMessage(Class<P> type)
+    public static <T, P extends BaseAction> T getMessage(Class<P> type)
     {
 	HttpServletRequest request = ServletActionContext.getRequest();
 	String fieldName = null;
@@ -69,6 +72,26 @@ public class Util
 	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	return output;
+    }
+    
+    public static String encodeURL(String url)
+    {
+	try {
+	    return URLEncoder.encode(url, "UTF-8");
+	} catch (UnsupportedEncodingException ex) {
+	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return null;
+    }
+    
+    public static String decodeURL(String url)
+    {
+	try {
+	    return URLDecoder.decode(url, "UTF-8");
+	} catch (UnsupportedEncodingException ex) {
+	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return null;
     }
 
     /*

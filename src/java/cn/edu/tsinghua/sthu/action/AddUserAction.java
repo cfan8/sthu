@@ -92,4 +92,9 @@ public class AddUserAction extends BaseAction
 	    return false;
 	}
     }
+
+    @Override
+    public boolean needLogin() {
+	return false;
+    }
 }
