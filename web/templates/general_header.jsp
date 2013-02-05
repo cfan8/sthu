@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="/css/general.css">
+<link rel="stylesheet" type="text/css" href="/css/general.css" />
 <script type="text/javascript" src="/js/jquery.js"></script>
 <body>
     <div id="all">
