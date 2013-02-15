@@ -8,7 +8,9 @@ import cn.edu.tsinghua.sthu.constant.AllocateMapping;
 import cn.edu.tsinghua.sthu.constant.IdentityMapping;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyClassroomDAO;
+import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
+import cn.edu.tsinghua.sthu.message.ShowApplyMessage;
 import java.util.Date;
 import javax.persistence.EntityListeners;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,6 +116,78 @@ public class ApplyClassroomService extends BaseService {
 	return entity;
     }
 
+    @Transactional
+    public CRoomApplyEntity confirmApply(CRoomApplyEntity entity)
+    {
+	entity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_CONFIRMED);
+	entity.setApplyDate(new Date());
+	entity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_TODO);
+	entity.setIdentityDate(null);
+	entity.setResourceDate(null);
+	entity.setAllocateDate(null);
+	for (ApplyCommentEntity comment:entity.getComments())
+	{
+	    comment.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_OLD);
+	}
+	applyClassroomDAO.updateCRoomApplyEntity(entity);
+	return entity;
+    }
+    
+    @Transactional
+    public void processComment(CRoomApplyEntity applyEntity, boolean isApprove, String comment, int type, String nickName, int userid)
+    {
+	ApplyCommentEntity commentEntity = new ApplyCommentEntity();
+	commentEntity.setComment(comment);
+	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
+	commentEntity.setCommentType(isApprove?ApplyCommentEntity.COMMENT_TYPE_ACCEPT:ApplyCommentEntity.COMMENT_TYPE_REJECT);
+	commentEntity.setNickname(nickName);
+	commentEntity.setPubDate(new Date());
+	commentEntity.setUserid(userid);
+	applyEntity.getComments().add(commentEntity);
+	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY)
+	{
+	    if (isApprove == true)
+	    {
+		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_ACCEPTED);
+		applyEntity.setIdentityDate(new Date());
+		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_TODO);
+	    }
+	    else
+	    {
+		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_REJECTED);
+		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	}
+	else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE)
+	{
+	    if (isApprove)
+	    {
+		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_ACCEPTED);
+		applyEntity.setResourceDate(new Date());
+		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_TODO);
+	    }
+	    else
+	    {
+		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_REJECTED);
+		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	}
+	else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE)
+	{
+	    if (isApprove)
+	    {
+		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_ACCEPTED);
+		applyEntity.setAllocateDate(new Date());
+		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_ACCEPTED);
+	    }
+	    else{
+		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_REJECTED);
+		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	}
+	applyClassroomDAO.updateCRoomApplyEntity(applyEntity);
+    }
+    
     public ApplyClassroomDAO getApplyClassroomDAO() {
 	return applyClassroomDAO;
     }

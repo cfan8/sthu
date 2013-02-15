@@ -25,8 +25,8 @@ public class UserEntity extends BaseEntity
     @Column(name="nickname", length=32)
     private String nickname;
 
-    @Column(name="lastlogintime")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name="lastlogintime", columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date lastLoginTime;
     
     @Column(name="lastloginip", length=20)

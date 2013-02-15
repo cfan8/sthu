@@ -59,15 +59,20 @@ public class CRoomApplyEntity extends BaseEntity {
     private int number;	//教室借用人数
     @Column(length = 5000)
     private String reason;  //借用原因
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date applyDate; //申请日期
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date confirmDate;	//确认申请日期
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date identityDate;	//一级审批日期
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date resourceDate;	//二级审批日期
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date allocateDate;	//三级审批日期(按照申请要求分配申请)
     private int applyType;  //type指定了申请通道，仅存储数据供编辑时使用
     private int applyStatus;
@@ -77,7 +82,7 @@ public class CRoomApplyEntity extends BaseEntity {
     private int resourceStatus;
     private int allocateType;
     private int allocateStatus;
-    @OneToMany(cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<ApplyCommentEntity> comments = new ArrayList<ApplyCommentEntity>();
 
     public String getOrganizer() {

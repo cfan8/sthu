@@ -13,6 +13,14 @@ import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
  */
 public class ShowApplyMessage extends BaseMessage{
     private CRoomApplyEntity applyEntity;
+    private boolean showConfirm;
+    private boolean showApprove;
+    private int approveType;
+    
+    public static final int APPROVE_TYPE_IDENTITY = 1;
+    public static final int APPROVE_TYPE_RESOURCE = 2;
+    public static final int APPROVE_TYPE_ALLOCATE = 3;
+    
 
     public CRoomApplyEntity getApplyEntity() {
 	return applyEntity;
@@ -21,4 +29,29 @@ public class ShowApplyMessage extends BaseMessage{
     public void setApplyEntity(CRoomApplyEntity applyEntity) {
 	this.applyEntity = applyEntity;
     }
+
+    public boolean isShowConfirm() {
+	return showConfirm;
+    }
+
+    public void setShowConfirm(boolean showConfirm) {
+	this.showConfirm = showConfirm;
+    }
+
+    public boolean isShowApprove() {
+	return showApprove;
+    }
+
+    public void setShowApprove(boolean showApprove) {
+	this.showApprove = showApprove;
+    }
+
+    public int getApproveType() {
+	return approveType;
+    }
+
+    public void setApproveType(int approveType) {
+	this.approveType = approveType;
+    }
+
 }

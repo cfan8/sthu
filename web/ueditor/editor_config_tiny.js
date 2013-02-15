@@ -77,7 +77,7 @@
         ,getMovieUrl:URL+"jsp/getMovie.jsp"                   //视频数据获取地址
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
-        ,toolbars:[["undo","redo","insertimage","attachment","bold","italic","underline","forecolor","justifycenter","justifyleft","justifyright"]]
+        ,toolbars:[["undo","redo","|","bold","italic","underline","forecolor"]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         ,labelMap:{
             'anchor':'', 'undo':''
@@ -109,10 +109,10 @@
 
         //,initialContent:'欢迎使用ueditor!'    //初始化编辑器的内容,也可以通过textarea/script给值，看官网例子
 
-        //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        //,initialFrameHeight:320  //初始化编辑器高度,默认320
+        ,initialFrameWidth:600  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:150  //初始化编辑器高度,默认320
 
-        ,autoClearinitialContent:false //是否自动清除编辑器初始内容，注意：如果focus属性设置为true,这个也为真，那么编辑器一上来就会触发导致初始化的内容看不到了
+        ,autoClearinitialContent:true //是否自动清除编辑器初始内容，注意：如果focus属性设置为true,这个也为真，那么编辑器一上来就会触发导致初始化的内容看不到了
 
         //,iframeCssUrl: URL + '/themes/iframe.css' //给编辑器内部引入一个css文件
         //,textarea:'editorValue' // 提交表单时，服务器获取编辑器提交内容的所用的参数，多实例时可以给容器name属性，会将name给定的值最为每个实例的键值，不用每次实例化的时候都设置这个值
@@ -171,8 +171,8 @@
         //autoHeightEnabled
         // 是否自动长高,默认true
         ,autoHeightEnabled:false
-        //,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
-        //,minFrameHeight:220  //编辑器拖动时最小高度,默认220
+        ,minFrameWidth:400    //编辑器拖动时最小宽度,默认800
+        ,minFrameHeight:150  //编辑器拖动时最小高度,默认220
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
         ,autoFloatEnabled:false

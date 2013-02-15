@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="t_apply_comment")
-public class ApplyCommentEntity extends BaseEntity{
+public class ApplyCommentEntity extends BaseEntity implements Comparable<ApplyCommentEntity> {
     
     public static final int COMMENT_STATUS_NEW = 1;
     public static final int COMMENT_STATUS_OLD = 2;
@@ -31,7 +31,8 @@ public class ApplyCommentEntity extends BaseEntity{
     private String comment;
     private int commentStatus;
     private int commentType;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date pubDate;
 
     public String getComment() {
@@ -80,6 +81,19 @@ public class ApplyCommentEntity extends BaseEntity{
 
     public void setNickname(String nickname) {
 	this.nickname = nickname;
+    }
+
+    @Override
+    public int compareTo(ApplyCommentEntity o) {
+	if (this.pubDate.before(o.pubDate)) {
+	    return 1;
+	}
+	else if (this.pubDate.after(o.pubDate)) {
+	    return -1;
+	}
+	else {
+	    return 0;
+	}
     }
     
 }

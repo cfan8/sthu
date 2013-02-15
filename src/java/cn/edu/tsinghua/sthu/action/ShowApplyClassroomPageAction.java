@@ -19,14 +19,14 @@ public class ShowApplyClassroomPageAction extends BaseAction {
     public static final String RETURN_CREATE = "create";
     public static final String RETURN_MODIFY = "modify";
     
-    private int applyId;
+    private Integer applyId;
     
     private ShowApplyClassroomPageMessage showApplyClassroomPageMessage;
     private ApplyClassroomService applyClassroomService;
     
     @Override
     public String onExecute() {
-	if (applyId != 0)
+	if (applyId != null)
 	{
 	    CRoomApplyEntity entity = applyClassroomService.getCRoomApplyEntityById(applyId, getCurrentUser().getID());
 	    if (entity == null)
@@ -61,10 +61,6 @@ public class ShowApplyClassroomPageAction extends BaseAction {
     
     @Override
     public boolean valid() {
-	if (getApplyId() < 0)
-	{
-	    setApplyId(0);
-	}
 	return true;
     }
 

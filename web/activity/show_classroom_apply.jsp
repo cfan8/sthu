@@ -4,6 +4,7 @@
     Author     : linangran
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="cn.edu.tsinghua.sthu.message.ShowApplyMessage"%>
 <%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.ApplyCommentEntity"%>
@@ -20,6 +21,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>显示教室申请</title>
+	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <div>
@@ -27,7 +30,7 @@
 	    <tr><td class="tag">活动组织：</td><td class="value"><%=entity.getOrganizer()%></td></tr>
 	    <tr><td class="tag">借用人：</td><td class="value"><%=entity.getBorrower()%></td></tr>
 	    <tr><td class="tag">借用人电话：</td><td class="value"><%=entity.getBorrowerCell()%></td></tr>
-	    <tr><td class="tag">教室活动类型</td><td class="value"><%=entity.getUsageComment()%></td></tr>
+	    <tr><td class="tag">教室活动类型：</td><td class="value"><%=entity.getUsageComment()%></td></tr>
 	    <tr><td class="tag">活动负责人：</td><td class="value"><%=entity.getManager()%></td></tr>
 	    <tr><td class="tag">活动负责人电话：</td><td class="value"><%=entity.getManagerCell()%></td></tr>
 	    <tr><td class="blocktag">活动内容：</td></tr>
@@ -51,7 +54,7 @@
 	    <% for (int i = 0; i < comments.size(); i++) {
 		    ApplyCommentEntity comment = comments.get(i);
 		    if (comment.getCommentStatus() == ApplyCommentEntity.COMMENT_STATUS_NEW) {%>
-	    <div class="comment<%=comment.getCommentType()%>"><p><%=comment.getNickname()%> @ <%=comment.getPubDate()%></p>
+		    <div class="comment<%=comment.getCommentType()%>"><p><%=comment.getNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(comment.getPubDate()) %></p>
 		<p><%=comment.getComment()%></p>
 	    </div>
 	    <% }
@@ -62,11 +65,41 @@
 	    <% for (int i = 0; i < comments.size(); i++) {
 		    ApplyCommentEntity comment = comments.get(i);
 		    if (comment.getCommentStatus() == ApplyCommentEntity.COMMENT_STATUS_OLD) {%>
-	    <div class="comment<%=comment.getCommentType()%>"><p><%=comment.getNickname()%> @ <%=comment.getPubDate()%></p>
+	    <div class="comment<%=comment.getCommentType()%>"><p><%=comment.getNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(comment.getPubDate())%></p>
 		<p><%=comment.getComment()%></p>
 	    </div>
 	    <% }
 		}%></div>
     </div>
+    <% if (message.isShowConfirm()) {%>
+    <div>
+	<span><a href="applyClassroom.do?applyId=<%=entity.getID()%>">修改申请</a></span>
+	<span><a href="confirmApply.do?applyId=<%=entity.getID()%>" id="confirmApply">确认申请</a></span>
+	<script type="text/javascript">
+	    $("#confirmApply").click(function(){
+		return confirm("是否确认申请？一旦确认将无法修改！");
+	    });
+	    </script>
+    </div>
+    <% }%>
+    <% if (message.isShowApprove()) {%>
+    <div>
+	<form action="approveApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
+	    <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="true" checked="checked"/>同意<input type="radio" name="isApprove" value="false"/>驳回</p>
+	    <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
+	    <input type="hidden" id="comment" name="comment"><input type="button" id="submitApprove" value="提交" />
+	</form>
+	<script type="text/javascript">
+	    ue = UE.getEditor('editor');
+	    $("#submitApprove").click(function(){
+		if (confirm("是否确认提交？一旦提交无法修改！") == true)
+		{
+		    $("#comment").val(ue.getContent());
+		    $("#approveForm").submit();
+		}
+	    });
+	</script>
+    </div>
+    <% }%>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

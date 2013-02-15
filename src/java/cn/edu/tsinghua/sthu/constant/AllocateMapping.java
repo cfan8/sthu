@@ -10,7 +10,7 @@ package cn.edu.tsinghua.sthu.constant;
  */
 public class AllocateMapping {
 
-    public static final String[] names = {"注册中心", "物业中心", "C楼"};
+    public static final String[] names = {"三级审批部门","注册中心", "物业中心", "C楼"};
 
     public static int getIdByName(String s) {
 	for (int i = 0; i < names.length; i++) {

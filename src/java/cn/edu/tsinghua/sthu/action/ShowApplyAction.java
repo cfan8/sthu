@@ -6,56 +6,76 @@ package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
-import cn.edu.tsinghua.sthu.message.ShowApplyClassroomPageMessage;
 import cn.edu.tsinghua.sthu.message.ShowApplyMessage;
 import cn.edu.tsinghua.sthu.service.ApplyClassroomService;
+import java.util.Collections;
 
 /**
  *
  * @author linangran
  */
-public class ShowApplyAction extends BaseAction{
+public class ShowApplyAction extends BaseAction {
 
     private Integer applyId;
     private ApplyClassroomService applyClassroomService;
     private ShowApplyMessage showApplyMessage;
-    
+
     @Override
     public String onExecute() {
-	showApplyMessage.setApplyEntity(getApplyClassroomService().getCRoomApplyEntityById(getApplyId()));
-	if (showApplyMessage.getApplyEntity() == null)
-	{
+	CRoomApplyEntity entity = getApplyClassroomService().getCRoomApplyEntityById(getApplyId());
+	if (entity == null) {
 	    alertMessage.setSimpleAlert("指定的申请不存在！");
 	    return ALERT;
-	}
-	else{
+	} else {
+	    showApplyMessage.setApplyEntity(entity);
+	    if (getCurrentUser().getID() == showApplyMessage.getApplyEntity().getApplyUserid()
+		    && (showApplyMessage.getApplyEntity().getApplyStatus() == CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
+		    || showApplyMessage.getApplyEntity().getApplyStatus() == CRoomApplyEntity.APPLY_STATUS_REJECTED)) {
+		showApplyMessage.setShowConfirm(true);
+	    } else {
+		showApplyMessage.setShowConfirm(false);
+	    }
+	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
+		if (entity.getIdentityStatus() == CRoomApplyEntity.IDENTITY_STATUS_TODO
+			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
+		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_IDENTITY);
+		    showApplyMessage.setShowApprove(true);
+		} else if (entity.getResourceStatus() == CRoomApplyEntity.RESOURCE_STATUS_TODO
+			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getIdentityType()) {
+		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_RESOURCE);
+		    showApplyMessage.setShowApprove(true);
+		} else if (entity.getAllocateStatus() == CRoomApplyEntity.ALLOCATE_STATUS_TODO
+			&& getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateStatus()) {
+		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_ALLOCATE);
+		    showApplyMessage.setShowApprove(true);
+		} else {
+		    showApplyMessage.setShowApprove(false);
+		}
+	    } else {
+		showApplyMessage.setShowApprove(false);
+	    }
+	    Collections.sort(entity.getComments());
 	    return SUCCESS;
 	}
     }
 
     @Override
-    public boolean hasAuth()
-    {
+    public boolean hasAuth() {
 	if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
 	    return true;
-	}
-	else{
-	    CRoomApplyEntity entity = getApplyClassroomService().getCRoomApplyEntityById(getApplyId(), getCurrentUser().getID());
-	    if (entity == null)
-	    {
+	} else {
+	    CRoomApplyEntity entity = getApplyClassroomService().getCRoomApplyEntityById(getApplyId());
+	    if (entity == null || entity.getApplyUserid() != getCurrentUser().getID()) {
 		return false;
-	    }
-	    else
-	    {
+	    } else {
 		return true;
 	    }
 	}
     }
-    
+
     @Override
     public boolean valid() {
-	if (getApplyId() == null)
-	{
+	if (getApplyId() == null) {
 	    alertMessage.setSimpleAlert("参数有误！");
 	    return false;
 	}
@@ -90,5 +110,4 @@ public class ShowApplyAction extends BaseAction{
     public void setShowApplyMessage(ShowApplyMessage showApplyMessage) {
 	this.showApplyMessage = showApplyMessage;
     }
-    
 }
