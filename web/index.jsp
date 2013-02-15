@@ -12,9 +12,10 @@
         <title>Index</title>
     </head>
     <body>
-	<a href="test/login.jsp">登录</a><br/>
-	<a href="test/add_user.jsp">新增用户</a><br/>
-	<a href="test/pageview_example.jsp">翻页控件样例</a><br/>
-	<a href="test/ueditortest.jsp">UEditor样例</a><br/>
+	<a href="test/login.jsp" target="_blank">登录</a><br/>
+	<a href="test/add_user.jsp" target="_blank">新增用户</a><br/>
+	<a href="test/pageview_example.jsp" target="_blank">翻页控件样例</a><br/>
+	<a href="test/ueditortest.jsp" target="_blank">UEditor样例</a><br/>
+	<a href="activity/applyClassroom.do" target="_blank">申请活动</a><br/>
     </body>
 </html>

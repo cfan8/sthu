@@ -154,7 +154,7 @@
 //           ]
         //wordCount
         //,wordCount:1          //是否开启字数统计
-        //,maximumWords:10000       //允许的最大字符数
+        ,maximumWords:500       //允许的最大字符数
     //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
         //超出字数限制提示  留空支持多语言自动切换，否则按此配置显示
@@ -162,7 +162,7 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : false
         //undo
         //可以最多回退的次数,默认20
         //,maxUndoCount:20
@@ -170,12 +170,12 @@
         //,maxInputCount:1
         //autoHeightEnabled
         // 是否自动长高,默认true
-        //,autoHeightEnabled:true
+        ,autoHeightEnabled:false
         //,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
         //,minFrameHeight:220  //编辑器拖动时最小高度,默认220
         //autoFloatEnabled
         //是否保持toolbar的位置不动,默认true
-        //,autoFloatEnabled:true
+        ,autoFloatEnabled:false
         //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
         //,topOffset:30
     };

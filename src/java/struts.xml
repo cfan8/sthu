@@ -50,4 +50,16 @@ and open the template in the editor.
 	<action name="testUEditor" class="cn.edu.tsinghua.sthu.action.TestUEditorAction">
 	</action>
     </package>
+    <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
+	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">
+	    <result name="create">create_classroom_form.jsp</result>
+	    <result name="modify">modify_classroom_form.jsp</result>
+	</action>
+	<action name="submitClassroomApply" class="cn.edu.tsinghua.sthu.action.SaveClassroomApplyAction">
+	    <result name="create">create_classroom_form.jsp</result>
+	</action>
+	<action name="showApply" class="cn.edu.tsinghua.sthu.action.ShowApplyAction">
+	    <result name="success">show_classroom_apply.jsp</result>
+	</action>
+    </package>
 </struts>

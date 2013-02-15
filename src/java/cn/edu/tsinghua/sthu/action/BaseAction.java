@@ -40,6 +40,9 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
 	if (needLogin() && isLogin() == false) {
 	    return LOGIN_REDIRECT;
 	}
+	if (valid() == false) {
+	    return ALERT;
+	}
 	if (hasAuth() == false) {
 	    alertMessage.setAlertTitle("无法访问页面！");
 	    alertMessage.setAlertContent("您请求的内容不存在，或者您缺少访问此内容的权限。");
@@ -47,11 +50,7 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
 	    alertMessage.setRedirectURL(AlertMessage.REFERER_URL);
 	    return ALERT;
 	}
-	if (valid()) {
-	    return onExecute();
-	} else {
-	    return ALERT;
-	}
+	return onExecute();
     }
 
     public abstract String onExecute();

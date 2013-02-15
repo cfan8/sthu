@@ -4,7 +4,6 @@
  */
 package cn.edu.tsinghua.sthu.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 

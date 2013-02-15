@@ -22,11 +22,11 @@ public class AuthEntity extends BaseEntity{
     
     private int opArticle = -1;  //审批文章权限
     
-    private int opIdentityCode = -1;	//一级审批权限
+    private int opIdentityCode = -1;	//一级审批权限(确认申请人身份)
 
-    private int opResourceCode = -1;	//二级审批权限
+    private int opResourceCode = -1;	//二级审批权限(确认申请合理性)
     
-    private int opAllocateCode = -1;	//三级审批权限
+    private int opAllocateCode = -1;	//三级审批权限(按照申请要求分配申请)
 
     public int getRole() {
 	return role;

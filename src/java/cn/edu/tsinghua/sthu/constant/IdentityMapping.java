@@ -11,6 +11,8 @@ package cn.edu.tsinghua.sthu.constant;
 public class IdentityMapping {
 
     public static final String[] names = {
+	"选择一个审批通道",
+	"校团委社团协会部",
 	"建筑[本]",
 	"土木[本]",
 	"水利[本]",
@@ -78,4 +80,20 @@ public class IdentityMapping {
 	"金融学院[研]",
 	"高等研究院[研]"
     };
+    //分团委为对应id
+    //各系业务办为对应id+length
+    
+    public static final String[] accounts = new String[names.length];
+    
+    
+    public static int getIdByName(String s)
+    {
+	for (int i = 0; i < names.length; i++)
+	{
+	    if (names[i].equals(s)) {
+		return i;
+	    }
+	}
+	return -1;
+    }
 }

@@ -1,0 +1,124 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cn.edu.tsinghua.sthu.service;
+
+import cn.edu.tsinghua.sthu.constant.AllocateMapping;
+import cn.edu.tsinghua.sthu.constant.IdentityMapping;
+import cn.edu.tsinghua.sthu.constant.ResourceMapping;
+import cn.edu.tsinghua.sthu.dao.ApplyClassroomDAO;
+import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
+import java.util.Date;
+import javax.persistence.EntityListeners;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ *
+ * @author linangran
+ */
+public class ApplyClassroomService extends BaseService {
+
+    private ApplyClassroomDAO applyClassroomDAO;
+
+    @Transactional
+    public CRoomApplyEntity getCRoomApplyEntityById(int id, int userid) {
+	CRoomApplyEntity entity = applyClassroomDAO.getCRoomApplyEntityById(id);
+	if (entity == null || entity.getApplyUserid() != userid) {
+	    return null;
+	} else if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED && entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
+	    return null;
+	} else {
+	    return entity;
+	}
+    }
+    
+    @Transactional
+    public CRoomApplyEntity getCRoomApplyEntityById(int applyId)
+    {
+	return applyClassroomDAO.getCRoomApplyEntityById(applyId);
+    }
+
+    @Transactional
+    public CRoomApplyEntity createCRoomApply(String organizer, String borrower,
+	    String borrowerCell, int classUsage, String usageComment, String content,
+	    String manager, String managerCell, Date borrowDate, String timePeriod,
+	    int croomtype, int number, String reason, int userid, int applyType) {
+	CRoomApplyEntity entity = new CRoomApplyEntity();
+	entity.setOrganizer(organizer);
+	entity.setBorrower(borrower);
+	entity.setBorrowerCell(borrowerCell);
+	entity.setUsage(classUsage);
+	entity.setUsageComment(usageComment);
+	entity.setContent(content);
+	entity.setManager(manager);
+	entity.setManagerCell(managerCell);
+	entity.setBorrowDate(borrowDate);
+	entity.setTimePeriod(timePeriod);
+	entity.setCroomtype(croomtype);
+	entity.setNumber(number);
+	entity.setReason(reason);
+	entity.setApplyUserid(userid);
+	entity.setApplyDate(new Date());
+	entity.setApplyType(applyType);
+	configureApplyStatus(entity, applyType);
+	applyClassroomDAO.saveCRoomApplyEntity(entity);
+	return entity;
+    }
+    
+    @Transactional
+    public CRoomApplyEntity modifyCRoomApply(String organizer, String borrower,
+	    String borrowerCell, int classUsage, String usageComment, String content,
+	    String manager, String managerCell, Date borrowDate, String timePeriod,
+	    int croomtype, int number, String reason, int userid, int applyType, int applyId){
+	CRoomApplyEntity entity = applyClassroomDAO.getCRoomApplyEntityById(applyId);
+	if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED && 
+		entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED ) {
+		    return null;
+		}
+	entity.setOrganizer(organizer);
+	entity.setBorrower(borrower);
+	entity.setBorrowerCell(borrowerCell);
+	entity.setUsage(classUsage);
+	entity.setUsageComment(usageComment);
+	entity.setContent(content);
+	entity.setManager(manager);
+	entity.setManagerCell(managerCell);
+	entity.setBorrowDate(borrowDate);
+	entity.setTimePeriod(timePeriod);
+	entity.setCroomtype(croomtype);
+	entity.setNumber(number);
+	entity.setReason(reason);
+	entity.setApplyUserid(userid);
+	entity.setApplyDate(new Date());
+	entity.setApplyType(applyType);
+	configureApplyStatus(entity, applyType);
+	applyClassroomDAO.updateCRoomApplyEntity(entity);
+	return entity;
+    }
+
+    public CRoomApplyEntity configureApplyStatus(CRoomApplyEntity entity, int applyType) {
+	entity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED);
+	entity.setIdentityType(applyType);
+	entity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_AWAIT);
+	entity.setResourceType(ResourceMapping.getIdByName("校团委"));
+	entity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_AWAIT);
+	if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_ORDINARY) {
+	    entity.setAllocateType(AllocateMapping.getIdByName("物业中心"));
+	} else if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_MEDIA) {
+	    entity.setAllocateType(AllocateMapping.getIdByName("注册中心"));
+	} else if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING) {
+	    entity.setAllocateType(AllocateMapping.getIdByName("C楼"));
+	}
+	entity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_AWAIT);
+	return entity;
+    }
+
+    public ApplyClassroomDAO getApplyClassroomDAO() {
+	return applyClassroomDAO;
+    }
+
+    public void setApplyClassroomDAO(ApplyClassroomDAO applyClassroomDAO) {
+	this.applyClassroomDAO = applyClassroomDAO;
+    }
+}

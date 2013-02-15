@@ -17,6 +17,9 @@
 	{
 	    message.setRedirectURL(referer);
 	}
+	else{
+	    message.setRedirectURL("/index.do");
+	}
     }
 %>
 <!DOCTYPE html>
