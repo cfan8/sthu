@@ -12,6 +12,10 @@
         <title>我的学生清华</title>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <h1>在这里输入页面内容</h1>
+    我的申请：
+    <iframe src="activity/showMyApply.do"></iframe>
+    
+    <a href="update_password.jsp">修改密码</a>
+    <a href="logout.do">登出</a>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

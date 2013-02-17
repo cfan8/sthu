@@ -24,5 +24,8 @@
     三级级待审批：
     <iframe src="/activity/showApplyList.do?viewType=1&approveType=<%=ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE %>">
     </iframe>
+    
+    <a href="update_password.jsp">修改密码</a>
+    <a href="logout.do">登出</a>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

@@ -108,4 +108,16 @@ public class ApplyClassroomDAO extends BaseDAO<CRoomApplyEntity> {
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }
+    
+    public int getMyApplyCountByUserid(int userid)
+    {
+	Object r = select().add(Restrictions.eq("applyUserid", userid)).setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+    
+    public List<CRoomApplyEntity> getMyApplyListByUserid(int userid, int begin, int number)
+    {
+	return select().add(Restrictions.eq("applyUserid", userid)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+		.addOrder(Order.desc("applyDate")).setFirstResult(begin).setMaxResults(number).list();
+    }
 }

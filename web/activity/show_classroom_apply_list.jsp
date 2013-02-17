@@ -20,27 +20,29 @@
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
     </head>
-    <div>
-	<p><select id="chooseApproveType">
-		<option value="<%=ShowApplyListPageAction.VIEW_TYPE_TODO%>" <%=message.getViewType()==ShowApplyListPageAction.VIEW_TYPE_TODO?"selected=\"selected\"":"" %>>未处理的申请</option>
-		<option value="<%=ShowApplyListPageAction.VIEW_TYPE_PAST%>" <%=message.getViewType()==ShowApplyListPageAction.VIEW_TYPE_PAST?"selected=\"selected\"":"" %>>已处理的申请</option>
-	    </select>
-	</p>
-	<div id="pageview"></div>
-    </div>
-    <script type="text/javascript">
-	var pageConfig = {
-	    root:$("#pageview"),
-	    url:"showApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>",
-	    total:<%=message.getTotalPageNumber()%>,
-	    current:1,
-	    arguName:"page",
-	    css:false
-	};
-	init(pageConfig);
-	$("#chooseApproveType").change(function(){
-	    var type = $("#chooseApproveType").val();
-	    self.location.href = "showApplyList.do?viewType=" + type + "&approveType=<%=message.getApproveType()%>";
-	});
-    </script>
+    <body>
+	<div>
+	    <p><select id="chooseApproveType">
+		    <option value="<%=ShowApplyListPageAction.VIEW_TYPE_TODO%>" <%=message.getViewType() == ShowApplyListPageAction.VIEW_TYPE_TODO ? "selected=\"selected\"" : ""%>>未处理的申请</option>
+		    <option value="<%=ShowApplyListPageAction.VIEW_TYPE_PAST%>" <%=message.getViewType() == ShowApplyListPageAction.VIEW_TYPE_PAST ? "selected=\"selected\"" : ""%>>已处理的申请</option>
+		</select>
+	    </p>
+	    <div id="pageview"></div>
+	</div>
+	<script type="text/javascript">
+	    var pageConfig = {
+		root:$("#pageview"),
+		url:"showApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>",
+		total:<%=message.getTotalPageNumber()%>,
+		current:1,
+		arguName:"page",
+		css:false
+	    };
+	    init(pageConfig);
+	    $("#chooseApproveType").change(function(){
+		var type = $("#chooseApproveType").val();
+		self.location.href = "showApplyList.do?viewType=" + type + "&approveType=<%=message.getApproveType()%>";
+	    });
+	</script>
+    </body>
 </html>

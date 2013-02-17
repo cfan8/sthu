@@ -71,5 +71,11 @@ and open the template in the editor.
 	<action name="showApplyPage" class="cn.edu.tsinghua.sthu.action.ShowApplyListPageAction">
 	    <result name="success">show_classroom_paged_apply.jsp</result>
 	</action>
+	<action name="showMyApply" class="cn.edu.tsinghua.sthu.action.ShowMyClassroomApplyAction">
+	    <result name="success">show_my_apply_list.jsp</result>
+	</action>
+	<action name="showMyApplyPage" class="cn.edu.tsinghua.sthu.action.ShowMyClassroomApplyPageAction">
+	    <result name="success">show_my_apply_list_page.jsp</result>
+	</action>
     </package>
 </struts>

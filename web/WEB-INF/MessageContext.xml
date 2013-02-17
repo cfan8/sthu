@@ -11,5 +11,7 @@
     <bean id="showApplyMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyMessage" scope="prototype" autowire="byName" />
     <bean id="showApplyListMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyListMessage" scope="prototype" autowire="byName" />
     <bean id="showApplyListPageMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyListPageMessage" scope="prototype" autowire="byName" />
+    <bean id="showMyClassroomApplyMessage" class="cn.edu.tsinghua.sthu.message.ShowMyClassroomApplyMessage" scope="prototype" autowire="byName" />
+    <bean id="showMyClassroomApplyPageMessage" class="cn.edu.tsinghua.sthu.message.ShowMyClassroomApplyPageMessage" scope="prototype" autowire="byName" />
 </beans>
 

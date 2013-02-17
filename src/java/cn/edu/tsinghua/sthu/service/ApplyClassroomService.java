@@ -123,7 +123,7 @@ public class ApplyClassroomService extends BaseService {
     @Transactional
     public CRoomApplyEntity confirmApply(CRoomApplyEntity entity) {
 	entity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_CONFIRMED);
-	entity.setApplyDate(new Date());
+	entity.setConfirmDate(new Date());
 	entity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_TODO);
 	entity.setIdentityDate(null);
 	entity.setResourceDate(null);
@@ -225,6 +225,19 @@ public class ApplyClassroomService extends BaseService {
 	    }
 	}
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
+    }
+    
+    @Transactional
+    public int getMyApplyTotalPageNumber(int userid, int numberPerPage)
+    {
+	int r = applyClassroomDAO.getMyApplyCountByUserid(userid);
+	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+    
+    @Transactional
+    public List<CRoomApplyEntity> getPagedMyApplyList(int userid, int page, int numberPerPage)
+    {
+	return applyClassroomDAO.getMyApplyListByUserid(userid, (page - 1)*numberPerPage, numberPerPage);
     }
 
     public ApplyClassroomDAO getApplyClassroomDAO() {
