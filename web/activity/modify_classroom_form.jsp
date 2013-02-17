@@ -48,9 +48,6 @@
 	    </span></div>
 	<div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager" value="<%=entity.getManager() %>"/></span></div>
 	<div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell" value="<%=entity.getManagerCell() %>"/></span></div>
-	<div><span class="tag">具体内容：</span>
-	    <div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content"><%=entity.getContent() %></script></div>
-	</div>
 	<div><span class="tag">借用日期：</span><span class="value"><input type="text" name="borrowDate" id="borrowDate"  value="<%=new SimpleDateFormat("yyyy-MM-dd").format(entity.getBorrowDate()) %>"/></span></div>
 	<div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="<%=entity.getTimePeriod() %>" /></span></div>
 	<div><span class="tag">教室类型要求：</span><span class="value">
@@ -61,15 +58,15 @@
 		</select>
 	    </span></div>
 	<div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" value="<%=entity.getNumber() %>" /><input type="hidden" name="applyId" value="<%=entity.getID() %>"></span></div>
-	<div><span class="tag">教室借用原因：</span>
-	    <div class="ueditorBlock"><script id="reasonEditor" type="text/plain" name="reason"><%=entity.getReason() %></script></div>
+	<div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title" value="<%=entity.getTitle() %>"/></span></div>
+	<div><span class="tag">活动具体内容：</span>
+	    <div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content"><%=entity.getContent() %></script></div>
 	</div>
 	<div><input type="submit" value="保存"/></div>
     </form>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
-	var re = UE.getEditor('reasonEditor');
 	if ($("#classUsage").val() == <%=CRoomApplyEntity.USAGE_OTHER %>)
 	{
 	    $("#usageComment").show();

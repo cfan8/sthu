@@ -65,5 +65,11 @@ and open the template in the editor.
 	</action>
 	<action name="approveApply" class="cn.edu.tsinghua.sthu.action.SaveClassroomCommentAction">
 	</action>
+	<action name="showApplyList" class="cn.edu.tsinghua.sthu.action.ShowApplyListAction">
+	    <result name="success">show_classroom_apply_list.jsp</result>
+	</action>
+	<action name="showApplyPage" class="cn.edu.tsinghua.sthu.action.ShowApplyListPageAction">
+	    <result name="success">show_classroom_paged_apply.jsp</result>
+	</action>
     </package>
 </struts>

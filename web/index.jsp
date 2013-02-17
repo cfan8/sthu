@@ -17,5 +17,6 @@
 	<a href="test/pageview_example.jsp" target="_blank">翻页控件样例</a><br/>
 	<a href="test/ueditortest.jsp" target="_blank">UEditor样例</a><br/>
 	<a href="activity/applyClassroom.do" target="_blank">申请活动</a><br/>
+	<a href="mysthu.do" target="_blank">个人中心</a><br/>
     </body>
 </html>

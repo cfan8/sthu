@@ -33,14 +33,13 @@
 	    <tr><td class="tag">教室活动类型：</td><td class="value"><%=entity.getUsageComment()%></td></tr>
 	    <tr><td class="tag">活动负责人：</td><td class="value"><%=entity.getManager()%></td></tr>
 	    <tr><td class="tag">活动负责人电话：</td><td class="value"><%=entity.getManagerCell()%></td></tr>
-	    <tr><td class="blocktag">活动内容：</td></tr>
+	    <tr><td class="tag">活动标题：</td><td class="value"><%=entity.getTitle()%></td></tr>
+	    <tr><td class="blocktag">活动具体内容：</td></tr>
 	    <tr><td class="blockvalue"><%=entity.getContent()%></td></tr>
 	    <tr><td class="tag">借用日期：</td><td class="value"><%=entity.getBorrowDate()%></td></tr>
 	    <tr><td class="tag">借用时间段：</td><td class="value"><%=entity.getTimePeriod()%></td></tr>
 	    <tr><td class="tag">要求教室类型：</td><td class="value"><%=entity.getRoomtypeText()%></td></tr>
 	    <tr><td class="tag">活动参与人数：</td><td class="value"><%=entity.getNumber()%></td></tr>
-	    <tr><td class="blocktag">教室借用原因：</td></tr>
-	    <tr><td class="blockvalue"><%=entity.getReason()%></td></tr>
 	    <tr><td class="tag">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>分团委审批状态：<%=entity.getIdentityStatusText()%></p>

@@ -41,9 +41,6 @@
 	    </span></div>
 	<div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager"/></span></div>
 	<div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
-	<div><span class="tag">活动内容：</span>
-	    <div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content">如内容较多请使用上传附件功能上传说明文档。</script></div>
-	</div>
 	<div><span class="tag">借用日期：</span><span class="value"><input type="text" id="borrowDate" name="borrowDate"/></span></div>
 	<div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="例：11:00-13:00"/></span></div>
 	<div><span class="tag">教室类型要求：</span><span class="value">
@@ -54,15 +51,15 @@
 		</select>
 	    </span></div>
 	<div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" /><input type="hidden" name="applyId" value="-1"></span></div>
-	<div><span class="tag">教室借用原因：</span>
-	    <div class="ueditorBlock"><script id="reasonEditor" type="text/plain" name="reason">如内容较多请使用上传附件功能上传说明文档。</script></div>
+	<div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title"/></span></div>
+	<div><span class="tag">活动具体内容：</span>
+	    <div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content">如内容较多请使用上传附件功能上传说明文档。</script></div>
 	</div>
 	<div><input type="submit" value="保存"/></div>
     </form>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
-	var re = UE.getEditor('reasonEditor');
 	$("#classUsage").change(function(){
 	    $("#usageComment").val($("#classUsage").find("option:selected").text());
 	    if ($("#classUsage").val() == <%=CRoomApplyEntity.USAGE_OTHER%>){

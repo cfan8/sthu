@@ -17,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "t_croom_apply")
-public class CRoomApplyEntity extends BaseEntity {
+public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomApplyEntity> {
 
     public static final int USAGE_CONTEST = 1;
     public static final int USAGE_GROUP = 2;
@@ -57,8 +57,7 @@ public class CRoomApplyEntity extends BaseEntity {
     private String timePeriod;	//借用时间段
     private int croomtype;  //借用教室类型:常量见下
     private int number;	//教室借用人数
-    @Column(length = 5000)
-    private String reason;  //借用原因
+    private String title;  //标题，从借用原因改过来
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date applyDate; //申请日期
@@ -173,12 +172,12 @@ public class CRoomApplyEntity extends BaseEntity {
 	this.number = number;
     }
 
-    public String getReason() {
-	return reason;
+    public String getTitle() {
+	return title;
     }
 
-    public void setReason(String reason) {
-	this.reason = reason;
+    public void setTitle(String title) {
+	this.title = title;
     }
 
     public Date getApplyDate() {
@@ -383,5 +382,19 @@ public class CRoomApplyEntity extends BaseEntity {
 		return "已驳回";
 	}
 	return "";
+    }
+
+    @Override
+    public int compareTo(CRoomApplyEntity o) {
+	if (applyDate.before(o.applyDate)) {
+	    return 1;
+	}
+	else if (applyDate.after(o.applyDate))
+	{
+	    return -1;
+	}
+	else {
+	    return 0;
+	}
     }
 }

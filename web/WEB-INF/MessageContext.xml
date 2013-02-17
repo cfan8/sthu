@@ -9,5 +9,7 @@
     <bean id="showApplyClassroomPageMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyClassroomPageMessage" scope="prototype" autowire="byName" />
     <bean id="applyClassroomMessage" class="cn.edu.tsinghua.sthu.message.ApplyClassroomMessage" scope="prototype" autowire="byName" />
     <bean id="showApplyMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyMessage" scope="prototype" autowire="byName" />
+    <bean id="showApplyListMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyListMessage" scope="prototype" autowire="byName" />
+    <bean id="showApplyListPageMessage" class="cn.edu.tsinghua.sthu.message.ShowApplyListPageMessage" scope="prototype" autowire="byName" />
 </beans>
 

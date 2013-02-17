@@ -7,7 +7,11 @@ package cn.edu.tsinghua.sthu.action;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
 import cn.edu.tsinghua.sthu.service.ApplyClassroomService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +31,7 @@ public class SaveClassroomApplyAction extends BaseAction{
     private String timePeriod;	//借用时间段
     private Integer croomtype;  //借用教室类型:常量见下
     private Integer number;	//教室借用人数
-    private String reason;  //借用原因
+    private String title;  //借用原因
     private Integer applyId;    //用于修改申请时使用
     private Integer applyType;  //申请通道设置
     
@@ -39,12 +43,12 @@ public class SaveClassroomApplyAction extends BaseAction{
 	CRoomApplyEntity entity;
 	if (applyId == null || applyId == -1)
 	{
-	    entity = getApplyClassroomService().createCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getReason(),
+	    entity = getApplyClassroomService().createCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(),
 		    getCurrentUser().getID(), getApplyType());
 	}
 	else
 	{
-	    entity = getApplyClassroomService().modifyCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getReason(), 
+	    entity = getApplyClassroomService().modifyCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(), 
 		    getCurrentUser().getID(), getApplyType(), applyId);
 	    if (entity == null)
 	    {
@@ -60,7 +64,7 @@ public class SaveClassroomApplyAction extends BaseAction{
     public boolean valid() {
 	if (isValid(getOrganizer()) && isValid(getBorrower()) && isValid(getBorrowerCell()) &&isValid(getUsageComment())
 		&& isValid(getContent()) && isValid(getManager()) && isValid(getManagerCell()) && isValid(getTimePeriod())
-		&&isValid(getReason()) && classUsage != null && croomtype != null && number != null && applyType != null)
+		&&isValid(getTitle()) && classUsage != null && croomtype != null && number != null && applyType != null && borrowDate != null)
 	{
 	    if (getNumber() > 0 && getApplyType() > 0) {
 		return true;
@@ -159,8 +163,12 @@ public class SaveClassroomApplyAction extends BaseAction{
 	return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
-	this.borrowDate = borrowDate;
+    public void setBorrowDate(String borrowDate) {
+	try {
+	    this.borrowDate = new SimpleDateFormat("yyyy-MM-dd").parse(borrowDate);
+	} catch (ParseException ex) {
+	    Logger.getLogger(SaveClassroomApplyAction.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 
     public String getTimePeriod() {
@@ -187,12 +195,12 @@ public class SaveClassroomApplyAction extends BaseAction{
 	this.number = number;
     }
 
-    public String getReason() {
-	return reason;
+    public String getTitle() {
+	return title;
     }
 
-    public void setReason(String reason) {
-	this.reason = reason;
+    public void setTitle(String title) {
+	this.title = title;
     }
 
     public Integer getApplyId() {

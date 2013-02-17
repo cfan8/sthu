@@ -4,14 +4,19 @@
  */
 package cn.edu.tsinghua.sthu.service;
 
+import cn.edu.tsinghua.sthu.action.ShowApplyListAction;
+import cn.edu.tsinghua.sthu.action.ShowApplyListPageAction;
 import cn.edu.tsinghua.sthu.constant.AllocateMapping;
 import cn.edu.tsinghua.sthu.constant.IdentityMapping;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyClassroomDAO;
 import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
+import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.ShowApplyMessage;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityListeners;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,10 +39,9 @@ public class ApplyClassroomService extends BaseService {
 	    return entity;
 	}
     }
-    
+
     @Transactional
-    public CRoomApplyEntity getCRoomApplyEntityById(int applyId)
-    {
+    public CRoomApplyEntity getCRoomApplyEntityById(int applyId) {
 	return applyClassroomDAO.getCRoomApplyEntityById(applyId);
     }
 
@@ -45,7 +49,7 @@ public class ApplyClassroomService extends BaseService {
     public CRoomApplyEntity createCRoomApply(String organizer, String borrower,
 	    String borrowerCell, int classUsage, String usageComment, String content,
 	    String manager, String managerCell, Date borrowDate, String timePeriod,
-	    int croomtype, int number, String reason, int userid, int applyType) {
+	    int croomtype, int number, String title, int userid, int applyType) {
 	CRoomApplyEntity entity = new CRoomApplyEntity();
 	entity.setOrganizer(organizer);
 	entity.setBorrower(borrower);
@@ -59,7 +63,7 @@ public class ApplyClassroomService extends BaseService {
 	entity.setTimePeriod(timePeriod);
 	entity.setCroomtype(croomtype);
 	entity.setNumber(number);
-	entity.setReason(reason);
+	entity.setTitle(title);
 	entity.setApplyUserid(userid);
 	entity.setApplyDate(new Date());
 	entity.setApplyType(applyType);
@@ -67,17 +71,17 @@ public class ApplyClassroomService extends BaseService {
 	applyClassroomDAO.saveCRoomApplyEntity(entity);
 	return entity;
     }
-    
+
     @Transactional
     public CRoomApplyEntity modifyCRoomApply(String organizer, String borrower,
 	    String borrowerCell, int classUsage, String usageComment, String content,
 	    String manager, String managerCell, Date borrowDate, String timePeriod,
-	    int croomtype, int number, String reason, int userid, int applyType, int applyId){
+	    int croomtype, int number, String title, int userid, int applyType, int applyId) {
 	CRoomApplyEntity entity = applyClassroomDAO.getCRoomApplyEntityById(applyId);
-	if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED && 
-		entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED ) {
-		    return null;
-		}
+	if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
+		&& entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
+	    return null;
+	}
 	entity.setOrganizer(organizer);
 	entity.setBorrower(borrower);
 	entity.setBorrowerCell(borrowerCell);
@@ -90,7 +94,7 @@ public class ApplyClassroomService extends BaseService {
 	entity.setTimePeriod(timePeriod);
 	entity.setCroomtype(croomtype);
 	entity.setNumber(number);
-	entity.setReason(reason);
+	entity.setTitle(title);
 	entity.setApplyUserid(userid);
 	entity.setApplyDate(new Date());
 	entity.setApplyType(applyType);
@@ -117,77 +121,112 @@ public class ApplyClassroomService extends BaseService {
     }
 
     @Transactional
-    public CRoomApplyEntity confirmApply(CRoomApplyEntity entity)
-    {
+    public CRoomApplyEntity confirmApply(CRoomApplyEntity entity) {
 	entity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_CONFIRMED);
 	entity.setApplyDate(new Date());
 	entity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_TODO);
 	entity.setIdentityDate(null);
 	entity.setResourceDate(null);
 	entity.setAllocateDate(null);
-	for (ApplyCommentEntity comment:entity.getComments())
-	{
+	for (ApplyCommentEntity comment : entity.getComments()) {
 	    comment.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_OLD);
 	}
 	applyClassroomDAO.updateCRoomApplyEntity(entity);
 	return entity;
     }
-    
+
     @Transactional
-    public void processComment(CRoomApplyEntity applyEntity, boolean isApprove, String comment, int type, String nickName, int userid)
-    {
+    public void processComment(CRoomApplyEntity applyEntity, boolean isApprove, String comment, int type, String nickName, int userid) {
 	ApplyCommentEntity commentEntity = new ApplyCommentEntity();
 	commentEntity.setComment(comment);
 	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
-	commentEntity.setCommentType(isApprove?ApplyCommentEntity.COMMENT_TYPE_ACCEPT:ApplyCommentEntity.COMMENT_TYPE_REJECT);
+	commentEntity.setCommentType(isApprove ? ApplyCommentEntity.COMMENT_TYPE_ACCEPT : ApplyCommentEntity.COMMENT_TYPE_REJECT);
 	commentEntity.setNickname(nickName);
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
 	applyEntity.getComments().add(commentEntity);
-	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY)
-	{
-	    if (isApprove == true)
-	    {
+	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY) {
+	    applyEntity.setIdentityDate(new Date());
+	    if (isApprove == true) {
 		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_ACCEPTED);
-		applyEntity.setIdentityDate(new Date());
 		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_TODO);
-	    }
-	    else
-	    {
+	    } else {
 		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_REJECTED);
 		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
 	    }
-	}
-	else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE)
-	{
-	    if (isApprove)
-	    {
+	} else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE) {
+	    applyEntity.setResourceDate(new Date());
+	    if (isApprove) {
 		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_ACCEPTED);
-		applyEntity.setResourceDate(new Date());
 		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_TODO);
-	    }
-	    else
-	    {
+	    } else {
 		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_REJECTED);
 		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
 	    }
-	}
-	else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE)
-	{
-	    if (isApprove)
-	    {
+	} else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE) {
+	    applyEntity.setAllocateDate(new Date());
+	    if (isApprove) {
 		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_ACCEPTED);
-		applyEntity.setAllocateDate(new Date());
 		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_ACCEPTED);
-	    }
-	    else{
+	    } else {
 		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_REJECTED);
 		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
 	    }
 	}
 	applyClassroomDAO.updateCRoomApplyEntity(applyEntity);
     }
-    
+
+    @Transactional
+    public List<CRoomApplyEntity> getPagedApply(int viewType, int page, int number, AuthEntity auth, int approveType) {
+	List<CRoomApplyEntity> list = null;
+	int begin = (page - 1) * number;
+	if (approveType == ShowApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyClassroomDAO.getPastApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyClassroomDAO.getTodoApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyClassroomDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyClassroomDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    }
+	} else if (approveType == ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyClassroomDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyClassroomDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+	    }
+	}
+	return list;
+    }
+
+    @Transactional
+    public int getTotalPageNumber(int viewType, int numberPerPage, AuthEntity auth, int approveType) {
+	int resultCount = 0;
+	if (approveType == ShowApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyClassroomDAO.getPastApplyCountByIdentityType(auth.getOpIdentityCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyClassroomDAO.getTodoApplyCountByIdentityType(auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyClassroomDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyClassroomDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+	} else if (approveType == ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
+	    if (viewType == ShowApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyClassroomDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
+	    } else if (viewType == ShowApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyClassroomDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
+	    }
+	}
+	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
+    }
+
     public ApplyClassroomDAO getApplyClassroomDAO() {
 	return applyClassroomDAO;
     }
