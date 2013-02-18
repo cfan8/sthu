@@ -56,15 +56,16 @@ public class ActivityApplyEntity extends BaseEntity {
     @Column(length = 32)
     private String applicatantCell;//联系电话
     private String applicatantEmail;//电子邮箱
+    private int applyPath;  //审批通道
     private int applyStatus;	//申请状态
     private int identityType;	//一级审批类型
     private int identityStatus;	//一级审批状态
     @Column(length = 5000)
-    private String identityComment;
+    private String identityComment; //一级审批意见
     private int resourceType;	//二级审批类型
     private int resourceStatus;	//二级审批状态
     @Column(length = 5000)
-    private String resourceComment;
+    private String resourceComment; //二级审批意见
     private int applyUserID;	//申请人ID
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -183,6 +184,14 @@ public class ActivityApplyEntity extends BaseEntity {
 	this.applicatantEmail = applicatantEmail;
     }
 
+    public int getApplyPath() {
+	return applyPath;
+    }
+
+    public void setApplyPath(int applyPath) {
+	this.applyPath = applyPath;
+    }
+
     public int getApplyStatus() {
 	return applyStatus;
     }
@@ -278,4 +287,5 @@ public class ActivityApplyEntity extends BaseEntity {
     public void setResourceDate(Date resourceDate) {
 	this.resourceDate = resourceDate;
     }
+
 }
