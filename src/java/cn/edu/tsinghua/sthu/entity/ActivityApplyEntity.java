@@ -23,8 +23,10 @@ public class ActivityApplyEntity extends BaseEntity {
     public static final int APPLYSTATUS_TYPE_UNCONFIRMED = 1;
     public static final int APPLYSTATUS_TYPE_CONFIRMED_BY_FALCUTY = 2;
     public static final int APPLYSTATUS_TYPE_REJECTED_BY_FALCUTY = 3;
-    public static final int APPLYSTATUS_TYPE_CONFIRMED_BY_TEACHER = 4;
-    public static final int APPLYSTATUS_TYPE_REJECTED_BY_TEACHER = 5;
+    public static final int APPLYSTATUS_TYPE_REVISED_TO_FALCUTY = 4;
+    public static final int APPLYSTATUS_TYPE_CONFIRMED_BY_TEACHER = 5;
+    public static final int APPLYSTATUS_TYPE_REJECTED_BY_TEACHER = 6;
+    public static final int APPLYSTATUS_TYPE_REVISED_TO_TEACHER = 7;
     
     private int applicationType;//申请类型
     @Column(length = 64)
