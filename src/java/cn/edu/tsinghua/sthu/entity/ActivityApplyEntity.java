@@ -42,11 +42,11 @@ public class ActivityApplyEntity extends BaseEntity {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endTime;//结束时间
     @Column(length = 1024)
-    private String LEDContent;//电子屏显示内容
+    private String LEDContent;//电子屏显示内容	LED用
     @Column(length = 256)
-    private String activityLocation;//活动地点
+    private String activityLocation;//活动地点	室外活动/展板用
     @Column(length = 5000)
-    private String activityMaterial;//活动材料（这项是干嘛..)
+    private String activityMaterial;//活动材料	室外活动/展板用
     @Column(length = 128)
     private String organizerName;//主办单位
     @Column(length = 128)
