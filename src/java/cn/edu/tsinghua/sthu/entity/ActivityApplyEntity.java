@@ -5,7 +5,10 @@
 package cn.edu.tsinghua.sthu.entity;
 
 import java.util.*;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -33,7 +36,7 @@ public class ActivityApplyEntity extends BaseEntity {
     private int applyType;//申请类型
     @Column(length = 64)
     private String activityName;//活动名称
-    @Column(length = 5000)
+    @Column(length = 4000)
     private String activityContent;//活动说明
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -45,7 +48,7 @@ public class ActivityApplyEntity extends BaseEntity {
     private String LEDContent;//电子屏显示内容	LED用
     @Column(length = 256)
     private String activityLocation;//活动地点	室外活动/展板用
-    @Column(length = 5000)
+    @Column(length = 4000)
     private String activityMaterial;//活动材料	室外活动/展板用
     @Column(length = 128)
     private String organizerName;//主办单位
@@ -60,13 +63,14 @@ public class ActivityApplyEntity extends BaseEntity {
     private int applyStatus;	//申请状态
     private int identityType;	//一级审批类型
     private int identityStatus;	//一级审批状态
-    @Column(length = 5000)
+    @Column(length = 1024)
     private String identityComment; //一级审批意见
     private int resourceType;	//二级审批类型
     private int resourceStatus;	//二级审批状态
-    @Column(length = 5000)
+    @Column(length = 1024)
     private String resourceComment; //二级审批意见
     private int applyUserID;	//申请人ID
+    
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date applyDate; //申请时间

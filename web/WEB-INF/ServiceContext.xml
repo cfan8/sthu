@@ -6,5 +6,5 @@
         <bean id="newService" class="cn.edu.tsinghua.sthu.service.NewService" scope="prototype" autowire="byName" />
         <bean id="columnService" class="cn.edu.tsinghua.sthu.service.ColumnService" scope="prototype" autowire="byName" />
 	<bean id="applyClassroomService" class="cn.edu.tsinghua.sthu.service.ApplyClassroomService" scope="prototype" autowire="byName" />
+        <bean id="applyActivityService" class="cn.edu.tsinghua.sthu.service.ApplyActivityService" scope="prototype" autowire="byName" />
 </beans>
-
