@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.*;
 import javax.persistence.Column;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -18,7 +19,6 @@ import org.hibernate.criterion.Restrictions;
  */
 public class BaseDAO<T>
 {
-
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory()

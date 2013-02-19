@@ -50,6 +50,46 @@ and open the template in the editor.
 	<action name="testUEditor" class="cn.edu.tsinghua.sthu.action.TestUEditorAction">
 	</action>
     </package>
+    <package name="newActionPackage" extends="defaultAction" namespace="/new">
+        <action name="newsManage" class="cn.edu.tsinghua.sthu.action.ShowNewManagementPageAction">
+            <result name="success">newmanagement.jsp</result>
+        </action>
+        <action name="newPage" class="cn.edu.tsinghua.sthu.action.GetNewPageAction">
+            <result name="success">newpage.jsp</result>
+        </action>
+        <action name="deleteNew" class="cn.edu.tsinghua.sthu.action.DeleteNewAction">
+            <result name="success" type="redirect">newsManage.do</result>
+        </action>
+        <action name="editNewPage" class="cn.edu.tsinghua.sthu.action.ShowNewEditPageAction">
+            <result name="success">newedit.jsp</result>
+        </action>
+        <action name="addNew" class="cn.edu.tsinghua.sthu.action.AddNewAction">
+            <result name="success" type="redirect">newsManage.do</result>
+        </action>
+        <action name="newFilter" class="cn.edu.tsinghua.sthu.action.NewFilterAction">
+            <result name="success" type="redirect">newsManage.do?${param}</result>
+        </action>
+    </package>
+    <package name="columnActionPackage" extends="defaultAction" namespace="/column">
+        <action name="columnsManage" class="cn.edu.tsinghua.sthu.action.ShowColumnManagementPageAction">
+            <result name="success">columnmanagement.jsp</result>
+        </action>
+        <action name="columnPage" class="cn.edu.tsinghua.sthu.action.GetColumnPageAction">
+            <result name="success">columnpage.jsp</result>
+        </action>
+        <action name="editColumnPage" class="cn.edu.tsinghua.sthu.action.ShowColumnEditPageAction" >
+            <result name="success">columnedit.jsp</result>
+        </action>
+        <action name="addColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
+            <result name="success" type="redirect">columnsManage.do</result>
+        </action>
+        <action name="updateColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
+            <result name="success" type="redirect">columnsManage.do</result>
+        </action>
+        <action name="deleteColumn" class="cn.edu.tsinghua.sthu.action.DeleteColumnAction">
+            <result name="success" type="redirect">columnsManage.do</result>
+        </action>
+    </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">
 	    <result name="create">create_classroom_form.jsp</result>

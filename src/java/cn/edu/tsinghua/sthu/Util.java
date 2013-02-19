@@ -16,6 +16,8 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
@@ -92,6 +94,12 @@ public class Util
 	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	return null;
+    }
+    
+    public static String dateToStringAccurateToMinute(Date date)
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+        return format.format(date);
     }
 
     /*

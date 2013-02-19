@@ -3,6 +3,8 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans" xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="userService" class="cn.edu.tsinghua.sthu.service.UserService" scope="prototype" autowire="byName" />
+        <bean id="newService" class="cn.edu.tsinghua.sthu.service.NewService" scope="prototype" autowire="byName" />
+        <bean id="columnService" class="cn.edu.tsinghua.sthu.service.ColumnService" scope="prototype" autowire="byName" />
 	<bean id="applyClassroomService" class="cn.edu.tsinghua.sthu.service.ApplyClassroomService" scope="prototype" autowire="byName" />
 </beans>
 
