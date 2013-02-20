@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cn.edu.tsinghua.sthu.action;
+package cn.edu.tsinghua.sthu.action.outdoor;
 
+import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.ActivityApplyEntity;
 import cn.edu.tsinghua.sthu.service.ApplyActivityService;

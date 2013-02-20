@@ -118,12 +118,12 @@ and open the template in the editor.
 	    <result name="success">show_my_apply_list_page.jsp</result>
 	</action>
     </package>
-    <package name="activitiesActionPackage" extends="defaultAction" namespace="/activities">
-        <action name="applyActivity" class="cn.edu.tsinghua.sthu.action.ShowApplyActivityPageAction">
+    <package name="outdoorActionPackage" extends="defaultAction" namespace="/outdoor">
+        <action name="applyActivity" class="cn.edu.tsinghua.sthu.action.outdoor.ShowApplyActivityPageAction">
 	    <result name="create">create_activity.jsp</result>
 	    <result name="modify">modify_classroom_form.jsp</result>
 	</action>
-        <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.SaveActivityApplyAction">
+        <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">
 	    <result name="create">create_activity.jsp</result>
 	</action>
     </package>
