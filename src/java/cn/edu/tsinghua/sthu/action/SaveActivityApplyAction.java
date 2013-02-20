@@ -60,7 +60,7 @@ public class SaveActivityApplyAction extends BaseAction{
 	    else
             {
                 entity = getApplyActivityService().createActivityApply(getApplyType(), getActivityName(), 
-    getActivityContent(), null, null, null, getActivityLocation(),
+    getActivityContent(), getStartTime1(), getEndTime1(), " ", getActivityLocation(),
     getActivityMaterial(), getOrganizerName(), getApplicatantType(), getApplicatantName(), getApplicatantCell(),
     getApplicatantEmail(), getApplyPath(), getCurrentUser().getID());
             }
@@ -77,7 +77,7 @@ public class SaveActivityApplyAction extends BaseAction{
 	    else
             {
                 entity = getApplyActivityService().modifyActivityApply(getApplyType(), getActivityName(), 
-    getActivityContent(), null, null, null, getActivityLocation(),
+    getActivityContent(), getStartTime1(), getEndTime1(), " ", getActivityLocation(),
     getActivityMaterial(), getOrganizerName(), getApplicatantType(), getApplicatantName(), getApplicatantCell(),
     getApplicatantEmail(), getApplyPath(), getCurrentUser().getID(), getApplyId());
             }
