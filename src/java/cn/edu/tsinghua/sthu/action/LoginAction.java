@@ -45,12 +45,12 @@ public class LoginAction extends BaseAction {
     @Override
     public String onExecute() {
 	UserEntity entity = getUserService().userLogin(username, password);
+	if (isValid(redirectURL) == false) {
+	    redirectURL = "/index.do";
+	} else {
+	    redirectURL = Util.decodeURL(redirectURL);
+	}
 	if (entity != null) {
-	    if (isValid(redirectURL) == false) {
-		redirectURL = "/index.do";
-	    } else {
-		redirectURL = Util.decodeURL(redirectURL);
-	    }
 	    getLoginMessage().setLoginDate(entity.getLastlogintime());
 	    getLoginMessage().setNickName(entity.getNickname());
 	    setSession("isLogin", true);
@@ -60,7 +60,7 @@ public class LoginAction extends BaseAction {
 	    getAlertMessage().setAlertType(AlertMessage.BOX_TYPE);
 	    getAlertMessage().setAlertTitle("用户名密码错误");
 	    getAlertMessage().setAlertContent("请重新输入用户名密码！");
-	    getAlertMessage().setRedirectURL("/login.do");
+	    getAlertMessage().setRedirectURL("/login.do?redirectURL=" + Util.encodeURL(redirectURL));
 	    return ALERT;
 	}
     }
