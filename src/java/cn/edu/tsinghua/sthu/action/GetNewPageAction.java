@@ -25,8 +25,6 @@ public class GetNewPageAction extends BaseAction{
     private String titleFilter = "";
     private String authorFilter = "";
     private String columnBelongFilter = "";
-    private String startDateFilter = "";
-    private String endDateFilter = "";
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
     private NewManagementPageMessage newManagementPageMessage;
@@ -48,8 +46,6 @@ public class GetNewPageAction extends BaseAction{
         getNewManagementPageMessage().setTitleFilter(getTitleFilter());
         getNewManagementPageMessage().setAuthorFilter(getAuthorFilter());
         getNewManagementPageMessage().setColumnBelongFilter(getColumnBelongFilter());
-        getNewManagementPageMessage().setStartDateFilter(getStartDateFilter());
-        getNewManagementPageMessage().setEndDateFilter(getEndDateFilter());
         getNewManagementPageMessage().setIsPlacedInColumnTopFilter(isIsPlacedInColumnTopFilter());
         getNewManagementPageMessage().setWithRedirectURLFilter(isWithRedirectURLFilter());
         int count = newService.getQueryNewPageCount(newManagementPageMessage);
@@ -119,22 +115,6 @@ public class GetNewPageAction extends BaseAction{
 
     public void setColumnBelongFilter(String columnBelongFilter) {
         this.columnBelongFilter = columnBelongFilter;
-    }
-
-    public String getStartDateFilter() {
-        return startDateFilter;
-    }
-
-    public void setStartDateFilter(String startDateFilter) {
-        this.startDateFilter = startDateFilter;
-    }
-
-    public String getEndDateFilter() {
-        return endDateFilter;
-    }
-
-    public void setEndDateFilter(String endDateFilter) {
-        this.endDateFilter = endDateFilter;
     }
 
     public boolean isIsPlacedInColumnTopFilter() {

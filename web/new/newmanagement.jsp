@@ -44,7 +44,6 @@
                 <% }} %>
         </select>
         <br/>
-        日期区间：<input type="text" name="startDateFilter" value="<%=newMPM.getStartDateFilter()%>"/>-<input type="text" name="endDateFilter" value="<%=newMPM.getEndDateFilter()%>"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="checkbox" name="isPlacedInColumnTopFilter" value="true" <% if (newMPM.isIsPlacedInColumnTopFilter()) { %> checked="checked" <% } %>/>置顶 &nbsp;&nbsp;&nbsp;&nbsp;
         <input type="checkbox" name="withRedirectURLFilter" value="true"  <% if (newMPM.isWithRedirectURLFilter()) { %> checked="checked" <% } %>/>附带重定向URL
         <br/>

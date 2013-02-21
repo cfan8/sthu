@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.entity.ColumnEntity;
+import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.ColumnEditPageMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 
@@ -29,6 +30,10 @@ public class ShowColumnEditPageAction extends BaseAction{
             ColumnEntity entity = columnService.getColumnById(id);
             if (entity == null)
             {
+                alertMessage.setAlertTitle("更新失败");
+                alertMessage.setAlertContent("该栏目不存在！");
+                alertMessage.setAlertType(AlertMessage.ALERT_TYPE);
+                alertMessage.setRedirectURL(AlertMessage.REFERER_URL);
                 return false;
             }
             columnEditPageMessage.setColumnEntity(entity);

@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.service.NewService;
 import java.util.Date;
 import cn.edu.tsinghua.sthu.constant.Constant;
 import cn.edu.tsinghua.sthu.entity.ColumnEntity;
+import cn.edu.tsinghua.sthu.entity.NewEntity;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,7 +19,7 @@ import java.text.SimpleDateFormat;
  *
  * @author wuhz
  */
-public class AddNewAction extends BaseAction
+public class EditNewAction extends BaseAction
 {
     private String title;
     private String content;
@@ -28,37 +29,66 @@ public class AddNewAction extends BaseAction
     private boolean isPlacedInColumnTop;
     private NewService newService;
     private ColumnService columnService;
+    private int id = -1;
     
     @Override
     public String onExecute() 
     {
         Date date = new Date();
-        if (columnBelong == null)
+        if (id < 0)
         {
-            columnBelong = Constant.DEFAULT_COLUMN;
+            if (columnBelong == null)
+            {
+                columnBelong = Constant.DEFAULT_COLUMN;
+            }
+            int ret = newService.addNew(title, content, author, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            if (ret == 0)
+            {
+                return SUCCESS;
+            }
+            else if (ret == -1)
+            {
+                alertMessage.setAlertContent("分组" + columnBelong + "置顶新闻最多设置" + Constant.ONTOP_NEW_NUMBER_ONE_COLUMN + "篇");
+                return ALERT;
+            }
+            else
+            {
+                alertMessage.setAlertContent("分组" + columnBelong + "不存在!");
+                return ALERT;
+            } 
         }
-        if ((isPlacedInColumnTop == true) && (newService.getOnTopCountByColumn(columnBelong) >= Constant.ONTOP_NEW_NUMBER_ONE_COLUMN))
-        {
-            alertMessage.setAlertTitle("添加失败");
-            alertMessage.setAlertContent("分组" + columnBelong + "置顶新闻最多设置" + Constant.ONTOP_NEW_NUMBER_ONE_COLUMN + "篇");
-            return ALERT;
-        }
-        if (newService.addNew(title, content, author, date, redirectURL, isPlacedInColumnTop, columnBelong))
-	{
-            return SUCCESS;
-	}
         else
         {
-            alertMessage.setAlertTitle("添加失败");
-            alertMessage.setAlertContent("分组" + columnBelong + "不存在!");
-            return ALERT;
-        } 
+            int ret = newService.updateNew(id, title, content, author, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            switch (ret)
+            {
+                case 0:
+                        return SUCCESS;
+                case -1:
+                        alertMessage.setAlertContent("该新闻不存在!");
+                        return ALERT;
+                case -2:
+                        alertMessage.setAlertContent("分组" + columnBelong + "置顶新闻最多设置" + Constant.ONTOP_NEW_NUMBER_ONE_COLUMN + "篇");
+                        return ALERT;
+                case -3:
+                        alertMessage.setAlertContent("分组" + columnBelong + "不存在!");
+                        return ALERT;
+            }
+        }
+        return SUCCESS;
     }
 
     @Override
     public boolean valid() 
     {
-        alertMessage.setAlertTitle("添加失败");
+        if (id < 0)
+        {
+            alertMessage.setAlertTitle("添加失败");
+        }
+        else
+        {
+            alertMessage.setAlertTitle("更新失败");
+        }
         alertMessage.setAlertType(AlertMessage.ALERT_TYPE);
 	alertMessage.setRedirectURL(AlertMessage.REFERER_URL);
         if ((title == null) || (title.length() > 32) || (title.length() < 3))
@@ -161,6 +191,14 @@ public class AddNewAction extends BaseAction
 
     public void setColumnService(ColumnService columnService) {
         this.columnService = columnService;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

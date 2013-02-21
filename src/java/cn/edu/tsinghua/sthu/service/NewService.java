@@ -24,8 +24,12 @@ public class NewService extends BaseService
     private ColumnDAO columnDAO;
     
     @Transactional
-    public boolean addNew(String title, String content, String author, Date date, String redirectURL, boolean onTop, String columnName)
+    public int addNew(String title, String content, String author, Date date, String redirectURL, boolean onTop, String columnName)
     {
+        if ((onTop == true) && (getOnTopCountByColumn(columnName) >= Constant.ONTOP_NEW_NUMBER_ONE_COLUMN))
+        {
+            return -1;
+        }
         ColumnEntity columnEntity = columnDAO.queryByName(columnName);
         if (columnEntity == null)
         {
@@ -35,11 +39,49 @@ public class NewService extends BaseService
             }
             else
             {
-                return false;
+                return -2;
             }
         }
+        if (redirectURL == null)
+        {
+            redirectURL = "";
+        }
         newDAO.addNew(title, content, author, date, redirectURL, onTop, columnEntity);
-        return true;
+        return 0;
+    }
+    
+    @Transactional
+    public int updateNew(int id, String title, String content, String author, Date date, String redirectURL, boolean onTop, String columnName)
+    {
+        NewEntity entity = getNewById(id);
+        if (entity == null)
+        {
+            return -1;
+        }
+        if ((entity.getColumnBelong().getName().equals(columnName)) && (!entity.isIsPlacedInColumnTop())
+                && (onTop) && (getOnTopCountByColumn(columnName) >= Constant.ONTOP_NEW_NUMBER_ONE_COLUMN))
+        {
+            return -2;
+        }
+        if ((!entity.getColumnBelong().getName().equals(columnName))
+                && (onTop) && (getOnTopCountByColumn(columnName) >= Constant.ONTOP_NEW_NUMBER_ONE_COLUMN))
+        {
+            return -2;
+        }
+        ColumnEntity columnEntity = columnDAO.queryByName(columnName);
+        if (columnEntity == null)
+        {
+            return -3;
+        }
+        entity.setContent(content);
+        entity.setAuthor(author);
+        entity.setTitle(title);
+        entity.setUpdateTime(date);
+        entity.setRedirectURL(redirectURL);
+        entity.setIsPlacedInColumnTop(onTop);
+        entity.setColumnBelong(columnEntity);
+        newDAO.updateNew(entity);
+        return 0;
     }
     
     @Transactional
@@ -65,6 +107,12 @@ public class NewService extends BaseService
     {
         int count = newDAO.getNewCount();
         return computePage(count);
+    }
+    
+    @Transactional
+    public NewEntity getNewById(int newId)
+    {
+        return newDAO.queryById(newId);
     }
     
     public int computePage(int count)

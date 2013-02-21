@@ -63,7 +63,10 @@ and open the template in the editor.
         <action name="editNewPage" class="cn.edu.tsinghua.sthu.action.ShowNewEditPageAction">
             <result name="success">newedit.jsp</result>
         </action>
-        <action name="addNew" class="cn.edu.tsinghua.sthu.action.AddNewAction">
+        <action name="addNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
+            <result name="success" type="redirect">newsManage.do</result>
+        </action>
+        <action name="updateNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
             <result name="success" type="redirect">newsManage.do</result>
         </action>
         <action name="newFilter" class="cn.edu.tsinghua.sthu.action.NewFilterAction">

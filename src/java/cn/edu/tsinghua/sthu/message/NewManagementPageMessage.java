@@ -16,8 +16,6 @@ public class NewManagementPageMessage {
     private String titleFilter = "";
     private String authorFilter = "";
     private String columnBelongFilter = "";
-    private String startDateFilter = "";
-    private String endDateFilter = "";
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
     private String param = "";
@@ -60,22 +58,6 @@ public class NewManagementPageMessage {
 
     public void setColumnBelongFilter(String columnBelongFilter) {
         this.columnBelongFilter = columnBelongFilter;
-    }
-
-    public String getStartDateFilter() {
-        return startDateFilter;
-    }
-
-    public void setStartDateFilter(String startDateFilter) {
-        this.startDateFilter = startDateFilter;
-    }
-
-    public String getEndDateFilter() {
-        return endDateFilter;
-    }
-
-    public void setEndDateFilter(String endDateFilter) {
-        this.endDateFilter = endDateFilter;
     }
 
     public boolean isIsPlacedInColumnTopFilter() {

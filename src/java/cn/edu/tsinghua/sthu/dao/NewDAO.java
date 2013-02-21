@@ -80,11 +80,11 @@ public class NewDAO extends BaseDAO<NewEntity>
     {
         if (newManagementPageMessage.getTitleFilter().length() > 0)
         {
-            criteria.add(Restrictions.like("title", newManagementPageMessage.getTitleFilter()));
+            criteria.add(Restrictions.like("title", "%" + newManagementPageMessage.getTitleFilter() + "%"));
         }
         if (newManagementPageMessage.getAuthorFilter().length() > 0)
         {
-            criteria.add(Restrictions.like("author", newManagementPageMessage.getAuthorFilter()));
+            criteria.add(Restrictions.like("author", "%" + newManagementPageMessage.getAuthorFilter() + "%"));
         }
         if (newManagementPageMessage.getColumnBelongFilter().equals(Constant.ALL_COLUMN) == false && newManagementPageMessage.getColumnBelongFilter().length() > 0)
         {
@@ -101,7 +101,7 @@ public class NewDAO extends BaseDAO<NewEntity>
         }
         if (newManagementPageMessage.isWithRedirectURLFilter())
         {
-            criteria.add(Restrictions.isNotEmpty("redirectURL"));
+            criteria.add(Restrictions.ne("redirectURL", ""));
         }
         return true;
     }

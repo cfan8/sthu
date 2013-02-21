@@ -21,7 +21,6 @@
 <%
     news = (List<NewEntity>) request.getAttribute("news");
 %>
-<%@include file="/templates/general_header.jsp" %>
 <div style="background-color:#DDEEDD;width: 1000px">
     </br>
     <ul style="list-style: none; width: 900px">
@@ -46,5 +45,4 @@
     <% } %>
     </ul>
 </div>
-<%@include file="/templates/general_footer.jsp" %>
 </html>
