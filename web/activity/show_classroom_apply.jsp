@@ -23,9 +23,33 @@
         <title>显示教室申请</title>
 	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+        <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+	<style>
+	    #tablediv{
+		width: 600px;
+		margin: 10px auto 10px auto;
+	    }
+	    
+	    .tag
+	    {
+		width: 150px;
+	    }
+	    
+	    .blockvalue{
+		width: 600px;
+	    }
+	    
+	    tr
+	    {
+		border-top-width: 1px;
+		border-top-style: solid;
+	    }
+	</style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <div>
+    <span id="postion">您当前的位置：活动申请</span>
+    <div class="processtype" id="processtype<%=entity.getApplyStatus() %>"></div>
+    <div id="tablediv">
 	<table>
 	    <tr><td class="tag">活动组织：</td><td class="value"><%=entity.getOrganizer()%></td></tr>
 	    <tr><td class="tag">借用人：</td><td class="value"><%=entity.getBorrower()%></td></tr>
@@ -34,8 +58,8 @@
 	    <tr><td class="tag">活动负责人：</td><td class="value"><%=entity.getManager()%></td></tr>
 	    <tr><td class="tag">活动负责人电话：</td><td class="value"><%=entity.getManagerCell()%></td></tr>
 	    <tr><td class="tag">活动标题：</td><td class="value"><%=entity.getTitle()%></td></tr>
-	    <tr><td class="blocktag">活动具体内容：</td></tr>
-	    <tr><td class="blockvalue"><%=entity.getContent()%></td></tr>
+	    <tr><td class="blocktag" colspan="2">活动具体内容：</td></tr>
+	    <tr><td class="blockvalue" colspan="2"><%=entity.getContent()%></td></tr>
 	    <tr><td class="tag">借用日期：</td><td class="value"><%=entity.getBorrowDate()%></td></tr>
 	    <tr><td class="tag">借用时间段：</td><td class="value"><%=entity.getTimePeriod()%></td></tr>
 	    <tr><td class="tag">要求教室类型：</td><td class="value"><%=entity.getRoomtypeText()%></td></tr>

@@ -35,7 +35,7 @@ public class Util
 	HttpServletRequest request = ServletActionContext.getRequest();
 	return (AlertMessage)request.getAttribute("alertMessage");
     }
-
+    
     public static <T, P extends BaseAction> T getMessage(Class<P> type)
     {
 	HttpServletRequest request = ServletActionContext.getRequest();

@@ -7,5 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 	    </div>
 	</div>
+	<div id="footer">
+	</div>
     </div>
 </body>

@@ -17,46 +17,52 @@
 	<script type="text/javascript" charset="utf-8" src="/js/moment.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/js/pikaday.min.js"></script>
         <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
+        <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+        <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <form action="submitClassroomApply.do" method="post">
-	<div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer"/></span></div>
-	<div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower"/></span></div>
-	<div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell"/></span></div>
-	<div><span class="tag">教室活动类型：</span><span class="value">
-		<select name="classUsage" id="classUsage">
-		    <option value="<%=CRoomApplyEntity.USAGE_CONTEST%>" selected="selected">校园比赛</option>
-		    <option value="<%=CRoomApplyEntity.USAGE_GROUP%>">党团活动</option>
-		    <option value="<%=CRoomApplyEntity.USAGE_LECTURE%>">校园讲座</option>
-		    <option value="<%=CRoomApplyEntity.USAGE_OTHER%>">其它</option>
-		</select>
-		<input type="text" name="usageComment" id="usageComment" style="display: none;"  value="校园比赛"/>
-	    </span></div>
-	<div><span class="tag">审批通道：</span><span class="value">
-		<select name="applyType">
-		    <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
-		    <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
-		    <% }%>
-		</select>
-	    </span></div>
-	<div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager"/></span></div>
-	<div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
-	<div><span class="tag">借用日期：</span><span class="value"><input type="text" id="borrowDate" name="borrowDate"/></span></div>
-	<div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="例：11:00-13:00"/></span></div>
-	<div><span class="tag">教室类型要求：</span><span class="value">
-		<select name="croomtype">
-		    <option value="1" selected="selected">普通教室</option>
-		    <option value="2">多媒体教室</option>
-		    <option value="3">C楼教室</option>
-		</select>
-	    </span></div>
-	<div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" /><input type="hidden" name="applyId" value="-1"></span></div>
-	<div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title"/></span></div>
-	<div><span class="tag">活动具体内容：</span>
-	    <div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content">如内容较多请使用上传附件功能上传说明文档。</script></div>
-	</div>
-	<div><input type="submit" value="保存"/></div>
-    </form>
+    <span id="postion">您当前的位置：活动申请</span>
+    <div class="processtype" id="processtype0"></div>
+    <div id="formdiv">
+	<form action="submitClassroomApply.do" method="post">
+	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer"/></span></div>
+	    <div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower"/></span></div>
+	    <div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell"/></span></div>
+	    <div><span class="tag">教室活动类型：</span><span class="value">
+		    <select name="classUsage" id="classUsage">
+			<option value="<%=CRoomApplyEntity.USAGE_CONTEST%>" selected="selected">校园比赛</option>
+			<option value="<%=CRoomApplyEntity.USAGE_GROUP%>">党团活动</option>
+			<option value="<%=CRoomApplyEntity.USAGE_LECTURE%>">校园讲座</option>
+			<option value="<%=CRoomApplyEntity.USAGE_OTHER%>">其它</option>
+		    </select>
+		    <input type="text" name="usageComment" id="usageComment" style="display: none;"  value="校园比赛"/>
+		</span></div>
+	    <div><span class="tag">审批通道：</span><span class="value">
+		    <select name="applyType">
+			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
+			<option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
+			<% }%>
+		    </select>
+		</span></div>
+	    <div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager"/></span></div>
+	    <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
+	    <div><span class="tag">借用日期：</span><span class="value"><input type="text" id="borrowDate" name="borrowDate"/></span></div>
+	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="例：11:00-13:00"/></span></div>
+	    <div><span class="tag">教室类型要求：</span><span class="value">
+		    <select name="croomtype">
+			<option value="1" selected="selected">普通教室</option>
+			<option value="2">多媒体教室</option>
+			<option value="3">C楼教室</option>
+		    </select>
+		</span></div>
+	    <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" /><input type="hidden" name="applyId" value="-1"></span></div>
+	    <div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title"/></span></div>
+	    <div><span class="tag">活动具体内容：</span>
+		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script></div>
+	    </div>
+	    <div id="submitbutton"><input type="submit" value="提交"/></div>
+	</form>
+    </div>>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');

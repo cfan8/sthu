@@ -19,7 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>新闻编辑</title>
-        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_admin.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
     </head>
 
