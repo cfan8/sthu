@@ -49,6 +49,13 @@ public class ColumnDAO extends BaseDAO<ColumnEntity>
         return select().list();
     }
     
+    public List<ColumnEntity> selectColumnsVisibleForUser()
+    {
+        Criteria criteria = select();
+        criteria.add(Restrictions.eq("isVisibleForUser", true));
+        return criteria.list();
+    }
+    
     public List<ColumnEntity> selectColumn(int startIndex, int endIndex)
     {
         Criteria criteria = select();

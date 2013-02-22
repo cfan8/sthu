@@ -32,8 +32,8 @@ public class GetNewPageAction extends BaseAction{
     @Override
     public String onExecute() 
     {
-        int startIndex = (getPage() - 1) * Constant.NEW_NUMBER_ONE_PAGE;
-        int endIndex = startIndex + Constant.NEW_NUMBER_ONE_PAGE - 1;
+        int startIndex = (getPage() - 1) * Constant.NEW_NUMBER_ONE_PAGE_IN_MANAGEMENT;
+        int endIndex = startIndex + Constant.NEW_NUMBER_ONE_PAGE_IN_MANAGEMENT - 1;
         setNews(newService.getAllNewsWithParam(startIndex, endIndex, newManagementPageMessage));
         return SUCCESS;
     }

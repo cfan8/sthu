@@ -72,6 +72,10 @@ and open the template in the editor.
         <action name="newFilter" class="cn.edu.tsinghua.sthu.action.NewFilterAction">
             <result name="success" type="redirect">newsManage.do?${param}</result>
         </action>
+        <action name="new" class="cn.edu.tsinghua.sthu.action.ShowOneNewAction">
+            <result name="success">oneNew.jsp</result>
+            <result name="new_redirect" type="redirect">${showOneNewMessage.getNewEnity().getRedirectURL()}</result>
+        </action>
     </package>
     <package name="columnActionPackage" extends="defaultAction" namespace="/column">
         <action name="columnsManage" class="cn.edu.tsinghua.sthu.action.ShowColumnManagementPageAction">
@@ -91,6 +95,15 @@ and open the template in the editor.
         </action>
         <action name="deleteColumn" class="cn.edu.tsinghua.sthu.action.DeleteColumnAction">
             <result name="success" type="redirect">columnsManage.do</result>
+        </action>
+        <action name="column" class="cn.edu.tsinghua.sthu.action.ShowOneColumnAction">
+            <result name="success">oneColumn.jsp</result>
+        </action>
+        <action name="columnNewListPage" class="cn.edu.tsinghua.sthu.action.GetColumnNewListPageAction">
+            <result name="success">columnNewListPage.jsp</result>
+        </action>
+        <action name="allColumnForUser" class="cn.edu.tsinghua.sthu.action.GetAllColumnForUserAction">
+            <result name="success">allColumn.jsp</result>
         </action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">

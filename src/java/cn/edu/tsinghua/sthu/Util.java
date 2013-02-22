@@ -101,6 +101,18 @@ public class Util
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         return format.format(date);
     }
+    
+    public static String dateToStringAccurateToDay(Date date)
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        return format.format(date);
+    }
+    
+    public static Date getBeforeDate(long shift)
+    {
+        Date date = new Date();
+        return new Date(date.getTime() - shift);
+    }
 
     /*
      使用ClassLoader查找templates可能会产生各种问题，弃用！

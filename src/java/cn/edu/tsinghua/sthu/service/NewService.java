@@ -46,7 +46,7 @@ public class NewService extends BaseService
         {
             redirectURL = "";
         }
-        newDAO.addNew(title, content, author, date, redirectURL, onTop, columnEntity);
+        newDAO.addNew(title, content, author, date, redirectURL.trim(), onTop, columnEntity);
         return 0;
     }
     
@@ -77,7 +77,7 @@ public class NewService extends BaseService
         entity.setAuthor(author);
         entity.setTitle(title);
         entity.setUpdateTime(date);
-        entity.setRedirectURL(redirectURL);
+        entity.setRedirectURL(redirectURL.trim());
         entity.setIsPlacedInColumnTop(onTop);
         entity.setColumnBelong(columnEntity);
         newDAO.updateNew(entity);
@@ -85,9 +85,22 @@ public class NewService extends BaseService
     }
     
     @Transactional
+    public List<NewEntity> getRecommendNewsByColumn(ColumnEntity columnEntity)
+    {
+        return newDAO.selectNewsOrderByBrowseNumber(columnEntity);
+    }
+    
+    @Transactional
     public List<NewEntity> getAllNewsByTimeDESC()
     {
         return newDAO.selectAllNewsByTimeDESC();
+    }
+    
+    @Transactional
+    public void addBrowseNumber(NewEntity newEntity)
+    {
+        newEntity.setBrowseNumber(newEntity.getBrowseNumber() + 1);
+        newDAO.updateNew(newEntity);
     }
     
     @Transactional
@@ -103,10 +116,23 @@ public class NewService extends BaseService
     }
     
     @Transactional
+    public List<NewEntity> getNewsByColumn(int startIndex, int endIndex, ColumnEntity columnEntity)
+    {
+        return newDAO.getNewsByColumn(startIndex, endIndex, columnEntity);
+    }
+    
+    @Transactional
     public int getNewPageCount()
     {
         int count = newDAO.getNewCount();
-        return computePage(count);
+        return computePage(count, Constant.NEW_NUMBER_ONE_PAGE_IN_MANAGEMENT);
+    }
+    
+    @Transactional
+    public int getNewPageCountByColumn(ColumnEntity columnEntity)
+    {
+        int count = newDAO.getNewCountByColumn(columnEntity);
+        return computePage(count, Constant.NEW_NUMBER_ONE_PAGE_IN_SHOWONECOLUMN);
     }
     
     @Transactional
@@ -115,15 +141,15 @@ public class NewService extends BaseService
         return newDAO.queryById(newId);
     }
     
-    public int computePage(int count)
+    public int computePage(int count, int divider)
     {
-        if (count % Constant.NEW_NUMBER_ONE_PAGE == 0)
+        if (count % divider == 0)
         {
-            return count/Constant.NEW_NUMBER_ONE_PAGE;
+            return count/divider;
         }
         else
         {
-            return count/Constant.NEW_NUMBER_ONE_PAGE + 1;
+            return count/divider + 1;
         }
     }
     
@@ -131,7 +157,7 @@ public class NewService extends BaseService
     public int getQueryNewPageCount(NewManagementPageMessage newManagementPageMessage)
     {
         int count = newDAO.getNewCount(newManagementPageMessage);
-        return computePage(count);
+        return computePage(count, Constant.NEW_NUMBER_ONE_PAGE_IN_MANAGEMENT);
     }
     
     @Transactional

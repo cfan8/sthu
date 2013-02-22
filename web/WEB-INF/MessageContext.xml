@@ -15,9 +15,12 @@
     <bean id="showMyClassroomApplyPageMessage" class="cn.edu.tsinghua.sthu.message.ShowMyClassroomApplyPageMessage" scope="prototype" autowire="byName" />
     <bean id="newManagementPageMessage" class="cn.edu.tsinghua.sthu.message.NewManagementPageMessage" scope="prototype" autowire="byName"/>
     <bean id="newEditPageMessage" class="cn.edu.tsinghua.sthu.message.NewEditPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showOneNewMessage" class="cn.edu.tsinghua.sthu.message.ShowOneNewMessage" scope="prototype" autowire="byName"/>
     <bean id="columnEditPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnEditPageMessage" scope="prototype" autowire="byName"/>
     <bean id="columnManagementPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnManagementPageMessage" scope="prototype" autowire="byName"/>
     <bean id="columnPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showOneColumnMessage" class="cn.edu.tsinghua.sthu.message.ShowOneColumnMessage" scope="prototype" autowire="byName"/>
+    <bean id="columnNewListPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnNewListPageMessage" scope="prototype" autowire="byName"/>
     <bean id="showActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyMessage" scope="prototype" autowire="byName"/>
 </beans>
 

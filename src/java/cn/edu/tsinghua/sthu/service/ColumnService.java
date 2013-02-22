@@ -106,6 +106,12 @@ public class ColumnService extends BaseService
         return columnDAO.selectAllColumn();
     }
     
+     @Transactional
+    public List<ColumnEntity> getColumnsVisibleForUser()
+    {
+        return columnDAO.selectColumnsVisibleForUser();
+    } 
+    
     @Transactional
     public ColumnEntity getColumnById(int columnId)
     {

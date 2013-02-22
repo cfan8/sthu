@@ -21,6 +21,7 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
 
     public static final String ALERT = "alert";
     public static final String LOGIN_REDIRECT = "login_redirect";
+    public static final String NEW_REDIRECT = "new_redirect";
     public static final int XSS_STRICT_FILTER = 1;
     public static final int XSS_RICHTEXT_FILTER = 2;
     public static final int XSS_NONE_FILTER = 3;

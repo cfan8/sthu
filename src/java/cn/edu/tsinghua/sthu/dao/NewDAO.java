@@ -13,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import cn.edu.tsinghua.sthu.constant.Constant;
+import cn.edu.tsinghua.sthu.Util;
 
 /**
  *
@@ -21,6 +22,8 @@ import cn.edu.tsinghua.sthu.constant.Constant;
 public class NewDAO extends BaseDAO<NewEntity>
 {
     private final String NewEntityDateFieldName = new String("updateTime");
+    private final String NewEntityBrowseNumberFieldName = new String("browseNumber");
+    private final String NewEntityIsPlacedInColumnTopFieldName = new String("isPlacedInColumnTop");
     private ColumnDAO columnDAO;
     
     public NewDAO()
@@ -48,6 +51,16 @@ public class NewDAO extends BaseDAO<NewEntity>
         return (List<NewEntity>) criteria.list();
     }
     
+    public List<NewEntity> selectNewsOrderByBrowseNumber(ColumnEntity columnEntity)
+    {
+        Criteria criteria = select();
+        criteria.add(Restrictions.eq("columnBelong", columnEntity));
+        criteria.add(Restrictions.ge(NewEntityDateFieldName, Util.getBeforeDate(Constant.SHIFT_TIME_IN_MILLISECOND)));
+        criteria.addOrder(Order.desc(NewEntityBrowseNumberFieldName));
+        criteria.setMaxResults(Constant.RECOMMEND_NEW_NUMBER);
+        return (List<NewEntity>) criteria.list();
+    }
+    
     public int getNewCount()
     {
         return select().list().size();
@@ -58,6 +71,11 @@ public class NewDAO extends BaseDAO<NewEntity>
         Criteria criteria = select();
         if (setQueryParam(criteria, newManagementPageMessage) == false) return 0;
         return criteria.list().size();
+    }
+    
+    public int getNewCountByColumn(ColumnEntity columnEntity)
+    {
+        return selectAllNewsByColumn(columnEntity).size();
     }
     
     public List<NewEntity> selectAllNewsByTimeDESC()
@@ -116,6 +134,17 @@ public class NewDAO extends BaseDAO<NewEntity>
         return (List<NewEntity>) criteria.list();
     }
     
+    public List<NewEntity> getNewsByColumn(int startIndex, int endIndex, ColumnEntity columnEntity)
+    {
+        Criteria criteria = select();
+        criteria.add(Restrictions.eq("columnBelong", columnEntity));
+        criteria.addOrder(Order.desc(NewEntityIsPlacedInColumnTopFieldName));
+        criteria.addOrder(Order.desc(NewEntityDateFieldName));
+        criteria.setFirstResult(startIndex);
+        criteria.setMaxResults(endIndex - startIndex + 1);
+        return (List<NewEntity>) criteria.list();
+    }
+    
     public List<NewEntity> selectAllNewsByColumn(ColumnEntity entity)
     {
         Criteria criteria = select();
@@ -141,12 +170,6 @@ public class NewDAO extends BaseDAO<NewEntity>
         criteria.add(Restrictions.eq("isPlacedInColumnTop", true));
         criteria.add(Restrictions.eq("columnBelong", entity));
         return (List<NewEntity>) criteria.list();
-    }
-    
-    public NewEntity updateNew(int newId)
-    {
-        NewEntity entity = queryById(newId);
-        return updateNew(entity);
     }
     
     public NewEntity deleteNew(NewEntity entity)

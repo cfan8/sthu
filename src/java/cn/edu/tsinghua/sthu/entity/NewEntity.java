@@ -35,6 +35,9 @@ public class NewEntity extends BaseEntity
     @Column(name="isPlacedInColumnTop")
     private boolean isPlacedInColumnTop;
     
+    @Column(name="browseNumber")
+    private int browseNumber;
+    
     @OneToOne(cascade={CascadeType.DETACH})
     private ColumnEntity columnBelong;
 
@@ -49,6 +52,7 @@ public class NewEntity extends BaseEntity
         this.redirectURL = redirectURL;
         this.isPlacedInColumnTop = isPlacedInColumnTop;
         this.columnBelong = columnBelong;
+        this.browseNumber = 0;
     }
 
     public String getTitle() {
@@ -105,5 +109,13 @@ public class NewEntity extends BaseEntity
 
     public void setIsPlacedInColumnTop(boolean isPlacedInColumnTop) {
         this.isPlacedInColumnTop = isPlacedInColumnTop;
+    }
+
+    public int getBrowseNumber() {
+        return browseNumber;
+    }
+
+    public void setBrowseNumber(int browseNumber) {
+        this.browseNumber = browseNumber;
     }
 }
