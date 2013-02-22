@@ -112,7 +112,18 @@ public class ApplyActivityService extends BaseService {
 	entity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	entity.setIdentityType(applyPath);
 	entity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_AWAIT);
-	entity.setResourceType(applyType+1);
+	if (entity.getApplyType() == ActivityApplyEntity.APPLY_TYPE_LED)
+        {
+            entity.setResourceType(ResourceMapping.getIdByName("电子屏审批"));
+        }
+        else if (entity.getApplyType() == ActivityApplyEntity.APPLY_TYPE_OUTDOOR)
+        {
+            entity.setResourceType(ResourceMapping.getIdByName("室外活动审批"));
+        }
+        else if (entity.getApplyType() == ActivityApplyEntity.APPLY_TYPE_BOARD)
+        {
+            entity.setResourceType(ResourceMapping.getIdByName("展板审批"));
+        }
 	entity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_AWAIT);
     }
     
