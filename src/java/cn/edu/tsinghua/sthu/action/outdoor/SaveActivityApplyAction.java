@@ -40,19 +40,17 @@ public class SaveActivityApplyAction extends BaseAction{
     public String onExecute()
     {
 	ActivityApplyEntity entity;
-        DateFormat date =  new SimpleDateFormat("yyyy-MM-dd hh:mm"); 
+        DateFormat date =  new SimpleDateFormat("yyyy-MM-dd HH:mm"); 
+           try
+           {           
+               setStartTime1(date.parse(getStartTime()));
+               setEndTime1(date.parse(getEndTime()));
+           }
+            catch (ParseException e) {                 e.printStackTrace();     }   
 	if (getApplyId() == null || getApplyId() == -1)
 	{
             if (getApplyType() == 1)
             {
-                setStartTime1(null); 
-                setEndTime1(null);
-                try
-                {           
-                    setStartTime1(date.parse(getStartTime()));
-                    setEndTime1(date.parse(getEndTime()));
-                }
-                 catch (ParseException e) {                 e.printStackTrace();     }                 
                 entity = getApplyActivityService().createActivityApply(getApplyType(), getActivityName(), 
     getActivityContent(), getStartTime1(), getEndTime1(), getLEDContent(), " ", " ",
      getOrganizerName(), getApplicatantType(), getApplicatantName(), getApplicatantCell(),

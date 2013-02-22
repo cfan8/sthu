@@ -137,13 +137,20 @@ and open the template in the editor.
     <package name="outdoorActionPackage" extends="defaultAction" namespace="/outdoor">
         <action name="applyActivity" class="cn.edu.tsinghua.sthu.action.outdoor.ShowApplyActivityPageAction">
 	    <result name="create">create_activity.jsp</result>
-	    <result name="modify">modify_classroom_form.jsp</result>
+	    <result name="modify">modify_activity.jsp</result>
 	</action>
-        <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">
-	    <result name="create">create_activity.jsp</result>
+        <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">       
 	</action>
         <action name="showActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyAction">
 	    <result name="success">show_activity_apply.jsp</result>
+	</action>
+        <action name="confirmOutdoorApply" class="cn.edu.tsinghua.sthu.action.outdoor.ConfirmOutdoorApplyAction">
+	</action>
+        <action name="showMyActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyAction">
+	    <result name="success">show_my_activity_apply_list.jsp</result>
+        </action>
+        <action name="showMyActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyPageAction">
+	    <result name="success">show_my_activity_apply_list_page.jsp</result>
 	</action>
     </package>
 </struts>

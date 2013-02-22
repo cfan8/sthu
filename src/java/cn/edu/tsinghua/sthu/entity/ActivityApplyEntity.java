@@ -291,5 +291,64 @@ public class ActivityApplyEntity extends BaseEntity {
     public void setResourceDate(Date resourceDate) {
 	this.resourceDate = resourceDate;
     }
+    
+    public String getApplyTypeText() {
+	switch (this.applyType) {
+	    case ActivityApplyEntity.APPLY_TYPE_LED:
+		return "电子屏申请";
+	    case ActivityApplyEntity.APPLY_TYPE_OUTDOOR:
+		return "室外活动申请";
+	    case ActivityApplyEntity.APPLY_TYPE_BOARD:
+		return "展板申请";
+	}
+	return "";
+    }
+    
+    public String getApplyStatusText()
+    {
+	switch(this.applyStatus)
+	{
+	    case APPLY_STATUS_UNCONFIRMED:
+		return "未确认";
+	    case APPLY_STATUS_CONFIRMED:
+		return "已确认，审批中";
+	    case APPLY_STATUS_REJECTED:
+		return "已驳回";
+	    case APPLY_STATUS_ACCEPTED:
+		return "已通过";
+	}
+	return "";
+    }
 
+    public String getIdentityStatusText()
+    {
+	switch(this.identityStatus)
+	{
+	    case IDENTITY_STATUS_ACCEPTED:
+		return "已通过";
+	    case IDENTITY_STATUS_AWAIT:
+		return "等待审批";
+	    case IDENTITY_STATUS_TODO:
+		return "正在审批";
+	    case IDENTITY_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
+    
+    public String getResourceStatusText()
+    {
+	switch(this.resourceStatus)
+	{
+	    case RESOURCE_STATUS_ACCEPTED:
+		return "已通过";
+	    case RESOURCE_STATUS_AWAIT:
+		return "等待审批";
+	    case RESOURCE_STATUS_TODO:
+		return "正在审批";
+	    case RESOURCE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
 }

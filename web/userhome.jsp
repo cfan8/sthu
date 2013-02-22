@@ -14,6 +14,7 @@
     <%@include file="/templates/general_header.jsp" %>
     我的申请：
     <iframe src="activity/showMyApply.do"></iframe>
+    <iframe src="outdoor/showMyActivityApply.do"></iframe>
     
     <a href="update_password.jsp">修改密码</a>
     <a href="logout.do">登出</a>

@@ -114,6 +114,30 @@ public class ApplyActivityService extends BaseService {
 	entity.setResourceType(applyType);
 	entity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_AWAIT);
     }
+    
+    @Transactional
+    public ActivityApplyEntity confirmApply(ActivityApplyEntity entity) {
+	entity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_CONFIRMED);
+	entity.setConfirmDate(new Date());
+	entity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_TODO);
+	entity.setIdentityDate(null);
+	entity.setResourceDate(null);
+	applyActivityDao.updateActivityApplyEntity(entity);
+	return entity;
+    }
+    
+    @Transactional
+    public int getMyApplyTotalPageNumber(int userID, int numberPerPage)
+    {
+	int r = applyActivityDao.getMyApplyCountByUserID(userID);
+	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+    
+    @Transactional
+    public List<ActivityApplyEntity> getMyApplyList(int userid, int page, int numberPerPage)
+    {
+	return applyActivityDao.getMyApplyListByUserid(userid, (page - 1)*numberPerPage, numberPerPage);
+    }
 
     public ApplyActivityDAO getApplyActivityDao() {
         return applyActivityDao;

@@ -35,4 +35,16 @@ public class ApplyActivityDAO extends BaseDAO<ActivityApplyEntity> {
 	update(entity);
 	return entity;
     }
+    
+    public int getMyApplyCountByUserID(int userid)
+    {
+	Object r = select().add(Restrictions.eq("applyUserID", userid)).setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+    
+    public List<ActivityApplyEntity> getMyApplyListByUserid(int userid, int begin, int number)
+    {
+	return select().add(Restrictions.eq("applyUserID", userid)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+		.addOrder(Order.desc("applyDate")).setFirstResult(begin).setMaxResults(number).list();
+    }
 }

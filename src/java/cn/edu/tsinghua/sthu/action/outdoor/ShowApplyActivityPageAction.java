@@ -7,7 +7,7 @@ package cn.edu.tsinghua.sthu.action.outdoor;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.ActivityApplyEntity;
-
+import cn.edu.tsinghua.sthu.message.outdoor.ShowApplyActivityPageMessage;
 import cn.edu.tsinghua.sthu.service.ApplyActivityService;
 import java.text.SimpleDateFormat;
 
@@ -20,8 +20,7 @@ public class ShowApplyActivityPageAction extends BaseAction{
     public static final String RETURN_MODIFY = "modify";
     
     private Integer applyId;
-    
-
+    private ShowApplyActivityPageMessage showApplyActivityPageMessage;
     private ApplyActivityService applyActivityService;
     
     @Override
@@ -36,14 +35,12 @@ public class ShowApplyActivityPageAction extends BaseAction{
 	    }
 	    else
 	    {
-//		showApplyClassroomPageMessage.setModify(true);
-//		showApplyClassroomPageMessage.setApplyEntity(entity);
+		getShowApplyActivityPageMessage().setApplyEntity(entity);
 		return RETURN_MODIFY;
 	    }
 	}
 	else
 	{
-//	    showApplyClassroomPageMessage.setModify(false);
 	    return RETURN_CREATE;
 	}
     }
@@ -83,6 +80,14 @@ public class ShowApplyActivityPageAction extends BaseAction{
 
     public void setApplyActivityService(ApplyActivityService applyActivityService) {
         this.applyActivityService = applyActivityService;
+    }
+
+    public ShowApplyActivityPageMessage getShowApplyActivityPageMessage() {
+        return showApplyActivityPageMessage;
+    }
+
+    public void setShowApplyActivityPageMessage(ShowApplyActivityPageMessage showApplyActivityPageMessage) {
+        this.showApplyActivityPageMessage = showApplyActivityPageMessage;
     }
     
 }
