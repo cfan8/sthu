@@ -18,5 +18,6 @@
     <bean id="columnEditPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnEditPageMessage" scope="prototype" autowire="byName"/>
     <bean id="columnManagementPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnManagementPageMessage" scope="prototype" autowire="byName"/>
     <bean id="columnPageMessage" class="cn.edu.tsinghua.sthu.message.ColumnPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyMessage" scope="prototype" autowire="byName"/>
 </beans>
 

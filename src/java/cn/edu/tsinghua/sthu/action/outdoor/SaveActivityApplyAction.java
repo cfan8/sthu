@@ -88,7 +88,7 @@ public class SaveActivityApplyAction extends BaseAction{
 		return ALERT;
 	    }
 	}
-	alertMessage.setSimpleAlert("保存成功！", "showApply.do?applyId=" + entity.getID());
+	alertMessage.setSimpleAlert("保存成功！", "showActivityApply.do?applyId=" + entity.getID());
 	return ALERT;
     }
 

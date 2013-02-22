@@ -129,5 +129,8 @@ and open the template in the editor.
         <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">
 	    <result name="create">create_activity.jsp</result>
 	</action>
+        <action name="showActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyAction">
+	    <result name="success">show_activity_apply.jsp</result>
+	</action>
     </package>
 </struts>
