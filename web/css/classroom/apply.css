@@ -1,0 +1,48 @@
+/* 
+    Document   : apply
+    Created on : 2013-2-20, 18:17:36
+    Author     : linangran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#postion
+{
+    font-size: 13.34px;
+    margin-left: -45px;
+}
+
+#formdiv
+{
+    width: 600px;
+    margin: 5px auto 0 200px;
+}
+
+form
+{
+    margin: 0 auto;
+}
+
+form .tag{
+    display:inline-block ;
+    width: 150px;
+    height: 22px;
+}
+
+form select{
+    width: 206px;
+    margin-left: -8px;
+    margin-top: 5px;
+    height: 20px;
+}
+
+form input[type="text"]
+{
+    width: 200px;
+}
+
+form input[type="submit"]
+{
+    display: inline-block;
+    margin-left: 200px;
+}

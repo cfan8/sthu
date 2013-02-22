@@ -20,7 +20,7 @@
    %>
 <%
     news = (List<NewEntity>) request.getAttribute("news");
-%>
+%><body>
 <div style="background-color:#DDEEDD;width: 1000px">
     </br>
     <ul style="list-style: none; width: 900px">
@@ -44,5 +44,5 @@
     </li>
     <% } %>
     </ul>
-</div>
+</div></body>
 </html>
