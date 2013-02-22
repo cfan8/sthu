@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.entity.ActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.*;
 import org.springframework.transaction.annotation.Transactional;
+import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 
 /**
  *
@@ -111,7 +112,7 @@ public class ApplyActivityService extends BaseService {
 	entity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	entity.setIdentityType(applyPath);
 	entity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_AWAIT);
-	entity.setResourceType(applyType);
+	entity.setResourceType(applyType+1);
 	entity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_AWAIT);
     }
     

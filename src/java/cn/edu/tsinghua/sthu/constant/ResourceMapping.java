@@ -10,7 +10,7 @@ package cn.edu.tsinghua.sthu.constant;
  */
 public class ResourceMapping {
     public static final String[] names = {
-	"二级审批部门","校团委"
+	"二级审批部门","校团委","电子屏审批","室外活动审批","展板审批"
     };
     
     public static final String[] accounts = new String[names.length];
