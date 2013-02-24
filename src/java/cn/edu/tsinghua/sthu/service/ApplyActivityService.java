@@ -11,7 +11,8 @@ import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.*;
 import org.springframework.transaction.annotation.Transactional;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
-
+import cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction;
+import cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyMessage;
 /**
  *
  * @author luzhen
@@ -159,4 +160,85 @@ public class ApplyActivityService extends BaseService {
         this.applyActivityDao = applyActivityDao;
     }
     
+    @Transactional
+    public List<ActivityApplyEntity> getPagedApply(int viewType, int page, int number, AuthEntity auth, int approveType) {
+	List<ActivityApplyEntity> list = null;
+	int begin = (page - 1) * number;
+	if (approveType == ShowActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyActivityDao.getPastApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    } else if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyActivityDao.getTodoApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyActivityDao.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    } else if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyActivityDao.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    }
+	} 
+	return list;
+    }
+    
+    @Transactional
+    public int getTotalPageNumber(int viewType, int numberPerPage, AuthEntity auth, int approveType) {
+	int resultCount = 0;
+	if (approveType == ShowActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyActivityDao.getPastApplyCountByIdentityType(auth.getOpIdentityCode());
+	    } else if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyActivityDao.getTodoApplyCountByIdentityType(auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyActivityDao.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyActivityDao.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+	}
+	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
+    }
+
+    @Transactional
+    public void processComment(ActivityApplyEntity activityApplyEntity, boolean isApprove, String comment, int type, String nickName, int userid){
+        /*ApplyCommentEntity commentEntity = new ApplyCommentEntity();
+	commentEntity.setComment(comment);
+	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
+	commentEntity.setCommentType(isApprove ? ApplyCommentEntity.COMMENT_TYPE_ACCEPT : ApplyCommentEntity.COMMENT_TYPE_REJECT);
+	commentEntity.setNickname(nickName);
+	commentEntity.setPubDate(new Date());
+	commentEntity.setUserid(userid);
+	applyEntity.getComments().add(commentEntity);*/
+        if(type == ShowActivityApplyMessage.APPROVE_TYPE_IDENTITY){
+            activityApplyEntity.setIdentityComment(comment);
+            activityApplyEntity.setIdentityCommentUserid(userid);
+            activityApplyEntity.setIdentityCommentNickname(nickName);
+        }
+        else if(type == ShowActivityApplyMessage.APPROVE_TYPE_RESOURCE){
+            activityApplyEntity.setResourceComment(comment);
+            activityApplyEntity.setResourceCommentUserid(userid);
+            activityApplyEntity.setResourceCommentNickname(nickName);
+        }
+	if (type == ShowActivityApplyMessage.APPROVE_TYPE_IDENTITY) {
+	    activityApplyEntity.setIdentityDate(new Date());
+	    if (isApprove == true) {
+		activityApplyEntity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
+		activityApplyEntity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_TODO);
+	    } else {
+		activityApplyEntity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_REJECTED);
+		activityApplyEntity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	} else if (type == ShowActivityApplyMessage.APPROVE_TYPE_RESOURCE) {
+	    activityApplyEntity.setResourceDate(new Date());
+	    if (isApprove) {
+		activityApplyEntity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
+		activityApplyEntity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+	    } else {
+		activityApplyEntity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_REJECTED);
+		activityApplyEntity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	} 
+	applyActivityDao.updateActivityApplyEntity(activityApplyEntity);
+    }
+
 }

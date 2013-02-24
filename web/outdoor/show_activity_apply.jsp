@@ -45,10 +45,20 @@
 	    <tr><td class="tag">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>分团委审批状态：<%=entity.getIdentityStatusText()%></p>
-		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
+                    <% if(entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_ACCEPTED || entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_REJECTED){%>
+                    <div class ="comment"><p><%=entity.getIdentityCommentNickname()%></p>
+                        <p><%=entity.getIdentityComment()%></p>
+                        <%}%>
+                    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
+                    
+                    <% if(entity.getResourceStatus() == ActivityApplyEntity.RESOURCE_STATUS_ACCEPTED || entity.getResourceStatus() == ActivityApplyEntity.RESOURCE_STATUS_REJECTED){%>
+                    <div class ="comment"><p><%=entity.getResourceCommentNickname()%></p>
+                        <p><%=entity.getResourceComment()%></p>
+                        <%}%>
 		</td></tr>
 	</table>
     </div>
+    
     <% if (message.isShowConfirm()) {%>
     <div>
 	<span><a href="applyActivity.do?applyId=<%=entity.getID()%>">修改申请</a></span>
@@ -58,6 +68,26 @@
 		return confirm("是否确认申请？一旦确认将无法修改！");
 	    });
 	    </script>
+    </div>
+    <% }%>
+    
+     <% if (message.isShowApprove()) {%>
+    <div>
+	<form action="approveActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
+	    <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="true" checked="checked"/>同意<input type="radio" name="isApprove" value="false"/>驳回</p>
+	    <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
+	    <input type="hidden" id="comment" name="comment"><input type="button" id="submitApprove" value="提交" />
+	</form>
+	<script type="text/javascript">
+	    ue = UE.getEditor('editor');
+	    $("#submitApprove").click(function(){
+		if (confirm("是否确认提交？一旦提交无法修改！") == true)
+		{
+		    $("#comment").val(ue.getContent());
+		    $("#approveForm").submit();
+		}
+	    });
+	</script>
     </div>
     <% }%>
 <%@include file="/templates/general_footer.jsp" %>

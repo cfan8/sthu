@@ -65,10 +65,16 @@ public class ActivityApplyEntity extends BaseEntity {
     private int identityStatus;	//一级审批状态
     @Column(length = 1024)
     private String identityComment; //一级审批意见
+    private int identityCommentUserid; //一级审批人id
+    @Column(length = 32)
+    private String identityCommentNickname; //一级审批人  
     private int resourceType;	//二级审批类型
     private int resourceStatus;	//二级审批状态
     @Column(length = 1024)
     private String resourceComment; //二级审批意见
+    private int resourceCommentUserid; //二级审批人id
+    @Column(length = 32)
+    private String resourceCommentNickname; //二级审批人  
     private int applyUserID;	//申请人ID
     
     @Column(columnDefinition = "DATETIME")
@@ -350,5 +356,61 @@ public class ActivityApplyEntity extends BaseEntity {
 		return "已驳回";
 	}
 	return "";
+    }
+
+    /**
+     * @return the identityCommentUserid
+     */
+    public int getIdentityCommentUserid() {
+        return identityCommentUserid;
+    }
+
+    /**
+     * @param identityCommentUserid the identityCommentUserid to set
+     */
+    public void setIdentityCommentUserid(int identityCommentUserid) {
+        this.identityCommentUserid = identityCommentUserid;
+    }
+
+    /**
+     * @return the identityCommentNickname
+     */
+    public String getIdentityCommentNickname() {
+        return identityCommentNickname;
+    }
+
+    /**
+     * @param identityCommentNickname the identityCommentNickname to set
+     */
+    public void setIdentityCommentNickname(String identityCommentNickname) {
+        this.identityCommentNickname = identityCommentNickname;
+    }
+
+    /**
+     * @return the resourceCommentUserid
+     */
+    public int getResourceCommentUserid() {
+        return resourceCommentUserid;
+    }
+
+    /**
+     * @param resourceCommentUserid the resourceCommentUserid to set
+     */
+    public void setResourceCommentUserid(int resourceCommentUserid) {
+        this.resourceCommentUserid = resourceCommentUserid;
+    }
+
+    /**
+     * @return the resourceCommentNickname
+     */
+    public String getResourceCommentNickname() {
+        return resourceCommentNickname;
+    }
+
+    /**
+     * @param resourceCommentNickname the resourceCommentNickname to set
+     */
+    public void setResourceCommentNickname(String resourceCommentNickname) {
+        this.resourceCommentNickname = resourceCommentNickname;
     }
 }

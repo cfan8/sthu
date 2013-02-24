@@ -25,5 +25,8 @@
     <bean id="showApplyActivityPageMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowApplyActivityPageMessage" scope="prototype" autowire="byName"/>
     <bean id="showMyActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowMyActivityApplyMessage" scope="prototype" autowire="byName"/>
     <bean id="showMyActivityApplyPageMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowMyActivityApplyPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showActivityApplyListMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyListMessage" scope="prototype" autowire="byName"/>
+    <bean id="showActivityApplyListPageMessage" class="cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyListPageMessage" scope="prototype" autowire="byName"/>
+    
 </beans>
 

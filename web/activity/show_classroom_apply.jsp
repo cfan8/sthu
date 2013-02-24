@@ -96,7 +96,7 @@
     </div>
     <% if (message.isShowConfirm()) {%>
     <div>
-	<span><a href="applyClassroom.do?applyId=<%=entity.getID()%>">修改申请</a></span>
+	<span><a href="applyClassroom.do?app lyId=<%=entity.getID()%>">修改申请</a></span>
 	<span><a href="confirmApply.do?applyId=<%=entity.getID()%>" id="confirmApply">确认申请</a></span>
 	<script type="text/javascript">
 	    $("#confirmApply").click(function(){

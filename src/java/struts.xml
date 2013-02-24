@@ -152,5 +152,13 @@ and open the template in the editor.
         <action name="showMyActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyPageAction">
 	    <result name="success">show_my_activity_apply_list_page.jsp</result>
 	</action>
+        <action name="showActivityApplyList" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListAction">
+	    <result name="success">show_activity_apply_list.jsp</result>
+	</action>
+        <action name="showActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction">
+	    <result name="success">show_activity_paged_apply.jsp</result>
+	</action>
+        <action name="approveActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityCommentAction">
+	</action>
     </package>
 </struts>
