@@ -23,7 +23,9 @@
 %><body>
 <div style="background-color:#DDEEDD;width: 1000px">
     </br>
-    <ul style="list-style: none; width: 900px">
+    <form action="/new/batchDeleteNews.do" method="post">
+            <input type="submit" value="批量删除">
+    <ul style="list-style: none; width: 950px">
     <% for (int i = 0; i < news.size(); i++)
        { 
         if (i % 2 == 1) 
@@ -34,6 +36,7 @@
         { %>
         <li style="background-color:#ffffff;height:40px">
         <% } %>
+        <div style="width: 50px;float: left"><input type="checkbox" name="newids[]" value="<%=news.get(i).getID()%>"/></div>
         <div style="width: 150px;float: left"><b style="color: blueviolet;font-family: inherit"><%=news.get(i).getColumnBelong().getName() %></b></div>
         <div style="width: 300px;float: left"><a href="/new/editNewPage.do?id=<%=news.get(i).getID()%>"><%=news.get(i).getTitle() %></a>
             <% if (news.get(i).isIsPlacedInColumnTop() == true) { %><b style="color: red">置顶</b> <% } else { } %>
@@ -44,5 +47,7 @@
     </li>
     <% } %>
     </ul>
-</div></body>
+    </form>
+</div>
+</body>
 </html>

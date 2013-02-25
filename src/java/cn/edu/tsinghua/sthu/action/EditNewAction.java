@@ -112,21 +112,18 @@ public class EditNewAction extends BaseAction
     @Override
     public boolean needLogin() 
     {
-        return false;
+        return true;
     }
     
-    @Override
-    public boolean hasAuth() 
-    {
-	/*if (getCurrentUser().getAuth().getRole() != AuthEntity.ADMIN_ROLE) 
-        {
+    public boolean hasAuth() {
+	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE) {
 	    return false;
 	}
-	else
-	{
-	    return true;
-	}*/
-        return true;
+	if (getCurrentUser().getAuth().getOpArticle() == -1)
+        {
+            return false;
+        }
+	return true;
     }
 
     public String getTitle() {

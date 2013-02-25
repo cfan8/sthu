@@ -22,7 +22,6 @@
     %>
     <%@include file="/templates/general_header.jsp" %>
     <a href="/new/editNewPage.do" style="background-color: ghostwhite"><b>添加新闻</b></a>&nbsp;&nbsp;
-    <a href="/new/batchDelete.do" style="background-color: ghostwhite"><b>批量删除</b></a><br/>
     <div style="background-color:#77BBEE;height: 120px;width: 1000px">
     <h2>筛选功能</h2>
     <form action="newFilter.do" method="get">

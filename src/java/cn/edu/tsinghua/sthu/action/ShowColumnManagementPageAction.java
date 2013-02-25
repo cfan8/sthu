@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.ColumnManagementPageMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 
@@ -28,7 +29,18 @@ public class ShowColumnManagementPageAction extends BaseAction{
 
     @Override
     public boolean needLogin() {
-        return false;
+        return true;
+    }
+    
+    public boolean hasAuth() {
+	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE) {
+	    return false;
+	}
+	if (getCurrentUser().getAuth().getOpArticle() == -1)
+        {
+            return false;
+        }
+	return true;
     }
 
     public ColumnService getColumnService() {

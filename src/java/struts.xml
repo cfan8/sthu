@@ -76,6 +76,9 @@ and open the template in the editor.
             <result name="success">oneNew.jsp</result>
             <result name="new_redirect" type="redirect">${showOneNewMessage.getNewEnity().getRedirectURL()}</result>
         </action>
+        <action name="batchDeleteNews" class="cn.edu.tsinghua.sthu.action.BatchDeleteNewsAction">
+            <result name="success" type="redirect">newsManage.do</result>
+        </action>
     </package>
     <package name="columnActionPackage" extends="defaultAction" namespace="/column">
         <action name="columnsManage" class="cn.edu.tsinghua.sthu.action.ShowColumnManagementPageAction">

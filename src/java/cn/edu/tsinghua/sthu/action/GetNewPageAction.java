@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import cn.edu.tsinghua.sthu.constant.Constant;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.NewManagementPageMessage;
 
 /**
@@ -58,7 +59,18 @@ public class GetNewPageAction extends BaseAction{
 
     @Override
     public boolean needLogin() {
-        return false;
+        return true;
+    }
+    
+    public boolean hasAuth() {
+	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE) {
+	    return false;
+	}
+	if (getCurrentUser().getAuth().getOpArticle() == -1)
+        {
+            return false;
+        }
+	return true;
     }
 
     public NewService getNewService() {
