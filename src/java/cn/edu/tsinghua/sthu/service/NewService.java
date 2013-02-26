@@ -24,7 +24,7 @@ public class NewService extends BaseService
     private ColumnDAO columnDAO;
     
     @Transactional
-    public int addNew(String title, String content, String author, Date date, String redirectURL, boolean onTop, String columnName)
+    public int addNew(String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, String columnName)
     {
         if ((onTop == true) && (getOnTopCountByColumn(columnName) >= Constant.ONTOP_NEW_NUMBER_ONE_COLUMN))
         {
@@ -46,12 +46,12 @@ public class NewService extends BaseService
         {
             redirectURL = "";
         }
-        newDAO.addNew(title, content, author, date, redirectURL.trim(), onTop, columnEntity);
+        newDAO.addNew(title, content, author, newAbstract, date, redirectURL.trim(), onTop, columnEntity);
         return 0;
     }
     
     @Transactional
-    public int updateNew(int id, String title, String content, String author, Date date, String redirectURL, boolean onTop, String columnName)
+    public int updateNew(int id, String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, String columnName)
     {
         NewEntity entity = getNewById(id);
         if (entity == null)
@@ -80,6 +80,7 @@ public class NewService extends BaseService
         entity.setRedirectURL(redirectURL.trim());
         entity.setIsPlacedInColumnTop(onTop);
         entity.setColumnBelong(columnEntity);
+        entity.setNewAbstract(newAbstract);
         newDAO.updateNew(entity);
         return 0;
     }

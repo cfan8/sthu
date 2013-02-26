@@ -13,30 +13,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <link rel="stylesheet" type="text/css" href="/css/new/new.css" />
     <%!
         private ColumnNewListPageMessage message;
     %>
     <%
         message = (ColumnNewListPageMessage) request.getAttribute("columnNewListPageMessage");
     %>
-    <div style="background-color:#DDEEDD;width: 100%x">
-    </br>
-    <ul style="list-style: none; width: 85%">
-    <% for (int i = 0; i < message.getNewList().size(); i++)
-       { 
-        if (i % 2 == 1) 
-        { %>
-        <li style="background-color:#ffff99;height: 40px">
-        <%}
-        else
-        { %>
-        <li style="background-color:#ffffff;height:40px">
-        <% } %>
-        <div style="width: 240px;float: left"><a href="/new/new.do?id=<%=message.getNewList().get(i).getID()%>"><b style="color: blueviolet;font-family: inherit"><%=message.getNewList().get(i).getTitle() %></b></a></div>
-        <% if (message.getNewList().get(i).isIsPlacedInColumnTop()) { %> <div style="width: 120px;float: left"><strong style="color: red">置顶</strong></div> <% } %>
-        <div style="width: 150px;float: left;padding-left: 70px"><%=Util.dateToStringAccurateToDay(message.getNewList().get(i).getUpdateTime())%></div>
-     </li>
-    <% } %>
-    </ul>
+    <div id="new_list_div">
+        <ul>
+        <% for (int i = 0; i < message.getNewList().size(); i++)
+            { %>
+                <li>
+                    <div id="new_list_top_div">
+                        <div class="title">
+                            <a href="/new/new.do?id=<%=message.getNewList().get(i).getID()%>" title="/new/new.do?id=<%=message.getNewList().get(i).getID()%>"><%=message.getNewList().get(i).getTitle()%></a>
+                            <% if (message.getNewList().get(i).isIsPlacedInColumnTop()) { %>
+                            <span class="onTop">【置顶】</span>
+                            <% } %>
+                        </div>  
+                        <div class="date"><%=Util.dateToStringAccurateToDayFormat1(message.getNewList().get(i).getUpdateTime())%></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="new_bstract"><%=message.getNewList().get(i).getNewAbstract()%></div>
+                    <hr id="new_hr"/>
+                </li>
+          <% } %>
+        </ul>
     </div>
 </html>

@@ -1,0 +1,199 @@
+/* 
+    Document   : general.css
+    Created on : 2013-2-25, 16:26:40
+    Author     : wuhz
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+a:link, a:visited, a:hover, a:active
+{
+    text-decoration: none;
+}
+
+#recomment
+{
+    margin-top: 30px;
+    width: 263px;
+    float: right;
+    background-color: white;
+    position: relative;
+}
+
+#recomment_tab
+{
+    width: 263px;
+    height: 40px;
+    background-image: url('/css/new/recommend_tab.png');
+    margin-bottom: 0px;
+}
+
+#recomment_text
+{
+    width: 103px;
+    height: 20px;
+    position: absolute;
+    left: 42px;
+    top: 10px;
+}
+
+#recomment_text span
+{
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 13.34px;
+    color: #4d3069;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#recomment_body
+{
+    position: relative;
+    bottom: 20px;
+}
+
+.recomment a
+{
+    font-family: "宋体";
+    font-size: 13.34px; 
+    color: #4d3069;
+    line-height: 21.34px;
+    text-align: left;
+}
+
+#recomment_body ul
+{
+    width: auto;
+    height: auto;
+    padding-left: 20.5px;
+    list-style-type: none;
+}
+
+.recomment li
+{
+    width: auto;
+    height: auto;
+    padding-left: 8px;
+    background: url('/css/new/recommend_list_style_image.png') no-repeat left;
+}
+
+#new_list_div ul
+{
+    width: auto;
+    height: auto;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+#new_list_div #new_hr
+{
+    border:dotted;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+#new_list_top_div
+{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#new_list_div .title
+{
+    text-align: left;
+    float: left;
+    width:500px;
+}
+
+#new_list_div .title a
+{
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 14.67px;
+    color:#212121;
+}
+
+#new_list_div .onTop
+{
+    font-family: "宋体";
+    font-size: 14.67px;
+    color:red;
+}
+
+#new_list_div .date
+{
+    font-family: "宋体";
+    font-size: 13.34px;
+    color:#84888b;
+    float: right;
+    text-align: right;
+    width: 100px;
+}
+
+#new_list_div .new_bstract
+{
+    font-family: "宋体";
+    font-size: 13.34px;
+    color:#84888b;
+    min-height: 15px;
+    line-height: 18.67px;
+}
+
+#div_left {
+    float: left;
+    margin-right: 51px;
+    padding-bottom: 0;
+    padding-top: 0;
+    width: 617px;
+}
+
+#div_right {
+    float: left;
+    width: 252px;
+}
+
+#title_div
+{
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 24px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+}
+
+#new_info_div
+{
+    font-family: "宋体";
+    font-size: 13.34px;
+    color: #4d4e53;
+    text-align: center;
+    height: 20px;
+    padding-top: 13px;
+}
+
+#blank_div
+{
+    height: 40px;
+    width: max-content;
+}
+
+#big_table tr
+{
+    display: table-row;
+    height: fit-content;
+}
+
+#div_left hr
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-color: #a2a5a4;
+}
+
+.clear
+{
+     clear: both;
+}

@@ -24,6 +24,7 @@ public class EditNewAction extends BaseAction
     private String title;
     private String content;
     private String author;
+    private String newAbstract;
     private String columnBelong;
     private String redirectURL;
     private boolean isPlacedInColumnTop;
@@ -41,7 +42,7 @@ public class EditNewAction extends BaseAction
             {
                 columnBelong = Constant.DEFAULT_COLUMN;
             }
-            int ret = newService.addNew(title, content, author, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            int ret = newService.addNew(title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong);
             if (ret == 0)
             {
                 return SUCCESS;
@@ -59,7 +60,7 @@ public class EditNewAction extends BaseAction
         }
         else
         {
-            int ret = newService.updateNew(id, title, content, author, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            int ret = newService.updateNew(id, title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong);
             switch (ret)
             {
                 case 0:
@@ -91,19 +92,24 @@ public class EditNewAction extends BaseAction
         }
         alertMessage.setAlertType(AlertMessage.ALERT_TYPE);
 	alertMessage.setRedirectURL(AlertMessage.REFERER_URL);
-        if ((title == null) || (title.length() > 32) || (title.length() < 3))
+        if ((title == null) || (title.length() > 64) || (title.length() < 3))
         {
-	    alertMessage.setAlertContent("标题长度应该在3~32个字符之间");
+	    alertMessage.setAlertContent("标题长度应该在3~64个字符之间");
             return false;
         }
-        if (content.length() > 6000)
+        if (content.length() > 80000)
         {
-            alertMessage.setAlertContent("正文长度应该在6000个字符之内");
+            alertMessage.setAlertContent("新闻内容字数过多");
             return false;
         }
-        if (author.length() > 8)
+        if (author.length() > 16)
         {
-            alertMessage.setAlertContent("作者应该在8个字符之内");
+            alertMessage.setAlertContent("作者应该在16个字符之内");
+            return false;
+        }
+        if (newAbstract.length() > 250)
+        {
+            alertMessage.setAlertContent("新闻摘要应该在250个字符之内");
             return false;
         }
         return true;
@@ -196,6 +202,14 @@ public class EditNewAction extends BaseAction
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNewAbstract() {
+        return newAbstract;
+    }
+
+    public void setNewAbstract(String newAbstract) {
+        this.newAbstract = newAbstract;
     }
     
 }

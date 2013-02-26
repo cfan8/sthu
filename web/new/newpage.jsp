@@ -15,39 +15,40 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <link rel="stylesheet" type="text/css" href="/css/new/managePage.css" />
     <%!
     private List<NewEntity> news;
    %>
-<%
+    <%
     news = (List<NewEntity>) request.getAttribute("news");
-%><body>
-<div style="background-color:#DDEEDD;width: 1000px">
-    </br>
-    <form action="/new/batchDeleteNews.do" method="post">
-            <input type="submit" value="批量删除">
-    <ul style="list-style: none; width: 950px">
-    <% for (int i = 0; i < news.size(); i++)
-       { 
-        if (i % 2 == 1) 
-        { %>
-        <li style="background-color:#ffff99;height: 40px">
-        <%}
-        else
-        { %>
-        <li style="background-color:#ffffff;height:40px">
+    %>
+    <body>
+    <div id="new_manage_list">
+        </br>
+        <form action="/new/batchDeleteNews.do" method="post">
+            <div id="batch_delete_div"><input type="submit" value="批量删除"></div>
+        <ul>
+        <% for (int i = 0; i < news.size(); i++)
+            { 
+            %>
+            <li>
+                <div>
+                    <div class="batchdelete"><input type="checkbox" name="newids[]" value="<%=news.get(i).getID()%>"/></div>
+                    <div class="title"><a class="column" href="/column/editColumnPage.do?id=<%=news.get(i).getColumnBelong().getID()%>" title="<%=news.get(i).getColumnBelong().getName() %>">【<%=news.get(i).getColumnBelong().getName() %>】</a><a href="/new/editNewPage.do?id=<%=news.get(i).getID()%>" title="浏览数：<%=news.get(i).getBrowseNumber()%>；摘要：<%=news.get(i).getNewAbstract() %>"><%=news.get(i).getTitle()%></a>
+                        <% if (news.get(i).isIsPlacedInColumnTop()) { %>
+                        <span class="onTop">【置顶】</span>
+                        <% } %>
+                    </div>
+                    <div class="author"><%=news.get(i).getAuthor() %></div>
+                    <div class="date"><%=Util.dateToStringAccurateToDayFormat1(news.get(i).getUpdateTime()) %></div>
+                    <div class="delete"><a href="/new/deleteNew.do?id=<%=news.get(i).getID()%>">删除</a></div>
+                    <div class="clear"></div>
+                </div>
+                <hr/>
+            </li>
         <% } %>
-        <div style="width: 50px;float: left"><input type="checkbox" name="newids[]" value="<%=news.get(i).getID()%>"/></div>
-        <div style="width: 150px;float: left"><b style="color: blueviolet;font-family: inherit"><%=news.get(i).getColumnBelong().getName() %></b></div>
-        <div style="width: 300px;float: left"><a href="/new/editNewPage.do?id=<%=news.get(i).getID()%>"><%=news.get(i).getTitle() %></a>
-            <% if (news.get(i).isIsPlacedInColumnTop() == true) { %><b style="color: red">置顶</b> <% } else { } %>
-        </div>
-            <div style="width: 200px;float: left;padding-left: 50px"><%=Util.dateToStringAccurateToMinute(news.get(i).getUpdateTime()) %></div>
-            <div style="width: 80px;float: left;padding-left: 20px"><%=news.get(i).getAuthor() %></div>
-        <div style="width: 60px;float: left;padding-left: 40px"><a href="/new/deleteNew.do?id=<%=news.get(i).getID()%>">删除</a></div>
-    </li>
-    <% } %>
-    </ul>
-    </form>
-</div>
+        </ul>
+        </form>
+    </div>
 </body>
 </html>

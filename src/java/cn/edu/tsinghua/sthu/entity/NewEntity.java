@@ -16,14 +16,17 @@ import javax.persistence.*;
 @Table(name="t_new")
 public class NewEntity extends BaseEntity
 {
-    @Column(name="title", length=32, nullable = false)
+    @Column(name="title", length=64, nullable = false)
     private String title;
 
-    @Column(name="content", length=6000)
+    @Column(name="content", length=80000)
     private String content;
     
-    @Column(name="author", length=8)
+    @Column(name="author", length=16)
     private String author;
+    
+    @Column(name="newAbstract", length=250)
+    private String newAbstract;
     
     @Column(name="updatetime")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -36,7 +39,7 @@ public class NewEntity extends BaseEntity
     private boolean isPlacedInColumnTop;
     
     @Column(name="browseNumber")
-    private int browseNumber;
+    private int browseNumber = 0;
     
     @OneToOne(cascade={CascadeType.DETACH})
     private ColumnEntity columnBelong;
@@ -44,10 +47,11 @@ public class NewEntity extends BaseEntity
     public NewEntity() {
     }
 
-    public NewEntity(String title, String content, String author, Date updateTime, String redirectURL, boolean isPlacedInColumnTop, ColumnEntity columnBelong) {
+    public NewEntity(String title, String content, String author, String newAbstract, Date updateTime, String redirectURL, boolean isPlacedInColumnTop, ColumnEntity columnBelong) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.newAbstract = newAbstract;
         this.updateTime = updateTime;
         this.redirectURL = redirectURL;
         this.isPlacedInColumnTop = isPlacedInColumnTop;
@@ -118,4 +122,13 @@ public class NewEntity extends BaseEntity
     public void setBrowseNumber(int browseNumber) {
         this.browseNumber = browseNumber;
     }
+
+    public String getNewAbstract() {
+        return newAbstract;
+    }
+
+    public void setNewAbstract(String newAbstract) {
+        this.newAbstract = newAbstract;
+    }
+
 }

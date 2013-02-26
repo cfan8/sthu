@@ -108,6 +108,12 @@ public class Util
         return format.format(date);
     }
     
+    public static String dateToStringAccurateToDayFormat1(Date date)
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+    
     public static Date getBeforeDate(long shift)
     {
         Date date = new Date();

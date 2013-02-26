@@ -19,35 +19,29 @@
         <title><%=showOneColumnMessage.getColumnEntity().getName() %></title>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <table style="width: 100%;border-collapse: collapse;border:0px;margin:0 auto;">
-    <tbody>
-        <tr>
-        <td style="width:700px;background: white;vertical-align: top;text-align: center;">
-            <div id="news">
-            </div>
-        </td>
-        <td style="width:260px;background: #EFF1F0;border-left:1px solid white;border-right: 1px solid #DADADA ;vertical-align: top;text-align: center;">
-            <div style="display: block">
-                <ul>
-                    <li style="height:26px;float: left;"></li>
-                    <li style="color:#063760;font-size: 14px;font-weight: bold;padding-left: 10px">推荐</li>
-                    <li style="height:26px;float: right;padding-right: 10px; line-height: 26px"></li>
-                </ul>
-            </div>
-            <div style="width:auto;list-style-type:none;height:auto;padding:0;margin:0 5px;text-align:left;border-right:#DBDBDB 1px solid;border-bottom:#DBDBDB 1 px solid; border-left:#DBDBDB 1 px solid;background: #F8F8F8;">
-                <ul style="margin:0;padding:10px;list-style-type: none;font-size: 14px;font-weight: normal;">
-                <% for (int i = 0; i < showOneColumnMessage.getOtherNewsInSameColumn().size(); i++ )
-                       { %>
-                       <li style="line-height: 14px;color:black;padding-left: 10px;padding-top:5px;padding-bottom: 5px">
-                           <a href="/new/new.do?id=<%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getID()%>" title="<%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getTitle() %>"><%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getTitle() %></a>
+    <link rel="stylesheet" type="text/css" href="/css/new/new.css" />
+    <div id="div_left">
+        <div id="position">您当前的位置：<a href="/column/column.do?id=<%=showOneColumnMessage.getColumnEntity().getID() %>"><%=showOneColumnMessage.getColumnEntity().getName() %></a></div>
+        <div id="blank_div"></div>
+        <div id="news"></div>
+    </div>
+        <div id="div_right">
+            <div id="recomment">
+                <div id="recomment_tab"></div>
+                <div id="recomment_text"><center><span>推荐</span></center></div>
+                <div id="recomment_body">
+                    <ul class="recomment">
+                        <% for (int i = 0; i < showOneColumnMessage.getOtherNewsInSameColumn().size(); i++ )
+                            { %>
+                            <li class="recomment">
+                                <a href="/new/new.do?id=<%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getID()%>" title="<%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getTitle() %>"><%=showOneColumnMessage.getOtherNewsInSameColumn().get(i).getTitle() %></a>
+                            </li>
                        <% } %>
-                       </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </td>
-        </tr>
-    </tbody>
-    </table>
+    </div>
+    <div class="clear"></div>
     <script type="text/javascript" src="/js/pageview.js"></script>
     <script type="text/javascript">
 	var pageConfig = {

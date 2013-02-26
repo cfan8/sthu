@@ -21,36 +21,43 @@
         newMPM = (NewManagementPageMessage) request.getAttribute("newManagementPageMessage");
     %>
     <%@include file="/templates/general_header.jsp" %>
-    <a href="/new/editNewPage.do" style="background-color: ghostwhite"><b>添加新闻</b></a>&nbsp;&nbsp;
-    <div style="background-color:#77BBEE;height: 120px;width: 1000px">
-    <h2>筛选功能</h2>
-    <form action="newFilter.do" method="get">
-        标题：<input type="text" name="titleFilter" value="<%=newMPM.getTitleFilter()%>"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        作者：<input type="text" name="authorFilter" value="<%=newMPM.getAuthorFilter()%>"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        所属栏目：
-        <select name="columnBelongFilter">
+    <link rel="stylesheet" type="text/css" href="/css/new/managePage.css" />
+    <div id="add_new_div">
+        <div id="position">您的当前位置：<a href="new/newsManage.do">新闻管理</a></div>
+        <a href="/new/editNewPage.do" title="点击添加新闻">添加新闻</a>
+    </div>
+    <div id="filter_new_div">
+        <div id="filter_top_title">筛选功能</div>
+        <form action="newFilter.do" method="get">
+        <div id="filter_top">
+            <div class="filter_item_div">标题：<input type="text" name="titleFilter" value="<%=newMPM.getTitleFilter()%>"/></div>
+            <div class="filter_item_div">作者：<input type="text" name="authorFilter" value="<%=newMPM.getAuthorFilter()%>"/></div>
+            <div class="filter_item_div">所属栏目：
+            <select name="columnBelongFilter">
                 <option><%=Constant.ALL_COLUMN %></option>
-            <% for (int i = 0; i < newMPM.getColumnNames().size(); i++)
-                { 
-                    if (newMPM.getColumnBelongFilter().equals(newMPM.getColumnNames().get(i)))
-                    {
-                %>
-                <option selected="selected"><%=newMPM.getColumnNames().get(i) %></option>
-                <% } 
-                    else
-                    { %>
-                    <option><%=newMPM.getColumnNames().get(i) %></option>
-                <% }} %>
-        </select>
-        <br/>
-        <input type="checkbox" name="isPlacedInColumnTopFilter" value="true" <% if (newMPM.isIsPlacedInColumnTopFilter()) { %> checked="checked" <% } %>/>置顶 &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" name="withRedirectURLFilter" value="true"  <% if (newMPM.isWithRedirectURLFilter()) { %> checked="checked" <% } %>/>附带重定向URL
-        <br/>
-        <input type="submit" value="查询"/>
+                <% for (int i = 0; i < newMPM.getColumnNames().size(); i++)
+                    { 
+                        if (newMPM.getColumnBelongFilter().equals(newMPM.getColumnNames().get(i)))
+                        {
+                        %>
+                        <option selected="selected"><%=newMPM.getColumnNames().get(i) %></option>
+                        <% } 
+                        else
+                        { %>
+                        <option><%=newMPM.getColumnNames().get(i) %></option>
+                    <% }} %>
+            </select>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="filter_bottom">
+            <div class="filter_item_div"><input type="checkbox" name="isPlacedInColumnTopFilter" value="true" <% if (newMPM.isIsPlacedInColumnTopFilter()) { %> checked="checked" <% } %>/>置顶</div>
+            <div class="filter_item_div"><input type="checkbox" name="withRedirectURLFilter" value="true"  <% if (newMPM.isWithRedirectURLFilter()) { %> checked="checked" <% } %>/>附带重定向URL</div>
+            <div class="filter_item_div"><input type="submit" value="查询"/></div>
+            <div class="clear"></div>
+        </div>
     </form>
     </div>
-    <br/>
-    <br/>
     <div id="news">
     </div>
     <%@include file="/templates/general_footer.jsp" %>
