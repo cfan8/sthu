@@ -1,0 +1,363 @@
+/* 
+    Document   : index
+    Created on : 2013-2-27, 17:25:42
+    Author     : linangran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-image: url("/css/index/gray.png");
+    background-repeat: repeat-x;
+    background-color: #cccccc;
+}
+
+img
+{
+    border: none;
+}
+
+#all
+{
+    width: 1044px;
+    margin: 0 auto;
+}
+
+#bg_container
+{
+    width: 100%;
+    height: 4px;
+    background-image: url("/css/index/bg.png");
+    background-repeat: repeat-x;
+}
+
+#top
+{
+    width:100%;
+    height: 91px;
+    position: relative;
+}
+
+#logo
+{
+    width: 304px;
+    height: 53px;
+    position: absolute;
+    left: 17px;
+    top:17px;
+}
+
+#logininfo
+{
+    position: absolute;
+    top:2px;
+    right: 22px;
+    width: 100px;
+    height: 29px;
+    background-color: #deedf5;
+    text-align: center;
+}
+
+#logininfo a:link, #logininfo a:visited
+{
+    color: #237e89;
+    text-decoration: none;
+}
+
+#logininfo span{
+    font-size: 12px;
+    color: #237e89;
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 微软雅黑;
+}
+
+#toplink
+{
+    color: #a3a3a3;
+    font-size: 12px;
+    position: absolute;
+    top: 62px;
+    right: 23px;
+}
+
+#toplink a:link, #toplink a:visited
+{
+    color: #a3a3a3;
+    text-decoration: none;
+}
+
+#toplink .splitspan
+{
+    padding: 0px 18px;
+}
+
+#banner
+{
+    height: 327px;
+    width: 100%;
+}
+
+#banner #bannerimg
+{
+    width: 1044px;
+    height: 292px;
+    margin: 0 auto;
+}
+
+#navibar
+{
+    position: relative;
+}
+
+#navibar .navibutton
+{
+    float: left;
+    margin-right: 2px;
+}
+
+#navibar .navibutton:last-child
+{
+    margin: 0px;
+}
+
+#main
+{
+    width: 1024px;
+    height: 812px;
+    margin: 3px auto 0px auto;
+    position: relative;
+    background-image: url("/css/index/bgp.png");
+}
+
+#slide
+{
+    width: 737px;
+    height: 312px;
+    background-image: url("/css/index/slide.png");
+    position: absolute;
+    left:13px;
+    top: 18px;
+}
+
+#main .title
+{
+    width: 100%;
+    height: 27px;
+    position: relative;
+}
+
+#main .morediv
+{
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+
+#main .morediv a:link, #main .morediv a:visited
+{
+    text-decoration: none;
+    font-family: 微软雅黑;
+    font-size: 10.67px;
+}
+
+#express .morediv a:link, #express .morediv a:visited, #subject .morediv a:link, #subject .morediv a:visited
+{
+    color: #2f6e77;
+}
+
+#note .morediv a:link, #note .morediv a:visited
+{
+    color: #a75c19;
+}
+
+#event .morediv a:link, #event .morediv a:visited
+{
+    color: #565838;
+}
+
+#main .content
+{
+    background-color: white;
+}
+
+#note
+{
+    position: absolute;
+    top: 19px;
+    right: 13px;
+    width: 255px;
+    height: 293px;
+}
+
+#note .title{
+    background-image: url("/css/index/title0.png");
+}
+
+#note .content
+{
+    height: 266px;
+}
+
+#express
+{
+    width: 732px;
+    height: 223px;
+    position: absolute;
+    top:333px;
+    left: 12px;
+}
+
+#express .title
+{
+    background-image: url("/css/index/title1.png");
+}
+
+#express .content
+{
+    height: 196px;
+    background-image: url("/css/index/express_bg.png");
+}
+
+#event
+{
+    width: 257px;
+    height: 213px;
+    position: absolute;
+    top: 332px;
+    right: 12px;
+}
+
+#event .title
+{
+    background-image: url("/css/index/title2.png");
+}
+
+#event .content
+{
+    height: 186px;
+}
+
+#subject
+{
+    width: 732px;
+    height: 229px;
+    position: absolute;
+    top: 570px;
+    left: 13px;
+}
+
+#subject .title
+{
+    background-image: url("/css/index/title3.png");
+}
+
+#subject .content
+{
+    height: 202px;
+}
+
+#note, #express, #event, #subject
+{
+    box-shadow: 3px 2px 3px #ccd2c5;
+}
+
+#main
+{
+    box-shadow: 6px 5px 6px #bcbabe;
+}
+
+#footercontainer
+{
+    margin-top: 23px;
+    background-color: #adc2cc;
+    width: 100%;
+    min-width: 1044px;
+    position: relative;
+    height: 190px;
+}
+
+#footer
+{
+    width: 1044px;
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#footer .title
+{
+    background-image: url("/css/index/title4.png");
+    top: -7px;
+    left: 10px;
+    position: absolute;
+    width: 93px;
+    height: 27px;
+}
+
+#footer .linkblock
+{
+    width: 310px;
+    margin-right: 57px;
+    height: 95px;
+    float: left;
+}
+
+#footer .rightlinkblock
+{
+    margin-right: 0px;
+}
+
+#footer .linkblock .left
+{
+    float: left;
+    font-size: 13.34px;
+    font-family: 微软雅黑;
+    text-align: center;
+    height: 13px;
+    margin: 37px 0 auto 0;
+    width: 140px;
+}
+
+#footer a:link, #footer a:visited
+{
+    color: #1b7684;
+    text-decoration: none;
+}
+
+#footer .linkblock .right
+{
+    float: left;
+    font-size: 10.67px;
+    height: 100%;
+    line-height: 21px;
+}
+
+#footer .linkblock .right ul
+{
+    list-style-type:none;
+    padding-left: 20px;
+    margin: 16px 0;
+}
+
+#copyright
+{
+    width: 1024px;
+    height: 171px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#copyrighttext
+{
+    position: absolute;
+    width: 1024px;
+    bottom: 0px;
+    text-align: center;
+    font-size: 13px;
+    color: #484848;
+}
