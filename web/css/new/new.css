@@ -14,30 +14,36 @@ a:link, a:visited, a:hover, a:active
 #recomment
 {
     margin-top: 30px;
-    width: 263px;
-    float: right;
+    width: 252px;
     background-color: white;
     position: relative;
 }
 
-#recomment_tab
+#subject
 {
-    width: 263px;
+    width: 252px;
+    background-color: white;
+    position: relative;
+}
+
+#tab
+{
+    width: 252px;
     height: 40px;
     background-image: url('/css/new/recommend_tab.png');
     margin-bottom: 0px;
 }
 
-#recomment_text
+#text
 {
     width: 103px;
     height: 20px;
     position: absolute;
-    left: 42px;
-    top: 10px;
+    left: 30px;
+    top: 11px;
 }
 
-#recomment_text span
+#text span
 {
     font-family: "Microsoft YaHei","微软雅黑";
     font-size: 13.34px;
@@ -50,6 +56,21 @@ a:link, a:visited, a:hover, a:active
 {
     position: relative;
     bottom: 20px;
+}
+
+#subject_body
+{
+    position: relative;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-bottom: 7px;
+}
+
+#subject_item
+{
+    width: 226px;
+    height: 92px;
+    margin-bottom: 7px;
 }
 
 .recomment a
@@ -65,8 +86,9 @@ a:link, a:visited, a:hover, a:active
 {
     width: auto;
     height: auto;
-    padding-left: 20.5px;
+    padding-left: 8px;
     list-style-type: none;
+    margin-bottom: 0px;
 }
 
 .recomment li
@@ -176,7 +198,7 @@ a:link, a:visited, a:hover, a:active
 
 #blank_div
 {
-    height: 40px;
+    height: 30px;
     width: max-content;
 }
 

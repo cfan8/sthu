@@ -27,8 +27,8 @@
     </div>
         <div id="div_right">
             <div id="recomment">
-                <div id="recomment_tab"></div>
-                <div id="recomment_text"><center><span>推荐</span></center></div>
+                <div id="tab"></div>
+                <div id="text"><center><span>推荐</span></center></div>
                 <div id="recomment_body">
                     <ul class="recomment">
                         <% for (int i = 0; i < showOneColumnMessage.getOtherNewsInSameColumn().size(); i++ )
@@ -38,6 +38,15 @@
                             </li>
                        <% } %>
                     </ul>
+                </div>
+            </div>
+            <div id="subject">
+                <div id="tab"></div>
+                <div id="text"><center><span>专题</span></center></div>
+                <div id="subject_body">
+                    <div id="subject_item"><img src="/css/new/subject1.png"></div>
+                    <div id="subject_item"><img src="/css/new/subject2.png"></div>
+                    <div id="subject_item"><img src="/css/new/subject3.png"></div>
                 </div>
             </div>
     </div>
