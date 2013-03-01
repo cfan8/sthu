@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.ColumnEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 
@@ -31,9 +32,13 @@ public class DeleteColumnAction extends BaseAction{
         {
             alertMessage.setAlertContent("该栏目不存在！");
         }
+        else if (ret == -2)
+        {
+            alertMessage.setAlertContent("请先删除改栏目下的所有新闻，再删除栏目！");
+        }
         else
         {
-            alertMessage.setAlertContent("请先删除改栏目下的所有新闻，再删除栏目");
+            alertMessage.setAlertContent("固定在主页的栏目不可被删除！");
         }
         return ALERT;
     }

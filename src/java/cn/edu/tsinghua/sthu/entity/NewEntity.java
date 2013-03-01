@@ -41,7 +41,7 @@ public class NewEntity extends BaseEntity
     @Column(name="browseNumber")
     private int browseNumber = 0;
     
-    @OneToOne(cascade={CascadeType.DETACH})
+    @ManyToOne(cascade={CascadeType.DETACH})
     private ColumnEntity columnBelong;
 
     public NewEntity() {

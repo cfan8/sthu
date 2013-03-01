@@ -162,13 +162,6 @@ public class NewService extends BaseService
     }
     
     @Transactional
-    public List<NewEntity> getNewsByColumn(String columnName)
-    {
-        ColumnEntity columnEntity = columnDAO.queryByName(columnName);
-        return newDAO.selectAllNewsByColumn(columnEntity);
-    }
-    
-    @Transactional
     public int getOnTopCountByColumn(String columnName)
     {
         List<NewEntity> list = newDAO.selectAllNewOnTopByColumn(columnDAO.queryByName(columnName));

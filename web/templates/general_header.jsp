@@ -28,7 +28,7 @@
 	    <div id="toplink">清华大学社会实践在线平台<span class="splitspan">|</span>清华大学素质拓展计划<span class="splitspan">|</span>志愿北京平台</div>
 	</div>
 	    <div id="navibar">
-		<div class="navibtn"><a href="#"><img src="/css/general/navi0.png"></a></div>
+		<div class="navibtn"><a href="/index.do"><img src="/css/general/navi0.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi1.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi2.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi3.png"></a></div>

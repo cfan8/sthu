@@ -39,7 +39,7 @@
                     <% } %>
                 </select>
             </div>
-            <div class="new_abstract">摘要：<textarea rows="5" name="newAbstract"/></div>
+            <div class="new_abstract">摘要：<textarea rows="5" cols="35" name="newAbstract" wrap="virtual"></textarea></div>
             <div class="content"><script id="editor" type="text/plain" name="content">在这里编辑文章的内容</script></div>
             <div class="onTop">是否置顶：
                 <input type="radio" name="isPlacedInColumnTop" value="false" checked="checked"/> 否 &nbsp;&nbsp;
@@ -64,7 +64,7 @@
                     <% } %>
                 </select>
             </div>
-            <div class="new_abstract">摘要：<textarea rows="5" name="newAbstract"><%=newEPM.getNewEntity().getNewAbstract()%> </textarea></div>
+            <div class="new_abstract">摘要：<textarea rows="5" cols="35" name="newAbstract" wrap="virtual"><%=newEPM.getNewEntity().getNewAbstract()%> </textarea></div>
             <div class="content"><script id="editor" type="text/plain" name="content"><%=newEPM.getNewEntity().getContent()%> </script></div>
             <div class="onTop">是否置顶：
                 <input type="radio" name="isPlacedInColumnTop" value="false" <% if (!newEPM.getNewEntity().isIsPlacedInColumnTop()) { %> checked="checked" <% } %>/> 否 &nbsp;&nbsp;

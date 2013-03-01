@@ -96,6 +96,10 @@ public class ColumnService extends BaseService
         {
             return -2;
         }
+        if (entity.isIsFixedInHomePage())
+        {
+            return -3;
+        }
         columnDAO.deleteColumn(entity);
         return 0;
     }

@@ -4,6 +4,9 @@
     Author     : linangran
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.Util"%>
+<%@page import="cn.edu.tsinghua.sthu.constant.IndexColumnMapping"%>
+<%@page import="cn.edu.tsinghua.sthu.message.ShowIndexMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.UserEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -23,6 +26,12 @@
 	    <link rel="stylesheet" type="text/css" href="/css/index/index.css" />
 	    <script type="text/javascript" src="/js/jquery.js" ></script>
     </head>
+    <%!
+        public ShowIndexMessage showIndexMessage;
+    %>
+    <%
+        showIndexMessage = (ShowIndexMessage) request.getAttribute("showIndexMessage");
+    %>
     <body>
 	<div id="bg_container"></div>
 	<div id="all">
@@ -36,7 +45,7 @@
 	    <div id="banner">
 		<div id="bannerimg"><img src="/css/index/banner.png"></img></div>
 		<div id="navibar">
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi0.png" /></a></div>
+		    <div class="navibutton"><a href="/index.do"><img src="/css/index/navi0.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi1.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi2.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi3.png" /></a></div>
@@ -52,11 +61,15 @@
 		    <div id="tipbox"><div id="tiptextarea"><div id="tiptext"></div></div><div id="tipbtn"></div></div>
 		</div>
 		<div id="note">
-		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
+                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexTopColumnId%>">&gt;&gt;more</a></div></div>
 		    <div class="content">
-			<% for(int i= 0; i < 10; i++){ %>
-			<div class="noteitem top1">
-			    <a href="#">清华校友柳百城院士励学今设立清华校友柳百城院士励学今设立</a>
+			<% int max = showIndexMessage.getIndexTopNews().size() > 10 ? 10 : showIndexMessage.getIndexTopNews().size();
+                            for(int i= 0; i < max; i++){  %>
+                                <div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()){ %> class="noteitem top1" 
+                                      <% } else { %> class="noteitem top0" <% } %> >
+                                    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" 
+                                       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
+                                        <% } else { %> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% } %> </a>
 			</div>
 			<% }%>
 		    </div>
@@ -65,36 +78,45 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="leftList">
-			    <div class="listTitle"><a href="#"><img src="/css/index/express_t0.png"></img></a></div>
+			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId %>"><img src="/css/index/express_t0.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
-				    <% for (int i = 0; i < 6; i++) {
+				    <% max = showIndexMessage.getIndexBottomLeftNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomLeftNews().size();
+                                    for (int i = 0; i < max; i++) {
 				    %>
-				    <li><span class="newstitle"><a href="#">交叉信息学院第十六届量子信息处理国际会议</a></span><span class="newsdate">2013-01-21</span></li>
-				    <%					}%>
+				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" 
+                                       title="<%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().length() > 17) { %>  <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().substring(0, 17).concat("..")%> 
+                                                <% } else { %> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% } %> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime()) %></span></li>
+				    <%}%>
 				</ul>
 			    </div>
 
 			</div>
 			<div id="rightList">
-			    <div class="listTitle"><a href="#"><img src="/css/index/express_t1.png"></img></a></div>
+			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId %>"><img src="/css/index/express_t1.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
-				    <% for (int i = 0; i < 6; i++) {
+				    <% max = showIndexMessage.getIndexBottomCenterNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomCenterNews().size();
+                                        for (int i = 0; i < max; i++) {
 				    %>
-				    <li><span class="newstitle"><a href="#">交叉信息学院第十六届量子信息处理国际会议交叉信息学院第十六届量子信息处理国际会议</a></span><span class="newsdate">2013-01-21</span></li>
-				    <%					}%>
+				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" 
+                                       title="<%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().substring(0, 18).concat("..")%>
+                                                <% } else { %> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% } %> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime()) %></span></li>
+                                    <%}%>
 				</ul>				
 			    </div>
 			</div>
 		    </div>
 		</div>
 		<div id="event">			
-		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
+		    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId %>">&gt;&gt;more</a></div></div>
 		    <div class="content">
-			<% for(int i = 0; i < 7; i++) { %>
+			<% max = showIndexMessage.getIndexBottomRightNews().size() > 7 ? 7 : showIndexMessage.getIndexBottomRightNews().size();
+                            for(int i = 0; i < max; i++) { %>
 			<div class="eventitem">
-			    <a href="#">清华厚德2013年青少年冬令营清华厚德2013年青少年冬令营</a>
+			    <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomRightNews().get(i).getID()%>" 
+                               title="<%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomRightNews().get(i).getTitle().length() > 16) { %>  <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle().substring(0, 16).concat("..")%>
+                                                <% } else { %> <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%> <% } %></a>
 			</div>
 			<% } %>
 		    </div>

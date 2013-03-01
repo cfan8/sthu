@@ -16,7 +16,7 @@ and open the template in the editor.
 	</global-results>
     </package>
     <package name="rootActionPackage" extends="defaultAction" namespace="">
-	<action name="index" class="cn.edu.tsinghua.sthu.action.RedirectAction">
+	<action name="index" class="cn.edu.tsinghua.sthu.action.ShowIndexAction">
 	    <result name="success">/index.jsp</result>
 	</action>
 	<action name="login" class="cn.edu.tsinghua.sthu.action.ShowLoginPageAction">
