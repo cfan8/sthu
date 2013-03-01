@@ -32,7 +32,7 @@ public class ShowApplyListPageAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	List<CRoomApplyEntity> list = applyClassroomService.getPagedApply(viewType, page, 20, getCurrentUser().getAuth(), approveType);
+	List<CRoomApplyEntity> list = applyClassroomService.getPagedApply(viewType, page, 10, getCurrentUser().getAuth(), approveType);
 	showApplyListPageMessage.setList(list);
 	return SUCCESS;
     }

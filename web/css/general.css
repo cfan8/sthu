@@ -22,7 +22,7 @@ img
 
 #all
 {
-    width: 1044px;
+    width: 1038px;
     margin: 0 auto;
 }
 
@@ -93,6 +93,31 @@ img
 #toplink .splitspan
 {
     padding: 0px 18px;
+}
+
+#navibar
+{
+    height: 44px;
+    width: 1038px;
+    margin: 0 auto;
+    background-image: url("/css/general/navi_bg.png");
+}
+
+#navibar .navibtn
+{
+    float: left;
+    width: 128px;
+    margin-top: 2px;
+    margin-right: 2px;
+    height: 35px;
+}
+
+#navibar .navirightbtn
+{
+    float: left;
+    width: 128px;
+    margin-top: 2px;
+    height: 35px;
 }
 
 #footercontainer
@@ -184,4 +209,10 @@ img
     text-align: center;
     font-size: 13px;
     color: #484848;
+}
+
+#container
+{
+    width: 1024px;
+    margin: 0 auto;
 }

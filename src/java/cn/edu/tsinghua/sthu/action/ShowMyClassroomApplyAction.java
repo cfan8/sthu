@@ -19,7 +19,7 @@ public class ShowMyClassroomApplyAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	showMyClassroomApplyMessage.setTotalPageNumber(applyClassroomService.getMyApplyTotalPageNumber(getCurrentUser().getID(), 20));
+	showMyClassroomApplyMessage.setTotalPageNumber(applyClassroomService.getMyApplyTotalPageNumber(getCurrentUser().getID(), 10));
 	return SUCCESS;
     }
 

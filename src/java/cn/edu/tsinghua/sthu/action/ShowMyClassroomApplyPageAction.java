@@ -20,7 +20,7 @@ public class ShowMyClassroomApplyPageAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	showMyClassroomApplyPageMessage.setList(applyClassroomService.getPagedMyApplyList(getCurrentUser().getID(), page, 20));
+	showMyClassroomApplyPageMessage.setList(applyClassroomService.getPagedMyApplyList(getCurrentUser().getID(), page, 10));
 	return SUCCESS;
     }
 

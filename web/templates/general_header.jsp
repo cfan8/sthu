@@ -27,5 +27,15 @@
 	    <div id="logininfo"><span><a href="/mysthu.do"><%=nickName%></a></span></div>
 	    <div id="toplink">清华大学社会实践在线平台<span class="splitspan">|</span>清华大学素质拓展计划<span class="splitspan">|</span>志愿北京平台</div>
 	</div>
+	    <div id="navibar">
+		<div class="navibtn"><a href="#"><img src="/css/general/navi0.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi1.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi2.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi3.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi4.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi5.png"></a></div>
+		<div class="navibtn"><a href="#"><img src="/css/general/navi6.png"></a></div>
+		<div class="navirightbtn"><a href="#"><img src="/css/general/navi7.png"></a></div>
+	    </div>
 	<div id="container">
 	    <div id="main">
