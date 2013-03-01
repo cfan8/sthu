@@ -11,7 +11,7 @@ function init(pageConfig)
 	script.src = "/js/jquery.js";
 	document.getElementsByTagName('head')[0].appendChild(script);
     }
-    pageConfig.root.html("<div class='pagecontent'></div><div class='pagecontrol'><a href='#' class='first'>第一页</a><a href='#' class='pre2'></a><a href='#' class='pre'></a><input type='text' class='current' value='1' /><a href='#' class='next'></a><a href='#' class='next2'></a><a href='#' class='last'>最后一页</a></div></div>");
+    pageConfig.root.html('<div id="pageview"><div class="pagecontent"></div><div class="pagecontrol"><a href="#" class="first"><img src="/css/general/first.png" ></img></a><a href="#" class="pre2"></a><a href="#" class="pre"></a><input type="text" class="current" value="1" style="float:left;border-color: #7e7a7b;border-style: solid; border-width: 1px;margin-top: 1px;margin-right: 5px; width: 38px;text-align: center;background-color: #bdbdbd;font-size: 12px;padding: 0px;height: 19px;line-height: 19px; font-weight:bold;" /><a href="#" class="next"></a><a href="#" class="next2"></a><a href="#" class="last"><img src="/css/general/last.png" ></img></a></div></div>');
     pageConfig.obj = {
 	content:pageConfig.root.find(".pagecontent").first(),
 	fb:pageConfig.root.find(".first").first(),
@@ -25,13 +25,21 @@ function init(pageConfig)
     if (pageConfig.css == false)
     {
 	pageConfig.root.find(".pagecontrol").first().find("a").css({
-	    "margin-right":"10px",
-	    "font-size":"14px"
+	    "min-width": "5px",
+	    "height": "19px",
+	    "border": "solid",
+	    "border-width": "1px",
+	    "border-color": "#7e7a7b",
+	    "display": "inline-block",
+	    "text-align": "center",
+	    "margin-top": "1px",
+	    "float": "left",
+	    "background-color": "#e2e1dd",
+	    "padding": "0px 6px",
+	    "margin-right": "5px"
 	});
-	pageConfig.root.find(".pagecontrol").first().find("input").css({
-	    "margin-right":"10px",
-	    "width":"25px",
-	    "font-size":"14px"
+	pageConfig.root.find(".pagecontrol").first().css({
+	    "margin":"0 auto"
 	});
     }
     pageConfig.obj.pre.bind("click",{
@@ -71,6 +79,7 @@ function init(pageConfig)
 		alert("页码数必须在1到" + event.data.param1.total + "之间！");
 		return false;
 	    }
+	    pageConfig.obj.current.blur();
 	    showPage(event.data.param1, page);
 	}
 	if (code == 8 || code >= 112)
