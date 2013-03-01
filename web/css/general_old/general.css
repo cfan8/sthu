@@ -1,0 +1,123 @@
+/* 
+    Document   : general.css
+    Created on : 2013-1-27, 18:58:40
+    Author     : linangran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body
+{
+    margin: 0;
+    background-image: url('/css/general/background.png');
+    background-position:top;
+    background-repeat:  repeat-x;
+    background-color: white;
+}
+
+#all
+{
+    margin: 0 auto;
+    width: 1044px;
+}
+
+#header
+{
+    margin: 0 auto;
+    height: 50px;
+    width: 1024px;
+    background-color: white;
+    position: relative;
+}
+
+#bar
+{
+    background-image: url("/css/general/bar.png");
+    width: 1044px;
+    height: 120px;
+    position: relative;
+}
+
+#bar a
+{
+    opacity:0.8;
+}
+
+#bar a:hover
+{
+    opacity: 1;
+}
+
+#icon
+{
+    position: absolute;
+    top: 6px;
+    left:15px;
+}
+
+#texturl
+{
+    font-size: 13.34px;
+    letter-spacing: 1px;
+    left: 510px;
+    top: 15px;
+    position: absolute;
+}
+
+#logininfo
+{
+    width: 76px;
+    height: 38px;
+    position: absolute;
+    left:933px;
+    overflow: hidden;
+}
+
+#home
+{
+    position: absolute;
+    top: 50px;
+}
+
+#logininfo span
+{
+    color: #4d3069;
+    font-size: 13.34px;
+    position: absolute;
+    top:15px;
+    left:24px;
+}
+
+#container
+{
+    width: 920px;
+    margin-left: 10px;
+    background-color: white;
+    position: relative;
+    min-height: 400px;
+    padding-left: 52px;
+    padding-right: 52px;
+    padding-top: 5px;
+}
+
+#main
+{
+    position: relative;
+    height: auto;
+}
+
+#footer
+{
+    background-image: url('/css/general/footer.png');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-color: white;
+    width: 1024px;
+    height: 69px;
+    margin: 0 auto;
+}
+
+#position
+{
+    font-size: 13.34px;
+}
+

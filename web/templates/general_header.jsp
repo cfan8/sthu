@@ -12,24 +12,20 @@
     if (isLogin != null && isLogin == true) {
 	nickName = ((UserEntity) (session.getAttribute("userinfo"))).getNickname();
     } else {
-	nickName = "登录学清";
+	nickName = "我的学清";
     }
 %>
 <link rel="stylesheet" type="text/css" href="/css/general.css" />
 <script type="text/javascript" src="/js/jquery.js"></script>
 <body>
+    <div id="bg_container"></div>
     <div id="all">
-	<div id="header">
-	    <div id="icon"><a href="/index.do"><img src="/css/general/icon.png"></img></a></div>
-	    <div id="texturl">清华大学社会实践在线平台|清华大学素质拓展计划|志愿北京平台</div>
-	    <div id="logininfo">
-		<a href="/mysthu.do">
-		    <img src="/css/general/login.png"></img><span><%=nickName%></span>
-		</a>
-	    </div>
-	</div>
-	<div id="bar">
-	    <div id="home"><a href="/index.do"><img src="/css/general/home.png"></img></a></div>
+	<div id="top">
+	    <div id="logo"><a href="/index.do">
+		    <img src="/css/index/logo.png" />
+		</a></div>
+	    <div id="logininfo"><span><a href="/mysthu.do"><%=nickName%></a></span></div>
+	    <div id="toplink">清华大学社会实践在线平台<span class="splitspan">|</span>清华大学素质拓展计划<span class="splitspan">|</span>志愿北京平台</div>
 	</div>
 	<div id="container">
 	    <div id="main">

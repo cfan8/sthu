@@ -7,117 +7,181 @@
 */
 body
 {
+    height: 100%;
+    width: 100%;
     margin: 0;
-    background-image: url('/css/general/background.png');
-    background-position:top;
-    background-repeat:  repeat-x;
-    background-color: white;
+    background-image: url("/css/index/gray.png");
+    background-repeat: repeat-x;
+    background-color: #cccccc;
+}
+
+img
+{
+    border: none;
 }
 
 #all
 {
-    margin: 0 auto;
     width: 1044px;
+    margin: 0 auto;
 }
 
-#header
+#bg_container
 {
-    margin: 0 auto;
-    height: 50px;
-    width: 1024px;
-    background-color: white;
+    width: 100%;
+    height: 4px;
+    background-image: url("/css/index/bg.png");
+    background-repeat: repeat-x;
+}
+
+#top
+{
+    width:100%;
+    height: 91px;
     position: relative;
 }
 
-#bar
+#logo
 {
-    background-image: url("/css/general/bar.png");
-    width: 1044px;
-    height: 120px;
-    position: relative;
-}
-
-#bar a
-{
-    opacity:0.8;
-}
-
-#bar a:hover
-{
-    opacity: 1;
-}
-
-#icon
-{
+    width: 304px;
+    height: 53px;
     position: absolute;
-    top: 6px;
-    left:15px;
-}
-
-#texturl
-{
-    font-size: 13.34px;
-    letter-spacing: 1px;
-    left: 510px;
-    top: 15px;
-    position: absolute;
+    left: 17px;
+    top:17px;
 }
 
 #logininfo
 {
-    width: 76px;
-    height: 38px;
     position: absolute;
-    left:933px;
-    overflow: hidden;
+    top:2px;
+    right: 22px;
+    width: 100px;
+    height: 29px;
+    background-color: #deedf5;
+    text-align: center;
 }
 
-#home
+#logininfo a:link, #logininfo a:visited
 {
-    position: absolute;
-    top: 50px;
+    color: #237e89;
+    text-decoration: none;
 }
 
-#logininfo span
-{
-    color: #4d3069;
-    font-size: 13.34px;
-    position: absolute;
-    top:15px;
-    left:24px;
+#logininfo span{
+    font-size: 12px;
+    color: #237e89;
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 微软雅黑;
 }
 
-#container
+#toplink
 {
-    width: 920px;
-    margin-left: 10px;
-    background-color: white;
+    color: #a3a3a3;
+    font-size: 12px;
+    position: absolute;
+    top: 62px;
+    right: 23px;
+}
+
+#toplink a:link, #toplink a:visited
+{
+    color: #a3a3a3;
+    text-decoration: none;
+}
+
+#toplink .splitspan
+{
+    padding: 0px 18px;
+}
+
+#footercontainer
+{
+    margin-top: 23px;
+    background-color: #adc2cc;
+    width: 100%;
+    min-width: 1044px;
     position: relative;
-    min-height: 400px;
-    padding-left: 52px;
-    padding-right: 52px;
-    padding-top: 5px;
-}
-
-#main
-{
-    position: relative;
-    height: auto;
+    height: 190px;
 }
 
 #footer
 {
-    background-image: url('/css/general/footer.png');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-color: white;
-    width: 1024px;
-    height: 69px;
+    width: 1044px;
+    position: relative;
+    height: 100%;
     margin: 0 auto;
 }
 
-#position
+#footer .title
 {
-    font-size: 13.34px;
+    background-image: url("/css/index/title4.png");
+    top: -7px;
+    left: 10px;
+    position: absolute;
+    width: 93px;
+    height: 27px;
 }
 
+#footer .linkblock
+{
+    width: 310px;
+    margin-right: 57px;
+    height: 95px;
+    float: left;
+}
+
+#footer .rightlinkblock
+{
+    margin-right: 0px;
+}
+
+#footer .linkblock .left
+{
+    float: left;
+    font-size: 13.34px;
+    font-family: 微软雅黑;
+    text-align: center;
+    height: 13px;
+    margin: 37px 0 auto 0;
+    width: 140px;
+}
+
+#footer a:link, #footer a:visited
+{
+    color: #1b7684;
+    text-decoration: none;
+}
+
+#footer .linkblock .right
+{
+    float: left;
+    font-size: 10.67px;
+    height: 100%;
+    line-height: 21px;
+}
+
+#footer .linkblock .right ul
+{
+    list-style-type:none;
+    padding-left: 20px;
+    margin: 16px 0;
+}
+
+#copyright
+{
+    width: 1024px;
+    height: 171px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#copyrighttext
+{
+    position: absolute;
+    width: 1024px;
+    bottom: 0px;
+    text-align: center;
+    font-size: 13px;
+    color: #484848;
+}
