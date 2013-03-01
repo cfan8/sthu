@@ -47,7 +47,7 @@
 	</style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <span id="postion">您当前的位置：活动申请</span>
+    <span id="position">您当前的位置：活动申请</span>
     <div class="processtype" id="processtype<%=entity.getApplyStatus() %>"></div>
     <div id="tablediv">
 	<table>
