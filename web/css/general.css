@@ -90,6 +90,12 @@ img
     text-decoration: none;
 }
 
+#toplink a:hover
+{
+    color: #a3a3a3;
+    text-decoration: underline;
+}
+
 #toplink .splitspan
 {
     padding: 0px 18px;
@@ -178,6 +184,12 @@ img
     text-decoration: none;
 }
 
+#footer a:hover
+{
+    color: #1b7684;
+    text-decoration: underline;
+}
+
 #footer .linkblock .right
 {
     float: left;
@@ -215,6 +227,12 @@ img
 {
     width: 1024px;
     margin: 0 auto;
+    border-width: 0px 1px 0px 1px;
+    border-style: solid;
+    border-color: gray;
+    background-color: white;
+    padding-bottom: 30px;
+    box-shadow: 6px 5px 6px #bcbabe;
 }
 
 #main
@@ -225,4 +243,36 @@ img
 #position
 {
     font-size: 13.34px;
+}
+
+.onlyprint
+{
+    display: none;
+}
+
+@media print{
+    
+    div
+    {
+	border: none;
+    }
+    
+    .noprint{
+	display: none;
+    }
+    
+    .toprint
+    {
+	display: block;
+    }
+    
+    .onlyprint
+    {
+	display: block;
+    }
+    
+    #container
+    {
+	box-shadow: none;
+    }
 }

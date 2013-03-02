@@ -16,7 +16,7 @@
     List<ActivityApplyEntity> list = message.getList();
     if (list.size() == 0) {
 %>
-<span>暂无申请</span>
+<div style="width: 100%; text-align: center;">没有申请！</div>
 <%} else {
 %>
 <ul>    

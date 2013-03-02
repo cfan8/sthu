@@ -8,7 +8,7 @@
 	    </div>
 	</div>
     </div>
-    <div id="footercontainer">
+    <div id="footercontainer" class="noprint">
 	    <div id="footer">
 		<div class="title"></div>
 		<div class="content">
@@ -16,7 +16,7 @@
 		</div>
 	    </div>
 	</div>
-	<div id="copyright">
+	<div id="copyright" class="noprint">
 	    <div id="copyrighttext">共青团清华大学委员会成才中心<br/>Copyright©2013 student.tsinghua.edu.cn, All Rights Reserved</div>
 	</div>
 </body>

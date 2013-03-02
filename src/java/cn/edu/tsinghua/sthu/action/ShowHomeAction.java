@@ -26,6 +26,7 @@ public class ShowHomeAction extends BaseAction{
 	}
 	else
 	{
+	    homeMessage.setAuth(getCurrentUser().getAuth());
 	    return ADMIN_HOME;
 	}
     }

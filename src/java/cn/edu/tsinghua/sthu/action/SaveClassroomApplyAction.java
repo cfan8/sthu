@@ -56,7 +56,7 @@ public class SaveClassroomApplyAction extends BaseAction{
 		return ALERT;
 	    }
 	}
-	alertMessage.setSimpleAlert("保存成功！", "showApply.do?applyId=" + entity.getID());
+	alertMessage.setSimpleAlert("已保存，请确认申请！", "showApply.do?applyId=" + entity.getID());
 	return ALERT;
     }
 

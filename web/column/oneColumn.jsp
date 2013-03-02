@@ -62,6 +62,7 @@
 	    css:false
 	};
 	init(pageConfig);
+	adjustHeight(pageConfig);
     </script>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

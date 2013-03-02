@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.message;
 
+import cn.edu.tsinghua.sthu.entity.IndexSettingEntity;
 import cn.edu.tsinghua.sthu.entity.NewEntity;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class ShowIndexMessage {
     private List<NewEntity> indexBottomLeftNews;
     private List<NewEntity> indexBottomCenterNews;
     private List<NewEntity> indexBottomRightNews;
+    private List<IndexSettingEntity> indexSettings;
 
     public List<NewEntity> getIndexTopNews() {
         return indexTopNews;
@@ -47,6 +49,14 @@ public class ShowIndexMessage {
 
     public void setIndexBottomRightNews(List<NewEntity> indexBottomRightNews) {
         this.indexBottomRightNews = indexBottomRightNews;
+    }
+
+    public List<IndexSettingEntity> getIndexSettings() {
+	return indexSettings;
+    }
+
+    public void setIndexSettings(List<IndexSettingEntity> indexSettings) {
+	this.indexSettings = indexSettings;
     }
 
 }

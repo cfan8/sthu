@@ -155,6 +155,8 @@ img
 
 #imagebox img
 {
+    width: 721px;
+    height: 290px;
     position: absolute;
     display: none;
 }
@@ -166,7 +168,7 @@ img
     height: 67px;
     background-image: url("/css/index/tip_bg.png");
     bottom: 0px;
-    right: 0px;
+    right: 1px;
     z-index: 999;
 }
 
@@ -419,6 +421,17 @@ img
     text-decoration: none;
 }
 
+#weibo
+{
+    width: 257px;
+    height: 235px;
+    display: none;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: white;
+}
+
 #subject
 {
     width: 732px;
@@ -476,7 +489,7 @@ img
 }
 
 
-#note, #express, #event, #subject
+#note, #express, #event, #subject, #weibo
 {
     box-shadow: 3px 2px 3px #ccd2c5;
 }

@@ -4,9 +4,16 @@
     Author     : linangran
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.entity.AuthEntity"%>
+<%@page import="cn.edu.tsinghua.sthu.action.ShowHomeAction"%>
+<%@page import="cn.edu.tsinghua.sthu.Util"%>
+<%@page import="cn.edu.tsinghua.sthu.message.HomeMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowApplyListPageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% HomeMessage message = Util.getMessage(ShowHomeAction.class);
+   AuthEntity entity = message.getAuth();
+%>
 <!DOCTYPE html>
 <html>
     <head>

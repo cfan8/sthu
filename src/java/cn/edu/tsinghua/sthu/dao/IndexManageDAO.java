@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.dao;
 
 import cn.edu.tsinghua.sthu.entity.IndexSettingEntity;
 import java.util.List;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -21,6 +22,11 @@ public class IndexManageDAO extends BaseDAO<IndexSettingEntity> {
     public List<IndexSettingEntity> getIndexSettingEntity()
     {
 	return select().list();
+    }
+    
+    public List<IndexSettingEntity> getValidIndexSettingEntity()
+    {
+	return select().add(Restrictions.eq("enabled", true)).list();
     }
     
     public void updateSetting(List<IndexSettingEntity> list)

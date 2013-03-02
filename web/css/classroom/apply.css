@@ -27,6 +27,7 @@ form .tag{
     display:inline-block ;
     width: 150px;
     height: 22px;
+    text-align: left;
 }
 
 form select{
@@ -45,4 +46,28 @@ form input[type="submit"]
 {
     display: inline-block;
     margin-left: 200px;
+}
+
+#container
+{
+    padding-bottom: 40px;
+}
+
+#submitbtn{
+    display: block;
+    width: 180px;
+    height: 26px;
+    background-color: #ff7900;
+    text-align: center;
+    margin-left: 158px;
+    margin-top: 15px;
+}
+
+#submitbtn:link, #submitbtn:visited
+{
+    text-decoration: none;
+    color: white;
+    padding-top: 10.5px;
+    font-size: 14.67px;
+    letter-spacing: 4px;
 }

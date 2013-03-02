@@ -7,24 +7,24 @@
 <%@page import="cn.edu.tsinghua.sthu.entity.CRoomApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>申请教室</title>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/js/moment.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/js/pikaday.min.js"></script>
-        <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
-        <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
-        <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+	    <title>申请教室</title>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/moment.min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/pikaday.min.js"></script>
+	    <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="postion">您当前的位置：活动申请</span>
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
-	<form action="submitClassroomApply.do" method="post">
+	<form action="submitClassroomApply.do" method="post" id="submitf">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer"/></span></div>
 	    <div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower"/></span></div>
 	    <div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell"/></span></div>
@@ -58,11 +58,11 @@
 	    <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" /><input type="hidden" name="applyId" value="-1"></span></div>
 	    <div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title"/></span></div>
 	    <div><span class="tag">活动具体内容：</span>
-		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script></div>
+		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="content" id="contentInput"/></div>
 	    </div>
-	    <div id="submitbutton"><input type="submit" value="提交"/></div>
+	    <div id="submitbutton"><a href="#" id="submitbtn">下一步</a></div>
 	</form>
-    </div>>
+    </div>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
@@ -80,6 +80,11 @@
 	var picker = new Pikaday({
 	    field: document.getElementById('borrowDate'),
 	    format: 'YYYY-MM-DD'
+	});
+	
+	$("#submitbtn").click(function(){
+	    $("#contentInput").val(ce.getContent());
+	    $("#submitf").submit();
 	});
     </script>
 </html>

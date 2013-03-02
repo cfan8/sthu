@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.constant.AllocateMapping;
 import cn.edu.tsinghua.sthu.constant.IdentityMapping;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyClassroomDAO;
+import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
@@ -27,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApplyClassroomService extends BaseService {
 
     private ApplyClassroomDAO applyClassroomDAO;
+    private ApplyCommentDAO applyCommentDAO;
 
     @Transactional
     public CRoomApplyEntity getCRoomApplyEntityById(int id, int userid) {
@@ -40,9 +42,18 @@ public class ApplyClassroomService extends BaseService {
 	}
     }
 
+    @Transactional 
+    public CRoomApplyEntity getComments(CRoomApplyEntity entity)
+    {
+	entity.setComments(applyCommentDAO.getCommentsByApplyId(entity.getID()));
+	return entity;
+    }
+    
     @Transactional
     public CRoomApplyEntity getCRoomApplyEntityById(int applyId) {
-	return applyClassroomDAO.getCRoomApplyEntityById(applyId);
+	CRoomApplyEntity entity = applyClassroomDAO.getCRoomApplyEntityById(applyId);
+	entity.setComments(applyCommentDAO.getCommentsByApplyId(applyId));
+	return entity;
     }
 
     @Transactional
@@ -128,9 +139,7 @@ public class ApplyClassroomService extends BaseService {
 	entity.setIdentityDate(null);
 	entity.setResourceDate(null);
 	entity.setAllocateDate(null);
-	for (ApplyCommentEntity comment : entity.getComments()) {
-	    comment.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_OLD);
-	}
+	applyCommentDAO.markAsOld(entity.getComments());
 	applyClassroomDAO.updateCRoomApplyEntity(entity);
 	return entity;
     }
@@ -138,13 +147,14 @@ public class ApplyClassroomService extends BaseService {
     @Transactional
     public void processComment(CRoomApplyEntity applyEntity, boolean isApprove, String comment, int type, String nickName, int userid) {
 	ApplyCommentEntity commentEntity = new ApplyCommentEntity();
+	commentEntity.setApplyId(applyEntity.getID());
 	commentEntity.setComment(comment);
 	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
 	commentEntity.setCommentType(isApprove ? ApplyCommentEntity.COMMENT_TYPE_ACCEPT : ApplyCommentEntity.COMMENT_TYPE_REJECT);
 	commentEntity.setNickname(nickName);
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
-	applyEntity.getComments().add(commentEntity);
+	applyCommentDAO.addComment(commentEntity);
 	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY) {
 	    applyEntity.setIdentityDate(new Date());
 	    if (isApprove == true) {
@@ -246,5 +256,13 @@ public class ApplyClassroomService extends BaseService {
 
     public void setApplyClassroomDAO(ApplyClassroomDAO applyClassroomDAO) {
 	this.applyClassroomDAO = applyClassroomDAO;
+    }
+
+    public ApplyCommentDAO getApplyCommentDAO() {
+	return applyCommentDAO;
+    }
+
+    public void setApplyCommentDAO(ApplyCommentDAO applyCommentDAO) {
+	this.applyCommentDAO = applyCommentDAO;
     }
 }

@@ -8,6 +8,7 @@ import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -38,7 +39,7 @@ public class ApplyClassroomDAO extends BaseDAO<CRoomApplyEntity> {
 
     public List<CRoomApplyEntity> getTodoApplyListByIdentityType(int begin, int number, int identityType) {
 	return select().add(Restrictions.and(Restrictions.eq("identityType", identityType) , Restrictions.eq("identityStatus", CRoomApplyEntity.IDENTITY_STATUS_TODO)))
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("confirmDate")).setFirstResult(begin).setMaxResults(number).list();
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.asc("confirmDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 
     public int getTodoApplyCountByIdentityType(int identityType) {
@@ -63,7 +64,7 @@ public class ApplyClassroomDAO extends BaseDAO<CRoomApplyEntity> {
 
     public List<CRoomApplyEntity> getTodoApplyListByResourceType(int begin, int number, int resourceType) {
 	return select().add(Restrictions.and(Restrictions.eq("resourceType", resourceType),Restrictions.eq("resourceStatus", CRoomApplyEntity.RESOURCE_STATUS_TODO)))
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("identityDate")).setFirstResult(begin).setMaxResults(number).list();
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.asc("identityDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 
     public int getTodoApplyCountByResourceType(int resourceType) {
@@ -87,7 +88,7 @@ public class ApplyClassroomDAO extends BaseDAO<CRoomApplyEntity> {
 
     public List<CRoomApplyEntity> getTodoApplyListByAllocateType(int begin, int number, int allocateType) {
 	return select().add(Restrictions.and(Restrictions.eq("allocateType", allocateType), Restrictions.eq("allocateStatus", CRoomApplyEntity.ALLOCATE_STATUS_TODO)))
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("resourceDate")).setFirstResult(begin).setMaxResults(number).list();
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.asc("resourceDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 
     public int getTodoApplyCountByAllocateType(int allocateType) {
@@ -117,7 +118,7 @@ public class ApplyClassroomDAO extends BaseDAO<CRoomApplyEntity> {
     
     public List<CRoomApplyEntity> getMyApplyListByUserid(int userid, int begin, int number)
     {
-	return select().add(Restrictions.eq("applyUserid", userid)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+	return select().add(Restrictions.eq("applyUserid", userid)).setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
 		.addOrder(Order.desc("applyDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 }

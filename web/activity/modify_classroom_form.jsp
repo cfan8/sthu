@@ -14,7 +14,7 @@
 <% ShowApplyClassroomPageMessage message = Util.getMessage(ShowApplyClassroomPageAction.class);
     CRoomApplyEntity entity = message.getApplyEntity();
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,7 +31,7 @@
     <span id="postion">您当前的位置：活动申请</span>
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
-	<form action="submitClassroomApply.do" method="post">
+	<form action="submitClassroomApply.do" method="post" id="submitf">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer" value="<%=entity.getOrganizer()%>"/></span></div>
 	    <div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower" value="<%=entity.getBorrower()%>" /></span></div>
 	    <div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell" value="<%=entity.getBorrowerCell()%>"/></span></div>
@@ -65,9 +65,9 @@
 	    <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" value="<%=entity.getNumber()%>" /><input type="hidden" name="applyId" value="<%=entity.getID()%>"></span></div>
 	    <div><span class="tag">活动标题：</span><span class="value"><input type="text" name="title" value="<%=entity.getTitle()%>"/></span></div>
 	    <div><span class="tag">活动具体内容：</span>
-		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" name="content" style="width: 400px;" ><%=entity.getContent()%></script></div>
+		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;" ><%=entity.getContent()%></script><input type="hidden" name="content" id="contentInput"/></div>
 	    </div>
-	    <div id="submitbutton"><input type="submit" value="提交"/></div>
+	    <div id="submitbutton"><a href="#" id="submitbtn">下一步</a></div>
 	</form>
     </div>
     <%@include file="/templates/general_footer.jsp" %>
@@ -90,6 +90,10 @@
 	var picker = new Pikaday({
 	    field: document.getElementById('borrowDate'),
 	    format: 'YYYY-MM-DD'
+	});
+	$("#submitbtn").click(function(){
+	    $("#contentInput").val(ce.getContent());
+	    $("#submitf").submit();
 	});
     </script>
 </html>

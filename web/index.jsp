@@ -4,6 +4,8 @@
     Author     : linangran
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.IndexSettingEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IndexColumnMapping"%>
 <%@page import="cn.edu.tsinghua.sthu.message.ShowIndexMessage"%>
@@ -26,11 +28,11 @@
 	    <link rel="stylesheet" type="text/css" href="/css/index/index.css" />
 	    <script type="text/javascript" src="/js/jquery.js" ></script>
     </head>
-    <%!
-        public ShowIndexMessage showIndexMessage;
+    <%!	public ShowIndexMessage showIndexMessage;
     %>
     <%
-        showIndexMessage = (ShowIndexMessage) request.getAttribute("showIndexMessage");
+	showIndexMessage = (ShowIndexMessage) request.getAttribute("showIndexMessage");
+	List<IndexSettingEntity> settings = showIndexMessage.getIndexSettings();
     %>
     <body>
 	<div id="bg_container"></div>
@@ -40,7 +42,7 @@
 			<img src="/css/index/logo.png" />
 		    </a></div>
 		<div id="logininfo"><span><a href="/mysthu.do"><%=nickName%></a></span></div>
-		<div id="toplink">清华大学社会实践在线平台<span class="splitspan">|</span>清华大学素质拓展计划<span class="splitspan">|</span>志愿北京平台</div>
+		<div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">清华大学社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >清华大学素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">清华博学网</a></div>
 	    </div>
 	    <div id="banner">
 		<div id="bannerimg"><img src="/css/index/banner.png"></img></div>
@@ -49,7 +51,7 @@
 		    <div class="navibutton"><a href="/column/showColumns.do"><img src="/css/index/navi1.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi2.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi3.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi4.png" /></a></div>
+		    <div class="navibutton"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/index/navi4.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi5.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi6.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi7.png" /></a></div>
@@ -64,12 +66,12 @@
                     <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexTopColumnId%>">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% int max = showIndexMessage.getIndexTopNews().size() > 10 ? 10 : showIndexMessage.getIndexTopNews().size();
-                            for(int i= 0; i < max; i++){  %>
-                                <div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()){ %> class="noteitem top1" 
-                                      <% } else { %> class="noteitem top0" <% } %> >
-                                    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" 
-                                       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
-                                        <% } else { %> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% } %> </a>
+			    for (int i = 0; i < max; i++) {%>
+			<div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()) {%> class="noteitem top1" 
+													   <% } else {%> class="noteitem top0" <% }%> >
+			    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" 
+			       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
+				<% } else {%> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% }%> </a>
 			</div>
 			<% }%>
 		    </div>
@@ -78,49 +80,51 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="leftList">
-			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId %>"><img src="/css/index/express_t0.png"></img></a></div>
+			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId%>"><img src="/css/index/express_t0.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomLeftNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomLeftNews().size();
-                                    for (int i = 0; i < max; i++) {
+					for (int i = 0; i < max; i++) {
 				    %>
 				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" 
-                                       title="<%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().length() > 17) { %>  <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().substring(0, 17).concat("..")%> 
-                                                <% } else { %> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% } %> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime()) %></span></li>
-				    <%}%>
+								   title="<%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().length() > 17) {%>  <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().substring(0, 17).concat("..")%> 
+                                                <% } else {%> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime())%></span></li>
+						<%}%>
 				</ul>
 			    </div>
 
 			</div>
 			<div id="rightList">
-			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId %>"><img src="/css/index/express_t1.png"></img></a></div>
+			    <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId%>"><img src="/css/index/express_t1.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomCenterNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomCenterNews().size();
-                                        for (int i = 0; i < max; i++) {
+					for (int i = 0; i < max; i++) {
 				    %>
 				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" 
-                                       title="<%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().substring(0, 18).concat("..")%>
-                                                <% } else { %> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% } %> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime()) %></span></li>
-                                    <%}%>
+								   title="<%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().substring(0, 18).concat("..")%>
+                                                <% } else {%> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime())%></span></li>
+						<%}%>
 				</ul>				
 			    </div>
 			</div>
 		    </div>
 		</div>
 		<div id="event">			
-		    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId %>">&gt;&gt;more</a></div></div>
+		    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId%>">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% max = showIndexMessage.getIndexBottomRightNews().size() > 7 ? 7 : showIndexMessage.getIndexBottomRightNews().size();
-                            for(int i = 0; i < max; i++) { %>
+			    for (int i = 0; i < max; i++) {%>
 			<div class="eventitem">
 			    <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomRightNews().get(i).getID()%>" 
-                               title="<%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomRightNews().get(i).getTitle().length() > 16) { %>  <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle().substring(0, 16).concat("..")%>
-                                                <% } else { %> <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%> <% } %></a>
+                               title="<%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomRightNews().get(i).getTitle().length() > 16) {%>  <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle().substring(0, 16).concat("..")%>
+				<% } else {%> <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%> <% }%></a>
 			</div>
-			<% } %>
+			<% }%>
 		    </div>
 		</div>
+		    <div id="weibo">
+		    </div>
 		<div id="subject">
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
@@ -173,101 +177,102 @@
 	});
 	
 	var imgs = new Array(
-	'/css/index/example2.jpg',
-	'/css/index/example.png',
-	'/css/index/example2.jpg',
-	'/css/index/example.png'
-    );
-	var titles = new Array(
-	'图片新闻:<br/>清华同时获2项2012年度国家技术发明奖一等奖',
-	'你好：再见！',
-	'图片新闻:<br/>清华同时获2项2012年度国家技术发明奖一等奖',
-	'你好：<br/>再见！',
-	'图片新闻:<br/>清华同时获2项2012年度国家技术发明奖一等奖'
-    );
-	var links = new Array(
-	'#',
-	'#',
-	'#',
-	'#',
-	'#'
-    );
-	init();
-	var timer;
+	<% for (int i = 0; i < settings.size(); i++) {
+		IndexSettingEntity entity = settings.get(i);
+	%>
+	    '<%=entity.getImage()%>'<%=i==settings.size()-1?"":"," %>
+	<% }%>
+	);
+	    var titles = new Array(
+	<% for (int i = 0; i < settings.size(); i++) {
+		IndexSettingEntity entity = settings.get(i);
+	%>
+	    '<%=entity.getTitle()%>'<%=i==settings.size()-1?"":"," %>
+	<% }%>
+	);
+	    var links = new Array(
+	<% for (int i = 0; i < settings.size(); i++) {
+		IndexSettingEntity entity = settings.get(i);
+	%>
+	    '<%=entity.getLink()%>'<%=i==settings.size()-1?"":"," %>
+	<% }%>
+	);
+	    init();
+	    var timer;
 	
-	var current = 0;
-	function init(){
-	    var imghtml = "";
-	    for (var i = 0; i < imgs.length; i++)
-	    {
-		imghtml += '<a href="' + links[i] + '"><img src="' + imgs[i] + '" id="slideimg' + i + '"></img>';  
-	    }
-	    $("#imagebox").html(imghtml);
+	    var current = 0;
+	    function init(){
+		var imghtml = "";
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    imghtml += '<a href="' + links[i] + '" target="_blank"><img src="' + imgs[i] + '" id="slideimg' + i + '"></img>';  
+		}
+		$("#imagebox").html(imghtml);
 	
-	    imghtml="";
-	    for (var i = 0; i < imgs.length; i++)
-	    {
-		imghtml += '<a href="#" id="imgbtn' + (imgs.length - 1 - i) + '"><img src="/css/index/tipbtn.png"></img></a>';
-	    }
-	    $("#tipbtn").html(imghtml);
+		imghtml="";
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    imghtml += '<a href="#" id="imgbtn' + (imgs.length - 1 - i) + '"><img src="/css/index/tipbtn.png"></img></a>';
+		}
+		$("#tipbtn").html(imghtml);
 	    
-	    for (var i = 0; i < imgs.length; i++)
-	    {
-		titles[i] = '<a href="' + links[i] + '">' + titles[i] + '</a>';
-	    }
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    titles[i] = '<a href="' + links[i] + '">' + titles[i] + '</a>';
+		}
 	    
-	    for (var i = 0; i < imgs.length; i++)
-	    {
-		$("#imgbtn" + i).bind("click", {param1: i}, clickRecall);
-	    }
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    $("#imgbtn" + i).bind("click", {param1: i}, clickRecall);
+		}
 	    
-	    $("#slideimg0").show();
-	    $("#imgbtn0 img").css("opacity", "1");
-	    $("#tiptext").html(titles[0]);
-	    timer = setInterval(triggerRecall, 5000);
-	}
-	
-	function triggerRecall()
-	{
-	    if (current == imgs.length - 1)
-	    {
-		showThis(0);
+		$("#slideimg0").show();
+		$("#imgbtn0 img").css("opacity", "1");
+		$("#tiptext").html(titles[0]);
+		timer = setInterval(triggerRecall, 5000);
 	    }
-	    else 
-	    {
-		showThis(current + 1);
-	    }
-	}
 	
-	function clickRecall(event)
-	{
-	    var t = event.data.param1;
-	    clearInterval(timer);
-	    timer = setInterval(triggerRecall, 5000);
-	    if (t == current)
+	    function triggerRecall()
 	    {
+		if (current == imgs.length - 1)
+		{
+		    showThis(0);
+		}
+		else 
+		{
+		    showThis(current + 1);
+		}
+	    }
+	
+	    function clickRecall(event)
+	    {
+		var t = event.data.param1;
+		clearInterval(timer);
+		timer = setInterval(triggerRecall, 5000);
+		if (t == current)
+		{
+		    return false;
+		}
+		else 
+		{
+		    showThis(t);
+		}
 		return false;
 	    }
-	    else 
-	    {
-		showThis(t);
-	    }
-	    return false;
-	}
 	
-	function showThis(t)
-	{
-	    $("#slideimg" + current).css("z-index", "2");
-	    $("#slideimg" + t).css("z-index", "1");
-	    $("#slideimg" + t).show();
-	    $("#slideimg" + current).fadeOut(1000);
-	    $("#tiptextarea").fadeOut(500, function(){
-		$("#tiptext").html(titles[t]);
-		$("#tiptextarea").fadeIn(500);
-	    });
-	    $("#imgbtn" + current + " img").css("opacity", "0.5");
-	    $("#imgbtn" + t + " img").css("opacity", "1");
-	    current = t;
-	}
+	    function showThis(t)
+	    {
+		$("#slideimg" + current).css("z-index", "2");
+		$("#slideimg" + t).css("z-index", "1");
+		$("#slideimg" + t).show();
+		$("#slideimg" + current).fadeOut(1000);
+		$("#tiptextarea").fadeOut(500, function(){
+		    $("#tiptext").html(titles[t]);
+		    $("#tiptextarea").fadeIn(500);
+		});
+		$("#imgbtn" + current + " img").css("opacity", "0.5");
+		$("#imgbtn" + t + " img").css("opacity", "1");
+		current = t;
+	    }
     </script>
 </html>

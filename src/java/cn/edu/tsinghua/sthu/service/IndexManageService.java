@@ -35,6 +35,11 @@ public class IndexManageService extends BaseService {
     }
     
     @Transactional
+    public List<IndexSettingEntity> getValidIndexSetting() {
+	return indexManageDAO.getValidIndexSettingEntity();
+    }
+    
+    @Transactional
     public void updateSetting(List<IndexSettingEntity> list)
     {
 	if (list.size() == MAX_IMG_NUMBER)

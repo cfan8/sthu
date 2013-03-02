@@ -17,6 +17,26 @@
         <title>显示我的活动申请</title>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
+	<style>
+	    ul{
+		list-style-type: square;
+		padding-left: 120px;
+		color: #686b6a;
+		font-weight: bold;
+	    }
+	    
+	    ul a:link, ul a:visited
+	    {
+		text-decoration: none;
+		color: #888888;
+	    }
+	    
+	    ul a:hover
+	    {
+		color: black;
+		text-decoration: underline;
+	    }
+	</style>
     </head>
     <body>
 	<div id="pageview"></div>
@@ -30,6 +50,7 @@
 		css:false
 	    };
 	    init(pageConfig);
+	    adjustHeight(pageConfig);
 	</script>
     </body>
 </html>

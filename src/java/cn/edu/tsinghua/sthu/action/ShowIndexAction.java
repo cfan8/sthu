@@ -9,6 +9,7 @@ import cn.edu.tsinghua.sthu.entity.ColumnEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.ShowIndexMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
+import cn.edu.tsinghua.sthu.service.IndexManageService;
 import cn.edu.tsinghua.sthu.service.NewService;
 
 /**
@@ -18,6 +19,7 @@ import cn.edu.tsinghua.sthu.service.NewService;
 public class ShowIndexAction extends BaseAction{
     private int newMaxResult = 10;
     private ShowIndexMessage showIndexMessage;
+    private IndexManageService indexManageService;
     private NewService newService;
     private ColumnService columnService;
 
@@ -26,6 +28,7 @@ public class ShowIndexAction extends BaseAction{
         boolean flag = getNews();
         if (flag)
         {
+	    showIndexMessage.setIndexSettings(indexManageService.getValidIndexSetting());
             return SUCCESS;
         }
         else
@@ -132,6 +135,14 @@ public class ShowIndexAction extends BaseAction{
 
     public void setColumnService(ColumnService columnService) {
         this.columnService = columnService;
+    }
+
+    public IndexManageService getIndexManageService() {
+	return indexManageService;
+    }
+
+    public void setIndexManageService(IndexManageService indexManageService) {
+	this.indexManageService = indexManageService;
     }
     
 }

@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name="t_apply_comment")
-public class ApplyCommentEntity extends BaseEntity implements Comparable<ApplyCommentEntity> {
+public class ApplyCommentEntity extends BaseEntity {
     
     public static final int COMMENT_STATUS_NEW = 1;
     public static final int COMMENT_STATUS_OLD = 2;
@@ -24,6 +24,7 @@ public class ApplyCommentEntity extends BaseEntity implements Comparable<ApplyCo
     public static final int COMMENT_TYPE_ACCEPT = 1;
     public static final int COMMENT_TYPE_REJECT = 2;
     
+    private int applyId;
     private int userid;
     private String nickname;
     
@@ -83,6 +84,7 @@ public class ApplyCommentEntity extends BaseEntity implements Comparable<ApplyCo
 	this.nickname = nickname;
     }
 
+    /*
     @Override
     public int compareTo(ApplyCommentEntity o) {
 	if (this.pubDate.before(o.pubDate)) {
@@ -94,6 +96,14 @@ public class ApplyCommentEntity extends BaseEntity implements Comparable<ApplyCo
 	else {
 	    return 0;
 	}
+    }*/
+
+    public int getApplyId() {
+	return applyId;
+    }
+
+    public void setApplyId(int applyId) {
+	this.applyId = applyId;
     }
     
 }

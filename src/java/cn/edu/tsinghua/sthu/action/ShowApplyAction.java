@@ -54,7 +54,6 @@ public class ShowApplyAction extends BaseAction {
 	    } else {
 		showApplyMessage.setShowApprove(false);
 	    }
-	    Collections.sort(entity.getComments());
 	    return SUCCESS;
 	}
     }

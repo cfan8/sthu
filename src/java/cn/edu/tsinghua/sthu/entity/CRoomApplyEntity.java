@@ -81,8 +81,12 @@ public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomAppl
     private int resourceStatus;
     private int allocateType;
     private int allocateStatus;
+    /*
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private List<ApplyCommentEntity> comments = new ArrayList<ApplyCommentEntity>();
+    private List<ApplyCommentEntity> comments = new ArrayList<ApplyCommentEntity>();*/
+    
+    @Transient 
+    private List<ApplyCommentEntity> comments;
 
     public String getOrganizer() {
 	return organizer;
