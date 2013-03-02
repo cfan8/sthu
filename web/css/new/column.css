@@ -1,0 +1,30 @@
+#column_list_div #column_hr
+{
+    border:dotted;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+#column_list_div ul
+{
+    width: auto;
+    height: auto;
+    padding-left: 0px;
+}
+
+#column_list_div .title
+{
+    text-align: left;
+    width:auto;
+}
+
+#column_list_div .title a
+{
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 16.67px;
+    color:#212121;
+}

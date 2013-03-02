@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.NewEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.ShowOneNewMessage;
@@ -31,7 +32,9 @@ public class ShowOneNewAction extends BaseAction{
     @Override
     public boolean valid() {
         NewEntity entity = newService.getNewById(id);
-        if ((entity == null) || (entity.getColumnBelong().isIsVisibleForUser() == false))
+        if ((entity == null) || 
+                ((entity.getColumnBelong().isIsVisibleForUser() == false) && 
+                (!(getCurrentUser() != null && getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE && getCurrentUser().getAuth().getOpArticle() > -1))))
         {
             alertMessage.setAlertTitle("访问无效新闻！");
             alertMessage.setAlertContent("点击继续进行跳转");

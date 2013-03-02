@@ -29,7 +29,7 @@
 	</div>
 	    <div id="navibar">
 		<div class="navibtn"><a href="/index.do"><img src="/css/general/navi0.png"></a></div>
-		<div class="navibtn"><a href="#"><img src="/css/general/navi1.png"></a></div>
+		<div class="navibtn"><a href="/column/showColumns.do"><img src="/css/general/navi1.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi2.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi3.png"></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi4.png"></a></div>

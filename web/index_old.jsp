@@ -20,7 +20,7 @@
         <a href="outdoor/applyActivity.do" target="_blank">申请活动</a><br/>
 	<a href="new/newsManage.do">新闻管理</a><br/>
         <a href="column/columnsManage.do">栏目管理</a><br/>
-        <a href="column/allColumnForUser.do">新闻浏览</a><br/>
+        <a href="column/showColumns.do">新闻浏览</a><br/>
 	<a href="mysthu.do" target="_blank">个人中心</a><br/>
 
     </body>

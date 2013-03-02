@@ -92,6 +92,9 @@ and open the template in the editor.
         <action name="columnPage" class="cn.edu.tsinghua.sthu.action.GetColumnPageAction">
             <result name="success">columnpage.jsp</result>
         </action>
+        <action name="columnPageInView" class="cn.edu.tsinghua.sthu.action.GetColumnPageInViewAction">
+            <result name="success">columnPageInView.jsp</result>
+        </action>
         <action name="editColumnPage" class="cn.edu.tsinghua.sthu.action.ShowColumnEditPageAction" >
             <result name="success">columnedit.jsp</result>
         </action>
@@ -110,8 +113,8 @@ and open the template in the editor.
         <action name="columnNewListPage" class="cn.edu.tsinghua.sthu.action.GetColumnNewListPageAction">
             <result name="success">columnNewListPage.jsp</result>
         </action>
-        <action name="allColumnForUser" class="cn.edu.tsinghua.sthu.action.GetAllColumnForUserAction">
-            <result name="success">allColumn.jsp</result>
+        <action name="showColumns" class="cn.edu.tsinghua.sthu.action.ShowColumnsAction">
+            <result name="success">allColumns.jsp</result>
         </action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">

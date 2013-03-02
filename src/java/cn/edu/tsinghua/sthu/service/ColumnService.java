@@ -64,11 +64,24 @@ public class ColumnService extends BaseService
     {
         return columnDAO.selectColumn(startIndex, endIndex);
     }
+    
+    @Transactional
+    public List<ColumnEntity> getColumnForUser(int startIndex, int endIndex)
+    {
+        return columnDAO.selectColumnsVisibleForUser(startIndex, endIndex);
+    }
         
     @Transactional
     public int getColumnPageCount()
     {
         int count = columnDAO.getColumnCount();
+        return computePage(count);
+    }
+    
+    @Transactional
+    public int getVisibleColumnPageCount()
+    {
+        int count = columnDAO.getVisibleColumnCount();
         return computePage(count);
     }
     
@@ -110,7 +123,7 @@ public class ColumnService extends BaseService
         return columnDAO.selectAllColumn();
     }
     
-     @Transactional
+    @Transactional
     public List<ColumnEntity> getColumnsVisibleForUser()
     {
         return columnDAO.selectColumnsVisibleForUser();

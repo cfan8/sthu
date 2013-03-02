@@ -46,7 +46,7 @@
 		<div id="bannerimg"><img src="/css/index/banner.png"></img></div>
 		<div id="navibar">
 		    <div class="navibutton"><a href="/index.do"><img src="/css/index/navi0.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi1.png" /></a></div>
+		    <div class="navibutton"><a href="/column/showColumns.do"><img src="/css/index/navi1.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi2.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi3.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi4.png" /></a></div>

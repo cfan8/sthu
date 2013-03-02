@@ -27,7 +27,7 @@
                 <li>
                     <div id="new_list_top_div">
                         <div class="title">
-                            <a href="/new/new.do?id=<%=message.getNewList().get(i).getID()%>" title="/new/new.do?id=<%=message.getNewList().get(i).getID()%>"><%=message.getNewList().get(i).getTitle()%></a>
+                            <a href="/new/new.do?id=<%=message.getNewList().get(i).getID()%>" title="<%=message.getNewList().get(i).getTitle()%>"><%=message.getNewList().get(i).getTitle()%></a>
                             <% if (message.getNewList().get(i).isIsPlacedInColumnTop()) { %>
                             <span class="onTop">【置顶】</span>
                             <% } %>

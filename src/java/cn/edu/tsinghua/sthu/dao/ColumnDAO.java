@@ -56,6 +56,15 @@ public class ColumnDAO extends BaseDAO<ColumnEntity>
         return criteria.list();
     }
     
+    public List<ColumnEntity> selectColumnsVisibleForUser(int startIndex, int endIndex)
+    {
+        Criteria criteria = select();
+        criteria.add(Restrictions.eq("isVisibleForUser", true));
+        criteria.setFirstResult(startIndex);
+        criteria.setMaxResults(endIndex - startIndex + 1);
+        return (List<ColumnEntity>) criteria.list();
+    }
+    
     public List<ColumnEntity> selectColumn(int startIndex, int endIndex)
     {
         Criteria criteria = select();
@@ -67,6 +76,13 @@ public class ColumnDAO extends BaseDAO<ColumnEntity>
     public int getColumnCount()
     {
         return select().list().size();
+    }
+    
+    public int getVisibleColumnCount()
+    {
+        Criteria criteria = select();
+        criteria.add(Restrictions.eq("isVisibleForUser", true));
+        return criteria.list().size();
     }
     
     public ColumnEntity deleteColumn(ColumnEntity entity)

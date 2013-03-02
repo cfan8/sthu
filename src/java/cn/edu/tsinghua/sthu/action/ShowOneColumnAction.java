@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.ColumnEntity;
 import cn.edu.tsinghua.sthu.entity.NewEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
@@ -31,7 +32,9 @@ public class ShowOneColumnAction extends BaseAction{
     @Override
     public boolean valid() {
         ColumnEntity entity = columnService.getColumnById(id);
-        if ((entity == null) || (entity.isIsVisibleForUser() == false))
+        if ((entity == null) || 
+                ((entity.isIsVisibleForUser() == false) && 
+                (!(getCurrentUser() != null && getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE && getCurrentUser().getAuth().getOpArticle() > -1))))
         {
             alertMessage.setAlertTitle("访问无效栏目！");
             alertMessage.setAlertContent("点击继续进行跳转");
