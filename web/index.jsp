@@ -163,6 +163,15 @@
 	</div>
     </body>
     <script>
+	//悬停下划线（CSS太麻烦！）
+	$("a").mouseover(function(){
+	    $(this).css("text-decoration", "underline");
+	});
+	
+	$("a").mouseout(function(){
+	    $(this).css("text-decoration", "none");
+	});
+	
 	var imgs = new Array(
 	'/css/index/example2.jpg',
 	'/css/index/example.png',

@@ -7,6 +7,6 @@
     <bean id="columnDAO" class="cn.edu.tsinghua.sthu.dao.ColumnDAO" scope="prototype" autowire="byName" />
     <bean id="applyClassroomDAO" class="cn.edu.tsinghua.sthu.dao.ApplyClassroomDAO" scope="prototype" autowire="byName" />
     <bean id="applyActivityDao" class="cn.edu.tsinghua.sthu.dao.ApplyActivityDAO" scope="prototype" autowire="byName" />
-
+    <bean id="indexManageDAO" class="cn.edu.tsinghua.sthu.dao.IndexManageDAO" scope="prototype" autowire="byName" />
 </beans>
 

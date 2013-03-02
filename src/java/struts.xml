@@ -34,6 +34,11 @@ and open the template in the editor.
 	    <result name="user_home">userhome.jsp</result>
 	    <result name="admin_home">adminhome.jsp</result>
 	</action>
+	<action name="showIndexManage" class="cn.edu.tsinghua.sthu.action.ShowIndexManageAction">
+	    <result name="success">index_manage.jsp</result>
+	</action>
+	<action name="saveIndexSetting" class="cn.edu.tsinghua.sthu.action.SaveIndexSettingAction">
+	</action>
     </package>
     <package name="testActionPackage" extends="defaultAction" namespace="/test">
 	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">
