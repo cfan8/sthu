@@ -224,3 +224,9 @@ a:link, a:visited, a:hover, a:active
 {
      clear: both;
 }
+
+#div_right .blank_div
+{
+    width: 252px;
+    height: 30px;
+}

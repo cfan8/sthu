@@ -7,7 +7,7 @@
 
 #new_edit_div .title input
 {
-    width: 700px;
+    width: 450px;
 }
 
 #new_edit_div .title
@@ -42,6 +42,7 @@
 {
     margin-top: 20px;
     margin-left: 20px;
+    height: auto;
 }
 
 #new_edit_div .content
@@ -66,5 +67,44 @@
     margin-top: 20px;
     margin-left: 20px;
 }
+
+#new_edit_div .button
+{
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+#abstract_left
+{
+    height: auto;
+    width: fit-content;
+    float: left;
+}
+
+#abstract_right
+{
+    height: auto;
+    width: fit-content;
+    float: left;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.word_number
+{
+    margin-left: 10px;
+    color: red;
+    font-size: 13.34px;
+    font-family: "Microsoft YaHei","微软雅黑";
+}
+
+#abstract_word_number
+{
+    float: left;
+}
+
 
 

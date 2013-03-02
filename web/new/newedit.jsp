@@ -23,13 +23,13 @@
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <link rel="stylesheet" type="text/css" href="/css/new/newEdit.css" />
-    <div id="position">您的当前位置：<a href="new/newsManage.do">新闻管理</a>>>新闻编辑</div>
+    <div id="position">您的当前位置：<a href="/new/newsManage.do">新闻管理</a>>>新闻编辑</div>
     <div id="new_edit_div">
         <% if (newEPM.getId() < 0)
                { %>
         <form action="/new/addNew.do" method="post">
-            <div class="title">标题：<input type="text" name="title"/></div>
-            <div class="author">作者：<input type="text" name="author" /></div>
+            <div class="title">标题：<input type="text" name="title"/><span class="word_number">标题长度应该在3~64个字符之间</span></div>
+            <div class="author">作者：<input type="text" name="author" /><span class="word_number">作者应该在16个字符之内</span></div>
             <div class="column">
                 所属栏目：
                 <select name="columnBelong">
@@ -39,21 +39,32 @@
                     <% } %>
                 </select>
             </div>
-            <div class="new_abstract">摘要：<textarea rows="5" cols="35" name="newAbstract" wrap="virtual"></textarea></div>
+            <div class="new_abstract">
+                <div id="abstract_left">
+                    <div>摘要</div>
+                </div>
+                <div id="abstract_right">
+                    <textarea rows="5" cols="35" name="newAbstract" wrap="virtual"></textarea>
+                </div>
+                <div id="abstract_word_number">
+                    <span class="word_number">新闻摘要应该在250个字符之内</span>
+                </div>
+                <div class="clear"></div>
+            </div>
             <div class="content"><script id="editor" type="text/plain" name="content">在这里编辑文章的内容</script></div>
             <div class="onTop">是否置顶：
                 <input type="radio" name="isPlacedInColumnTop" value="false" checked="checked"/> 否 &nbsp;&nbsp;
                 <input type="radio" name="isPlacedInColumnTop" value="true" /> 是
             </div>
             <div class="redirect">设置重定向URL：<input type="text" name="redirectURL"/></div>
-            <div class="button"><input type="submit" value="添加"/></div>
+            <div class="button"><center><input id="submit" type="image" src="/css/new/submit_new.png"/></center></div>
         </form>
          <% }
           else 
         { %>
         <form action="/new/updateNew.do?id=<%=newEPM.getId()%>" method="post">
-            <div class="title">标题：<input type="text" name="title" value="<%=newEPM.getNewEntity().getTitle()%>"/></div>
-            <div class="author">作者：<input type="text" name="author" value="<%=newEPM.getNewEntity().getAuthor()%>" /></div>
+            <div class="title">标题：<input type="text" name="title" value="<%=newEPM.getNewEntity().getTitle()%>"/><span class="word_number">标题长度应该在3~64个字符之间</span></div>
+            <div class="author">作者：<input type="text" name="author" value="<%=newEPM.getNewEntity().getAuthor()%>" /><span class="word_number">作者应该在16个字符之内</span></div>
             <div class="column">
                 所属栏目：
                 <select name="columnBelong">
@@ -64,14 +75,23 @@
                     <% } %>
                 </select>
             </div>
-            <div class="new_abstract">摘要：<textarea rows="5" cols="35" name="newAbstract" wrap="virtual"><%=newEPM.getNewEntity().getNewAbstract()%> </textarea></div>
+            <div class="new_abstract">
+                <div id="abstract_left">摘要：</div>
+                <div id="abstract_right">
+                    <textarea rows="5" cols="35" name="newAbstract" wrap="virtual"><%=newEPM.getNewEntity().getNewAbstract()%></textarea>
+                </div>
+                <div id="abstract_word_number">
+                    <span class="word_number">新闻摘要应该在250个字符之内</span>
+                </div>
+                <div class="clear"></div>
+            </div>
             <div class="content"><script id="editor" type="text/plain" name="content"><%=newEPM.getNewEntity().getContent()%> </script></div>
             <div class="onTop">是否置顶：
                 <input type="radio" name="isPlacedInColumnTop" value="false" <% if (!newEPM.getNewEntity().isIsPlacedInColumnTop()) { %> checked="checked" <% } %>/> 否 &nbsp;&nbsp;
                 <input type="radio" name="isPlacedInColumnTop" value="true" <% if (newEPM.getNewEntity().isIsPlacedInColumnTop()) { %> checked="checked" <% } %>/> 是
             </div>
             <div class="redirect">重定向URL：<input type="text" name="redirectURL" value="<%=newEPM.getNewEntity().getRedirectURL()%> "/></div>
-            <div class="button"><input type="submit" value="更新"/></div>
+            <div class="button"><center><input id="submit" type="image" src="/css/new/update_new.png"/></center></div>
         </form>
         <% } %>
     </div>      

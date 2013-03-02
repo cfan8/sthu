@@ -28,6 +28,7 @@
         <div id="columns"></div>
     </div>
     <div id="div_right">
+        <div class="blank_div"></div>
         <div id="subject">
             <div id="tab"></div>
             <div id="text"><center><span>专题</span></center></div>
