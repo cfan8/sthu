@@ -20,7 +20,7 @@ public class ShowMyActivityApplyAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	getShowMyActivityApplyMessage().setTotalPageNumber(getApplyActivityService().getMyApplyTotalPageNumber(getCurrentUser().getID(), 20));
+	getShowMyActivityApplyMessage().setTotalPageNumber(getApplyActivityService().getMyApplyTotalPageNumber(getCurrentUser().getID(), 5));
 	return SUCCESS;
     }
 

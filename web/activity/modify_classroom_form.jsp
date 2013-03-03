@@ -28,7 +28,7 @@
         <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <span id="postion">您当前的位置：活动申请</span>
+    <span id="postion">您当前的位置：教室借用申请</span>
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
 	<form action="submitClassroomApply.do" method="post" id="submitf">

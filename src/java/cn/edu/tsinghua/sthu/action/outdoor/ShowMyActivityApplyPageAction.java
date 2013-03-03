@@ -21,7 +21,7 @@ public class ShowMyActivityApplyPageAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	getShowMyActivityApplyPageMessage().setList(getApplyActivityService().getMyApplyList(getCurrentUser().getID(), getPage(), 20));
+	getShowMyActivityApplyPageMessage().setList(getApplyActivityService().getMyApplyList(getCurrentUser().getID(), getPage(), 5));
 	return SUCCESS;
     }
 

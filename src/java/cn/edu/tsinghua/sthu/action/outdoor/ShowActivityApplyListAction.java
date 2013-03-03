@@ -23,7 +23,7 @@ public class ShowActivityApplyListAction extends BaseAction{
     public String onExecute() {
 	showActivityApplyListMessage.setViewType(viewType);
 	showActivityApplyListMessage.setApproveType(approveType);
-	showActivityApplyListMessage.setTotalPageNumber(applyActivityService.getTotalPageNumber(viewType, 20, getCurrentUser().getAuth(), approveType));
+	showActivityApplyListMessage.setTotalPageNumber(applyActivityService.getTotalPageNumber(viewType, 10, getCurrentUser().getAuth(), approveType));
 	return SUCCESS;
     }
 

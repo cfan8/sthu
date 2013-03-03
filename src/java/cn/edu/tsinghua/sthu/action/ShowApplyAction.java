@@ -41,11 +41,11 @@ public class ShowApplyAction extends BaseAction {
 		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_IDENTITY);
 		    showApplyMessage.setShowApprove(true);
 		} else if (entity.getResourceStatus() == CRoomApplyEntity.RESOURCE_STATUS_TODO
-			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getIdentityType()) {
+			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()) {
 		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_RESOURCE);
 		    showApplyMessage.setShowApprove(true);
 		} else if (entity.getAllocateStatus() == CRoomApplyEntity.ALLOCATE_STATUS_TODO
-			&& getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateStatus()) {
+			&& getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType()) {
 		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_ALLOCATE);
 		    showApplyMessage.setShowApprove(true);
 		} else {

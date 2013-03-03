@@ -30,7 +30,7 @@ public class ShowActivityApplyListPageAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	List<ActivityApplyEntity> list = applyActivityService.getPagedApply(viewType, page, 20, getCurrentUser().getAuth(), approveType);
+	List<ActivityApplyEntity> list = applyActivityService.getPagedApply(viewType, page, 10, getCurrentUser().getAuth(), approveType);
 	showActivityApplyListPageMessage.setList(list);
 	return SUCCESS;
     }

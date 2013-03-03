@@ -20,7 +20,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	    <title>显示教室申请</title>
+	    <title>显示教室借用申请</title>
 	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
 	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
@@ -212,7 +212,7 @@
 		</style>
 	</head>
 	<%@include file="/templates/general_header.jsp" %>
-	<div id="position">您当前的位置：活动申请</div>
+	<div id="position">您当前的位置：教室借用申请</div>
 	<div class="processtype noprint" id="processtype<%=entity.getApplyStatus()%>"></div>
 	<div class="onlyprint" style="text-align:center; font-family: 黑体; font-size: 30px;">教室借用申请表</div>
 	<div class="onlyprint" style="text-align:center;" id="printurl"></div>

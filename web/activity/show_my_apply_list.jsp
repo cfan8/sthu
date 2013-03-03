@@ -22,14 +22,14 @@
 	    ul{
 		list-style-type: square;
 		padding-left: 120px;
-		color: #686b6a;
+		color: #105162;
 		font-weight: bold;
 	    }
 	    
 	    ul a:link, ul a:visited
 	    {
 		text-decoration: none;
-		color: #888888;
+		color: #105162;
 	    }
 	    
 	    ul a:hover

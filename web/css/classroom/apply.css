@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-#postion
+#position
 {
     font-size: 13.34px;
     margin-left: -45px;
@@ -28,6 +28,7 @@ form .tag{
     width: 150px;
     height: 22px;
     text-align: left;
+    margin-left: 5px;
 }
 
 form select{

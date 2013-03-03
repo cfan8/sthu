@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import com.opensymphony.xwork2.Action;
@@ -32,12 +33,19 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
     protected Map<String, Object> session;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
+    private String loginRedirect;
 
     @Override
     public String execute() throws Exception {
 	this.context = ActionContext.getContext();
 	this.session = this.context.getSession();
 	if (needLogin() && isLogin() == false) {
+	    loginRedirect = request.getRequestURI();
+	    if (request.getQueryString() != null)
+	    {
+		 loginRedirect += "?" + request.getQueryString();
+	    }
+	    loginRedirect = Util.encodeURL(loginRedirect);
 	    return LOGIN_REDIRECT;
 	}
 	if (valid() == false) {
@@ -134,4 +142,12 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
     }
 
     public abstract boolean needLogin();
+
+    public String getLoginRedirect() {
+	return loginRedirect;
+    }
+
+    public void setLoginRedirect(String loginRedirect) {
+	this.loginRedirect = loginRedirect;
+    }
 }

@@ -19,6 +19,26 @@
         <title>申请列表</title>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
+	<style>
+	    ul{
+		list-style-type: square;
+		padding-left: 120px;
+		color: #105162;
+		font-weight: bold;
+	    }
+	    
+	    ul a:link, ul a:visited
+	    {
+		text-decoration: none;
+		color: #105162;
+	    }
+	    
+	    ul a:hover
+	    {
+		color: black;
+		text-decoration: underline;
+	    }
+	</style>
     </head>
     <body>
 	<div>

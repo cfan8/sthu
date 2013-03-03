@@ -41,7 +41,7 @@ public class ShowActivityApplyAction extends BaseAction {
 		    showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_IDENTITY);
 		    showActivityApplyMessage.setShowApprove(true);
 		} else if (entity.getResourceStatus() == ActivityApplyEntity.RESOURCE_STATUS_TODO
-			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getIdentityType()) {
+			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()) {
 		    showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_RESOURCE);
 		    showActivityApplyMessage.setShowApprove(true);
 		} else {
