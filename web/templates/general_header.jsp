@@ -30,10 +30,10 @@
 	    <div id="navibar" class="noprint">
 		<div class="navibtn"><a href="/index.do"><img src="/css/general/navi0.png" /></a></div>
 		<div class="navibtn"><a href="/column/showColumns.do"><img src="/css/general/navi1.png" /></a></div>
-		<div class="navibtn"><a href="#"><img src="/css/general/navi2.png" /></a></div>
-		<div class="navibtn"><a href="#"><img src="/css/general/navi3.png" /></a></div>
+		<div class="navibtn"><a href="/column/column.do?id=8"><img src="/css/general/navi2.png" /></a></div>
+		<div class="navibtn"><a href="/column/column.do?id=7"><img src="/css/general/navi3.png" /></a></div>
 		<div class="navibtn"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/general/navi4.png" /></a></div>
-		<div class="navibtn"><a href="#"><img src="/css/general/navi5.png" /></a></div>
+		<div class="navibtn"><a href="/column/column.do?id=6"><img src="/css/general/navi5.png" /></a></div>
 		<div class="navibtn"><a href="/activity/applyNotice.jsp"><img src="/css/general/navi6.png" /></a></div>
 		<div class="navirightbtn"><a href="/ticket/ticketNotice.jsp"><img src="/css/general/navi7.png" /></a></div>
 	    </div>

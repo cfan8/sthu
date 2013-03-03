@@ -48,11 +48,11 @@
 		<div id="bannerimg"><img src="/css/index/banner.png"></img></div>
 		<div id="navibar">
 		    <div class="navibutton"><a href="/index.do"><img src="/css/index/navi0.png" /></a></div>
-                    <div class="navibutton"><a href="/column/showColumns.do" target="blank"><img src="/css/index/navi1.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi2.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi3.png" /></a></div>
+                    <div class="navibutton"><a href="/column/showColumns.do" target="_blank"><img src="/css/index/navi1.png" /></a></div>
+		    <div class="navibutton"><a href="/column/column.do?id=8"><img src="/css/index/navi2.png" /></a></div>
+		    <div class="navibutton"><a href="/column/column.do?id=7"><img src="/css/index/navi3.png" /></a></div>
 		    <div class="navibutton"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/index/navi4.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi5.png" /></a></div>
+		    <div class="navibutton"><a href="/column/column.do?id=6"><img src="/css/index/navi5.png" /></a></div>
 		    <div class="navibutton"><a href="/activity/applyNotice.jsp"><img src="/css/index/navi6.png" /></a></div>
 		    <div class="navibutton"><a href="/ticket/ticketNotice.jsp"><img src="/css/index/navi7.png" /></a></div>
 		</div>
@@ -63,13 +63,13 @@
 		    <div id="tipbox"><div id="tiptextarea"><div id="tiptext"></div></div><div id="tipbtn"></div></div>
 		</div>
 		<div id="note">
-                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexTopColumnId%>" target="blank">&gt;&gt;more</a></div></div>
+                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexTopColumnId%>" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% int max = showIndexMessage.getIndexTopNews().size() > 10 ? 10 : showIndexMessage.getIndexTopNews().size();
                             for(int i= 0; i < max; i++){  %>
                                 <div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()){ %> class="noteitem top1" 
                                       <% } else { %> class="noteitem top0" <% } %> >
-                                    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" target="blank"
+                                    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" target="_blank"
                                        title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
                                         <% } else { %> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% } %> </a>
 			</div>
@@ -80,13 +80,13 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="leftList">
-                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId %>" target="blank"><img src="/css/index/express_t0.png"></img></a></div>
+                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId %>" target="_blank"><img src="/css/index/express_t0.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomLeftNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomLeftNews().size();
 					for (int i = 0; i < max; i++) {
 				    %>
-				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" target="blank"
+				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" target="_blank"
 								   title="<%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().length() > 17) {%>  <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().substring(0, 17).concat("..")%> 
                                                 <% } else {%> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime())%></span></li>
 						<%}%>
@@ -95,13 +95,13 @@
 
 			</div>
 			<div id="rightList">
-                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId %>" target="blank"><img src="/css/index/express_t1.png"></img></a></div>
+                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId %>" target="_blank"><img src="/css/index/express_t1.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomCenterNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomCenterNews().size();
 					for (int i = 0; i < max; i++) {
 				    %>
-                                    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" target="blank"
+                                    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" target="_blank"
 								   title="<%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().substring(0, 18).concat("..")%>
                                                 <% } else {%> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime())%></span></li>
 						<%}%>
@@ -111,12 +111,12 @@
 		    </div>
 		</div>
 		<div id="event">	
-                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId %>" target="blank">&gt;&gt;more</a></div></div>
+                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId %>" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% max = showIndexMessage.getIndexBottomRightNews().size() > 7 ? 7 : showIndexMessage.getIndexBottomRightNews().size();
 			    for (int i = 0; i < max; i++) {%>
 			<div class="eventitem">
-                            <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomRightNews().get(i).getID()%>" target="blank"
+                            <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomRightNews().get(i).getID()%>" target="_blank"
                                title="<%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomRightNews().get(i).getTitle().length() > 16) {%>  <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle().substring(0, 16).concat("..")%>
 				<% } else {%> <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%> <% }%></a>
 			</div>

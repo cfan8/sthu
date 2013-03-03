@@ -152,7 +152,15 @@
     </head>
 
     <%@include file="/templates/general_header.jsp" %>
-    <div id="welcome"><div id="welcometext">欢迎来到学清管理页面！</div><a class="logout" href="/logout.do">登出</a><a class="logout" href="update_password.jsp">修改密码</a></div>
+    <div id="welcome">
+        <div id="welcometext">欢迎来到学清管理页面！</div>
+        <a class="logout" href="/logout.do">登出</a>
+        <a class="logout" href="update_password.jsp">修改密码</a>
+        <% if (entity.getOpArticle() > -1) { %>
+            <a class="logout" href="/new/newsManage.do">新闻管理</a>
+            <a class="logout" href="/showIndexManage.do">首页管理</a>
+        <% } %>
+    </div>
     <div id="approveDiv">
 	<% if (classType != -1) {%>
 	<div id="classapply">

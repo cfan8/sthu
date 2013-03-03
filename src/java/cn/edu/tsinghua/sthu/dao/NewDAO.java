@@ -113,6 +113,16 @@ public class NewDAO extends BaseDAO<NewEntity>
             }
             criteria.add(Restrictions.eq("columnBelong", columnEntity));
         }
+        if (newManagementPageMessage.getStartTime().length() > 0)
+        {
+            Date date = Util.stringToDate(newManagementPageMessage.getStartTime());
+            criteria.add(Restrictions.ge(NewEntityDateFieldName, date));
+        }
+        if (newManagementPageMessage.getEndTime().length() > 0)
+        {
+            Date date = Util.stringToDate(newManagementPageMessage.getEndTime());
+            criteria.add(Restrictions.le(NewEntityDateFieldName, date));
+        }
         if (newManagementPageMessage.isIsPlacedInColumnTopFilter())
         {
             criteria.add(Restrictions.eq("isPlacedInColumnTop", true));

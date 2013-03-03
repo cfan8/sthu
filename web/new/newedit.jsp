@@ -7,7 +7,7 @@
 <%@page import="cn.edu.tsinghua.sthu.message.NewEditPageMessage"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <%!
         public NewEditPageMessage newEPM;

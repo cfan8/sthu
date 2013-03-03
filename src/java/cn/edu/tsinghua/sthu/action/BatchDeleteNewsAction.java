@@ -15,6 +15,7 @@ import cn.edu.tsinghua.sthu.service.NewService;
  */
 public class BatchDeleteNewsAction extends BaseAction{
     private NewService newService;
+    private String referer;
     
     @Override
     public String onExecute() {
@@ -24,6 +25,7 @@ public class BatchDeleteNewsAction extends BaseAction{
         newids = request.getParameterValues("newids[]");
         if (newids == null)
         {
+            referer = request.getHeader("REFERER");
             return SUCCESS;
         }
         for (int i = 0; i < newids.length; i++)
@@ -45,6 +47,7 @@ public class BatchDeleteNewsAction extends BaseAction{
         }
         if (flag) 
         {
+            referer = request.getHeader("REFERER");
             return SUCCESS;
         }
         else
@@ -84,6 +87,14 @@ public class BatchDeleteNewsAction extends BaseAction{
 
     public void setNewService(NewService newService) {
         this.newService = newService;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
     }
 
 }

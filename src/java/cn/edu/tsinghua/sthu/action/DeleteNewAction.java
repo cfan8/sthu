@@ -15,11 +15,13 @@ import cn.edu.tsinghua.sthu.service.NewService;
 public class DeleteNewAction extends BaseAction{
     private NewService newService;
     private int id;
+    private String referer;
 
     @Override
     public String onExecute() {
         if (newService.deleteNew(id))
         {
+            referer = request.getHeader("REFERER");
             return SUCCESS;
         }
         else
@@ -67,6 +69,14 @@ public class DeleteNewAction extends BaseAction{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
     }
     
 }

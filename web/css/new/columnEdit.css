@@ -1,0 +1,48 @@
+#column_edit_div
+{
+    background-color: #f5f5f5;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+#column_edit_div .name input
+{
+    width: 200px;
+}
+
+#column_edit_div div
+{
+    padding-top: 20px;
+}
+
+#column_edit_div span
+{
+    padding-left: 150px;
+    font-size: 14.67px;
+    display: inline-block;
+    font-family: "宋体";
+    width:150px;
+    text-align: left;
+}
+
+#column_edit_div .description input
+{
+    width: 250px;
+}
+
+#new_edit_div .onTop
+{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.button
+{
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+

@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.NewManagementPageMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,8 @@ public class ShowNewManagementPageAction extends BaseAction{
     private String columnBelongFilter = "";
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
+    private String startTime = "";
+    private String endTime = "";
      
     @Override
     public String onExecute() {
@@ -35,23 +38,11 @@ public class ShowNewManagementPageAction extends BaseAction{
         getNewManagementPageMessage().setIsPlacedInColumnTopFilter(isIsPlacedInColumnTopFilter());
         getNewManagementPageMessage().setWithRedirectURLFilter(isWithRedirectURLFilter());
         getNewManagementPageMessage().setParam(request.getQueryString());
+        getNewManagementPageMessage().setStartTime(getStartTime());
+        getNewManagementPageMessage().setEndTime(getEndTime());
         getNewManagementPageMessage().setPageNumber(newService.getQueryNewPageCount(newManagementPageMessage));
         return SUCCESS;
     }
-    
-    /*
-    private String generateParam()
-    {
-        StringBuffer str = new StringBuffer();
-        str.append("titleFilter=" + getNewManagementPageMessage().getTitleFilter() + "&");
-        str.append("authorFilter=" + getNewManagementPageMessage().getAuthorFilter() + "&");
-        str.append("columnBelongFilter=" + getNewManagementPageMessage().getColumnBelongFilter() + "&");
-        str.append("startDateFilter=" + getNewManagementPageMessage().getStartDateFilter() + "&");
-        str.append("endDateFilter=" + getNewManagementPageMessage().getEndDateFilter() + "&");
-        str.append("isPlacedInColumnTopFilter=" + getNewManagementPageMessage().isIsPlacedInColumnTopFilter() + "&");
-        str.append("withRedirectURLFilter=" + getNewManagementPageMessage().isWithRedirectURLFilter());
-        return str.toString();
-    }*/
 
     @Override
     public boolean valid() {
@@ -136,6 +127,22 @@ public class ShowNewManagementPageAction extends BaseAction{
 
     public void setWithRedirectURLFilter(boolean withRedirectURLFilter) {
         this.withRedirectURLFilter = withRedirectURLFilter;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
     
 }

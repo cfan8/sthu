@@ -6,7 +6,7 @@
 
 <%@page import="cn.edu.tsinghua.sthu.message.ColumnManagementPageMessage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +19,11 @@
         columnMPM = (ColumnManagementPageMessage) request.getAttribute("columnManagementPageMessage");
     %>
     <%@include file="/templates/general_header.jsp" %>
-    <a href="/column/editColumnPage.do" style="background-color: ghostwhite"><b>添加栏目</b></a></br>
+    <link rel="stylesheet" type="text/css" href="/css/new/columnManage.css" />
+    <div id="position">您的当前位置：<a href="/column/columnsManage.do">栏目管理</a></div>
+    <div id="add_column_div">
+        <a href="/column/editColumnPage.do" title="点击添加栏目">添加栏目</a>
+    </div>
     <div id="columns">
     </div>
     <%@include file="/templates/general_footer.jsp" %>

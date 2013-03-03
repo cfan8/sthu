@@ -18,6 +18,8 @@ public class NewManagementPageMessage {
     private String columnBelongFilter = "";
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
+    private String startTime = "";
+    private String endTime = "";
     private String param = "";
 
     public int getPageNumber() {
@@ -82,5 +84,21 @@ public class NewManagementPageMessage {
 
     public void setParam(String param) {
         this.param = param;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

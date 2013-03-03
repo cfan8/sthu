@@ -9,13 +9,13 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <link rel="stylesheet" type="text/css" href="/css/new/managePage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/new/newManagePage.css" />
     <%!
     private List<NewEntity> news;
    %>
@@ -25,8 +25,10 @@
     <body>
     <div id="new_manage_list">
         </br>
-        <form action="/new/batchDeleteNews.do" method="post">
-            <div id="batch_delete_div"><input type="submit" value="批量删除"></div>
+        <form name="batchDeleteNews" action="/new/batchDeleteNews.do" method="post">
+            <div id="batch_delete_new_div">
+                <a href="javascript:batchDeleteNews.submit();" title="点击删除选中的新闻">批量删除</a>
+            </div>
         <ul>
         <% for (int i = 0; i < news.size(); i++)
             { 
@@ -41,7 +43,7 @@
                     </div>
                     <div class="author"><%=news.get(i).getAuthor() %></div>
                     <div class="date"><%=Util.dateToStringAccurateToDayFormat1(news.get(i).getUpdateTime()) %></div>
-                    <div class="delete"><a href="/new/deleteNew.do?id=<%=news.get(i).getID()%>">删除</a></div>
+                    <div class="delete"><a href="/new/deleteNew.do?id=<%=news.get(i).getID()%>" title="点击删除该新闻">删除</a></div>
                     <div class="clear"></div>
                 </div>
                 <hr/>

@@ -28,6 +28,8 @@ public class GetNewPageAction extends BaseAction{
     private String columnBelongFilter = "";
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
+    private String startTime = "";
+    private String endTime = "";
     private NewManagementPageMessage newManagementPageMessage;
    
     @Override
@@ -49,6 +51,8 @@ public class GetNewPageAction extends BaseAction{
         getNewManagementPageMessage().setColumnBelongFilter(getColumnBelongFilter());
         getNewManagementPageMessage().setIsPlacedInColumnTopFilter(isIsPlacedInColumnTopFilter());
         getNewManagementPageMessage().setWithRedirectURLFilter(isWithRedirectURLFilter());
+        getNewManagementPageMessage().setStartTime(getStartTime());
+        getNewManagementPageMessage().setEndTime(getEndTime());
         int count = newService.getQueryNewPageCount(newManagementPageMessage);
         if (getPage() > count)
         {
@@ -151,6 +155,22 @@ public class GetNewPageAction extends BaseAction{
 
     public void setNewManagementPageMessage(NewManagementPageMessage newManagementPageMessage) {
         this.newManagementPageMessage = newManagementPageMessage;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     

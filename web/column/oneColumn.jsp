@@ -6,7 +6,7 @@
 
 <%@page import="cn.edu.tsinghua.sthu.message.ShowOneColumnMessage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <%!
         public ShowOneColumnMessage showOneColumnMessage;
@@ -62,7 +62,6 @@
 	    css:false
 	};
 	init(pageConfig);
-	adjustHeight(pageConfig);
     </script>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

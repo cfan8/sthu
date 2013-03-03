@@ -66,7 +66,7 @@ and open the template in the editor.
             <result name="success">newpage.jsp</result>
         </action>
         <action name="deleteNew" class="cn.edu.tsinghua.sthu.action.DeleteNewAction">
-            <result name="success" type="redirect">newsManage.do</result>
+            <result name="success" type="redirect">${referer}</result>
         </action>
         <action name="editNewPage" class="cn.edu.tsinghua.sthu.action.ShowNewEditPageAction">
             <result name="success">newedit.jsp</result>
@@ -77,15 +77,12 @@ and open the template in the editor.
         <action name="updateNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
             <result name="success" type="redirect">newsManage.do</result>
         </action>
-        <action name="newFilter" class="cn.edu.tsinghua.sthu.action.NewFilterAction">
-            <result name="success" type="redirect">newsManage.do?${param}</result>
-        </action>
         <action name="new" class="cn.edu.tsinghua.sthu.action.ShowOneNewAction">
             <result name="success">oneNew.jsp</result>
             <result name="new_redirect" type="redirect">${showOneNewMessage.getNewEnity().getRedirectURL()}</result>
         </action>
         <action name="batchDeleteNews" class="cn.edu.tsinghua.sthu.action.BatchDeleteNewsAction">
-            <result name="success" type="redirect">newsManage.do</result>
+            <result name="success" type="redirect">${referer}</result>
         </action>
     </package>
     <package name="columnActionPackage" extends="defaultAction" namespace="/column">

@@ -16,6 +16,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -118,6 +119,21 @@ public class Util
     {
         Date date = new Date();
         return new Date(date.getTime() - shift);
+    }
+    
+    public static Date stringToDate(String str)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        try
+        {
+            date = dateFormat.parse(str);
+        }
+        catch (Exception ex)
+        {
+            date = new Date();
+        }
+        return date;
     }
 
     /*
