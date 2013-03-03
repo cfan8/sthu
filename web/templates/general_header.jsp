@@ -34,8 +34,8 @@
 		<div class="navibtn"><a href="#"><img src="/css/general/navi3.png" /></a></div>
 		<div class="navibtn"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/general/navi4.png" /></a></div>
 		<div class="navibtn"><a href="#"><img src="/css/general/navi5.png" /></a></div>
-		<div class="navibtn"><a href="#"><img src="/css/general/navi6.png" /></a></div>
-		<div class="navirightbtn"><a href="#"><img src="/css/general/navi7.png" /></a></div>
+		<div class="navibtn"><a href="/activity/applyNotice.jsp"><img src="/css/general/navi6.png" /></a></div>
+		<div class="navirightbtn"><a href="/ticket/ticketNotice.jsp"><img src="/css/general/navi7.png" /></a></div>
 	    </div>
 	<div id="container">
 	    <div id="main">

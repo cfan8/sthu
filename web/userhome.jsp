@@ -120,15 +120,15 @@
     <%@include file="/templates/general_header.jsp" %>
     <div id="welcome"><div id="welcometext">欢迎来到我的学清！</div><a class="logout" href="/logout.do">登出</a></div>
     <div id="classapply">
-	<div class="title">我的教室申请</div><div class="newbtn"><a class="button add" href="/activity/applyClassroom.do" target="_blank" >申请教室资源</a></div>
+	<div class="title">我的教室申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请借用教室</a></div>
 	<div class="content"><iframe id="frame0" src="/activity/showMyApply.do"></iframe></div>
     </div>
     <div id="actapply">
-	<div class="title">我的活动资源申请</div><div class="newbtn"><a class="button add" href="/outdoor/applyActivity.do" target="_blank" >申请活动资源</a></div>
+	<div class="title">我的活动资源申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请活动资源</a></div>
 	<div class="content"><iframe id="frame1" src="/outdoor/showMyActivityApply.do"></iframe></div>
     </div>
     <div id="ticketapply">
-	<div class="title">我的订票</div>
+	<div class="title"><a name="ticket">我的订票</a></div>
 	<div class="content" style="text-align: center;padding: 12px;width: 656px;" >没有订票！</div>
     </div>
     <%@include file="/templates/general_footer.jsp" %>

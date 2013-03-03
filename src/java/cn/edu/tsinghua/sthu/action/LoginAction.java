@@ -7,13 +7,8 @@ package cn.edu.tsinghua.sthu.action;
 import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
-import cn.edu.tsinghua.sthu.message.BaseMessage;
 import cn.edu.tsinghua.sthu.message.LoginMessage;
 import cn.edu.tsinghua.sthu.service.UserService;
-import com.opensymphony.xwork2.*;
-import java.security.MessageDigest;
-import java.util.Date;
-
 /**
  *
  * @author linangran

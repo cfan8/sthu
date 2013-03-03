@@ -12,7 +12,7 @@ public class IdentityMapping {
 
     public static final String[] names = {
 	"选择一个审批通道",
-	"校团委社团社团部",
+	"校团委社团部",
 	"建筑[本]",
 	"土木[本]",
 	"水利[本]",

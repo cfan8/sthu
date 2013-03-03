@@ -53,8 +53,8 @@
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi3.png" /></a></div>
 		    <div class="navibutton"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/index/navi4.png" /></a></div>
 		    <div class="navibutton"><a href="#"><img src="/css/index/navi5.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi6.png" /></a></div>
-		    <div class="navibutton"><a href="#"><img src="/css/index/navi7.png" /></a></div>
+		    <div class="navibutton"><a href="/activity/applyNotice.jsp"><img src="/css/index/navi6.png" /></a></div>
+		    <div class="navibutton"><a href="/ticket/ticketNotice.jsp"><img src="/css/index/navi7.png" /></a></div>
 		</div>
 	    </div>
 	    <div id="main">
