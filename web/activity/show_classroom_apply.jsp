@@ -75,7 +75,7 @@
 
 		#commentBlock
 		{
-		    width: 780px;
+		    width: 600px;
 		    margin: 0 auto;
 		}
 
@@ -120,7 +120,7 @@
 
 		#showControl #borderDiv
 		{
-		    width: 576px;
+		    width: 396px;
 		    border-style: solid;
 		    border-color: white white #d0cfd0 white;
 		    border-width: 1px 1px 1px 0px;
@@ -128,7 +128,7 @@
 
 		.commentDiv
 		{
-		    width: 758px;
+		    width: 578px;
 		    margin: 0px auto;
 		    border-style: solid;
 		    border-width: 0px 1px 1px 1px;
@@ -152,7 +152,7 @@
 
 		.commentcontent
 		{
-		    width: 572px;
+		    width: 392px;
 		    padding-right: 6px;
 		    float: right;
 		}
@@ -181,14 +181,15 @@
 
 		#approveDiv
 		{
-		    margin-left: 96px;
+		    width: 600px;
+		    margin: 0 auto;
 		}
 
 		#approveSubmitDiv
 		{
-		    width: 780px;
-		    margin: 20px auto 0px auto;
-		    text-align: left;
+		    width: 600px;
+		    margin: 20px auto 0px;
+		    text-align: center;
 		}
 
 		#approveSubmitDiv a
@@ -198,7 +199,6 @@
 		    height: 26px;
 		    background-color: #ff7900;
 		    text-align: center;
-		    margin-left: 200px;
 		}
 
 		#approveSubmitDiv a:link, #approveSubmitDiv a:visited

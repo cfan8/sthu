@@ -40,20 +40,20 @@
 		padding-top: 10px;
 	    }
 	    
-	    .title
+	    #title
 	    {
 		font-family: 黑体;
 		font-size: 26px;
 	    }
 	    
-	    li{
+	    #main li{
 		margin-top: 12px;
 		line-height: 24px;
 	    }
 	</style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <div class="title">申请注意事项</div>
+    <div id="title">申请注意事项</div>
     <ol>
     <li>您可以通过本系统申请教室借用或者申请活动资源（展板/LED/室外活动宣传），目前本系统仍处于试运行阶段，某些无法在网络上进行的环节仍然需要您提交纸质申请表格。</li>
     <li>您在填写表格时，通常需要填写“申请通道”。如果您的活动属于社团性质的，请选择“校团委社团部”；否则，请选择您所在的院系：本科生请选择“[本]”,研究生及其它请选择“[研]”。</li>

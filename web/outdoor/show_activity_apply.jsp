@@ -19,201 +19,201 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>显示活动申请</title>
-        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
-	<link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
-	<style>
-	    #tablediv{
-		width: 600px;
-		margin: 10px auto 10px auto;
-	    }
+	    <title>显示活动申请</title>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+	    <style>
+		#tablediv{
+		    width: 600px;
+		    margin: 10px auto 10px auto;
+		}
 
-	    .tag
-	    {
-		width: 150px;
-	    }
+		.tag
+		{
+		    width: 150px;
+		}
 
-	    .blockvalue{
-		width: 600px;
-	    }
+		.blockvalue{
+		    width: 600px;
+		}
 
-	    tr
-	    {
-		border-top-width: 1px;
-		border-top-style: solid;
-	    }
+		tr
+		{
+		    border-top-width: 1px;
+		    border-top-style: solid;
+		}
 
-	    p{
-		margin: 16px 0px; 
-	    }
-	    
-	    
-	    #confirmDiv
-	    {
-		width: 780px;
-		margin: 20px auto 0px auto;
-		text-align: center;
-	    }
-
-	    #confirmDiv a
-	    {
-		display: inline-block;
-		width: 180px;
-		height: 26px;
-		background-color: #ff7900;
-		text-align: center;
-	    }
-
-	    #confirmDiv a:link, #confirmDiv a:visited
-	    {
-		text-decoration: none;
-		color: white;
-		padding-top: 10.5px;
-		font-size: 14.67px;
-		letter-spacing: 4px;
-	    }
+		p{
+		    margin: 16px 0px; 
+		}
 
 
+		#confirmDiv
+		{
+		    width: 780px;
+		    margin: 20px auto 0px auto;
+		    text-align: center;
+		}
 
-	    #commentBlock
-	    {
-		width: 780px;
-		margin: 0 auto;
-	    }
+		#confirmDiv a
+		{
+		    display: inline-block;
+		    width: 180px;
+		    height: 26px;
+		    background-color: #ff7900;
+		    text-align: center;
+		}
 
-	    #commentBlock p{
-		margin: 0px;
-	    }
+		#confirmDiv a:link, #confirmDiv a:visited
+		{
+		    text-decoration: none;
+		    color: white;
+		    padding-top: 10.5px;
+		    font-size: 14.67px;
+		    letter-spacing: 4px;
+		}
 
-	    #showControl
-	    {
-		width: 780px;
-		height: 22px;
-		font-size: 13.34px;
-		font-family: 微软雅黑;
-	    }
 
-	    #showControl div
-	    {
-		float: left;
-		height: 22px;
-		text-align: center;
-	    }
 
-	    #showControl #currentcomment
-	    {
-		color: #404040;
-		cursor: pointer;
-		width: 100px;
-		border-style: solid;
-		border-color: #d0cfd0 #d0cfd0 white #d0cfd0;
-		border-width: 1px;
-	    }
+		#commentBlock
+		{
+		    width: 600px;
+		    margin: 0 auto;
+		}
 
-	    #showControl #oldcomment
-	    {
-		color: #8f8f8f;
-		cursor:  pointer;
-		width: 100px;
-		border-style: solid;
-		border-color: white white #d0cfd0 white;
-		border-width: 1px 1px 1px 0px;
-	    }
+		#commentBlock p{
+		    margin: 0px;
+		}
 
-	    #showControl #borderDiv
-	    {
-		width: 677px;
-		border-style: solid;
-		border-color: white white #d0cfd0 white;
-		border-width: 1px 1px 1px 0px;
-	    }
+		#showControl
+		{
+		    width: 780px;
+		    height: 22px;
+		    font-size: 13.34px;
+		    font-family: 微软雅黑;
+		}
 
-	    .commentDiv
-	    {
-		width: 758px;
-		margin: 0px auto;
-		border-style: solid;
-		border-width: 0px 1px 1px 1px;
-		border-color: #d0cfd0;
-		float: left;
-		padding: 10px 10px 10px 10px;
-	    }
+		#showControl div
+		{
+		    float: left;
+		    height: 22px;
+		    text-align: center;
+		}
 
-	    #oldCommentDiv
-	    {
-		display: none;
-	    }
+		#showControl #currentcomment
+		{
+		    color: #404040;
+		    cursor: pointer;
+		    width: 100px;
+		    border-style: solid;
+		    border-color: #d0cfd0 #d0cfd0 white #d0cfd0;
+		    border-width: 1px;
+		}
 
-	    .commenttitle
-	    {
-		float: left;
-		width: 175px;
-		padding-left: 5px;
-		text-align: left;
-	    }
+		#showControl #oldcomment
+		{
+		    color: #8f8f8f;
+		    cursor:  pointer;
+		    width: 100px;
+		    border-style: solid;
+		    border-color: white white #d0cfd0 white;
+		    border-width: 1px 1px 1px 0px;
+		}
 
-	    .commentcontent
-	    {
-		width: 572px;
-		padding-right: 6px;
-		float: right;
-	    }
+		#showControl #borderDiv
+		{
+		    width: 497px;
+		    border-style: solid;
+		    border-color: white white #d0cfd0 white;
+		    border-width: 1px 1px 1px 0px;
+		}
 
-	    .commentitem
-	    {
-		margin-bottom: 10px;
-		font-size: 14.67px;
-		color: #404040;
-		padding-top: 2px;
-	    }
-	    .commentitem:last-child
-	    {
-		margin-bottom: 0px;
-	    }
+		.commentDiv
+		{
+		    width: 578px;
+		    margin: 0px auto;
+		    border-style: solid;
+		    border-width: 0px 1px 1px 1px;
+		    border-color: #d0cfd0;
+		    float: left;
+		    padding: 10px 10px 10px 10px;
+		}
 
-	    .comment2147483647
-	    {
-		background-color: #d3fac2;
-	    }
+		#oldCommentDiv
+		{
+		    display: none;
+		}
 
-	    .comment-1
-	    {
-		background-color: #efc9b8;
-	    }
+		.commenttitle
+		{
+		    float: left;
+		    width: 175px;
+		    padding-left: 5px;
+		    text-align: left;
+		}
 
-	    #approveDiv
-	    {
-		margin-left: 96px;
-	    }
+		.commentcontent
+		{
+		    width: 392px;
+		    padding-right: 6px;
+		    float: right;
+		}
 
-	    #approveSubmitDiv
-	    {
-		width: 780px;
-		margin: 20px auto 0px auto;
-		text-align: left;
-	    }
+		.commentitem
+		{
+		    margin-bottom: 10px;
+		    font-size: 14.67px;
+		    color: #404040;
+		    padding-top: 2px;
+		}
+		.commentitem:last-child
+		{
+		    margin-bottom: 0px;
+		}
 
-	    #approveSubmitDiv a
-	    {
-		display: inline-block;
-		width: 180px;
-		height: 26px;
-		background-color: #ff7900;
-		text-align: center;
-		margin-left: 200px;
-	    }
+		.comment2147483647
+		{
+		    background-color: #d3fac2;
+		}
 
-	    #approveSubmitDiv a:link, #approveSubmitDiv a:visited
-	    {
-		text-decoration: none;
-		color: white;
-		padding-top: 10.5px;
-		font-size: 14.67px;
-		letter-spacing: 4px;
-	    }
-	    
-	</style>
+		.comment-1
+		{
+		    background-color: #efc9b8;
+		}
+
+		#approveDiv
+		{	
+		    width: 600px;
+		    margin: 0 auto;
+		}
+
+		#approveSubmitDiv
+		{
+		    width: 600px;
+		    margin: 20px auto 0px;
+		    text-align: center;
+		}
+
+		#approveSubmitDiv a
+		{
+		    display: inline-block;
+		    width: 180px;
+		    height: 26px;
+		    background-color: #ff7900;
+		    text-align: center;
+		}
+
+		#approveSubmitDiv a:link, #approveSubmitDiv a:visited
+		{
+		    text-decoration: none;
+		    color: white;
+		    padding-top: 10.5px;
+		    font-size: 14.67px;
+		    letter-spacing: 4px;
+		}
+
+	    </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <div id="position">您当前的位置：活动资源申请</div>
@@ -241,10 +241,10 @@
 	    <tr><td class="tag">联系电话：</td><td class="value"><%=entity.getApplicatantCell()%></td></tr>
 	    <tr><td class="tag">电子邮箱：</td><td class="value"><%=entity.getApplicatantEmail()%></td></tr>
 	    <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
-		<p>申请状态：<%=entity.getApplyStatusText()%></p>
-		<p>院系学生组（分团委）审批状态：<%=entity.getIdentityStatusText()%></p>
-		<p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
-	    </td></tr>
+		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
+		    <p>院系学生组（分团委）审批状态：<%=entity.getIdentityStatusText()%></p>
+		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
+		</td></tr>
 	</table>
     </div>
 
@@ -307,6 +307,7 @@
 		    $("#comment").val(ue.getContent());
 		    $("#approveForm").submit();
 		}
+		return false;
 	    });
 	</script>
     </div>
@@ -315,9 +316,9 @@
     <script type="text/javascript">
 	$("#printurl").html("此表线上地址：" + window.location.href + "<br/>纸质申请表只有内容和线上申请信息一致时才有效！");
 	
-	    if ($("#currentCommentDiv").html().replace(/^\s+|\s+$/g, '') == "")
-	    {
-		$("#currentCommentDiv").html("<div style='text-align:center;width:100%;'>暂无审批消息</div>");
-	    }
+	if ($("#currentCommentDiv").html().replace(/^\s+|\s+$/g, '') == "")
+	{
+	    $("#currentCommentDiv").html("<div style='text-align:center;width:100%;'>暂无审批消息</div>");
+	}
     </script>
 </html>

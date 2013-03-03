@@ -12,7 +12,10 @@ and open the template in the editor.
     <package name="defaultAction" extends="struts-default">
 	<global-results>
 	    <result name="alert">/alert.jsp</result>
+	    <result name="login_redirect" type="redirect">/login.do</result>
+	    <!--
 	    <result name="login_redirect" type="redirect">/login.do?redirectURL=${loginRedirect}</result>
+	    -->
 	</global-results>
     </package>
     <package name="rootActionPackage" extends="defaultAction" namespace="">

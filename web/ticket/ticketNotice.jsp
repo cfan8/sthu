@@ -39,13 +39,13 @@
 		padding-top: 10px;
 	    }
 	    
-	    .title
+	    #title
 	    {
 		font-family: 黑体;
 		font-size: 26px;
 	    }
 	    
-	    li{
+	    #main li{
 		margin-top: 12px;
 		line-height: 24px;
 	    }
@@ -53,11 +53,11 @@
 	</style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <div class="title">订票注意事项</div>
+    <div id="title">订票注意事项</div>
     <ol>
     <li>订票系统只在有订票活动时开放。</li>
     <li>请只订自己需要的票，以免名额浪费。</li>
     </ol>
-    <p id="buttonP"><a class="button" href="#">订票系统目前关闭</a></p>
+    <p id="buttonP"><a class="button" href="#">暂无订票</a></p>
     <%@include file="/templates/general_footer.jsp" %>
 </html>
