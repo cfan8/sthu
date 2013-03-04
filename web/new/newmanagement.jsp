@@ -31,27 +31,27 @@
     </div>
     <div id="filter_new_div">
             <div id="filter_top"><img src="/css/new/filter_top.png"/></div>
-            <form action="newsManage.do" method="get">
+            <form name="filter" action="newsManage.do" method="get">
             <div id="filter_content">
                 <div id="filter_word"><center><span>筛选新闻</span></center>
                 </div>
                 <div id="filter_item">
                     <div class="top_or_bottom">
-                        <div class="filter_item_div">新闻标题：<input id="title "type="text" name="titleFilter" value="<%=newMPM.getTitleFilter()%>"/></div>
-                        <div class="filter_item_div">作者：<input id="author" type="text" name="authorFilter" width="73px" value="<%=newMPM.getAuthorFilter()%>"/></div>
+                        <div class="filter_item_div">新闻标题：<input id="title" type="text" name="titleFilter" value="<%=newMPM.getTitleFilter()%>"/></div>
+                        <div class="filter_item_div">作者：<input id="author" type="text" name="authorFilter" value="<%=newMPM.getAuthorFilter()%>"/></div>
                         <div class="filter_item_div">所在栏目：
                         <select name="columnBelongFilter" id="column">
-                            <option><%=Constant.ALL_COLUMN %></option>
-                            <% for (int i = 0; i < newMPM.getColumnNames().size(); i++)
+                            <option value="-1"><%=Constant.ALL_COLUMN %></option>
+                            <% for (int i = 0; i < newMPM.getColumns().size(); i++)
                             { 
-                                if (newMPM.getColumnBelongFilter().equals(newMPM.getColumnNames().get(i)))
+                                if (newMPM.getColumnBelongFilter() == newMPM.getColumns().get(i).getID())
                                 {
                                 %>
-                                <option selected="selected"><%=newMPM.getColumnNames().get(i) %></option>
+                                <option selected="selected" value="<%=newMPM.getColumns().get(i).getID() %>"><%=newMPM.getColumns().get(i).getName() %></option>
                                 <% } 
                                 else
                                 { %>
-                                <option><%=newMPM.getColumnNames().get(i) %></option>
+                                <option value="<%=newMPM.getColumns().get(i).getID() %>"><%=newMPM.getColumns().get(i).getName() %></option>
                              <% }} %>
                          </select>
                         </div>
@@ -65,7 +65,7 @@
                         <div class="clear"></div>
                     </div>
                 </div>
-                <div id="filter_submit_div"><input id="submit" type="image" src="/css/new/filter_search.png" value="查询"/></div>
+                        <div id="filter_submit_div"><input type="image" src="/css/new/filter_search.png" value="查询" onclick="filter_submit();"/></div>
                 <div class="clear"></div>
             </div>
             <div id="filter_bottom"><img src="/css/new/filter_bottom.png"/>
@@ -94,5 +94,11 @@
 	    field: document.getElementById('endTime'),
 	    format: 'YYYY-MM-DD'
 	});
+        function filter_submit()
+        {
+            document.getElementById("title").value = encodeURIComponent(document.getElementById("title").value);
+            document.getElementById("author").value = encodeURIComponent(document.getElementById("author").value);
+            $('filter').submit();
+        }
     </script>
 </html>

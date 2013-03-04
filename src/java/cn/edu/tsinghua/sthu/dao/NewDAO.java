@@ -14,6 +14,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import cn.edu.tsinghua.sthu.constant.Constant;
 import cn.edu.tsinghua.sthu.Util;
+import java.util.ArrayList;
 
 /**
  *
@@ -104,9 +105,9 @@ public class NewDAO extends BaseDAO<NewEntity>
         {
             criteria.add(Restrictions.like("author", "%" + newManagementPageMessage.getAuthorFilter() + "%"));
         }
-        if (newManagementPageMessage.getColumnBelongFilter().equals(Constant.ALL_COLUMN) == false && newManagementPageMessage.getColumnBelongFilter().length() > 0)
+        if (newManagementPageMessage.getColumnBelongFilter() > -1)
         {
-            ColumnEntity columnEntity = columnDAO.queryByName(newManagementPageMessage.getColumnBelongFilter());
+            ColumnEntity columnEntity = columnDAO.queryById(newManagementPageMessage.getColumnBelongFilter());
             if (columnEntity == null)
             {
                 return false;
@@ -140,7 +141,9 @@ public class NewDAO extends BaseDAO<NewEntity>
         criteria.addOrder(Order.desc(NewEntityDateFieldName));
         criteria.setFirstResult(startIndex);
         criteria.setMaxResults(endIndex - startIndex + 1);
-        if (setQueryParam(criteria, newManagementPageMessage) == false) return null;
+        if (setQueryParam(criteria, newManagementPageMessage) == false) {
+            return new ArrayList<NewEntity>();
+        }
         return (List<NewEntity>) criteria.list();
     }
     

@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.action;
 import cn.edu.tsinghua.sthu.entity.NewEntity;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 import cn.edu.tsinghua.sthu.service.NewService;
+import cn.edu.tsinghua.sthu.Util;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ public class GetNewPageAction extends BaseAction{
     private List<NewEntity> news;
     private String titleFilter = "";
     private String authorFilter = "";
-    private String columnBelongFilter = "";
+    private int columnBelongFilter = -1;
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
     private String startTime = "";
@@ -114,7 +115,7 @@ public class GetNewPageAction extends BaseAction{
     }
 
     public void setTitleFilter(String titleFilter) {
-        this.titleFilter = titleFilter;
+        this.titleFilter = Util.decodeURL(titleFilter);
     }
 
     public String getAuthorFilter() {
@@ -122,14 +123,14 @@ public class GetNewPageAction extends BaseAction{
     }
 
     public void setAuthorFilter(String authorFilter) {
-        this.authorFilter = authorFilter;
+        this.authorFilter = Util.decodeURL(authorFilter);
     }
 
-    public String getColumnBelongFilter() {
+    public int getColumnBelongFilter() {
         return columnBelongFilter;
     }
 
-    public void setColumnBelongFilter(String columnBelongFilter) {
+    public void setColumnBelongFilter(int columnBelongFilter) {
         this.columnBelongFilter = columnBelongFilter;
     }
 

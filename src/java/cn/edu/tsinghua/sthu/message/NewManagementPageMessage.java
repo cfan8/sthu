@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.message;
 
+import cn.edu.tsinghua.sthu.entity.ColumnEntity;
 import java.util.List;
 
 /**
@@ -12,10 +13,10 @@ import java.util.List;
  */
 public class NewManagementPageMessage {
     private int pageNumber;
-    private List<String> columnNames;
+    private List<ColumnEntity> columns;
     private String titleFilter = "";
     private String authorFilter = "";
-    private String columnBelongFilter = "";
+    private int columnBelongFilter;
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
     private String startTime = "";
@@ -28,14 +29,6 @@ public class NewManagementPageMessage {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
-    }
-
-    public List<String> getColumnNames() {
-        return columnNames;
-    }
-
-    public void setColumnNames(List<String> columnNames) {
-        this.columnNames = columnNames;
     }
 
     public String getTitleFilter() {
@@ -54,11 +47,11 @@ public class NewManagementPageMessage {
         this.authorFilter = authorFilter;
     }
 
-    public String getColumnBelongFilter() {
+    public int getColumnBelongFilter() {
         return columnBelongFilter;
     }
 
-    public void setColumnBelongFilter(String columnBelongFilter) {
+    public void setColumnBelongFilter(int columnBelongFilter) {
         this.columnBelongFilter = columnBelongFilter;
     }
 
@@ -100,5 +93,13 @@ public class NewManagementPageMessage {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public List<ColumnEntity> getColumns() {
+        return columns;
+    }
+
+    public void setColumns(List<ColumnEntity> columns) {
+        this.columns = columns;
     }
 }

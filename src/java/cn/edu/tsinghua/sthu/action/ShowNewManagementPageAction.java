@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.NewManagementPageMessage;
 import cn.edu.tsinghua.sthu.service.ColumnService;
+import cn.edu.tsinghua.sthu.Util;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ShowNewManagementPageAction extends BaseAction{
     private NewManagementPageMessage newManagementPageMessage;
     private String titleFilter = "";
     private String authorFilter = "";
-    private String columnBelongFilter = "";
+    private int columnBelongFilter = -1;
     private boolean isPlacedInColumnTopFilter = false;
     private boolean withRedirectURLFilter = false;
     private String startTime = "";
@@ -31,7 +32,7 @@ public class ShowNewManagementPageAction extends BaseAction{
      
     @Override
     public String onExecute() {
-        getNewManagementPageMessage().setColumnNames(columnService.getAllColumnName());
+        getNewManagementPageMessage().setColumns(columnService.getAllColumn());
         getNewManagementPageMessage().setTitleFilter(getTitleFilter());
         getNewManagementPageMessage().setAuthorFilter(getAuthorFilter());
         getNewManagementPageMessage().setColumnBelongFilter(getColumnBelongFilter());
@@ -94,7 +95,7 @@ public class ShowNewManagementPageAction extends BaseAction{
     }
 
     public void setTitleFilter(String titleFilter) {
-        this.titleFilter = titleFilter;
+        this.titleFilter = Util.decodeURL(titleFilter);
     }
 
     public String getAuthorFilter() {
@@ -102,14 +103,14 @@ public class ShowNewManagementPageAction extends BaseAction{
     }
 
     public void setAuthorFilter(String authorFilter) {
-        this.authorFilter = authorFilter;
+        this.authorFilter = Util.decodeURL(authorFilter);
     }
 
-    public String getColumnBelongFilter() {
+    public int getColumnBelongFilter() {
         return columnBelongFilter;
     }
 
-    public void setColumnBelongFilter(String columnBelongFilter) {
+    public void setColumnBelongFilter(int columnBelongFilter) {
         this.columnBelongFilter = columnBelongFilter;
     }
 
