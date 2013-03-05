@@ -61,15 +61,15 @@ a:link, a:visited, a:hover, a:active
 #subject_body
 {
     position: relative;
-    padding-left: 13px;
+    padding-left: 12px;
     padding-right: 13px;
     padding-bottom: 7px;
 }
 
 #subject_item
 {
-    width: 226px;
-    height: 92px;
+    width: 227px;
+    height: 83px;
     margin-bottom: 7px;
 }
 

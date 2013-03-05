@@ -129,25 +129,16 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="subjectimg">
-			    <a href="#"><img src="/css/index/subject_t0.png"></img></a>
 			    <a href="#"><img src="/css/index/subject_t1.png"></img></a>
 			    <a href="#"><img src="/css/index/subject_t2.png"></img></a>
 			</div>
 			<div id="subjecttext">
 			    <div class="normaltext">
-				创业大讲堂——新媒体的创业路<br/>
-				清华厚德2013年青少年冬令营，现...<br/>
-				21世纪VC投资人对接会
+				2012年清华大学学生奖励大会在主楼后厅隆重举行。校长陈吉宁，副校长、教务长袁驷，副校长姜胜耀出席大会并为获奖班级和同学颁奖
 			    </div>
 			    <div id="midtext">
-				创业大讲堂——新媒体的创业路<br/>
-				清华厚德2013年青少年冬令营，现...<br/>
-				21世纪VC投资人对接会
-			    </div>
-			    <div class="normaltext">
-				创业大讲堂——新媒体的创业路<br/>
-				清华厚德2013年青少年冬令营，现...<br/>
-				21世纪VC投资人对接会
+				“清影华光”摄影大赛第一季——“幸福”<br/>
+				在我们美丽的清华园中，发生着各种多姿多彩的故事，演绎着无数拨动心弦的瞬间。
 			    </div>
 			</div>
 		    </div>

@@ -455,13 +455,13 @@ img
 }
 
 #subjectimg{
-    width: 703px;
+    width: 710px;
     height: 134px;
     padding: 7px 0px 0px 17px;
 }
 
 #subjectimg img{
-    margin-right: 3px;
+    margin-right: 14px;
     float: left;
 }
 
@@ -477,15 +477,15 @@ img
 #subjecttext .normaltext, #subjecttext #midtext{
     float: left;
     margin-left: 10px;
-    margin-right: 28px;
+    margin-right: 20px;
 }
 
 #subjecttext .normaltext{
-    width: 204px;
+    width: 380px;
 }
 
 #subjecttext #midtext{
-    width: 191px;
+    width: 270px;
 }
 
 

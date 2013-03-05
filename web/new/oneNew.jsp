@@ -46,15 +46,7 @@
                     </ul>
                 </div>
             </div>
-            <div id="subject">
-                <div id="tab"></div>
-                <div id="text"><center><span>专题</span></center></div>
-                <div id="subject_body">
-                    <div id="subject_item"><img src="/css/new/subject1.png"></div>
-                    <div id="subject_item"><img src="/css/new/subject2.png"></div>
-                    <div id="subject_item"><img src="/css/new/subject3.png"></div>
-                </div>
-            </div>
+            <%@include file="/templates/subject.jsp" %>
     </div>
     <div class="clear"></div>
     <%@include file="/templates/general_footer.jsp" %>
