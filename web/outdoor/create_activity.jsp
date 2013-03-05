@@ -61,7 +61,7 @@
 	    <div><span class="tag">申请人：</span><span class="value"><input type="text" name="applicatantName"/></span></div>
 	    <div><span class="tag">联系电话：</span><span class="value"><input type="text" name="applicatantCell"/></span></div>
 	    <div><span class="tag">电子邮箱：</span><span class="value"><input type="text" name="applicatantEmail"/></span></div>
-	    <div><span class="tag">请选择审批通道：</span><span class="value">
+	    <div><span class="tag">审批部门：</span><span class="value">
 		    <select name="applyPath">
 			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
 			<option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
@@ -95,6 +95,10 @@
 		$("#activityLocation").show();
 		$("#activityMaterial").show();
 		$("#LEDContent").hide();
+	    }
+	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_BOARD %>)
+	    {
+		alert("温馨提示：根据学校有关规定，展板规格不能超过2*3m，请您自觉遵守！");
 	    }
 	});
 	AnyTime.picker( "field1",

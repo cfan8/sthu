@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Index;
 
 /**
  *
@@ -25,7 +26,8 @@ public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomAppl
     public static final int USAGE_OTHER = 4;
     public static final int ROOMTYPE_ORDINARY = 1;
     public static final int ROOMTYPE_MEDIA = 2;
-    public static final int ROOMTYPE_CBUILDING = 3;
+    public static final int ROOMTYPE_CBUILDING_NORMAL = 3;
+    public static final int ROOMTYPE_CBUILDING_MEDIA = 4;
     public static final int APPLY_STATUS_UNCONFIRMED = 1;
     public static final int APPLY_STATUS_CONFIRMED = 2;
     public static final int APPLY_STATUS_ACCEPTED = 3;
@@ -42,6 +44,8 @@ public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomAppl
     public static final int ALLOCATE_STATUS_AWAIT = 0;
     public static final int ALLOCATE_STATUS_TODO = 1;
     public static final int ALLOCATE_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    
+    @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     private String organizer;	//单位名称
     private String borrower;	//借用人
@@ -60,26 +64,38 @@ public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomAppl
     private String title;  //标题，从借用原因改过来
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="applyDateIndex")
     private Date applyDate; //申请日期
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="confirmDateIndex")
     private Date confirmDate;	//确认申请日期
     @Column(columnDefinition="DATETIME")
+    @Index(name="identityDateIndex")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date identityDate;	//一级审批日期
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="resourceDateIndex")
     private Date resourceDate;	//二级审批日期
     @Column(columnDefinition="DATETIME")
+    @Index(name="allocateDateIndex")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date allocateDate;	//三级审批日期(按照申请要求分配申请)
     private int applyType;  //type指定了申请通道，仅存储数据供编辑时使用
+    @Index(name="applyStatusIndex")
     private int applyStatus;
+    @Index(name="identityTypeIndex")
     private int identityType;	//type指定了要哪个角色来审批
+    @Index(name="identityStatusIndex")
     private int identityStatus;
+    @Index(name="resourceTypeIndex")
     private int resourceType;
+    @Index(name="resourceStatusIndex")
     private int resourceStatus;
+    @Index(name="allocateTypeIndex")
     private int allocateType;
+    @Index(name="allocateStatusIndex")
     private int allocateStatus;
     /*
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -318,8 +334,10 @@ public class CRoomApplyEntity extends BaseEntity implements Comparable<CRoomAppl
 		return "普通教室";
 	    case CRoomApplyEntity.ROOMTYPE_MEDIA:
 		return "多媒体教室";
-	    case CRoomApplyEntity.ROOMTYPE_CBUILDING:
-		return "C楼教室";
+	    case CRoomApplyEntity.ROOMTYPE_CBUILDING_NORMAL:
+		return "C楼普通教室";
+	    case CRoomApplyEntity.ROOMTYPE_CBUILDING_MEDIA:
+		return "C楼多媒体教室";
 	}
 	return "";
     }

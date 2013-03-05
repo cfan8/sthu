@@ -124,7 +124,9 @@ public class ApplyClassroomService extends BaseService {
 	    entity.setAllocateType(AllocateMapping.getIdByName("物业中心"));
 	} else if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_MEDIA) {
 	    entity.setAllocateType(AllocateMapping.getIdByName("注册中心"));
-	} else if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING) {
+	} else if (entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING_NORMAL ||
+		entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING_MEDIA ) 
+	{
 	    entity.setAllocateType(AllocateMapping.getIdByName("C楼"));
 	}
 	entity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_AWAIT);

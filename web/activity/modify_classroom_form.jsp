@@ -18,14 +18,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>修改教室申请</title>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/js/moment.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/js/pikaday.min.js"></script>
-        <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
-        <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
-        <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+	    <title>修改教室申请</title>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/moment.min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/pikaday.min.js"></script>
+	    <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="postion">您当前的位置：教室借用申请</span>
@@ -44,7 +44,7 @@
 		    </select>
 		    <input type="text" id="usageComment" name="usageComment" value="<%=entity.getUsageComment()%>" style="display: none;" />
 		</span></div>
-	    <div><span class="tag">审批通道：</span><span class="value">
+	    <div><span class="tag">一级审批部门：</span><span class="value">
 		    <select name="applyType">
 			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
 			<option value="<%=i%>" <%=i == entity.getApplyType() ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
@@ -59,7 +59,8 @@
 		    <select name="croomtype">
 			<option value="<%=CRoomApplyEntity.ROOMTYPE_ORDINARY%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_ORDINARY ? "selected=\"selected\"" : ""%>>普通教室</option>
 			<option value="<%=CRoomApplyEntity.ROOMTYPE_MEDIA%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_MEDIA ? "selected=\"selected\"" : ""%>>多媒体教室</option>
-			<option value="<%=CRoomApplyEntity.ROOMTYPE_CBUILDING%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING ? "selected=\"selected\"" : ""%>>C楼教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_CBUILDING_NORMAL%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING_NORMAL ? "selected=\"selected\"" : ""%>>C楼普通教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_CBUILDING_MEDIA%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_CBUILDING_MEDIA ? "selected=\"selected\"" : ""%>>C楼多媒体教室</option>
 		    </select>
 		</span></div>
 	    <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" value="<%=entity.getNumber()%>" /><input type="hidden" name="applyId" value="<%=entity.getID()%>"></span></div>
@@ -89,7 +90,9 @@
 	});
 	var picker = new Pikaday({
 	    field: document.getElementById('borrowDate'),
-	    format: 'YYYY-MM-DD'
+	    format: 'YYYY-MM-DD',
+	    minDate: moment(moment().format("YYYY-MM-DD")).toDate(),
+	    maxDate: moment(moment().format("YYYY-MM-DD")).add("days", 10).toDate()
 	});
 	$("#submitbtn").click(function(){
 	    $("#contentInput").val(ce.getContent());

@@ -37,7 +37,7 @@
 		    </select>
 		    <input type="text" name="usageComment" id="usageComment" style="display: none;"  value="校园比赛"/>
 		</span></div>
-	    <div><span class="tag">审批通道：</span><span class="value">
+	    <div><span class="tag">一级审批部门：</span><span class="value">
 		    <select name="applyType">
 			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
 			<option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
@@ -50,9 +50,10 @@
 	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="例：11:00-13:00"/></span></div>
 	    <div><span class="tag">教室类型要求：</span><span class="value">
 		    <select name="croomtype">
-			<option value="1" selected="selected">普通教室</option>
-			<option value="2">多媒体教室</option>
-			<option value="3">C楼教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_ORDINARY%>" selected="selected">普通教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_MEDIA%>">多媒体教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_CBUILDING_NORMAL%>">C楼普通教室</option>
+			<option value="<%=CRoomApplyEntity.ROOMTYPE_CBUILDING_MEDIA%>">C楼多媒体教室</option>
 		    </select>
 		</span></div>
 	    <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="number" /><input type="hidden" name="applyId" value="-1"></span></div>
@@ -77,15 +78,21 @@
 		$("#usageComment").hide();
 	    }
 	});
-	var picker = new Pikaday({
-	    field: document.getElementById('borrowDate'),
-	    format: 'YYYY-MM-DD'
-	});
+    var picker = new Pikaday({
+	field: document.getElementById('borrowDate'),
+	format: 'YYYY-MM-DD',
+	minDate: moment(moment().format("YYYY-MM-DD")).toDate(),
+	maxDate: moment(moment().format("YYYY-MM-DD")).add("days", 10).toDate()
+    });
+    
+    $("#borrowDate").change(function(){
 	
-	$("#submitbtn").click(function(){
-	    $("#contentInput").val(ce.getContent());
-	    $("#submitf").submit();
-	    return false;
-	});
+    });
+	
+    $("#submitbtn").click(function(){
+	$("#contentInput").val(ce.getContent());
+	$("#submitf").submit();
+	return false;
+    });
     </script>
 </html>

@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.entity;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.annotations.Index;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.*;
 public class UserEntity extends BaseEntity
 {
     @Column(name="username", length=32)
+    @Index(name="usernameIndex")
     private String username;
 
     @Column(name="password", length=64)

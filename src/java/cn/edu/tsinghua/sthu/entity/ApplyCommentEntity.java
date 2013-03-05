@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Index;
 
 /**
  *
@@ -24,6 +25,7 @@ public class ApplyCommentEntity extends BaseEntity {
     public static final int COMMENT_TYPE_ACCEPT = 1;
     public static final int COMMENT_TYPE_REJECT = 2;
     
+    @Index(name="applyIdIndex")
     private int applyId;
     private int userid;
     private String nickname;
@@ -34,6 +36,7 @@ public class ApplyCommentEntity extends BaseEntity {
     private int commentType;
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="pubDateIndex")
     private Date pubDate;
 
     public String getComment() {

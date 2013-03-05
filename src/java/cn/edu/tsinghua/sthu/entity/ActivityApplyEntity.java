@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Index;
 
 /**
  *
@@ -33,6 +34,8 @@ public class ActivityApplyEntity extends BaseEntity {
     public static final int RESOURCE_STATUS_AWAIT = 0;
     public static final int RESOURCE_STATUS_TODO = 1;
     public static final int RESOURCE_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    
+    @Index(name="applyTypeIndex")
     private int applyType;//申请类型
     @Column(length = 64)
     private String activityName;//活动名称
@@ -60,34 +63,44 @@ public class ActivityApplyEntity extends BaseEntity {
     private String applicatantCell;//联系电话
     private String applicatantEmail;//电子邮箱
     private int applyPath;  //审批通道
+    @Index(name="applyStatusIndex")
     private int applyStatus;	//申请状态
+    @Index(name="identityTypeIndex")
     private int identityType;	//一级审批类型
+    @Index(name="identityStatusIndex")
     private int identityStatus;	//一级审批状态
     @Column(length = 1024)
     private String identityComment; //一级审批意见
     private int identityCommentUserid; //一级审批人id
     @Column(length = 32)
     private String identityCommentNickname; //一级审批人  
+    @Index(name="resourceTypeIndex")
     private int resourceType;	//二级审批类型
+    @Index(name="resourceTypeStatusIndex")
     private int resourceStatus;	//二级审批状态
     @Column(length = 1024)
     private String resourceComment; //二级审批意见
     private int resourceCommentUserid; //二级审批人id
     @Column(length = 32)
     private String resourceCommentNickname; //二级审批人  
+    @Index(name="applyUserIDIndex")
     private int applyUserID;	//申请人ID
     
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="applyDateIndex")
     private Date applyDate; //申请时间
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="confirmDateIndex")
     private Date confirmDate;
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="identityDateIndex")
     private Date identityDate;
     @Column(columnDefinition = "DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="resourceDateIndex")
     private Date resourceDate;
 
     public int getApplyType() {

@@ -196,10 +196,19 @@ img
     font-size: 10.67px;
     height: 100%;
     line-height: 21px;
-    width: 100px;
+    width:100px;
 }
 
-#footer .linkblock .right ul
+#footer .linkblock .right2
+{
+    float: left;
+    font-size: 10.67px;
+    height: 100%;
+    line-height: 21px;
+    width:100px;
+}
+
+#footer .linkblock ul
 {
     list-style-type:none;
     padding-left: 20px;

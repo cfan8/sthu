@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author linangran
  */
-public class SaveClassroomApplyAction extends BaseAction{
+public class SaveClassroomApplyAction extends BaseAction {
 
     private String organizer;	//单位名称
     private String borrower;	//借用人
@@ -34,24 +34,18 @@ public class SaveClassroomApplyAction extends BaseAction{
     private String title;  //借用原因
     private Integer applyId;    //用于修改申请时使用
     private Integer applyType;  //申请通道设置
-    
     private ApplyClassroomService applyClassroomService;
-    
+
     @Override
-    public String onExecute()
-    {
+    public String onExecute() {
 	CRoomApplyEntity entity;
-	if (applyId == null || applyId == -1)
-	{
+	if (applyId == null || applyId == -1) {
 	    entity = getApplyClassroomService().createCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(),
 		    getCurrentUser().getID(), getApplyType());
-	}
-	else
-	{
-	    entity = getApplyClassroomService().modifyCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(), 
+	} else {
+	    entity = getApplyClassroomService().modifyCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(),
 		    getCurrentUser().getID(), getApplyType(), applyId);
-	    if (entity == null)
-	    {
+	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的教室申请！");
 		return ALERT;
 	    }
@@ -62,10 +56,21 @@ public class SaveClassroomApplyAction extends BaseAction{
 
     @Override
     public boolean valid() {
-	if (isValid(getOrganizer()) && isValid(getBorrower()) && isValid(getBorrowerCell()) &&isValid(getUsageComment())
+	if (isValid(getOrganizer()) && isValid(getBorrower()) && isValid(getBorrowerCell()) && isValid(getUsageComment())
 		&& isValid(getContent()) && isValid(getManager()) && isValid(getManagerCell()) && isValid(getTimePeriod())
-		&&isValid(getTitle()) && classUsage != null && croomtype != null && number != null && applyType != null && borrowDate != null)
-	{
+		&& isValid(getTitle()) && classUsage != null && croomtype != null && number != null && applyType != null && borrowDate != null) {
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    Date now = new Date();
+	    try {
+		now = sdf.parse(sdf.format(now));
+	    } catch (ParseException ex) {
+		Logger.getLogger(SaveClassroomApplyAction.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	    long dt = borrowDate.getTime() - now.getTime();
+	    if (dt > 10 * 24 * 3600 * 1000 || dt < 0) {
+		alertMessage.setSimpleAlert("日期不合法");
+		return false;
+	    }
 	    if (getNumber() > 0 && getApplyType() > 0) {
 		return true;
 	    }
@@ -73,15 +78,13 @@ public class SaveClassroomApplyAction extends BaseAction{
 	alertMessage.setSimpleAlert("请完整填写表单后再保存！");
 	return false;
     }
-    
+
     @Override
-    public boolean hasAuth()
-    {
+    public boolean hasAuth() {
 	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE) {
 	    return false;
 	}
-	if (getApplyId() != -1)
-	{
+	if (getApplyId() != -1) {
 	    CRoomApplyEntity entity = getApplyClassroomService().getCRoomApplyEntityById(getApplyId(), getCurrentUser().getID());
 	    if (entity == null) {
 		return false;
