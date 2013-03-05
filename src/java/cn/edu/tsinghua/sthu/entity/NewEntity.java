@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.entity;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.annotations.Index;
 
 /**
  *
@@ -16,18 +17,21 @@ import javax.persistence.*;
 @Table(name="t_new")
 public class NewEntity extends BaseEntity
 {
+    @Index(name="titleIndex")
     @Column(name="title", length=64, nullable = false)
     private String title;
 
     @Column(name="content", length=80000)
     private String content;
     
+    @Index(name="authorIndex")
     @Column(name="author", length=16)
     private String author;
     
     @Column(name="newAbstract", length=250)
     private String newAbstract;
     
+    @Index(name="updatetimeIndex")
     @Column(name="updatetime")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updateTime;
@@ -41,8 +45,15 @@ public class NewEntity extends BaseEntity
     @Column(name="browseNumber")
     private int browseNumber = 0;
     
+    @Index(name="columnBelongIndex")
     @ManyToOne(cascade={CascadeType.DETACH})
     private ColumnEntity columnBelong;
+    
+    @Column(name="allowComment")
+    private boolean allowComment = true;
+    
+    @Column(name="allowForward")
+    private boolean allowForward = true;
 
     public NewEntity() {
     }
@@ -129,6 +140,22 @@ public class NewEntity extends BaseEntity
 
     public void setNewAbstract(String newAbstract) {
         this.newAbstract = newAbstract;
+    }
+
+    public boolean isAllowComment() {
+        return allowComment;
+    }
+
+    public void setAllowComment(boolean allowComment) {
+        this.allowComment = allowComment;
+    }
+
+    public boolean isAllowForward() {
+        return allowForward;
+    }
+
+    public void setAllowForward(boolean allowForward) {
+        this.allowForward = allowForward;
     }
 
 }

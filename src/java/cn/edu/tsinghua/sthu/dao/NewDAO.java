@@ -138,6 +138,7 @@ public class NewDAO extends BaseDAO<NewEntity>
     public List<NewEntity> getAllNewsWithParam(int startIndex, int endIndex, NewManagementPageMessage newManagementPageMessage)
     {
         Criteria criteria = select();
+        criteria.addOrder(Order.desc(NewEntityIsPlacedInColumnTopFieldName));
         criteria.addOrder(Order.desc(NewEntityDateFieldName));
         criteria.setFirstResult(startIndex);
         criteria.setMaxResults(endIndex - startIndex + 1);

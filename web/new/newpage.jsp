@@ -36,7 +36,7 @@
             <li>
                 <div>
                     <div class="batchdelete"><input type="checkbox" name="newids[]" value="<%=news.get(i).getID()%>"/></div>
-                    <div class="title"><a class="column" href="/column/editColumnPage.do?id=<%=news.get(i).getColumnBelong().getID()%>" title="<%=news.get(i).getColumnBelong().getName() %>">【<%=news.get(i).getColumnBelong().getName() %>】</a><a href="/new/editNewPage.do?id=<%=news.get(i).getID()%>" title="浏览数：<%=news.get(i).getBrowseNumber()%>；摘要：<%=news.get(i).getNewAbstract() %>"><%=news.get(i).getTitle()%></a>
+                    <div class="title"><a class="column" href="#" title="<%=news.get(i).getColumnBelong().getName() %>">【<%=news.get(i).getColumnBelong().getName() %>】</a><a href="/new/editNewPage.do?id=<%=news.get(i).getID()%>" title="浏览数：<%=news.get(i).getBrowseNumber()%>；摘要：<%=news.get(i).getNewAbstract() %>"><%=news.get(i).getTitle()%></a>
                         <% if (news.get(i).isIsPlacedInColumnTop()) { %>
                         <span class="onTop">【置顶】</span>
                         <% } %>
