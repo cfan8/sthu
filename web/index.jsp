@@ -129,8 +129,8 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="subjectimg">
-			    <a href="#"><img src="/css/index/subject_t1.png"></img></a>
-			    <a href="#"><img src="/css/index/subject_t2.png"></img></a>
+			    <a href="/topic/Honor/index.htm" target="_blank"><img src="/css/index/subject_t1.png"></img></a>
+			    <a href="/topic/photography_contest/index.html" target="_blank"><img src="/css/index/subject_t2.png"></img></a>
 			</div>
 			<div id="subjecttext">
 			    <div class="normaltext">

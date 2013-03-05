@@ -15,11 +15,11 @@ public class TestPageAction extends BaseAction{
     private int page;
     
     @Override
-    public String onExecute() {
+    public String onExecute() throws Exception{
 	alertMessage.setAlertTitle("翻页内容");
 	alertMessage.setAlertContent("这是第" + page + "的内容");
 	alertMessage.setAlertType(AlertMessage.BOX_TYPE);
-	return ALERT;
+	throw new Exception("测试");
     }
 
     @Override

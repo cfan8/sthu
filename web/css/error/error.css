@@ -16,7 +16,7 @@ margin: 0;
 
 img.errorImage{
 position:relative;
-left: 436px;
+left: 406px;
 border: none;
 }
 
@@ -24,14 +24,14 @@ border: none;
 h1 {
 color: #b10303;
 position:relative;
-left: 312px;
+left: 202px;
 font-size: 18.67px;
 font-family: Microsoft YaHei;
 }
 
 p {
 position:relative;
-left: 312px;
+left: 332px;
 top:10px;
 font-size: 14.67px;
 height: 145px;

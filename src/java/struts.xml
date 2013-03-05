@@ -10,13 +10,21 @@ and open the template in the editor.
     <constant name="struts.i18n.encoding" value="UTF-8"/>
     <constant name="struts.action.extension" value="do" />
     <package name="defaultAction" extends="struts-default">
+	<default-action-ref name="NotFound" /> 
 	<global-results>
 	    <result name="alert">/alert.jsp</result>
 	    <result name="login_redirect" type="redirect">/login.do</result>
+	    <result name="exception">/error.jsp</result>
 	    <!--
 	    <result name="login_redirect" type="redirect">/login.do?redirectURL=${loginRedirect}</result>
 	    -->
 	</global-results>
+	<global-exception-mappings>
+	    <exception-mapping exception="java.lang.Exception" result="exception" />
+	</global-exception-mappings>
+	<action name="NotFound">
+	    <result>/404.html</result>
+	</action>
     </package>
     <package name="rootActionPackage" extends="defaultAction" namespace="">
 	<action name="index" class="cn.edu.tsinghua.sthu.action.ShowIndexAction">
@@ -62,63 +70,63 @@ and open the template in the editor.
 	</action>
     </package>
     <package name="newActionPackage" extends="defaultAction" namespace="/new">
-        <action name="newsManage" class="cn.edu.tsinghua.sthu.action.ShowNewManagementPageAction">
-            <result name="success">newmanagement.jsp</result>
-        </action>
-        <action name="newPage" class="cn.edu.tsinghua.sthu.action.GetNewPageAction">
-            <result name="success">newpage.jsp</result>
-        </action>
-        <action name="deleteNew" class="cn.edu.tsinghua.sthu.action.DeleteNewAction">
-            <result name="success" type="redirect">${referer}</result>
-        </action>
-        <action name="editNewPage" class="cn.edu.tsinghua.sthu.action.ShowNewEditPageAction">
-            <result name="success">newedit.jsp</result>
-        </action>
-        <action name="addNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
-            <result name="success" type="redirect">newsManage.do</result>
-        </action>
-        <action name="updateNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
-            <result name="success" type="redirect">newsManage.do</result>
-        </action>
-        <action name="new" class="cn.edu.tsinghua.sthu.action.ShowOneNewAction">
-            <result name="success">oneNew.jsp</result>
-            <result name="new_redirect" type="redirect">${showOneNewMessage.getNewEnity().getRedirectURL()}</result>
-        </action>
-        <action name="batchDeleteNews" class="cn.edu.tsinghua.sthu.action.BatchDeleteNewsAction">
-            <result name="success" type="redirect">${referer}</result>
-        </action>
+	<action name="newsManage" class="cn.edu.tsinghua.sthu.action.ShowNewManagementPageAction">
+	    <result name="success">newmanagement.jsp</result>
+	</action>
+	<action name="newPage" class="cn.edu.tsinghua.sthu.action.GetNewPageAction">
+	    <result name="success">newpage.jsp</result>
+	</action>
+	<action name="deleteNew" class="cn.edu.tsinghua.sthu.action.DeleteNewAction">
+	    <result name="success" type="redirect">${referer}</result>
+	</action>
+	<action name="editNewPage" class="cn.edu.tsinghua.sthu.action.ShowNewEditPageAction">
+	    <result name="success">newedit.jsp</result>
+	</action>
+	<action name="addNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
+	    <result name="success" type="redirect">newsManage.do</result>
+	</action>
+	<action name="updateNew" class="cn.edu.tsinghua.sthu.action.EditNewAction">
+	    <result name="success" type="redirect">newsManage.do</result>
+	</action>
+	<action name="new" class="cn.edu.tsinghua.sthu.action.ShowOneNewAction">
+	    <result name="success">oneNew.jsp</result>
+	    <result name="new_redirect" type="redirect">${showOneNewMessage.getNewEnity().getRedirectURL()}</result>
+	</action>
+	<action name="batchDeleteNews" class="cn.edu.tsinghua.sthu.action.BatchDeleteNewsAction">
+	    <result name="success" type="redirect">${referer}</result>
+	</action>
     </package>
     <package name="columnActionPackage" extends="defaultAction" namespace="/column">
-        <action name="columnsManage" class="cn.edu.tsinghua.sthu.action.ShowColumnManagementPageAction">
-            <result name="success">columnmanagement.jsp</result>
-        </action>
-        <action name="columnPage" class="cn.edu.tsinghua.sthu.action.GetColumnPageAction">
-            <result name="success">columnpage.jsp</result>
-        </action>
-        <action name="columnPageInView" class="cn.edu.tsinghua.sthu.action.GetColumnPageInViewAction">
-            <result name="success">columnPageInView.jsp</result>
-        </action>
-        <action name="editColumnPage" class="cn.edu.tsinghua.sthu.action.ShowColumnEditPageAction" >
-            <result name="success">columnedit.jsp</result>
-        </action>
-        <action name="addColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
-            <result name="success" type="redirect">columnsManage.do</result>
-        </action>
-        <action name="updateColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
-            <result name="success" type="redirect">columnsManage.do</result>
-        </action>
-        <action name="deleteColumn" class="cn.edu.tsinghua.sthu.action.DeleteColumnAction">
-            <result name="success" type="redirect">columnsManage.do</result>
-        </action>
-        <action name="column" class="cn.edu.tsinghua.sthu.action.ShowOneColumnAction">
-            <result name="success">oneColumn.jsp</result>
-        </action>
-        <action name="columnNewListPage" class="cn.edu.tsinghua.sthu.action.GetColumnNewListPageAction">
-            <result name="success">columnNewListPage.jsp</result>
-        </action>
-        <action name="showColumns" class="cn.edu.tsinghua.sthu.action.ShowColumnsAction">
-            <result name="success">allColumns.jsp</result>
-        </action>
+	<action name="columnsManage" class="cn.edu.tsinghua.sthu.action.ShowColumnManagementPageAction">
+	    <result name="success">columnmanagement.jsp</result>
+	</action>
+	<action name="columnPage" class="cn.edu.tsinghua.sthu.action.GetColumnPageAction">
+	    <result name="success">columnpage.jsp</result>
+	</action>
+	<action name="columnPageInView" class="cn.edu.tsinghua.sthu.action.GetColumnPageInViewAction">
+	    <result name="success">columnPageInView.jsp</result>
+	</action>
+	<action name="editColumnPage" class="cn.edu.tsinghua.sthu.action.ShowColumnEditPageAction" >
+	    <result name="success">columnedit.jsp</result>
+	</action>
+	<action name="addColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
+	    <result name="success" type="redirect">columnsManage.do</result>
+	</action>
+	<action name="updateColumn" class="cn.edu.tsinghua.sthu.action.EditColumnAction">
+	    <result name="success" type="redirect">columnsManage.do</result>
+	</action>
+	<action name="deleteColumn" class="cn.edu.tsinghua.sthu.action.DeleteColumnAction">
+	    <result name="success" type="redirect">columnsManage.do</result>
+	</action>
+	<action name="column" class="cn.edu.tsinghua.sthu.action.ShowOneColumnAction">
+	    <result name="success">oneColumn.jsp</result>
+	</action>
+	<action name="columnNewListPage" class="cn.edu.tsinghua.sthu.action.GetColumnNewListPageAction">
+	    <result name="success">columnNewListPage.jsp</result>
+	</action>
+	<action name="showColumns" class="cn.edu.tsinghua.sthu.action.ShowColumnsAction">
+	    <result name="success">allColumns.jsp</result>
+	</action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">
@@ -149,30 +157,30 @@ and open the template in the editor.
 	</action>
     </package>
     <package name="outdoorActionPackage" extends="defaultAction" namespace="/outdoor">
-        <action name="applyActivity" class="cn.edu.tsinghua.sthu.action.outdoor.ShowApplyActivityPageAction">
+	<action name="applyActivity" class="cn.edu.tsinghua.sthu.action.outdoor.ShowApplyActivityPageAction">
 	    <result name="create">create_activity.jsp</result>
 	    <result name="modify">modify_activity.jsp</result>
 	</action>
-        <action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">       
+	<action name="submitActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityApplyAction">       
 	</action>
-        <action name="showActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyAction">
+	<action name="showActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyAction">
 	    <result name="success">show_activity_apply.jsp</result>
 	</action>
-        <action name="confirmOutdoorApply" class="cn.edu.tsinghua.sthu.action.outdoor.ConfirmOutdoorApplyAction">
+	<action name="confirmOutdoorApply" class="cn.edu.tsinghua.sthu.action.outdoor.ConfirmOutdoorApplyAction">
 	</action>
-        <action name="showMyActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyAction">
+	<action name="showMyActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyAction">
 	    <result name="success">show_my_activity_apply_list.jsp</result>
-        </action>
-        <action name="showMyActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyPageAction">
+	</action>
+	<action name="showMyActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowMyActivityApplyPageAction">
 	    <result name="success">show_my_activity_apply_list_page.jsp</result>
 	</action>
-        <action name="showActivityApplyList" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListAction">
+	<action name="showActivityApplyList" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListAction">
 	    <result name="success">show_activity_apply_list.jsp</result>
 	</action>
-        <action name="showActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction">
+	<action name="showActivityApplyPage" class="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction">
 	    <result name="success">show_activity_paged_apply.jsp</result>
 	</action>
-        <action name="approveActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityCommentAction">
+	<action name="approveActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityCommentAction">
 	</action>
     </package>
 </struts>

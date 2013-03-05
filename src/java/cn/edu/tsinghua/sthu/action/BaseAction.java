@@ -61,7 +61,7 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
 	return onExecute();
     }
 
-    public abstract String onExecute();
+    public abstract String onExecute() throws Exception;
 
     public int getXssFilterLevel() {
 	return xssFilterLevel;

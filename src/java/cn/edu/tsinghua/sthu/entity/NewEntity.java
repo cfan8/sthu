@@ -50,10 +50,10 @@ public class NewEntity extends BaseEntity
     private ColumnEntity columnBelong;
     
     @Column(name="allowComment")
-    private boolean allowComment = true;
+    private Boolean allowComment = false;
     
     @Column(name="allowForward")
-    private boolean allowForward = true;
+    private Boolean allowForward = false;
 
     public NewEntity() {
     }
