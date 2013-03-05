@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.service.UserService;
 
@@ -18,7 +19,8 @@ public class SetUserAuthAction extends BaseAction{
     private int opIdentityCode = -1;
     private int opResourceCode = -1;
     private int opAllocateCode = -1;
-    
+       
+    private String verifyCode;
     private UserService userService;
     
     public int getRoletype() {
@@ -79,6 +81,18 @@ public class SetUserAuthAction extends BaseAction{
 	return true;
     }
     
+    @Override
+    public boolean hasAuth()
+    {
+	String output = Util.getMD5(getVerifyCode());
+	if (output.compareToIgnoreCase("bfa0b2664bb685640b6c95325e839fd") == 0) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    }
+    
     public UserService getUserService() {
 	return userService;
     }
@@ -90,5 +104,13 @@ public class SetUserAuthAction extends BaseAction{
     @Override
     public boolean needLogin() {
 	return true;
+    }
+
+    public String getVerifyCode() {
+	return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+	this.verifyCode = verifyCode;
     }
 }

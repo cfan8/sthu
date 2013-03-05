@@ -18,6 +18,7 @@ public class AddUserAction extends BaseAction
     private String password;
     private String nickname;
        
+    private String verifyCode;
     private UserService userService;
 
     @Override
@@ -38,6 +39,18 @@ public class AddUserAction extends BaseAction
 	}
 	return ALERT;
     }
+    
+    @Override
+    public boolean hasAuth()
+    {
+	String output = Util.getMD5(verifyCode);
+	if (output.compareToIgnoreCase("bfa0b2664bb685640b6c95325e839fd") == 0) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    }    
 
     public String getUsername()
     {
@@ -96,5 +109,13 @@ public class AddUserAction extends BaseAction
     @Override
     public boolean needLogin() {
 	return false;
+    }
+
+    public String getVerifyCode() {
+	return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+	this.verifyCode = verifyCode;
     }
 }

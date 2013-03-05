@@ -30,6 +30,7 @@
     <bean id="showIndexManageMessage" class="cn.edu.tsinghua.sthu.message.ShowIndexManageMessage" scope="prototype" autowire="byName"/>
     <bean id="showIndexMessage" class="cn.edu.tsinghua.sthu.message.ShowIndexMessage" scope="prototype" autowire="byName"/>
     <bean id="showColumnsMessage" class="cn.edu.tsinghua.sthu.message.ShowColumnsMessage" scope="prototype" autowire="byName"/>
+    <bean id="initMessage" class="cn.edu.tsinghua.sthu.message.InitMessage" scope="prototype" autowire="byName"/>
     
 </beans>
 

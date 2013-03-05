@@ -57,6 +57,9 @@ and open the template in the editor.
 	</action>
 	<action name="testUEditor" class="cn.edu.tsinghua.sthu.action.TestUEditorAction">
 	</action>
+	<action name="init" class="cn.edu.tsinghua.sthu.action.InitUserAction">
+	    <result name="success">showUser.jsp</result>
+	</action>
     </package>
     <package name="newActionPackage" extends="defaultAction" namespace="/new">
         <action name="newsManage" class="cn.edu.tsinghua.sthu.action.ShowNewManagementPageAction">
