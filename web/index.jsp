@@ -66,12 +66,12 @@
                     <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexTopColumnId%>" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% int max = showIndexMessage.getIndexTopNews().size() > 10 ? 10 : showIndexMessage.getIndexTopNews().size();
-                            for(int i= 0; i < max; i++){  %>
-                                <div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()){ %> class="noteitem top1" 
-                                      <% } else { %> class="noteitem top0" <% } %> >
-                                    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" target="_blank"
-                                       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) { %>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
-                                        <% } else { %> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% } %> </a>
+			    for (int i = 0; i < max; i++) {%>
+			<div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()) {%> class="noteitem top1" 
+													   <% } else {%> class="noteitem top0" <% }%> >
+			    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" target="_blank"
+			       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
+				<% } else {%> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% }%> </a>
 			</div>
 			<% }%>
 		    </div>
@@ -80,7 +80,7 @@
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<div id="leftList">
-                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId %>" target="_blank"><img src="/css/index/express_t0.png"></img></a></div>
+                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomLeftColumnId%>" target="_blank"><img src="/css/index/express_t0.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomLeftNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomLeftNews().size();
@@ -95,7 +95,7 @@
 
 			</div>
 			<div id="rightList">
-                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId %>" target="_blank"><img src="/css/index/express_t1.png"></img></a></div>
+                            <div class="listTitle"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomCenterColumnId%>" target="_blank"><img src="/css/index/express_t1.png"></img></a></div>
 			    <div class="listContent">
 				<ul>
 				    <% max = showIndexMessage.getIndexBottomCenterNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomCenterNews().size();
@@ -111,7 +111,7 @@
 		    </div>
 		</div>
 		<div id="event">	
-                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId %>" target="_blank">&gt;&gt;more</a></div></div>
+                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId%>" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
 			<% max = showIndexMessage.getIndexBottomRightNews().size() > 7 ? 7 : showIndexMessage.getIndexBottomRightNews().size();
 			    for (int i = 0; i < max; i++) {%>
@@ -123,8 +123,8 @@
 			<% }%>
 		    </div>
 		</div>
-		    <div id="weibo">
-		    </div>
+		<div id="weibo">
+		</div>
 		<div id="subject">
 		    <div class="title"><div class="morediv"><a href="#">&gt;&gt;more</a></div></div>
 		    <div class="content">
@@ -141,6 +141,20 @@
 				在我们美丽的清华园中，发生着各种多姿多彩的故事，演绎着无数拨动心弦的瞬间。
 			    </div>
 			</div>
+		    </div>
+		</div>
+		<div id="social">
+		    <div class="title"></div>
+		    <div class="content">
+			<div class="socialLink"><a href="http://page.renren.com/600638900" target="_blank"><div class="imglogo"><img src="/css/index/logo0.png" /></div><div class="textlogo">学生清华</div></a></div>
+			<div class="socialLink"><a href="http://www.renren.com/361811298/profile" target="_blank"><div class="imglogo"><img src="/css/index/logo1.png" /></div><div class="textlogo">清华科创</div></a></div>
+			<div class="socialLink"><a href="http://www.renren.com/260235844/profile" target="_blank"><div class="imglogo"><img src="/css/index/logo2.png" /></div><div class="textlogo">清华素拓</div></a></div>
+			<div class="socialLink"><a href="http://page.renren.com/601321313" target="_blank"><div class="imglogo"><img src="/css/index/logo3.png" /></div><div class="textlogo">时事大讲堂</div></a></div>
+			<div class="socialLink"><a href="http://page.renren.com/600376271" target="_blank"><div class="imglogo"><img src="/css/index/logo4.png" /></div><div class="textlogo">校学生会</div></a></div>
+			<div class="socialLink"><a href="http://page.renren.com/601062142" target="_blank"><div class="imglogo"><img src="/css/index/logo5.png" /></div><div class="textlogo">清华创业</div></a></div>
+			<div class="socialLink"><a href="http://www.renren.com/339106868/profile" target="_blank"><div class="imglogo"><img src="/css/index/logo6.png" /></div><div class="textlogo">艾生权</div></a></div>
+			<div class="socialLink"><a href="http://www.renren.com/449411417/profile" target="_blank"><div class="imglogo"><img src="/css/index/logo7.png" /></div><div class="textlogo">实践君</div></a></div>
+			<div class="socialLink"><a href="http://www.renren.com/341183992/profile" target="_blank"><div class="imglogo"><img src="/css/index/logo8.png" /></div><div class="textlogo">紫荆志愿</div></a></div>
 		    </div>
 		</div>
 	    </div>
@@ -171,21 +185,21 @@
 	<% for (int i = 0; i < settings.size(); i++) {
 		IndexSettingEntity entity = settings.get(i);
 	%>
-	    '<%=entity.getImage()%>'<%=i==settings.size()-1?"":"," %>
+	    '<%=entity.getImage()%>'<%=i == settings.size() - 1 ? "" : ","%>
 	<% }%>
 	);
 	    var titles = new Array(
 	<% for (int i = 0; i < settings.size(); i++) {
 		IndexSettingEntity entity = settings.get(i);
 	%>
-	    '<%=entity.getTitle()%>'<%=i==settings.size()-1?"":"," %>
+	    '<%=entity.getTitle()%>'<%=i == settings.size() - 1 ? "" : ","%>
 	<% }%>
 	);
 	    var links = new Array(
 	<% for (int i = 0; i < settings.size(); i++) {
 		IndexSettingEntity entity = settings.get(i);
 	%>
-	    '<%=entity.getLink()%>'<%=i==settings.size()-1?"":"," %>
+	    '<%=entity.getLink()%>'<%=i == settings.size() - 1 ? "" : ","%>
 	<% }%>
 	);
 	    init();
