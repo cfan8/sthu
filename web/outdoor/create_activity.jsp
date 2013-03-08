@@ -29,7 +29,7 @@
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
 	<form action="submitActivityApply.do" id="submitf" method="post">
-	    <div><span class="tag">申请活动类型：</span><span class="value">
+	    <div><span class="tag">申请活动类型：</span><span class="value_select">
 		    <select name="applyType" id="applyType">
 			<option value="<%=ActivityApplyEntity.APPLY_TYPE_LED%>">电子屏申请</option>
 			<option value="<%=ActivityApplyEntity.APPLY_TYPE_OUTDOOR%>">室外活动申请</option>
@@ -61,7 +61,7 @@
 	    <div><span class="tag">申请人：</span><span class="value"><input type="text" name="applicatantName"/></span></div>
 	    <div><span class="tag">联系电话：</span><span class="value"><input type="text" name="applicatantCell"/></span></div>
 	    <div><span class="tag">电子邮箱：</span><span class="value"><input type="text" name="applicatantEmail"/></span></div>
-	    <div><span class="tag">审批部门：</span><span class="value">
+	    <div><span class="tag">审批部门：</span><span class="value_select">
 		    <select name="applyPath">
 			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
 			<option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>

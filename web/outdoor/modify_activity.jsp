@@ -79,7 +79,7 @@
 	    <div><span class="tag">申请人：</span><span class="value"><input type="text" name="applicatantName" value="<%=entity.getActivityName()%>"/></span></div>
 	    <div><span class="tag">联系电话：</span><span class="value"><input type="text" name="applicatantCell" value="<%=entity.getApplicatantCell()%>"/></span></div>
 	    <div><span class="tag">电子邮箱：</span><span class="value"><input type="text" name="applicatantEmail" value="<%=entity.getApplicatantEmail()%>"/></span></div>
-	    <div><span class="tag">一级审批部门：</span><span class="value">
+	    <div><span class="tag">一级审批部门：</span><span class="value_select">
 		    <select name="applyPath">
 			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
 			<option value="<%=i%>" <%=i == entity.getApplyPath() ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
