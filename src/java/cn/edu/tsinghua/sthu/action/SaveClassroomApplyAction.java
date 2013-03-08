@@ -6,6 +6,9 @@ package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
+import cn.edu.tsinghua.sthu.security.XSSProtectedClass;
 import cn.edu.tsinghua.sthu.service.ApplyClassroomService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,13 +20,17 @@ import java.util.logging.Logger;
  *
  * @author linangran
  */
+@XSSProtectedClass
 public class SaveClassroomApplyAction extends BaseAction {
 
+    @XSSProtect(XSSProtectLevel.Strict)
     private String organizer;	//单位名称
     private String borrower;	//借用人
     private String borrowerCell;    //借用人联系电话
     private Integer classUsage;	//用处:常量见下
     private String usageComment;
+    
+    @XSSProtect(XSSProtectLevel.RichText)
     private String content; //具体内容
     private String manager; //负责人
     private String managerCell;	//负责人联系电话
@@ -31,7 +38,7 @@ public class SaveClassroomApplyAction extends BaseAction {
     private String timePeriod;	//借用时间段
     private Integer croomtype;  //借用教室类型:常量见下
     private Integer number;	//教室借用人数
-    private String title;  //借用原因
+    private String title;  //活动名称
     private Integer applyId;    //用于修改申请时使用
     private Integer applyType;  //申请通道设置
     private ApplyClassroomService applyClassroomService;

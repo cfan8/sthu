@@ -7,6 +7,8 @@ package cn.edu.tsinghua.sthu.action;
 import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
+import cn.edu.tsinghua.sthu.security.XSSProtectedClass;
+import cn.edu.tsinghua.sthu.security.XSSFilter;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import java.util.Map;
@@ -57,6 +59,10 @@ public abstract class BaseAction implements Action, ServletRequestAware, Servlet
 	    alertMessage.setAlertType(AlertMessage.BOX_TYPE);
 	    alertMessage.setRedirectURL(AlertMessage.REFERER_URL);
 	    return ALERT;
+	}
+	if (this.getClass().getAnnotation(XSSProtectedClass.class) != null)
+	{
+	    XSSFilter.xssClean(this.getClass(), this);
 	}
 	return onExecute();
     }
