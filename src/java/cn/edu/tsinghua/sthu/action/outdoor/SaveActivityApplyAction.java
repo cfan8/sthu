@@ -7,6 +7,9 @@ package cn.edu.tsinghua.sthu.action.outdoor;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.ActivityApplyEntity;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
+import cn.edu.tsinghua.sthu.security.XSSProtectedClass;
 import cn.edu.tsinghua.sthu.service.ApplyActivityService;
 import java.util.*;
 import java.text.*;
@@ -15,22 +18,47 @@ import java.text.*;
  *
  * @author luzhen
  */
+@XSSProtectedClass
 public class SaveActivityApplyAction extends BaseAction{
     private Integer applyId;   
     private Integer applyType;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String activityName;
+    
+    @XSSProtect(XSSProtectLevel.RichText)
     private String activityContent;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String startTime;
     private Date startTime1;
     private Date endTime1;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String endTime;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String LEDContent;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String activityLocation;
+    
+    @XSSProtect(XSSProtectLevel.RichText)
     private String activityMaterial;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String organizerName;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String applicatantType;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String applicatantName;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String applicatantCell;
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String applicatantEmail;
     private Integer applyPath;
     

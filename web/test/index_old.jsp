@@ -12,16 +12,16 @@
         <title>Index</title>
     </head>
     <body>
-	<a href="test/login.jsp" target="_blank">登录</a><br/>
-	<a href="test/add_user.jsp" target="_blank">新增用户</a><br/>
-	<a href="test/pageview_example.jsp" target="_blank">翻页控件样例</a><br/>
-	<a href="test/ueditortest.jsp" target="_blank">UEditor样例</a><br/>
-	<a href="activity/applyClassroom.do" target="_blank">申请教室</a><br/>
-        <a href="outdoor/applyActivity.do" target="_blank">申请活动</a><br/>
-	<a href="new/newsManage.do">新闻管理</a><br/>
-        <a href="column/columnsManage.do">栏目管理</a><br/>
-        <a href="column/showColumns.do">新闻浏览</a><br/>
-	<a href="mysthu.do" target="_blank">个人中心</a><br/>
+	<a href="/test/login.jsp" target="_blank">登录</a><br/>
+	<a href="/test/add_user.jsp" target="_blank">新增用户</a><br/>
+	<a href="/test/pageview_example.jsp" target="_blank">翻页控件样例</a><br/>
+	<a href="/test/ueditortest.jsp" target="_blank">UEditor样例</a><br/>
+	<a href="/activity/applyClassroom.do" target="_blank">申请教室</a><br/>
+        <a href="/outdoor/applyActivity.do" target="_blank">申请活动</a><br/>
+	<a href="/new/newsManage.do">新闻管理</a><br/>
+        <a href="/column/columnsManage.do">栏目管理</a><br/>
+        <a href="/column/showColumns.do">新闻浏览</a><br/>
+	<a href="/mysthu.do" target="_blank">个人中心</a><br/>
 
     </body>
 </html>

@@ -25,19 +25,33 @@ public class SaveClassroomApplyAction extends BaseAction {
 
     @XSSProtect(XSSProtectLevel.Strict)
     private String organizer;	//单位名称
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String borrower;	//借用人
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String borrowerCell;    //借用人联系电话
     private Integer classUsage;	//用处:常量见下
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String usageComment;
     
     @XSSProtect(XSSProtectLevel.RichText)
     private String content; //具体内容
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String manager; //负责人
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String managerCell;	//负责人联系电话
     private Date borrowDate;	//借用日期
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String timePeriod;	//借用时间段
     private Integer croomtype;  //借用教室类型:常量见下
     private Integer number;	//教室借用人数
+    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String title;  //活动名称
     private Integer applyId;    //用于修改申请时使用
     private Integer applyType;  //申请通道设置
