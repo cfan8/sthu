@@ -122,7 +122,13 @@ img
 
 #navibar .navibutton:last-child
 {
-    margin: 0px;
+    margin-right: 0px;
+}
+
+/*以下针对IE8兼容，功能同上*/
+#navibar .lastnavibtn
+{
+    margin-right: 0px;
 }
 
 #main
@@ -327,7 +333,7 @@ img
     top: 19px;
     right: 13px;
     width: 255px;
-    height: 293px;
+    height: 298px;
 }
 
 #note .title{
@@ -336,7 +342,7 @@ img
 
 #note .content
 {
-    height: 256px;
+    height: 261px;
     padding: 10px 0px 0px 9px;
 }
 
@@ -386,9 +392,9 @@ img
 #event
 {
     width: 257px;
-    height: 213px;
+    height: 223px;
     position: absolute;
-    top: 332px;
+    top: 333px;
     right: 12px;
 }
 
@@ -399,7 +405,7 @@ img
 
 #event .content
 {
-    height: 176px;
+    height: 186px;
     padding: 10px 0px 0px 9px;
 }
 
@@ -491,7 +497,7 @@ img
 {
     position: absolute;
     right: 12px;
-    top: 564px;
+    top: 570px;
     width: 257px;
 }
 
@@ -503,9 +509,9 @@ img
 
 #social .content
 {
-    padding: 6px 29px 3px 33px;
+    padding: 16px 29px 3px 33px;
     width: 195px;
-    height: 170px;
+    height: 183px;
 }
 
 #social .socialLink
@@ -618,7 +624,6 @@ img
     height: 100%;
     line-height: 21px;
     width:100px;
-    display: none;
 }
 
 #footer .linkblock ul

@@ -38,9 +38,9 @@ public class UserService extends BaseService {
 
     @Transactional
     public UserEntity userLogin(String username, String password) throws Exception{
-	password = Util.getMD5(password);
+	String md5 = Util.getMD5(password);
 	UserEntity entity = userDAO.getUserByUsername(username);
-	if (entity != null && entity.getPassword().equals(password)) {
+	if (entity != null && entity.getPassword().equals(md5)) {
 	    userDAO.updateLoginTime(entity.getID());
 	    return entity;
 	} else {
@@ -52,8 +52,8 @@ public class UserService extends BaseService {
 	HttpClient client = new DefaultHttpClient();
 	HttpPost post = new HttpPost("https://portal.tsinghua.edu.cn:443/Login");
 	List<NameValuePair> list = new ArrayList<NameValuePair>();
-	list.add(new BasicNameValuePair("userName", "lar09"));
-	list.add(new BasicNameValuePair("password", "linar09"));
+	list.add(new BasicNameValuePair("userName", username));
+	list.add(new BasicNameValuePair("password", password));
 	post.setEntity(new UrlEncodedFormEntity(list, "UTF-8"));
 	HttpResponse response = client.execute(post);
 	Header header = response.getFirstHeader("Location");
