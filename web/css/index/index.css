@@ -5,6 +5,10 @@
     Description:
         Purpose of the stylesheet follows.
 */
+html{
+    -webkit-text-size-adjust:none;
+
+}
 
 body
 {
