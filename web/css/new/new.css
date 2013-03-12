@@ -6,9 +6,14 @@
         Purpose of the stylesheet follows.
 */
 
-a:link, a:visited, a:hover, a:active
+a:link, a:visited, a:active
 {
     text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
 }
 
 #recomment

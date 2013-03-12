@@ -5,6 +5,16 @@
     margin-bottom: 20px;
 }
 
+a:link, a:visited, a:active
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
 #new_edit_div .title input
 {
     width: 450px;

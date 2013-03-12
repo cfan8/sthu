@@ -1,0 +1,194 @@
+
+
+/*----- �������� -----*/
+
+#wrapper { overflow:hidden; zoom:1; clear:both; }
+
+
+
+
+
+
+
+/*----- ҳͷ���� -----*/
+
+#header { height:34px; line-height:34px; background:#582b66; _overflow:hidden; zoom:1; clear:both; }
+
+
+
+
+
+
+
+/* ���ٵ������� */
+
+.hot_nav { height:34px; line-height:34px; background:url(../images/nav_lr_line.gif) 1px 0 no-repeat; _overflow:hidden; zoom:1; clear:both; text-align:left; position:relative; z-index:999; }
+
+.hot_nav_r { height:34px; line-height:34px; margin-left:5px; background:url(../images/nav_lr_line.gif) right top no-repeat; _overflow:hidden; zoom:1; clear:both; }
+
+
+
+.hot_nav_logo { float:left; margin-left:5px; color:#000; display:inline; _margin-top:3px; }
+
+.hot_nav_logo li { float:left; height:34px; line-height:34px; display:inline-block; }
+
+
+
+.hot_nav_left { float:left; margin-left:20px; color:#000; display:inline; }
+
+.hot_nav_left li { float:left; line-height:34px; display:inline; }
+
+.hot_nav_left li a { height:28px; line-height:28px; padding:0 10px; display:inline-block; border-left:#582b66 1px solid; border-top:#582b66 1px solid; border-right:#582b66 1px solid; color:#fff; margin-top:5px; }
+
+.hot_nav_left li a:hover { background:url(../images/hot_nav_left_bg.gif) repeat-x; border-left:#300935 1px solid; border-top:#300935 1px solid; border-right:#300935 1px solid; text-decoration:none; }
+
+.hot_nav_left li a span { position:relative; _top:5px; }
+
+
+
+
+
+
+
+/* �����˵� */
+
+.hot_nav_right { float:right; margin-right:5px; display:inline; overflow:hidden; }
+
+
+
+
+
+/* hot_nav_cont */
+
+.hot_nav_cont { height:34px; line-height:34px; clear:both; zoom:1; _float:right; }
+
+.hot_nav_cont li { float:left; height:34px; line-height:34px; display:inline; text-align:center; color:#fff; background:url(../images/main_nav_line.gif) right top no-repeat; }
+
+.hot_nav_cont li a { color:#fff; text-decoration:none; clear:both; }
+
+.hot_nav_cont li a:hover { text-decoration:none; }
+
+
+
+.nav_line_no { background:none!important; _padding-top:8px; }
+
+
+
+
+
+
+
+/* bt */
+
+.bt { _overflow:hidden; text-align:center; }
+
+.bt a { padding:0 22px 0 12px; height:30px; line-height:29px; display:inline-block; background:url(../images/hot_nav_jt.gif) 64px 12px no-repeat; margin-top:4px; color:#fff; text-decoration:none; clear:both; text-align:center; }
+
+.bt a:hover { background:#fbf4fc url(../images/hot_nav_jt_hover.gif) 64px 12px no-repeat; color:#712b83; text-decoration:none; }
+
+
+
+.bt_active,.bt_active a { padding:0 10px; height:30px; line-height:30px; display:block; background:#fbf4fc url(../images/hot_nav_jt_hover.gif) 80px 12px no-repeat; color:#712b83; text-decoration:none; border-left:#b085ba 1px solid; border-top:#b085ba 1px solid; border-right:#b085ba 1px solid; }
+
+
+
+
+
+.bt a img { margin-right:5px; }
+
+.pt8 { _padding-top:5px!important; }
+
+
+
+
+
+
+
+/* notice_NO */
+
+.notice_NO { width:16px; height:16px; line-height:16px; display:block; background:url(../images/main_nav_notice_bg.gif) no-repeat; color:#fff; text-align:center; }
+
+
+
+.mt8 { margin-top:8px; }
+
+.mt15 { _margin-top:15px; }
+
+
+
+
+
+.nr{ display:none; color:#454545; background:#fbf4fc; position:relative; z-index:9999; width:150px; _width:100px; text-align:center; top:0px; _top:-15px; left:-50px; _left:0px; border-left:#b085ba 1px solid; border-bottom:#b085ba 1px solid; border-right:#b085ba 1px solid; _overflow:hidden; }
+
+
+
+.nr p { _height:30px; _line-height:30px; text-align:left; padding-left:15px; }
+
+.nr p:hover { background:#ece6ed; cursor:pointer; }
+
+.nr p a { color:#454545; text-decoration:none; }
+
+.nr p a:hover { text-decoration:none; }
+
+
+
+.nr p a img { margin-right:5px; }
+
+
+
+
+
+
+
+
+
+
+
+/*----- �в����� -----*/
+
+#content { overflow:hidden; zoom:1; clear:both; }
+
+
+
+/* ���в��� */
+
+.frame_tab { width:99%; margin:7px auto; }
+
+.tab_left { width:198px; background:#fcf4fd; border:#ba99be 1px solid; vertical-align:top; }
+
+.tab_center { width:53%; vertical-align:top; padding:0 10px; }
+
+.tab_right { vertical-align:top; }
+
+
+
+
+
+/* ���̶�������Ӧ���� */
+
+.tab_right02 { vertical-align:top; padding-left:15px; }
+
+
+
+
+
+/* ����ƽ������ */
+
+.tab_left03 { width:50%; vertical-align:top; padding-right:5px; }
+
+.tab_right03 { width:50%; vertical-align:top; padding-left:5px; }
+
+
+
+
+
+
+
+
+
+/*----- ҳ������ -----*/
+
+#footer { height:52px; line-height:52px; text-align:center; background:#f1e4f3; border-top:#966e9f 2px solid; color:#242424; overflow:hidden; zoom:1; clear:both; }
+
+#footer p { height:20px; line-height:20px; margin-top:3px; }
+

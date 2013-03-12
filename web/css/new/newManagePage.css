@@ -8,6 +8,16 @@
     background: url('/css/new/add_new.png') no-repeat left center;
 }
 
+a:link, a:visited, a:active
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
 #batch_delete_new_div
 {
     text-align: right;
@@ -26,12 +36,22 @@
     font-family:  "Microsoft YaHei","微软雅黑";
 }
 
+#add_new_div a:hover
+{
+    text-decoration: underline;
+}
+
 #batch_delete_new_div a
 {
     text-decoration: none;
     color: #29586e;
     font-size: 14.67px;
     font-family:  "Microsoft YaHei","微软雅黑";
+}
+
+#batch_delete_new_div a:hover
+{
+    text-decoration: underline;
 }
 
 #filter_word
@@ -153,11 +173,21 @@
     text-decoration: none;
 }
 
+#new_manage_list .title a:hover
+{
+    text-decoration: underline;
+}
+
 #new_manage_list .column a
 {
     color: violet;
     font-weight: bold;
     text-decoration: none;
+}
+
+#new_manage_list .column a:hover
+{
+    text-decoration: underline;
 }
 
 #new_manage_list .batchdelete
@@ -206,6 +236,11 @@
     font-size: 14.67px;
     text-decoration: none;
     color: red;
+}
+
+#new_manage_list .delete a:hover
+{
+    text-decoration: underline;
 }
 
 #new_manage_list hr

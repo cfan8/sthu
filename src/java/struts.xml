@@ -183,4 +183,10 @@ and open the template in the editor.
 	<action name="approveActivityApply" class="cn.edu.tsinghua.sthu.action.outdoor.SaveActivityCommentAction">
 	</action>
     </package>
+    <package name="infoActionPackage" extends="defaultAction" namespace="/info">
+        <action name="getNewsForInfoNewBoxAction" class="cn.edu.tsinghua.sthu.action.info.GetNewsForInfoNewBoxAction">
+            <result name="style0">info_new_box0.jsp</result>
+            <result name="style1">info_new_box1.jsp</result>
+        </action>
+    </package>
 </struts>

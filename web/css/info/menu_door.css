@@ -1,0 +1,76 @@
+
+
+.sidebar { margin:0 auto; background:#fcf4fd; clear:both; zoom:1; }
+
+.sidebar h2{ height:40px; background:url(../images/l_menu_title_center.gif) repeat-x; position:relative; z-index:999; top:-4px; left:0; clear:both; }
+
+
+
+#menu { clear:both; zoom:1; }
+
+#menu li{ width:99%; float:left; display:block; position:relative; line-height:21px; border:none; border-left:#fcf4fd 2px solid; border-top:#fcf4fd 2px solid; border-bottom:#fcf4fd 2px solid; z-index:9999; }
+
+#menu li:hover { background:#e9daed; border-left:#875a95 2px solid; border-top:#875a95 2px solid; border-bottom:#875a95 2px solid; }
+
+#menu li h3 { height:22px; line-height:22px; color:#702b82; font-weight:bold; text-align:left; background:url(../images/l_menu_cont_jt.gif) 95% 7px no-repeat; }
+
+#menu li h3 span { margin-left:10px; }
+
+#menu li a { line-height:22px; color:#353734; display:block; text-decoration:none; margin-left:10px; }
+
+#menu li:hover a { color:#363636; }
+
+
+
+
+
+
+
+
+
+.dropdown_4columns{ margin:4px auto 0; float:left; position:absolute; left:-999em; z-index:99; text-align:left; border-top:#875a95 2px solid; border-right:#875a95 2px solid; border-bottom:#875a95 2px solid; border-left:#875a95 1px solid; width:130px;background:#f5ebf6; padding:5px 0 10px;
+
+-moz-border-radius:2px;
+
+-webkit-border-radius:2px;
+
+-o-border-radius:2px;
+
+-ms-border-radius:2px;
+
+-khtml-border-radius:2px;
+
+border-radius:2px;
+
+}
+
+
+
+#menu li:hover .dropdown_4columns{ left:99.8%; top:-6px; }
+
+.col_1 { width:120px; display:inline; float:left; position:relative; margin:0; }
+
+.col_4 { width:510px; display:inline; float:left; position:relative; margin:0; }
+
+.col_1 h3 { font-weight:bold; color:#3B4053; margin:2px 0 0; padding-left:10px; line-height:21px; text-align:center; background:none!important; }
+
+
+
+
+
+#menu li:hover div a { color:#5b5b5d; text-decoration:none; }
+
+#menu li:hover div a:hover { color:#353734; text-decoration:underline; }
+
+#menu li ul li { line-height:21px; position:relative; padding-right:6px; text-align:left; width:120px; border:none!important; }
+
+#menu li ul li a{ padding-right:4px; }
+
+#menu li ul li:hover { background:none; }
+
+
+
+
+
+.imt1 { margin-top:1px\0!important; margin-top:-1px; _margin-top:-1px; }
+

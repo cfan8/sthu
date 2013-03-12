@@ -16,6 +16,11 @@
     font-family:  "Microsoft YaHei","微软雅黑";
 }
 
+#add_column_div a:hover
+{
+    text-decoration: underline;
+}
+
 #column_manage_list
 {
     margin-top: 40px;
@@ -45,6 +50,11 @@
     font-size: 16px;
     color:#212121;
     text-decoration: none;
+}
+
+#column_manage_list .name a:hover
+{
+    text-decoration: underline;
 }
 
 #column_manage_list .visible
@@ -84,6 +94,11 @@
     font-size: 14.67px;
     text-decoration: none;
     color: red;
+}
+
+#column_manage_list .delete a:hover
+{
+    text-decoration: underline;
 }
 
 #column_manage_list hr
