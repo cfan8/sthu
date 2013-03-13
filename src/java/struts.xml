@@ -187,6 +187,7 @@ and open the template in the editor.
         <action name="getNewsForInfoNewBoxAction" class="cn.edu.tsinghua.sthu.action.info.GetNewsForInfoNewBoxAction">
             <result name="style0">info_new_box0.jsp</result>
             <result name="style1">info_new_box1.jsp</result>
+            <result name="style2">info_new_box2.jsp</result>
         </action>
     </package>
 </struts>

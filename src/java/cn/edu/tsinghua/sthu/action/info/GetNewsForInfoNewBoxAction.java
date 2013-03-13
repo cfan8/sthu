@@ -32,9 +32,13 @@ public class GetNewsForInfoNewBoxAction extends BaseAction{
         {
             return "style0";
         }
-        else
+        else if (style == 1)
         {
             return "style1";
+        }
+        else
+        {
+            return "style2";
         }
     }
 
