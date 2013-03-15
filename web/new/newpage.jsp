@@ -40,6 +40,7 @@
                         <% if (news.get(i).isIsPlacedInColumnTop()) { %>
                         <span class="onTop">【置顶】</span>
                         <% } %>
+                        <span><a href="/new/new.do?id=<%=news.get(i).getID()%>" target="_blank" title="点击浏览"><img src="/css/new/open.png"></img></a></span>
                     </div>
                     <div class="author"><%=news.get(i).getAuthor() %></div>
                     <div class="date"><%=Util.dateToStringAccurateToDayFormat1(news.get(i).getUpdateTime()) %></div>
