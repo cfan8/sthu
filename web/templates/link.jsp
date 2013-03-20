@@ -50,7 +50,7 @@
     </div>
     <div class="right2">
 	<ul>
-	    <li><a href="http://discovery.lib.tsinghua.edu.cn " target="_blank">学术信息发现</a></li><!--
+	    <li><a href="http://innopac.lib.tsinghua.edu.cn/" target="_blank">图书借阅</a></li><!--
 	    <li><a href="http://academic.daf.tsinghua.edu.cn/ " target="_blank">学术道德</a></li>
 	    <li><a href="http://kyybgxx.cic.tsinghua.edu.cn/kybg/xsgg/ " target="_blank">学术信息订阅</a></li>-->
 	</ul>

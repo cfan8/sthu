@@ -94,9 +94,29 @@
 	    minDate: moment(moment().format("YYYY-MM-DD")).toDate(),
 	    maxDate: moment(moment().format("YYYY-MM-DD")).add("days", 10).toDate()
 	});
+	$("form input[name='number']").blur(function(){
+	    var str = $(this).val().replace(/[^\d]+/g, "");
+	    $(this).val(str);
+	});	
 	$("#submitbtn").click(function(){
 	    $("#contentInput").val(ce.getContent());
-	    $("#submitf").submit();
+	    var needalert = false;
+	    $("form input").each(function(){
+		if ($(this).val() == "")
+		{
+		    needalert = true;
+		    return false;
+		}
+	    });
+	    if (needalert)
+	    {
+		alert("请完整填写所有表格！");
+	    }
+	    else
+	    {
+		$("#submitf").submit();
+	    }
+	    return false;
 	});
     </script>
 </html>

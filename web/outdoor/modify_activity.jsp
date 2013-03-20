@@ -20,18 +20,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/css/anytime.css" />
-        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="/js/jquery.js"></script>
-        <script type="text/javascript" charset="utf-8" src="/js/jquery-migrate.js"></script>
-        <script  type="text/javascript" charset="utf-8" src="/js/anytime.js"></script>
-        <link rel='stylesheet' href='/css/classroom/status.css' />
-        <link rel='stylesheet' href='/css/classroom/apply.css' />
-        <style type="text/css">
-	    .AnyTime-pkr { z-index: 9999 }
-        </style>
-        <title>申请活动</title>
+	    <link rel="stylesheet" type="text/css" href="/css/anytime.css" />
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/jquery.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/jquery-migrate.js"></script>
+	    <script  type="text/javascript" charset="utf-8" src="/js/anytime.js"></script>
+	    <link rel='stylesheet' href='/css/classroom/status.css' />
+	    <link rel='stylesheet' href='/css/classroom/apply.css' />
+	    <style type="text/css">
+		.AnyTime-pkr { z-index: 9999 }
+	    </style>
+	    <title>申请活动</title>
     </head>
 
     <%@include file="/templates/general_header.jsp" %>
@@ -56,7 +56,7 @@
 	    </div>
 	    <% if (entity.getApplyType() == ActivityApplyEntity.APPLY_TYPE_LED) {%>
             <div id="LEDContent"><span class="tag">电子屏显示内容：</span><span class="value"><input type="text" name="LEDContent" value="<%=entity.getLEDContent()%>"/></span></div>
-		    <% } else {%>
+	    <% } else {%>
             <div id="activityLocation">
 		<span class="tag">活动地点：</span>
 		<span class="value"><input type="text" name="activityLocation" value="<%=entity.getActivityLocation()%>"/></span>
@@ -95,17 +95,49 @@
 	var ce = UE.getEditor('contentEditor');
 	<% if (entity.getApplyType() != ActivityApplyEntity.APPLY_TYPE_LED) {%>
 	    var ce2 = UE.getEditor('contentEditor2');  
-	    $("#submitbtn").click(function(){
+	    $("#submitbtn").click(function(event){
+		event.preventDefault();
 		$("#activityContentInput").val(ce.getContent());
 		$("#activityMaterialInput").val(ce2.getContent());
-		$("#submitf").submit();
+		var needalert = false;
+		$("form input").each(function(){
+		    if ($(this).val() == "")
+		    {
+			needalert = true;
+			return false;
+		    }
+		});
+		if (needalert)
+		{
+		    alert("请完整填写所有表格！");
+		}
+		else
+		{
+		    $("#submitf").submit();
+		}
 		return false;
 	    });
 	<% } else {%>
 	    
-	    $("#submitbtn").click(function(){
+	    $("#submitbtn").click(function(event){
+		event.preventDefault();
 		$("#activityContentInput").val(ce.getContent());
-		$("#submitf").submit();
+		var needalert = false;
+		$("form input").each(function(){
+		    if ($(this).val() == "")
+		    {
+			needalert = true;
+			return false;
+		    }
+		});
+		if (needalert)
+		{
+		    alert("请完整填写所有表格！");
+		}
+		else
+		{
+		    $("#submitf").submit();
+		}
 		return false;
 	    });
 	<% }%>

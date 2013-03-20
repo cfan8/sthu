@@ -235,3 +235,19 @@ a:hover
     width: 252px;
     height: 30px;
 }
+
+table
+{
+    border-collapse:collapse;
+}
+
+table,th, td
+{
+    border: 1px solid black;
+}
+
+td
+{
+    text-align: center;
+    vertical-align:middle;
+}

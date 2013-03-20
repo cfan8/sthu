@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>清华大学2012学年特等奖学金获得者介绍</title>
+<link href="../style/main.css" rel="stylesheet" type="text/css"> 
+<script src="../style/nav.js"></script> 
+</head>
+
+<body>
+
+<stl:include file="/include/studio_title.html"></stl:include>
+
+
+<div class="mainbox">
+  <div class="workslist">
+
+      <stl:pageContents pageNum="6" scope="All" width="100%">
+        <div class="cellbox">
+          <stl:a><stl:image width="280" height="376"></stl:image>
+          <p class="icon_1"><stl:content type="Title"></stl:content></p></stl:a>
+          <p class="icon_2"><stl:content type="Source"></stl:content></p>
+          <p class="icon_3"><stl:content type="AddDate"></stl:content></p>
+        </div>
+      </stl:pageContents>
+
+      <div class="pagebox">
+        <stl:pageItems>
+      
+        共(<stl:pageItem type="TotalPageNum"></stl:pageItem>)页&nbsp;
+        <stl:pageItem type="FirstPage" text="首 页"></stl:pageItem>&nbsp;
+        <stl:pageItem type="PreviousPage" text="上一页"></stl:pageItem>&nbsp;
+      
+        <stl:pageItem type="PageNavigation">
+        <stl:successTemplate>
+        <A href="{Current.Url}">{Current.Num}</A>
+        </stl:successTemplate>
+        <stl:failureTemplate>
+        {Current.Num}
+        </stl:failureTemplate>
+        </stl:pageItem>
+        <stl:pageItem type="NextPage" text="下一页"></stl:pageItem>&nbsp;
+        <stl:pageItem type="LastPage" text="末 页"></stl:pageItem>&nbsp;
+        </stl:pageItems>
+      </div>
+
+    <div style="clear:both "></div>
+  </div>
+</div>
+
+
+<stl:include file="/include/studio_bottom.html"></stl:include>
+
+</body>
+</html>

@@ -11,18 +11,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/css/anytime.css" />
-        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
-	<script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="/js/jquery.js"></script>
-        <script type="text/javascript" charset="utf-8" src="/js/jquery-migrate.js"></script>
-        <script  type="text/javascript" charset="utf-8" src="/js/anytime.js"></script>
-        <style type="text/css">
-	    .AnyTime-pkr { z-index: 9999 }
-        </style>
-	<link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
-	<link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
-        <title>申请活动</title>
+	    <link rel="stylesheet" type="text/css" href="/css/anytime.css" />
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/jquery.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="/js/jquery-migrate.js"></script>
+	    <script  type="text/javascript" charset="utf-8" src="/js/anytime.js"></script>
+	    <style type="text/css">
+		.AnyTime-pkr { z-index: 9999 }
+	    </style>
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
+	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+	    <title>申请活动</title>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="position">您当前的位置：活动资源申请</span>
@@ -77,15 +77,40 @@
 	var ce = UE.getEditor('contentEditor');
 	var ce2 = UE.getEditor('contentEditor2');         
 	
-	$("#submitbtn").click(function(){
+	$("#submitbtn").click(function(event){
+	    event.preventDefault();
 	    $("#activityContentInput").val(ce.getContent());
 	    $("#activityMaterialInput").val(ce2.getContent());
-	    $("#submitf").submit();
+	    var needalert = false;
+	    var areas;
+	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_LED%>)
+	    {
+		areas = $("form input:not([name='activityLocation']):not([name='activityMaterialInput'])");
+	    }
+	    else
+	    {
+		areas = $("form input:not([name='LEDContent'])");
+	    }
+	    areas.each(function(){
+		if ($(this).val() == "")
+		{
+		    needalert = true;
+		    return false;
+		}
+	    });
+	    if (needalert)
+	    {
+		alert("请完整填写所有表格！");
+	    }
+	    else
+	    {
+		$("#submitf").submit();
+	    }
 	    return false;
 	});
 	
 	$("#applyType").change(function(){
-	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_LED %>){
+	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_LED%>){
 		$("#LEDContent").show();
 		$("#activityLocation").hide();
 		$("#activityMaterial").hide();
@@ -96,7 +121,7 @@
 		$("#activityMaterial").show();
 		$("#LEDContent").hide();
 	    }
-	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_BOARD %>)
+	    if ($("#applyType").val() == <%=ActivityApplyEntity.APPLY_TYPE_BOARD%>)
 	    {
 		alert("温馨提示：根据学校有关规定，展板规格不能超过2*3m，请您自觉遵守！");
 	    }

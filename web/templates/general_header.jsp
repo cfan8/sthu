@@ -17,6 +17,7 @@
 %>
 <link rel="stylesheet" type="text/css" href="/css/general.css" />
 <script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/browser.js"></script>
 <body>
     <div id="bg_container" class="noprint"></div>
     <div id="all">
@@ -25,7 +26,7 @@
 		    <img src="/css/index/logo.png" />
 		</a></div>
 	    <div id="logininfo"><span><a href="/login.do?redirectURL=%2Fmysthu.do"><%=nickName%></a></span></div>
-	    <div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">清华大学社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >清华大学素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">清华博学网</a></div>
+	    <div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">博学网</a><span class="splitspan">|</span><a href="http://old.student.tsinghua.edu.cn/" target="_blank">怀念老学清</a></div>
 	</div>
 	    <div id="navibar" class="noprint">
 		<div class="navibtn"><a href="/index.do"><img src="/css/general/navi0.png" /></a></div>

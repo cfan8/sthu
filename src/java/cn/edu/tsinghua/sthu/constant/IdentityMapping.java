@@ -88,10 +88,13 @@ public class IdentityMapping {
 	"校团委成才信息中心",
 	"校团委青年工作研究中心",
 	"校团委志愿服务中心",
-	"校团委创业指导中心"
+	"校团委创业指导中心",
+	"校学生会",
+	"代表队",
+	"艺术团",
+	"研团研会"
     };
     //分团委为对应id
-    //各系业务办为对应id+length
     
     public static final String[] accounts = new String[names.length];
     

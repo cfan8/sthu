@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>苏打苏塔工作室</title>
+<link href="../style/main.css" rel="stylesheet" type="text/css"> 
+<script src="../style/nav.js"></script> 
+</head>
+
+<body>
+
+<stl:include file="/include/studio_title.html"></stl:include>
+
+
+<div class="mainbox">
+	<div class="newsbox">
+		<div class="leftnavbox">
+	
+			<stl:channels name="新闻">    
+			<li><stl:a><stl:channel type="title"></stl:channel></stl:a></li>
+			</stl:channels> 
+
+		</div>
+		<div class="rightmainbox">
+			
+            <stl:searchOutput>
+            <stl:pageContents scope="All" pageNum="20" columns="2" width="99%">
+			<li><stl:a><stl:content type="Title" wordNum="26" ellipsis=""></stl:content></stl:a>&nbsp;&nbsp;<span class="datefont"><stl:content type="AddDate" formatString="MM/dd"></stl:content></span></li>
+			<stl:contentsItem type="Separator" selectedValue="10">
+			&nbsp;
+			</stl:contentsItem>
+			</stl:pageContents>
+
+			<div class="pagebox">
+				<stl:pageItems>
+			
+				共(<stl:pageItem type="TotalPageNum"></stl:pageItem>)页&nbsp;
+				<stl:pageItem type="FirstPage" text="首 页"></stl:pageItem>&nbsp;
+				<stl:pageItem type="PreviousPage" text="上一页"></stl:pageItem>&nbsp;
+			
+				<stl:pageItem type="PageNavigation">
+				<stl:successTemplate>
+				<A href="{Current.Url}">{Current.Num}</A>
+				</stl:successTemplate>
+				<stl:failureTemplate>
+				{Current.Num}
+				</stl:failureTemplate>
+				</stl:pageItem>
+				<stl:pageItem type="NextPage" text="下一页"></stl:pageItem>&nbsp;
+				<stl:pageItem type="LastPage" text="末 页"></stl:pageItem>&nbsp;
+				</stl:pageItems>
+			</div>
+            </stl:searchOutput>
+
+		</div>
+		<div style="clear:both "></div>
+	</div>
+</div>
+
+
+<stl:include file="/include/studio_bottom.html"></stl:include>
+
+</body>
+</html>

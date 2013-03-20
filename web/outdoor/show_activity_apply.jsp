@@ -265,7 +265,7 @@
 		    <div style="clear:both;"></div>
 		</div>
 		<% }%>
-		<% if (entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_ACCEPTED || entity.getResourceStatus() == ActivityApplyEntity.IDENTITY_STATUS_REJECTED) {%>
+		<% if (entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_ACCEPTED || entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_REJECTED) {%>
 		<div class="commentitem comment<%= entity.getIdentityStatus()%>">
 		    <div class="commenttitle">
 			<%=entity.getIdentityCommentNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(entity.getIdentityDate())%> :

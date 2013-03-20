@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>“清影华光”校园摄影大赛</title>
+<meta name="keywords" content="‘清影华光’校园摄影大赛" />
+<meta name="description" content="清华大学校园摄影大赛" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script language="javascript" src="show.js"></script>
+<link rel='stylesheet' id='wp-pagenavi-css'  href='pagenavi-css.css?ver=2.70' type='text/css' media='all' />
+</head>
+
+<body> 
+<div class="top">
+</div>
+
+<div class="logo">
+	<div class="link">
+	<a href="http://student.tsinghua.edu.cn" target="_blank" >学生清华首页&nbsp;&nbsp;&nbsp;|</a>&nbsp;&nbsp;&nbsp;<a href="http://www.renren.com/348735437/profile" target="_blank">艾视觉人人主页&nbsp;&nbsp;&nbsp;|</a>&nbsp;&nbsp;&nbsp;<a href="http://zhan.renren.com/thuvisioncenter?from=rrsearch" target="_blank" >视觉中心小站</a>
+	</div>
+	</br>
+	</br>
+	<div class="link1">
+	<a href="http://zhan.renren.com/thuvisioncenter?from=rrsearch" target="_blank" ><img src="image/THU.png">&nbsp;&nbsp;</a>
+	</br>
+	<a href="http://www.renren.com/348735437/profile" target="_blank" ><img src="image/view.png">&nbsp;</a>
+	</div>
+	</br></br></br></br></br></br></br></br></br></br></br></br></br>
+	<ul>
+	<li><a href="index.html" target="_blank" >主&nbsp;&nbsp;页</a></li>
+	<li><a href="game.html" target="_blank" >大赛回顾</a></li>
+	<li><a href="view.html" target="_blank" >风&nbsp;&nbsp;景</a></li>
+	<li><a href="love.html" target="_blank" >爱&nbsp;&nbsp;情</a></li>
+	<li><a href="family.html" target="_blank" >亲&nbsp;&nbsp;情</a></li>
+	<li><a href="school.html" target="_blank" >杂&nbsp;&nbsp;烩</a></li>	
+	<li><a href="word.html" target="_blank" >心情文字</a></li>
+	<li><a href="about.html" target="_blank" >关于我们</a></li>
+	</ul>
+</div>
+	<div class="s">
+	</div>
+<div class="s1">
+	<div class="s">
+	</div>
+	  <div class="v2">
+    <div class="v2-slide">
+      <!--[diy=v2_20]-->
+      <div id="idContainer" class="v2-pic">
+        <ul id="idSlider" >
+          <li><a  target="_blank"><img border=0 src="image/library.png" /></a><span><a href="#" target="_blank">图书馆百年，银杏黄得正浓</a></span></li>
+          <li><a  target="_blank"><img border=0 src="image/dreaming.png" /></a><span><a href="#" target="_blank">在这里实现童年的梦想就是一种幸福</a></span></li>
+          <li><a  target="_blank"><img border=0 src="image/friend.png" /></a><span><a href="#" target="_blank">幸福就是和不着调的天才一起犯二</a></span></li>
+        </ul>
+      </div>
+      <ul class="v2-pictab" id="idNum">
+      </ul>
+      <script>
+
+        var nums = [], timer, n = $$("idSlider").getElementsByTagName("li").length,
+
+            st = new SlideTrans("idContainer", "idSlider", n, {
+
+                onStart: function(){
+
+                    forEach(nums, function(o, i){ o.className = st.Index == i ? "on" : ""; })
+
+                }
+
+            });
+
+        for(var i = 1; i <= n; AddNum(i++)){};
+
+        function AddNum(i){
+
+            var num = $$("idNum").appendChild(document.createElement("li"));
+
+            num.innerHTML = i--;
+
+            num.onmouseover = function(){
+
+                timer = setTimeout(function(){ num.className = "on"; st.Auto = false; st.Run(i); }, 200);
+
+            }
+
+            num.onmouseout = function(){ clearTimeout(timer); num.className = ""; st.Auto = true; st.Run(); }
+
+            nums[i] = num;
+
+        }
+
+        st.Run();
+
+        </script>
+    </div>
+    <div class="v2-r">
+      <div class="v2-hotnew">
+        <div class="hotnew"></div>
+        <!--[diy=v2_10]-->
+        <div id="v2_10" class="area">
+          <div class="wplck">
+            <ul id="sliderlck" class="sliderlck">
+              <li><span><a href='game.html'>摄影大赛</a> :</span><a href="game.html">&nbsp;&nbsp;荟萃视角，全景清华</a></li>
+              <li><span><a href='love.html'>图  爱情</a> :</span><a href="love.html">&nbsp;&nbsp;一起唱响青春的旋律</a></li>
+              <li><span><a href='word.html'>美文 心情</a> :</span><a href="word.html">&nbsp;&nbsp;我说摄影大赛</a></li>
+              <li><span><a href='view.html'>图  风景</a> :</span><a href="view.html">&nbsp;&nbsp;一样的清华，不一样的美丽</a></li>
+              <li><span><a href='about.html'>视觉中心</a> :</span><a href="about.html">&nbsp;&nbsp;视觉盛宴，欢迎关注</a></li>
+              <li><span><a href='family.html'>图 亲情</a> :</span><a href="family.html">&nbsp;&nbsp;多少年不变的守候</a></li>
+              <li><span><a href='school.html'>图  杂烩</a> :</span><a href="school.html">&nbsp;&nbsp;校园轶事，尽收眼底</a></li>
+            </ul>
+          </div>
+		   <script type="text/javascript">
+
+        	new sliderlck({id:'sliderlck'})
+
+          </script>
+		  
+        </div>
+        <!--[/diy]-->
+      </div>
+    </div>
+  </div>
+  <div class="right">
+  </div>
+</div>
+<div class="s2">
+</div>
+<div class="s21">
+<img src="image/bian.png" border=0 />
+</div>
+<div class="s3">
+	<div class="title">
+	<p>&nbsp;&nbsp;&nbsp;&nbsp;获&nbsp;&nbsp;&nbsp;奖&nbsp;&nbsp;&nbsp;作&nbsp;&nbsp;&nbsp;品</p>
+	</div>
+	</br>
+	<div class="image">
+        <ul>
+		  <li><a class="img1" target="_blank"><img  width="273" height="452" src="image/winner/T1.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="眼中的情侣，心里一阵痛。" /></a><a class="txt" target="_blank"  title="眼中的情侣，心里一阵痛。" >朱逢源《钓鱼台银杏大道》</a></li>
+          <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/T2.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="这棵银杏树，见证过无数个春夏秋冬，无数个幸福的瞬间曾在这里被定格。" /></a><a class="txt" target="_blank"  title="这棵银杏树，见证过无数个春夏秋冬，无数个幸福的瞬间曾在这里被定格。"  >徐瑞_《关于幸福》</a></li>
+          <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/T3.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="和他一起顺利毕业，在清华不同的院系我们相遇……" /></a><a class="txt" target="_blank"  title="和他一起顺利毕业，在清华不同的院系我们相遇……" >新闻与传播学院_周璇_《组图》</a></li>
+		  <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/204.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="" /></a><a class="txt" target="_blank"  title="" >美院_李逸濛_《新舍》</a></li>
+          <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/201.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="《在这里实现童年的梦想就是一种幸福》" /></a><a class="txt" target="_blank"  title="《在这里实现童年的梦想就是一种幸福》" >汽车系_高子强</a></li>
+          <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/T4.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="男友做扫描电镜时偶得，硅片上小小的心代表了学术男傻傻的浪漫。" /></a><a class="txt" target="_blank"  title="男友做扫描电镜时偶得，硅片上小小的心代表了学术男傻傻的浪漫。" >化学系_王诗琪_《电镜下的浪漫》</a></li>
+          <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/203.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="“我想，左边的空椅是他们为幸福留的位子吧？”" /></a><a class="txt" target="_blank"  title="“我想，左边的空椅是他们为幸福留的位子吧？”" >美院_唐韬然_《情人坡四点钟》</a></li>
+		  <li><a class="img" target="_blank" ><img width="273" height="200" src="image/winner/310.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="“幸福就是和不着调的天才一起犯二”" /></a><a class="txt" target="_blank"  title="“幸福就是和不着调的天才一起犯二”" >汽车系_吴春葳</a></li>
+          <li><a class="img1" target="_blank" ><img  width="273" height="452" src="image/winner/205.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="《馆长的幸福》" /></a><a class="txt" target="_blank"  title="《馆长的幸福》" >经管学院_李博</a></li>
+          <li><a class="img1" target="_blank" ><img  width="273" height="452" src="image/winner/202.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="《三点一线》" /></a><a class="txt" target="_blank"  title="《三点一线》" >美院-唐韬然</a></li>
+		  <li><a class="img1" target="_blank" ><img  width="273" height="452"src="image/winner/206.png" class="attachment-thumbnail-200x140 wp-post-image" alt="" title="“在我眼中，幸福就是和父母相伴，小时候他她牵着你的手，长大后你牵着他她的手，不分开。”" /></a><a class="txt" target="_blank"  title="“在我眼中，幸福就是和父母相伴，小时候他她牵着你的手，长大后你牵着他她的手，不分开。”" >电子系_张梦泽</a></li>	  
+	   </ul>
+      </div>
+</div>
+<div class="s2">
+</div>
+<div class="bottom1">
+</div>
+<div class="s2">
+</div>
+<div class="bottom2">
+<p>共青团清华大学委员会成才中心</p>
+<p>copyright@2013 <a href="http://student.tsinghua.edu.cn">student.tsinghua.edu.cn</a> All Rights Reserved</p>
+</div>
+
+</body>
+</html>
