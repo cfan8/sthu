@@ -110,9 +110,10 @@ public class UserService extends BaseService {
 	    userDAO.addUser(username, password, nickname, new AuthEntity());
 	    return userDAO.getUserByUsername(username);
 	} else {
-	    entity.setPassword(password);
-	    entity.setNickname(nickname);
-	    userDAO.updateUserEntity(entity);
+	    //上线之后，密码不能随便更改，故取消了Update密码的功能
+	    //entity.setPassword(password);
+	    //entity.setNickname(nickname);
+	    //userDAO.updateUserEntity(entity);
 	    return entity;
 	}
     }

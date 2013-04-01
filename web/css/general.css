@@ -164,7 +164,8 @@ img
 #footer .linkblock
 {
     width: 310px;
-    margin-right: 57px;
+    margin-right: 47px;
+    margin-left: 10px;
     height: 95px;
     float: left;
 }
@@ -172,6 +173,7 @@ img
 #footer .rightlinkblock
 {
     margin-right: 0px;
+    width: 300px;
 }
 
 #footer .linkblock .left
@@ -182,37 +184,31 @@ img
     text-align: center;
     height: 13px;
     margin: 37px 0 auto 0;
-    width: 110px;
+    width: 63px;
 }
 
 #footer a:link, #footer a:visited
 {
-    color: #1b7684;
+    color: #1a4c54;
     text-decoration: none;
-}
-
-#footer a:hover
-{
-    color: #1b7684;
-    text-decoration: underline;
 }
 
 #footer .linkblock .right
 {
     float: left;
-    font-size: 10.67px;
+    font-size: 12px;
     height: 100%;
     line-height: 21px;
-    width:100px;
+    width:116px;
 }
 
 #footer .linkblock .right2
 {
     float: left;
-    font-size: 10.67px;
+    font-size: 12px;
     height: 100%;
     line-height: 21px;
-    width:100px;
+    width:116px;
 }
 
 #footer .linkblock ul
