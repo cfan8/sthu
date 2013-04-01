@@ -76,7 +76,7 @@ public class NewService extends BaseService
         entity.setContent(content);
         entity.setAuthor(author);
         entity.setTitle(title);
-        entity.setUpdateTime(date);
+        //entity.setUpdateTime(date);
         entity.setRedirectURL(redirectURL.trim());
         entity.setIsPlacedInColumnTop(onTop);
         entity.setColumnBelong(columnEntity);
