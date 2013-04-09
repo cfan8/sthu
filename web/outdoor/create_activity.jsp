@@ -46,7 +46,7 @@
 	    <div id="activityLocation" hidden="true"><span class="tag">活动地点：</span><span class="value"><input type="text" name="activityLocation"/></span></div>
 	    <div id="activityMaterial" hidden="true"><span class="tag">活动材料：</span>
 		<div class="ueditorBlock">
-		    <script id="contentEditor2" type="text/plain">请使用上传附件功能上传活动材料，例如：室外活动展板内容、分发的传单内容等</script>
+		    <script id="contentEditor2" type="text/plain">请使用上传附件功能上传活动材料，例如：室外活动展板内容等</script>
 		</div>
 		<input type="hidden" name="activityMaterial" id="activityMaterialInput" />
 	    </div>

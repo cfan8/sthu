@@ -1,0 +1,435 @@
+/* 
+    Document   : djx
+    Created on : 2013-4-4, 22:42:34
+    Author     : linangran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html{
+    -webkit-text-size-adjust:none;
+}
+
+body
+{
+    height: 100%;
+    width: 100%;
+    min-width: 1000px;
+    margin: 0;
+    background-image: url("img/bg.png");
+    background-repeat: repeat-x;
+    background-color: #fffbd5;
+    position: relative;
+}
+
+img
+{
+    border: none;
+}
+
+#all
+{
+    width: 785px;
+    margin: 0 auto;
+}
+
+#bg_container
+{
+    width: 100%;
+    height: 4px;
+    background-image: url("/css/index/bg.png");
+    background-repeat: repeat-x;
+}
+
+#top
+{
+    width:100%;
+    height: 91px;
+    position: relative;
+}
+
+#logo
+{
+    width: 304px;
+    height: 53px;
+    position: absolute;
+    left: 17px;
+    top:17px;
+}
+
+#logininfo
+{
+    position: absolute;
+    top:2px;
+    right: 22px;
+    width: 100px;
+    height: 29px;
+    background-color: #deedf5;
+    text-align: center;
+}
+
+#logininfo a:link, #logininfo a:visited
+{
+    color: #237e89;
+    text-decoration: none;
+}
+
+#logininfo span{
+    font-size: 12px;
+    color: #237e89;
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 微软雅黑;
+}
+
+#toplink
+{
+    color: #a3a3a3;
+    font-size: 12px;
+    position: absolute;
+    top: 62px;
+    right: 23px;
+}
+
+#toplink a:link, #toplink a:visited
+{
+    color: #a3a3a3;
+    text-decoration: none;
+}
+
+#toplink a:hover
+{
+    color: #a3a3a3;
+    text-decoration: underline;
+}
+
+#toplink .splitspan
+{
+    padding: 0px 18px;
+}
+
+#banner
+{
+    width: 760px;
+    margin: 0 auto;
+}
+
+#navibar
+{
+    width: 785px;
+    height: 26px;
+}
+
+#navibar .navibutton
+{
+    float: left;
+}
+
+#main
+{
+    width: 760px;
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    border-color: #e1d5cc;
+    margin: 0 auto;
+    box-shadow: 6px 5px 6px #dbcaa6;
+    position: relative;
+}
+
+#title, #moretitle, #showtitle
+{
+    width: 100%;
+    height: 56px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #e7d8b9;
+    background-color: #deca96;
+    font-size: 25px;
+    font-family: SimHei;
+    color: #ffffcc;
+    text-align: center;
+    line-height: 56px;
+}
+
+#content
+{
+    width: 100%;
+    background-color: #ece1d7;
+    height: 520px;
+    position: relative;
+}
+
+#intro, #study, #life{
+    border-color: #e7d2b6;
+    border-width: 1px;
+    border-style: solid;
+    position: absolute;
+    background-color: #f8f1dd;
+}
+
+#intro
+{
+    width: 540px;
+    height: 169px;
+    left: 34px;
+    top: 24px;
+}
+
+#study
+{
+    width: 540px;
+    height: 287px;
+    bottom: 21px;
+    left: 34px;
+}
+
+#life
+{
+    width: 141px;
+    height: 473px;
+    right: 29px;
+    top: 24px;
+}
+
+#content .title{
+    color: #987e5c;
+    font-size: 16px;
+    font-family: SimHei;
+    height: 32px;
+    border-style: solid;
+    border-color: #987e5c;
+    border-width: 0px 0px 1px 0px;
+    line-height: 32px;
+}
+
+#content .content{
+    color: #421203;
+    font-size: 12px;
+    line-height: 20px;
+    margin: 8px 0px 0px 0px;
+}
+
+#intro .text
+{
+    width: 352px;
+    margin: 15px 0px 0px 21px;
+    float: left;
+}
+
+#intro .img
+{
+    float: right;
+    margin: 12px 12px 0px 0px;
+}
+
+#study .text
+{
+    width: 140px;
+    float: right;
+    margin: 11px 8px 0px 0px;
+}
+
+#study .img
+{
+    float: left;
+    margin: 11px 0px 0px 10px;
+}
+
+#life .title
+{
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#life .img
+{
+    margin-top: 9px;
+}
+
+#life .text
+{
+    width: 112px;
+    margin: 0 auto;
+}
+
+.morelink
+{
+    float: right;
+}
+
+.sublink
+{
+    height: 25px;
+}
+
+.sublink a:link, .sublink a:visited
+{
+    color: #91b7bd;
+    font-size: 14px;
+    font-family: SimHei;
+}
+
+#morecontent
+{
+    width: 100%;
+    background-color: #ece1d7;
+    height: 650px;
+    position: relative;
+}
+
+#picdiv
+{
+    height: 609px;
+    margin: 16px 28px 0px 40px;
+    width: 704px;
+}
+
+.piccon
+{
+    width: 100px;
+    height: 140px;
+    border-style: solid;
+    border-color: #e0c4a3;
+    border-width: 1px;
+    float: left;
+    background-color: #f2e9cf;
+    margin: 0px 12px 13px 0px;
+}
+
+.picmax
+{
+    width: 90px;
+    height: 128px;
+    margin: 6px 5px 6px 5px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.picmax img
+{
+    height: 128px;
+    width: auto;
+}
+
+.picmax a:link, .picmax a:visited
+{
+    font-size: 12px;
+    color: #421203;
+    font-family: SimSun;
+    text-decoration: none;
+}
+
+.pictext
+{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #f2e9cf;
+    width: 100%;
+    height: 24px;
+    font-size: 13px;
+    line-height: 24px;
+    opacity: 0.8;
+}
+
+#showcontent
+{
+    width: 100%;
+    background-color: #ece1d7;
+    height: 536px;
+    position: relative;
+}
+
+#showcontent img
+{
+    margin: 16px 39px auto 39px;
+}
+
+#flower
+{
+    position: absolute;
+    width: 142px;
+    height: 164px;
+    background-image: url("img/f.png");
+    bottom: -130px;
+    right: -80px;
+}
+
+#footer
+{
+    width: 100%;
+    background-color: #eddd8d;
+    height: 92px;
+    margin: 34px 0px 52px 0px;
+}
+
+#introcontent
+{
+    width: 100%;
+    background-color: #f2eada;
+    position: relative;
+    padding: 16px 0px 24px 0px;
+}
+
+#introbg
+{
+    width: 682px;
+    background-color: #fcf6ea;
+    margin: 0px auto;
+}
+
+#introtitle
+{
+    height: 68px;
+    text-align: center;
+    line-height: 68px;
+    color: black;
+    font-family: SimHei;
+    font-size: 24px;
+}
+
+#introimg
+{
+    text-align: center;
+    margin: 15px auto 30px auto;
+}
+
+#introimg img
+{
+    max-height: 200px;
+    width: auto;
+}
+
+.introcontent
+{
+    width: 620px;
+    margin: 0px 45px 20px 36px;
+    font-family: SimHei;
+    font-size: 15.37px;
+    line-height: 28px;
+}
+
+.introsubtitle
+{
+    background-image: url("img/titlebg.png");
+    background-repeat: repeat-y;
+    width: 287px;
+    height: 28px;
+    font-family: SimHei;
+    font-size: 18px;
+    line-height: 28px;
+    color: #936406;
+    margin: 0px auto 5px 36px;
+}
+
+#blankDiv
+{
+    height: 30px;
+}
+
+span.strong
+{
+    font-weight: bold;
+}
