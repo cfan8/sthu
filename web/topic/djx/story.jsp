@@ -70,5 +70,9 @@
 	<div id="footer">
 
 	</div>
-    <%@include file="/templates/baidutongji.jsp" %></body>
+    <%@include file="/templates/baidutongji.jsp" %>
+<script type="text/javascript">
+	enableBrowserDetect();
+</script>
+</body>
 </html>

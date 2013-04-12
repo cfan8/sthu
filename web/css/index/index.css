@@ -465,38 +465,40 @@ img
     margin: 0px;
 }
 
-#subjectimg{
-    width: 710px;
-    height: 134px;
-    padding: 7px 0px 0px 17px;
-}
-
-#subjectimg img{
-    margin-right: 14px;
+#subject .lefttopic, #subject .midtopic, #subject .righttopic
+{
     float: left;
+    margin-top: 2px;
 }
 
-#subjecttext{
-    width: 713px;
-    height: 41px;
+#subject .lefttopic
+{
+    width: 224px;
+    margin-left: 9px;
+}
+
+#subject .midtopic
+{
+    width: 253px;
+    margin-left: 4px;
+}
+
+#subject .righttopic
+{
+    width: 228px;
+    margin-left: 4px;
+}
+
+#subject .content a:link, #subject .content a:visited
+{
     font-size: 12px;
+    text-decoration: none;
     color: #666666;
-    margin-left: 17px;
-    padding-top: 10px;
 }
 
-#subjecttext .normaltext, #subjecttext #midtext{
-    float: left;
-    margin-left: 10px;
-    margin-right: 20px;
-}
-
-#subjecttext .normaltext{
-    width: 380px;
-}
-
-#subjecttext #midtext{
-    width: 270px;
+#subject .topictext
+{
+    margin-top: 8px;
 }
 
 #social

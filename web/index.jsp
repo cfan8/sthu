@@ -129,18 +129,17 @@
 		<div id="subject">
 		    <div class="title"><div class="morediv"><a href="/column/column.do?id=8" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
-			<div id="subjectimg">
-			    <a href="/topic/Honor/index.htm" target="_blank"><img src="/css/index/subject_t1.png"></img></a>
-			    <a href="/topic/photography_contest/index.html" target="_blank"><img src="/css/index/subject_t2.png"></img></a>
+			<div class="lefttopic"><a href="/topic/djx/index.jsp" target="_blank">
+			    <div class="topicimg"><img src="/css/index/topic0.png"></img></div>
+			    <div class="topictext">《马兰花开》是一部反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧。</div></a>
 			</div>
-			<div id="subjecttext">
-			    <div class="normaltext">
-				2012年清华大学学生奖励大会在主楼后厅隆重举行。校长陈吉宁，副校长、教务长袁驷，副校长姜胜耀出席大会并为获奖班级和同学颁奖。
-			    </div>
-			    <div id="midtext">
-				“清影华光”摄影大赛第一季——“幸福”<br/>
-				在我们美丽的清华园中，发生着各种多姿多彩的故事，演绎着无数拨动心弦的瞬间。
-			    </div>
+			<div class="midtopic"><a href="/topic/Honor/index.htm" target="_blank">
+			    <div class="topicimg"><img src="/css/index/topic1.png"></img></div>
+			    <div class="topictext">2012年清华大学学生奖励大会在主楼后厅隆重举行。校长陈吉宁，副校长、教务长袁驷，副校长姜胜耀出席大会并为获奖班级和同学颁奖。</div></a>
+			</div>
+			<div class="righttopic"><a href="/topic/photography_contest/index.html" target="_blank">
+			    <div class="topicimg"><img src="/css/index/topic2.png"></img></div>
+			    <div class="topictext">“清影华光”摄影大赛第一季——“幸福”<br/>在我们美丽的清华园中，发生着各种多姿多彩的故事，演绎着无数拨动心弦的瞬间。</div></a>
 			</div>
 		    </div>
 		</div>
