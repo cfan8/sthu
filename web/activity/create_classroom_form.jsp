@@ -4,9 +4,15 @@
     Author     : linangran
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.message.ShowApplyClassroomPageMessage"%>
+<%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.CRoomApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    ShowApplyClassroomPageMessage message = Util.getMessage(ShowApplyClassroomPageAction.class);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
     <head>
@@ -26,7 +32,7 @@
     <div id="formdiv">
 	<form action="submitClassroomApply.do" method="post" id="submitf">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer"/></span></div>
-	    <div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower"/></span></div>
+	    <div><span class="tag">借用人：</span><span class="value"><input disabled="disabled" type="text" name="borrower" value="<%=message.getApplyUserNickname() %>" /></span></div>
 	    <div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell"/></span></div>
 	    <div><span class="tag">教室活动类型：</span><span class="value_select">
 		    <select name="classUsage" id="classUsage">
@@ -35,7 +41,7 @@
 			<option value="<%=CRoomApplyEntity.USAGE_LECTURE%>">校园讲座</option>
 			<option value="<%=CRoomApplyEntity.USAGE_OTHER%>">其它</option>
 		    </select>
-		    <input type="text" name="usageComment" id="usageComment" style="display: none;"  value="校园比赛"/>
+		    <input type="text" name="usageComment" id="usageComment" style="display: none;" placeholder="请在此填写"  value="校园比赛"/>
 		</span></div>
 	    <div><span class="tag">一级审批部门：</span><span class="value_select">
 		    <select name="applyType">
@@ -47,7 +53,7 @@
 	    <div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager"/></span></div>
 	    <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
 	    <div><span class="tag">借用日期：</span><span class="value"><input type="text" id="borrowDate" name="borrowDate"/></span></div>
-	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="例：11:00-13:00"/></span></div>
+	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="请用24小时制，例：11:00-13:00"/></span></div>
 	    <div><span class="tag">教室类型要求：</span><span class="value_select">
 		    <select name="croomtype">
 			<option value="<%=CRoomApplyEntity.ROOMTYPE_ORDINARY%>" selected="selected">普通教室</option>
@@ -104,12 +110,17 @@
 		    return false;
 		}
 	    });
+	    if ($("select[name='applyType']").val() == 0)
+	    {
+		needalert = true;
+	    }
 	    if (needalert)
 	    {
 		alert("请完整填写所有表格！");
 	    }
 	    else
 	    {
+		$("input[disabled='disabled']").removeAttr("disabled");
 		$("#submitf").submit();
 	    }
 	    return false;

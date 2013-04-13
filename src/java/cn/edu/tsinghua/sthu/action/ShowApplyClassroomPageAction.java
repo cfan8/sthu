@@ -38,12 +38,14 @@ public class ShowApplyClassroomPageAction extends BaseAction {
 	    {
 		showApplyClassroomPageMessage.setModify(true);
 		showApplyClassroomPageMessage.setApplyEntity(entity);
+		showApplyClassroomPageMessage.setApplyUserNickname(getCurrentUser().getNickname());
 		return RETURN_MODIFY;
 	    }
 	}
 	else
 	{
 	    showApplyClassroomPageMessage.setModify(false);
+	    showApplyClassroomPageMessage.setApplyUserNickname(getCurrentUser().getNickname());
 	    return RETURN_CREATE;
 	}
     }

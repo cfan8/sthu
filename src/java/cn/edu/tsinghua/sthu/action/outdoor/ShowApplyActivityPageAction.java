@@ -36,11 +36,13 @@ public class ShowApplyActivityPageAction extends BaseAction{
 	    else
 	    {
 		getShowApplyActivityPageMessage().setApplyEntity(entity);
+		getShowApplyActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
 		return RETURN_MODIFY;
 	    }
 	}
 	else
 	{
+	    getShowApplyActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
 	    return RETURN_CREATE;
 	}
     }

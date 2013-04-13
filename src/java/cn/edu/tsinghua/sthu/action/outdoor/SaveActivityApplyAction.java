@@ -67,6 +67,7 @@ public class SaveActivityApplyAction extends BaseAction{
     @Override
     public String onExecute()
     {
+	this.setApplicatantName(getCurrentUser().getNickname());
 	ActivityApplyEntity entity;
         DateFormat date =  new SimpleDateFormat("yyyy-MM-dd HH:mm"); 
            try

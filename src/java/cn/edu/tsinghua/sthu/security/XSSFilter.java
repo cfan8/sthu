@@ -58,6 +58,10 @@ public class XSSFilter {
     }
 
     public static String strictFilter(String text) {
+	if (text == null)
+	{
+	    return null;
+	}
 	StringBuilder builder = new StringBuilder(text);
 	String[] toReplace = {"&", "<", ">", "\"", "'", "/"};
 	String[] toFill = {"&amp;", "&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;"};
@@ -81,6 +85,10 @@ public class XSSFilter {
     
     public static String richTextFilter(String text)
     {
+	if (text == null)
+	{
+	    return null;
+	}
 	try {
 	    String cleanText = antiSamy.scan(text).getCleanHTML();
 	    return cleanText;

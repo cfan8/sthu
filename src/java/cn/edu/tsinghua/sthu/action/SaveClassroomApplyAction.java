@@ -59,6 +59,7 @@ public class SaveClassroomApplyAction extends BaseAction {
 
     @Override
     public String onExecute() {
+	this.setBorrower(getCurrentUser().getNickname());
 	CRoomApplyEntity entity;
 	if (applyId == null || applyId == -1) {
 	    entity = getApplyClassroomService().createCRoomApply(getOrganizer(), getBorrower(), getBorrowerCell(), getClassUsage(), getUsageComment(), getContent(), getManager(), getManagerCell(), getBorrowDate(), getTimePeriod(), getCroomtype(), getNumber(), getTitle(),

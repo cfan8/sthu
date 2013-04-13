@@ -76,7 +76,7 @@
 	    </div>
 	    <div><span class="tag">主办、协办单位：</span><span class="value"><input type="text" name="organizerName" value="<%=entity.getOrganizerName()%>"/></span></div>
 	    <div><span class="tag">申请单位：</span><span class="value"><input type="text" name="applicatantType" value="<%=entity.getApplicatantType()%>"/></span></div>
-	    <div><span class="tag">申请人：</span><span class="value"><input type="text" name="applicatantName" value="<%=entity.getActivityName()%>"/></span></div>
+	    <div><span class="tag">申请人：</span><span class="value"><input type="text" disabled="disabled" name="applicatantName" value="<%=entity.getApplicatantName()%>"/></span></div>
 	    <div><span class="tag">联系电话：</span><span class="value"><input type="text" name="applicatantCell" value="<%=entity.getApplicatantCell()%>"/></span></div>
 	    <div><span class="tag">电子邮箱：</span><span class="value"><input type="text" name="applicatantEmail" value="<%=entity.getApplicatantEmail()%>"/></span></div>
 	    <div><span class="tag">一级审批部门：</span><span class="value_select">
@@ -99,29 +99,11 @@
 		event.preventDefault();
 		$("#activityContentInput").val(ce.getContent());
 		$("#activityMaterialInput").val(ce2.getContent());
-		var needalert = false;
-		$("form input").each(function(){
-		    if ($(this).val() == "")
-		    {
-			needalert = true;
-			return false;
-		    }
-		});
-		if (needalert)
-		{
-		    alert("请完整填写所有表格！");
-		}
-		else
-		{
-		    $("#submitf").submit();
-		}
-		return false;
-	    });
-	<% } else {%>
-	    
+	<%} else {%>
 	    $("#submitbtn").click(function(event){
 		event.preventDefault();
 		$("#activityContentInput").val(ce.getContent());
+	<% }%>
 		var needalert = false;
 		$("form input").each(function(){
 		    if ($(this).val() == "")
@@ -130,17 +112,21 @@
 			return false;
 		    }
 		});
+		if ($("select[name='applyPath']").val() == 0)
+		{
+		    needalert = true;
+		}
 		if (needalert)
 		{
 		    alert("请完整填写所有表格！");
 		}
 		else
 		{
+		    $("input[disabled='disabled']").removeAttr("disabled"); 
 		    $("#submitf").submit();
 		}
 		return false;
 	    });
-	<% }%>
 		    
 	    AnyTime.picker( "field1",
 	    {format: "%Y-%m-%d %H:%i",

@@ -4,9 +4,15 @@
     Author     : luzhen
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.action.outdoor.ShowApplyActivityPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.message.outdoor.ShowApplyActivityPageMessage"%>
+<%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.ActivityApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    ShowApplyActivityPageMessage message = Util.getMessage(ShowApplyActivityPageAction.class);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
@@ -58,7 +64,7 @@
 	    </div>
 	    <div><span class="tag">主办、协办单位：</span><span class="value"><input type="text" name="organizerName"/></span></div>
 	    <div><span class="tag">申请单位：</span><span class="value"><input type="text" name="applicatantType"/></span></div>
-	    <div><span class="tag">申请人：</span><span class="value"><input type="text" name="applicatantName"/></span></div>
+	    <div><span class="tag">申请人：</span><span class="value"><input type="text" disabled="disabled" name="applicatantName" value="<%=message.getApplyUserNickname() %>"/></span></div>
 	    <div><span class="tag">联系电话：</span><span class="value"><input type="text" name="applicatantCell"/></span></div>
 	    <div><span class="tag">电子邮箱：</span><span class="value"><input type="text" name="applicatantEmail"/></span></div>
 	    <div><span class="tag">审批部门：</span><span class="value_select">
@@ -98,12 +104,18 @@
 		    return false;
 		}
 	    });
+	    if ($("select[name='applyPath']").val() == 0)
+	    {
+		needalert = true;
+	    }
 	    if (needalert)
 	    {
 		alert("请完整填写所有表格！");
+		return false;
 	    }
 	    else
 	    {
+		$("input[disabled='disabled']").removeAttr("disabled");
 		$("#submitf").submit();
 	    }
 	    return false;

@@ -14,6 +14,7 @@ public class ShowApplyClassroomPageMessage extends BaseMessage{
     
     private CRoomApplyEntity applyEntity;
     private boolean modify;
+    private String applyUserNickname;
 
     public CRoomApplyEntity getApplyEntity() {
 	return applyEntity;
@@ -29,6 +30,14 @@ public class ShowApplyClassroomPageMessage extends BaseMessage{
 
     public void setModify(boolean modify) {
 	this.modify = modify;
+    }
+
+    public String getApplyUserNickname() {
+	return applyUserNickname;
+    }
+
+    public void setApplyUserNickname(String applyUserNickname) {
+	this.applyUserNickname = applyUserNickname;
     }
     
 }

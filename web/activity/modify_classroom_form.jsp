@@ -33,7 +33,7 @@
     <div id="formdiv">
 	<form action="submitClassroomApply.do" method="post" id="submitf">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer" value="<%=entity.getOrganizer()%>"/></span></div>
-	    <div><span class="tag">借用人：</span><span class="value"><input type="text" name="borrower" value="<%=entity.getBorrower()%>" /></span></div>
+	    <div><span class="tag">借用人：</span><span class="value"><input disabled="disabled" type="text" name="borrower" value="<%=entity.getBorrower()%>" /></span></div>
 	    <div><span class="tag">借用人联系电话：</span><span class="value"><input type="text" name="borrowerCell" value="<%=entity.getBorrowerCell()%>"/></span></div>
 	    <div><span class="tag">教室活动类型：</span><span class="value_select">
 		    <select name="classUsage" id="classUsage">
@@ -42,7 +42,7 @@
 			<option value="<%=CRoomApplyEntity.USAGE_LECTURE%>" <%=entity.getUsage() == CRoomApplyEntity.USAGE_LECTURE ? "selected=\"selected\"" : ""%>>校园讲座</option>
 			<option value="<%=CRoomApplyEntity.USAGE_OTHER%>" <%=entity.getUsage() == CRoomApplyEntity.USAGE_OTHER ? "selected=\"selected\"" : ""%>>其它</option>
 		    </select>
-		    <input type="text" id="usageComment" name="usageComment" value="<%=entity.getUsageComment()%>" style="display: none;" />
+		    <input type="text" id="usageComment" name="usageComment" value="<%=entity.getUsageComment()%>" placeholder="请在此填写" style="display: none;" />
 		</span></div>
 	    <div><span class="tag">一级审批部门：</span><span class="value_select">
 		    <select name="applyType">
@@ -54,7 +54,7 @@
 	    <div><span class="tag">负责人：</span><span class="value"><input type="text" name="manager" value="<%=entity.getManager()%>"/></span></div>
 	    <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell" value="<%=entity.getManagerCell()%>"/></span></div>
 	    <div><span class="tag">借用日期：</span><span class="value"><input type="text" name="borrowDate" id="borrowDate"  value="<%=new SimpleDateFormat("yyyy-MM-dd").format(entity.getBorrowDate())%>"/></span></div>
-	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" value="<%=entity.getTimePeriod()%>" /></span></div>
+	    <div><span class="tag">借用时间段：</span><span class="value"><input type="text" name="timePeriod" placeholder="请用24小时制，例：11:00-13:00" value="<%=entity.getTimePeriod()%>" /></span></div>
 	    <div><span class="tag">教室类型要求：</span><span class="value_select">
 		    <select name="croomtype">
 			<option value="<%=CRoomApplyEntity.ROOMTYPE_ORDINARY%>" <%=entity.getCroomtype() == CRoomApplyEntity.ROOMTYPE_ORDINARY ? "selected=\"selected\"" : ""%>>普通教室</option>
@@ -108,12 +108,17 @@
 		    return false;
 		}
 	    });
+	    if ($("select[name='applyType']").val() == 0)
+	    {
+		needalert = true;
+	    }
 	    if (needalert)
 	    {
 		alert("请完整填写所有表格！");
 	    }
 	    else
 	    {
+		$("input[disabled='disabled']").removeAttr("disabled");
 		$("#submitf").submit();
 	    }
 	    return false;
