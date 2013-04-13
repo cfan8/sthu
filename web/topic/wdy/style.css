@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+
+body{background:url(image/bg2.png);}
+a:link,a:visited,a:hover{ text-decoration:none;  }
+
+.top{ margin:0px auto; width:1200px; height:246px; background:url(image/top.png); padding:0px auto;}
+.top .title { margin:0px auto;  width:564px; height:157px;  padding:40px 40px 200px 100px;}
+
+.middle { margin:0px auto; width:900px; height:356px; padding:0px auto;} 
+.middle .left { margin:0px auto; width:900px; height:356px; } 
+.middle .left .menu { margin:0px auto; width:248px; height:356px;   padding-right:652px; }  
+.middle .left .menu .word  { margin:0px auto; width:100%; height:25%; padding:0px auto;} 
+.middle .left .menu .word  img{ border:0px} 
+
+
+.middle .left .right{ margin:0px auto; width:600px;  height:450px;  background:url(image/bg.png);} 
+
+.slider { margin:0px auto;  width:100%;  height:10px;}
+
+.time  { margin:0px auto; width:900px; height:219px; padding:0px auto;}
+.time .right { margin:0px auto; width:601px; height:219px; padding-left:298px}
+.time .right  img{ border:0px}
+
+.host  { margin:0px auto; width:900px; height:177px; background:url(image/host.png);padding:0px auto;}
+
+.help  { margin:0px auto; width:900px; height:176px; background:url(image/help.png);padding:0px auto;}
+
+.game {margin:0px auto; width:1200px; height:2300px; background:url(image/1/bg.png); padding:0px auto;}
+.game.top{ margin:0px auto; width:1200px; height:246px; background:url(image/top.png); padding:0px auto;}
+
+.introduction {margin:0px auto; width:1200px; height:3200px; background:url(image/2/bg.png); padding:0px auto;}
+.introduction.top{ margin:0px auto; width:1200px; height:246px; background:url(image/top.png); padding:0px auto;}
+
+.enjoy {margin:0px auto; width:1200px; height:1139px; background:url(image/3/bg.png); padding:0px auto;}
+.enjoy .top{ margin:0px auto; width:1200px; height:246px; background:url(image/top.png); padding:0px auto;}
+
+.enjoy .fileup{ margin:0px auto; width:100%; height:180px;  }
+.enjoy .file{ margin:0px auto; width:1200px; height:20px;  padding:0px auto; text-align:center}
+.enjoy .file  h1 { color:#DDAA55;  font-size:16px; text-decoration:underline; }
+.enjoy  .filedown { margin:0px auto; width:100%; height:88px; }
+
+.enjoy .video{ margin-left:230px; width:100%; height:6px; padding:0px auto; text-align:center}
+.enjoy .video  p { color:#66AAEE;  font-size:14px; text-decoration:underline; }
+.enjoy .mail{margin-left:80px; width:1200px; height:6px;  padding:0px auto; text-align:center}
+.enjoy .mail  p { color:#CC7733;  font-size:14px; }
+
+.enjoy .middle { margin:0px auto; width:100%; height:115px; }
+.enjoy .mail1{margin-left:210px; width:1200px; height:6px;  padding:0px auto; text-align:center}
+.enjoy .mail1  p { color:#CC7733;  font-size:14px; }
+
+.enjoy .bottom { margin:0px auto; width:100%; height:74px; }
+.enjoy .video2{ margin-left:230px; width:100%; height:6px; padding:0px auto; text-align:center}
+.enjoy .video2  p { color:#66AAEE;;  font-size:14px; text-decoration:underline; }
+.enjoy .mail2{margin-left:430px; width:1200px; height:6px;  padding:0px auto; }
+.enjoy .mail2  p { color:#CC7733;  font-size:14px; }
+
+.enjoy .bottom1   { margin:0px auto; width:100%; height:160px; }
+.enjoy  .word {margin:0px auto; width:1200px; height:0px;  padding:0px 0px 100px  100px ;}
+.enjoy  .word  p { color:#CC7733;  font-size:14px; text-align:center; }
+.enjoy  .word  a {  text-decoration:underline;}
+.enjoy   ul li  { float:left ;}
+.enjoy  .word  #contact {   font-size:14px; width:300px; text-align:center ; }
+.enjoy  .word  #renren {   font-size:14px;  width:300px; text-align:center; }
+.enjoy  .word  #renren p a{  color:#FFAA77 }
+.enjoy  .word  #weibo {   font-size:14px;  width:300px; text-align:center ;}
+.enjoy  .word  #weibo  p a{  color:#EEAA66 }
+
+
+
