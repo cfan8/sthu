@@ -16,6 +16,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>登录</title>
+	<script type="text/javascript" src="/js/jquery.js" ></script>
+	<script type="text/javascript" src="/js/BigInt.js" ></script>
+	<script type="text/javascript" src="/js/Barrett.js" ></script>
+	<script type="text/javascript" src="/js/RSA.js" ></script>
 	<style>
 	    html, body {
 		margin: 0;
@@ -23,11 +27,11 @@
 		height: 100%;
 		min-height: 550px;
 	    }
-	    
+
 	    body{
 		background-color: #c1c0c0;
 	    }
-	    
+
 	    #container
 	    {
 		margin: 0 auto;
@@ -72,10 +76,12 @@
 		top:347px;
 	    }
 
-	    #submit
+	    #submitbtn
 	    {
 		left:438px;
 		top: 395px;
+		cursor: pointer;
+		position: absolute;
 	    }
 
 	    #footer
@@ -95,13 +101,22 @@
     <body>
 	<div id="container">
 	    <div id="main" >
-		<form action="checkUser.do?redirectURL=<%=message.getRedirectURL()%>" method="post">
+		<form action="checkUser.do?redirectURL=<%=message.getRedirectURL()%>" method="post" id="loginForm">
 		    <input type="text" name="username" id="username" />
 		    <input type="password" name="password" id="password" />
-		    <input type="image" src="/css/login/button.png" id="submit" />
+		    <img src="/css/login/button.png" id="submitbtn" />
 		</form>
 	    </div>
 	    <div id="footer" >.</div>
 	</div>
+	<script type="text/javascript">
+	    $("#submitbtn").click(function(){
+		$("#submitbtn").unbind('click');
+		setMaxDigits(150);
+		key = new RSAKeyPair("<%=message.getPublicKey() %>","","<%=message.getModulus() %>");
+		$("#password").val(encryptedString(key, $("#password").val()));
+		$("#loginForm").submit();
+	    });
+	</script>
     </body>
 </html>

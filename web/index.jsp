@@ -131,11 +131,11 @@
 		    <div class="content">
 			<div class="lefttopic"><a href="/topic/djx/index.jsp" target="_blank">
 			    <div class="topicimg"><img src="/css/index/topic0.png"></img></div>
-			    <div class="topictext">《马兰花开》是一部反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧。</div></a>
+			    <div class="topictext">展现清华校园文化，弘扬当代大学生精神风貌，传递清华正能量：欢迎报名2013年清华大学“金紫荆”校园微电影大赛。</div></a>
 			</div>
 			<div class="midtopic"><a href="/topic/Honor/index.htm" target="_blank">
 			    <div class="topicimg"><img src="/css/index/topic1.png"></img></div>
-			    <div class="topictext">2012年清华大学学生奖励大会在主楼后厅隆重举行。校长陈吉宁，副校长、教务长袁驷，副校长姜胜耀出席大会并为获奖班级和同学颁奖。</div></a>
+			    <div class="topictext">《马兰花开》是一部反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧。</div></a>
 			</div>
 			<div class="righttopic"><a href="/topic/photography_contest/index.html" target="_blank">
 			    <div class="topicimg"><img src="/css/index/topic2.png"></img></div>

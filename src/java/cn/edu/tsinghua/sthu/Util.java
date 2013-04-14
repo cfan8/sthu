@@ -12,10 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import java.io.*;
 import java.lang.reflect.Field;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +31,9 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
+import sun.security.rsa.RSAPublicKeyImpl;
 
 /**
  *
@@ -30,11 +41,40 @@ import java.util.logging.Logger;
  */
 public class Util
 {
-
+    private static BigInteger publicExponent;
+    private static BigInteger privateExponent;
+    private static BigInteger modulus;
+    
+    public static String publicString;
+    public static String modulusString;
+    
+    static 
+    {
+	publicExponent = new BigInteger("65537");
+	privateExponent = new BigInteger("715268924312113758132023810125103480399683809796116096234199084972424318495693703040765242198347088659739042986461376115951675004447249427278297962834113");
+	modulus = new BigInteger("7045931082615812320261302336414986742064343580731709093476733117666882994326378897194964345423076175978061458394091281370996318240295802620733681739448423");
+	publicString = publicExponent.toString(16);
+	modulusString = modulus.toString(16);
+    }
+    
     public static AlertMessage getAlertMessage()
     {
 	HttpServletRequest request = ServletActionContext.getRequest();
 	return (AlertMessage)request.getAttribute("alertMessage");
+    }
+    
+    public static String RSADecryption(String msg)
+    {
+	BigInteger data = new BigInteger(msg, 16);
+	BigInteger result = data.modPow(privateExponent, modulus);
+	String tString = "";
+	try {
+	    tString = new String(result.toByteArray(), "ASCII");
+	} catch (UnsupportedEncodingException ex) {
+	    Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	tString = new StringBuilder(tString).reverse().toString();
+	return tString;
     }
     
     public static <T, P extends BaseAction> T getMessage(Class<P> type)

@@ -25,6 +25,8 @@ public class ShowLoginPageAction extends BaseAction {
 	    return REDIRECT;
 	} else {
 	    showLoginPageMessage.setRedirectURL(redirectURL);
+	    showLoginPageMessage.setPublicKey(Util.publicString);
+	    showLoginPageMessage.setModulus(Util.modulusString);
 	    return SUCCESS;
 	}
     }

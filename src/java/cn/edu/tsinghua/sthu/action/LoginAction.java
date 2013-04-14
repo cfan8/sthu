@@ -9,6 +9,7 @@ import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.LoginMessage;
 import cn.edu.tsinghua.sthu.service.UserService;
+import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -22,7 +23,7 @@ public class LoginAction extends BaseAction {
     private String redirectURL;
     private UserService userService;
     private LoginMessage loginMessage;
-
+    
     public String getUsername() {
 	return username;
     }
@@ -42,6 +43,7 @@ public class LoginAction extends BaseAction {
     @Override
     public String onExecute() {
 	UserEntity entity;
+	this.setPassword(Util.RSADecryption(this.getPassword()));
 	try {
 	    entity = getUserService().userLogin(username, password);
 	} catch (Exception ex) {
