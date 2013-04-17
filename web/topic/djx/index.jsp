@@ -116,7 +116,7 @@
 			    <div class="piccon"><div class="picmax"><a href="23.jsp" target="_blank"><img src="people/23.jpg"></img><div class="pictext">郭永怀</div></a></div></div>
 			</div>
 		    </div>
-		    <div id="showtitle">《邓稼先》剧照</div>
+		    <div id="showtitle">《马兰花开》剧照</div>
 		    <div id="showcontent"><img src="img/show.png"></img></div>
 
 		    <div id="flower">
