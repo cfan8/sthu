@@ -36,6 +36,9 @@ public class UserEntity extends BaseEntity
     
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
+    
+    @Transient
+    private EmailEntity email;
 
     public UserEntity()
     {
@@ -94,5 +97,13 @@ public class UserEntity extends BaseEntity
 
     public void setAuth(AuthEntity auth) {
 	this.auth = auth;
+    }
+
+    public EmailEntity getEmail() {
+        return email;
+    }
+
+    public void setEmail(EmailEntity email) {
+        this.email = email;
     }
 }

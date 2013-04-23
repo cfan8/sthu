@@ -8,6 +8,7 @@ import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
+import cn.edu.tsinghua.sthu.entity.EmailEntity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -133,6 +134,8 @@ public class UserService extends BaseService {
 	    return false;
 	}
     }
+    
+    
 
     public UserDAO getUserDAO() {
 	return userDAO;

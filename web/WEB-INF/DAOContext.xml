@@ -9,5 +9,6 @@
     <bean id="applyActivityDao" class="cn.edu.tsinghua.sthu.dao.ApplyActivityDAO" scope="prototype" autowire="byName" />
     <bean id="indexManageDAO" class="cn.edu.tsinghua.sthu.dao.IndexManageDAO" scope="prototype" autowire="byName" />
     <bean id="applyCommentDAO" class="cn.edu.tsinghua.sthu.dao.ApplyCommentDAO" scope="prototype" autowire="byName" />
+    <bean id="emailDAO" class="cn.edu.tsinghua.sthu.dao.EmailDAO" scope="prototype" autowire="byName" />
 </beans>
 

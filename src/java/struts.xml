@@ -41,6 +41,11 @@ and open the template in the editor.
 	</action>
 	<action name="updatePassword" class="cn.edu.tsinghua.sthu.action.UpdatePasswordAction">
 	</action>
+        <action name="setEmail" class="cn.edu.tsinghua.sthu.action.SetEmailAction">
+	</action>
+        <action name="showEmail" class="cn.edu.tsinghua.sthu.action.ShowEmailAction">
+            <result name="success">email_setting.jsp</result>
+        </action>
 	<action name="mysthu" class="cn.edu.tsinghua.sthu.action.ShowHomeAction">
 	    <result name="user_home">userhome.jsp</result>
 	    <result name="admin_home">adminhome.jsp</result>
