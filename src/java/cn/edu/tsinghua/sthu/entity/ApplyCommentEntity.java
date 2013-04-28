@@ -24,6 +24,7 @@ public class ApplyCommentEntity extends BaseEntity {
     
     public static final int COMMENT_TYPE_ACCEPT = 1;
     public static final int COMMENT_TYPE_REJECT = 2;
+    public static final int COMMENT_TYPE_COMMENT = 3;
     
     @Index(name="applyIdIndex")
     private int applyId;

@@ -36,6 +36,7 @@ public class ShowApplyAction extends BaseAction {
 		showApplyMessage.setShowConfirm(false);
 	    }
 	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
+                showApplyMessage.setShowComment(true);
 		if (entity.getIdentityStatus() == CRoomApplyEntity.IDENTITY_STATUS_TODO
 			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
 		    showApplyMessage.setApproveType(ShowApplyMessage.APPROVE_TYPE_IDENTITY);

@@ -147,45 +147,49 @@ public class ApplyClassroomService extends BaseService {
     }
 
     @Transactional
-    public void processComment(CRoomApplyEntity applyEntity, boolean isApprove, String comment, int type, String nickName, int userid) {
+    public void processComment(CRoomApplyEntity applyEntity, Integer isApprove, String comment, int type, String nickName, int userid) {
 	ApplyCommentEntity commentEntity = new ApplyCommentEntity();
 	commentEntity.setApplyId(applyEntity.getID());
 	commentEntity.setComment(comment);
 	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
-	commentEntity.setCommentType(isApprove ? ApplyCommentEntity.COMMENT_TYPE_ACCEPT : ApplyCommentEntity.COMMENT_TYPE_REJECT);
+	commentEntity.setCommentType(isApprove);
 	commentEntity.setNickname(nickName);
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
 	applyCommentDAO.addComment(commentEntity);
-	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY) {
-	    applyEntity.setIdentityDate(new Date());
-	    if (isApprove == true) {
-		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_ACCEPTED);
-		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_TODO);
-	    } else {
-		applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_REJECTED);
-		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
-	    }
-	} else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE) {
-	    applyEntity.setResourceDate(new Date());
-	    if (isApprove) {
-		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_ACCEPTED);
-		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_TODO);
-	    } else {
-		applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_REJECTED);
-		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
-	    }
-	} else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE) {
-	    applyEntity.setAllocateDate(new Date());
-	    if (isApprove) {
-		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_ACCEPTED);
-		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_ACCEPTED);
-	    } else {
-		applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_REJECTED);
-		applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
-	    }
-	}
-	applyClassroomDAO.updateCRoomApplyEntity(applyEntity);
+        if(isApprove != 3)
+        {
+            if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY) {
+                applyEntity.setIdentityDate(new Date());
+                if (isApprove == 1) {
+                    applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_ACCEPTED);
+                    applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_TODO);
+                } else if(isApprove == 2) 
+                {
+                    applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_REJECTED);
+                    applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+                }
+            } else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE) {
+                applyEntity.setResourceDate(new Date());
+                if (isApprove == 1) {
+                    applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_ACCEPTED);
+                    applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_TODO);
+                } else if(isApprove == 2){
+                    applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_REJECTED);
+                    applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+                }
+            } else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE) {
+                applyEntity.setAllocateDate(new Date());
+                if (isApprove == 1) {
+                    applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_ACCEPTED);
+                    applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_ACCEPTED);
+                } else if(isApprove == 2){
+                    applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_REJECTED);
+                    applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
+                }
+            }
+            applyClassroomDAO.updateCRoomApplyEntity(applyEntity);
+        }
     }
 
     @Transactional

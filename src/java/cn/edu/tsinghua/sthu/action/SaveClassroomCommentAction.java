@@ -17,7 +17,7 @@ public class SaveClassroomCommentAction extends BaseAction{
 
     private ApplyClassroomService applyClassroomService;
     private Integer applyId;
-    private Boolean isApprove;
+    private Integer isApprove;
     private String comment;
     private Integer type;
     
@@ -25,16 +25,20 @@ public class SaveClassroomCommentAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	applyClassroomService.processComment(entity, isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
-	if (isApprove)
-	{
-	    alertMessage.setSimpleAlert("已通过审批！");
-	}
-	else
-	{
-	    alertMessage.setSimpleAlert("已驳回审批！");
-	}
-	return ALERT;
+        applyClassroomService.processComment(entity,isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
+        if (isApprove == 1)
+        {
+            alertMessage.setSimpleAlert("已通过审批！");
+        }
+        else if(isApprove == 2)
+        {
+            alertMessage.setSimpleAlert("已驳回审批！");
+        }
+        else if(isApprove == 3)
+        {
+            alertMessage.setSimpleAlert("已评论！");
+        }
+        return ALERT;
     }
 
     @Override
@@ -48,21 +52,28 @@ public class SaveClassroomCommentAction extends BaseAction{
 	{
 	    return false;
 	}
-	if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY && entity.getIdentityStatus() == CRoomApplyEntity.IDENTITY_STATUS_TODO
-		&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType())
-	{
-	    return true;
-	}
-	else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE && entity.getResourceStatus() == CRoomApplyEntity.RESOURCE_STATUS_TODO
-		&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType())
-	{
-	    return true;
-	}
-	else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE && entity.getAllocateStatus() == CRoomApplyEntity.ALLOCATE_STATUS_TODO
-		&& getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType())
-	{
-	    return true;
-	}
+        if((isApprove == 1) || (isApprove == 2))
+        {
+            if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY && entity.getIdentityStatus() == CRoomApplyEntity.IDENTITY_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType())
+            {
+                return true;
+            }
+            else if (type == ShowApplyMessage.APPROVE_TYPE_RESOURCE && entity.getResourceStatus() == CRoomApplyEntity.RESOURCE_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType())
+            {
+                return true;
+            }
+            else if (type == ShowApplyMessage.APPROVE_TYPE_ALLOCATE && entity.getAllocateStatus() == CRoomApplyEntity.ALLOCATE_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType())
+            {
+                return true;
+            }
+        }
+        else if(isApprove == 3)
+        {
+            return true;
+        }
 	return false;
     }
     
@@ -92,11 +103,11 @@ public class SaveClassroomCommentAction extends BaseAction{
 	this.applyId = applyId;
     }
 
-    public Boolean getIsApprove() {
+    public Integer getIsApprove() {
 	return isApprove;
     }
 
-    public void setIsApprove(Boolean isApprove) {
+    public void setIsApprove(Integer isApprove) {
 	this.isApprove = isApprove;
     }
 
@@ -123,5 +134,4 @@ public class SaveClassroomCommentAction extends BaseAction{
     public void setApplyClassroomService(ApplyClassroomService applyClassroomService) {
 	this.applyClassroomService = applyClassroomService;
     }
-    
 }

@@ -291,13 +291,23 @@
 	</script>
     </div>
     <% }%>
-    <% if (message.isShowApprove()) {%>
+    <% if (message.isShowComment()) {%>
     <div id="approveDiv" class="noprint">
 	<form action="approveApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
-	    <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="true" checked="checked"/>同意<input type="radio" name="isApprove" value="false"/>驳回</p>
-	    <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
+	    <%if(message.isShowApprove()){%>
+            <p><label>是否同意该申请？</label>
+            <%}else{%>
+            <p><label>请评论：</label>
+            <%}%>
+            <%if(message.isShowApprove()){%>
+            <input type="radio" name="isApprove" value="1" checked="true"/>同意<input type="radio" name="isApprove" value="2"/>驳回
+            <input type="radio" name="isApprove" value="3"/>仅评论（不审批）</p>
+            <%}else{%>
+            <input type="radio" name="isApprove" value="3" checked="checked"/>仅评论（不审批）</p>
+            <%}%>
+	    <script id="editor" type="text/plain" name="editor">请填写意见</script>
 	    <input type="hidden" id="comment" name="comment" />
-	    <% if (message.getApproveType() == ShowApplyMessage.APPROVE_TYPE_RESOURCE) {%>
+	    <% if ((message.isShowApprove())&&(message.getApproveType() == ShowApplyMessage.APPROVE_TYPE_RESOURCE)) {%>
 	    <select id="moduleSelect" style="margin: 5px 0px 0px 0px;max-width: 600px;">
 		<option value="0">使用审批模板</option>
 		<option value="1">[C楼教室]同意，借用C楼XXX教室，请将此单放到C楼306门口文件袋内。</option>
@@ -317,7 +327,7 @@
 		}
 		return false;
 	    });
-	    <% if (message.getApproveType() == ShowApplyMessage.APPROVE_TYPE_RESOURCE) {%>
+	    <% if ((message.isShowApprove())&&(message.getApproveType() == ShowApplyMessage.APPROVE_TYPE_RESOURCE)) {%>
 	    $("#moduleSelect").change(function(){
 		if ( $("#moduleSelect").val() != "0")
 		{
