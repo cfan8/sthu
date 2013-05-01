@@ -9,7 +9,9 @@ import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -63,5 +65,19 @@ public class UserDAO extends BaseDAO<UserEntity>
     public void updateUserEntity(UserEntity entity)
     {
 	update(entity);
+    }
+    
+
+    public List<UserEntity> getUserListByIdentity(int identityCode){
+        List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.opIdentityCode", identityCode)).list();       
+	return list;
+    }
+    public List<UserEntity> getUserListByResource(int resourceCode){
+        List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.opResourceCode", resourceCode)).list();       
+	return list;
+    }
+    public List<UserEntity> getUserListByAllocate(int allocateCode){
+        List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.opAllocateCode", allocateCode)).list();       
+	return list;
     }
 }

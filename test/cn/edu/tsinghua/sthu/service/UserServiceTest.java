@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package cn.edu.tsinghua.sthu.service;
-/*
+
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import org.junit.After;
@@ -25,7 +25,10 @@ public class UserServiceTest extends BaseTest {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ApplyClassroomService applyClassroomService;
 
+    /*
     @Test
     public void testUserLogin() {
 	System.out.println("userLogin");
@@ -45,5 +48,11 @@ public class UserServiceTest extends BaseTest {
 	boolean result = userService.addUser(username, password, nickname);
 	assertEquals(expResult, result);
     }
+    * */
+    
+    @Test
+    public void testMail()
+    {
+        applyClassroomService.sendEmailByIdentity(1, 20);
+    }
 }
- */

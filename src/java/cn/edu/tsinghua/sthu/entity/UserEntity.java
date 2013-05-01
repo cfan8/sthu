@@ -6,6 +6,8 @@ package cn.edu.tsinghua.sthu.entity;
 
 import java.util.Date;
 import javax.persistence.*;
+import org.hibernate.FetchMode;
+import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.Index;
 
 /**
@@ -36,9 +38,7 @@ public class UserEntity extends BaseEntity
     
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
-    
-    @Transient
-    private EmailEntity email;
+
 
     public UserEntity()
     {
@@ -99,11 +99,4 @@ public class UserEntity extends BaseEntity
 	this.auth = auth;
     }
 
-    public EmailEntity getEmail() {
-        return email;
-    }
-
-    public void setEmail(EmailEntity email) {
-        this.email = email;
-    }
 }

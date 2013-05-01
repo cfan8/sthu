@@ -134,7 +134,7 @@ public class UserService extends BaseService {
 	    return false;
 	}
     }
-    
+
     
 
     public UserDAO getUserDAO() {
@@ -144,4 +144,5 @@ public class UserService extends BaseService {
     public void setUserDAO(UserDAO userDAO) {
 	this.userDAO = userDAO;
     }
+
 }

@@ -9,18 +9,17 @@ import cn.edu.tsinghua.sthu.entity.EmailEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
-
 /**
  *
  * @author elsie
  */
 public class EmailService extends BaseService{
     private EmailDAO emailDAO;
-    
+
     @Transactional
-    public boolean updateEmail(EmailEntity emailEntity){
-        List<EmailEntity> emails = emailDAO.getEmailById(emailEntity.getUserid());
-        if(emails.isEmpty())
+    public boolean  updateEmail(EmailEntity emailEntity){
+        EmailEntity email = emailDAO.getEmailById(emailEntity.getUserid());
+        if(email == null)
             emailDAO.setEmail(emailEntity);
         else
             emailDAO.updateEmail(emailEntity);
@@ -29,11 +28,11 @@ public class EmailService extends BaseService{
 
     @Transactional
     public EmailEntity getEmailByUserid(int userid){
-        List<EmailEntity> emails = emailDAO.getEmailById(userid);
-        if(emails.isEmpty())
+        EmailEntity email = emailDAO.getEmailById(userid);
+        if(email == null)
             return null;
         else
-            return emails.get(0);
+            return email;
 
     }
     /**
@@ -49,6 +48,8 @@ public class EmailService extends BaseService{
     public void setEmailDAO(EmailDAO emailDAO) {
         this.emailDAO = emailDAO;
     }
+
+ 
 
 
 }

@@ -15,7 +15,7 @@ public class ShowEmailAction extends BaseAction{
     @Override
     public String onExecute(){
         
-        getShowEmailMessage().setEmailEntity(emailService.getEmailByUserid(getCurrentUser().getID()));
+        getShowEmailMessage().setEmailEntity(getEmailService().getEmailByUserid(getCurrentUser().getID()));
         return SUCCESS;
     }
 
@@ -56,5 +56,6 @@ public class ShowEmailAction extends BaseAction{
     public void setEmailService(EmailService emailService) {
         this.emailService = emailService;
     }
+
     
 }

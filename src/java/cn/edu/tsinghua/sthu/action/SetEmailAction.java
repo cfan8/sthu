@@ -20,7 +20,7 @@ public class SetEmailAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
         emailEntity = new EmailEntity(getCurrentUser().getID(),email, isIsReceiveRemindEmail());
-        if(emailService.updateEmail(emailEntity)){
+        if(getEmailService().updateEmail(emailEntity)){
             alertMessage.setSimpleAlert("邮箱修改成功！", "showEmail.do");
         }
         else{
@@ -99,5 +99,6 @@ public class SetEmailAction extends BaseAction{
     public void setEmailService(EmailService emailService) {
         this.emailService = emailService;
     }
+
     
 }

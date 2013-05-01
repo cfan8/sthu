@@ -157,8 +157,10 @@
         <a class="logout" href="/logout.do">登出</a>
         
         <a class="logout" href="update_password.jsp">修改密码</a>
-        <% if (entity.getOpArticle() > -1) { %>
+        <% if (entity.getRole() == 2) { %>
             <a class="logout" href="showEmail.do">邮箱管理</a>
+        <% } %>
+        <% if (entity.getOpArticle() > -1) { %>
             <a class="logout" href="/new/newsManage.do">新闻管理</a>
             <a class="logout" href="/showIndexManage.do">首页管理</a>
         <% } %>

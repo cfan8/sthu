@@ -9,4 +9,5 @@
         <bean id="applyActivityService" class="cn.edu.tsinghua.sthu.service.ApplyActivityService" scope="prototype" autowire="byName" />
         <bean id="indexManageService" class="cn.edu.tsinghua.sthu.service.IndexManageService" scope="prototype" autowire="byName" />
         <bean id="emailService" class="cn.edu.tsinghua.sthu.service.EmailService" scope="prototype" autowire="byName" />
+       
 </beans>

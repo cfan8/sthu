@@ -12,14 +12,21 @@ import java.util.*;
 import org.springframework.transaction.annotation.Transactional;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction;
+import cn.edu.tsinghua.sthu.dao.AuthDAO;
+import cn.edu.tsinghua.sthu.dao.EmailDAO;
+import cn.edu.tsinghua.sthu.dao.UserDAO;
+import cn.edu.tsinghua.sthu.entity.EmailEntity;
 import cn.edu.tsinghua.sthu.message.outdoor.ShowActivityApplyMessage;
+import javamail.MailMessage;
 /**
  *
  * @author luzhen
  */
 public class ApplyActivityService extends BaseService {
     private ApplyActivityDAO applyActivityDao;
-    
+    private AuthDAO authDAO;
+    private UserDAO userDAO;
+    private EmailDAO emailDAO;
     @Transactional
     public ActivityApplyEntity getActivityApplyEntityById(int id, int userid) {
 	ActivityApplyEntity entity = getApplyActivityDao().getActivityApplyEntityById(id);
@@ -136,6 +143,7 @@ public class ApplyActivityService extends BaseService {
 	entity.setIdentityDate(null);
 	entity.setResourceDate(null);
 	applyActivityDao.updateActivityApplyEntity(entity);
+        sendEmailByIdentity(entity.getIdentityType(), entity.getID());
 	return entity;
     }
     
@@ -224,6 +232,7 @@ public class ApplyActivityService extends BaseService {
 	    if (isApprove == true) {
 		activityApplyEntity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
 		activityApplyEntity.setResourceStatus(ActivityApplyEntity.RESOURCE_STATUS_TODO);
+                sendEmailByResource(activityApplyEntity.getResourceType(), activityApplyEntity.getID());
 	    } else {
 		activityApplyEntity.setIdentityStatus(ActivityApplyEntity.IDENTITY_STATUS_REJECTED);
 		activityApplyEntity.setApplyStatus(ActivityApplyEntity.APPLY_STATUS_REJECTED);
@@ -240,5 +249,78 @@ public class ApplyActivityService extends BaseService {
 	} 
 	applyActivityDao.updateActivityApplyEntity(activityApplyEntity);
     }
+ @Transactional
+    public void sendEmailByIdentity(int identityType, int applyId){
+        List<UserEntity> userlist = getUserDAO().getUserListByIdentity(identityType);
+        sendEmailByUserList(userlist, applyId);
+    }
+    @Transactional
+    public void sendEmailByResource(int resourceType, int applyId){
+        List<UserEntity> userlist = getUserDAO().getUserListByResource(resourceType);
+        sendEmailByUserList(userlist, applyId);
+    }
 
+     @Transactional
+    public void sendEmailByUserList(List<UserEntity> userList, int applyId){
+       String link = "www.student.tsinghua.edu.cn/login.do?redirectURL=%2foutdoor%2fshowActivityApply.do%3fapplyId%3d" + String.valueOf(applyId);
+       for(int i = 0; i < userList.size(); i ++){
+            if(userList.get(i) != null){
+                EmailEntity email = getEmailDAO().getEmailById(userList.get(i).getID());
+                if(email != null){
+                    if(email.isIsReceiveRemindEmail()){
+                        MailMessage mailMessage = new MailMessage(userList.get(i).getNickname(), email.getEmail(), link);
+                        try{
+                            SendEmailService.getMailSenderPool().send(mailMessage);
+                        }
+                        catch (Exception e){
+                            
+                        }
+                    }
+                }
+            }
+        }
+     
+    }
+
+    /**
+     * @return the authDAO
+     */
+    public AuthDAO getAuthDAO() {
+        return authDAO;
+    }
+
+    /**
+     * @param authDAO the authDAO to set
+     */
+    public void setAuthDAO(AuthDAO authDAO) {
+        this.authDAO = authDAO;
+    }
+
+    /**
+     * @return the userDAO
+     */
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    /**
+     * @param userDAO the userDAO to set
+     */
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    /**
+     * @return the emailDAO
+     */
+    public EmailDAO getEmailDAO() {
+        return emailDAO;
+    }
+
+    /**
+     * @param emailDAO the emailDAO to set
+     */
+    public void setEmailDAO(EmailDAO emailDAO) {
+        this.emailDAO = emailDAO;
+    }
 }

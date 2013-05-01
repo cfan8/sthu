@@ -13,11 +13,16 @@ import java.util.List;
  * @author elsie
  */
 public class EmailDAO extends BaseDAO<EmailEntity>{
-    public EmailDAO(){
+    public  EmailDAO(){
         super(EmailEntity.class);
     }
-    public List<EmailEntity> getEmailById(int userid){
-        return select().add(Restrictions.eq("userid", userid)).list();
+    public EmailEntity getEmailById(int userid){
+        List<EmailEntity> list = select().add(Restrictions.eq("userid", userid)).list();
+        if(list.size() == 1){
+            return list.get(0);
+        }
+        else 
+            return null;
     }
     public void setEmail(EmailEntity emailEntity){
         insert(emailEntity);

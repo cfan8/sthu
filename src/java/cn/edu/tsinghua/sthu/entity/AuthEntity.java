@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.entity;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Index;
 /**
  *
  * @author linangran
@@ -22,10 +23,13 @@ public class AuthEntity extends BaseEntity{
     
     private int opArticle = -1;  //审批文章权限
     
+    @Index(name="opIdentityCodeIndex")
     private int opIdentityCode = -1;	//一级审批权限(确认申请人身份)
 
+    @Index(name="opResouceCodeIndex")
     private int opResourceCode = -1;	//二级审批权限(确认申请合理性)
     
+    @Index(name="opAllocateCodeIndex")
     private int opAllocateCode = -1;	//三级审批权限(按照申请要求分配申请)
 
     public int getRole() {
