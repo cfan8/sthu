@@ -21,6 +21,15 @@ import java.util.List;
 import javax.persistence.EntityListeners;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.edu.tsinghua.sthu.dao.AuthDAO;
+import cn.edu.tsinghua.sthu.dao.UserDAO;
+import cn.edu.tsinghua.sthu.dao.EmailDAO;
+import cn.edu.tsinghua.sthu.entity.EmailEntity;
+import javamail.MailSender;
+import javamail.MailMessage;
+import javamail.MailSenderPool;
+
+
 /**
  *
  * @author linangran
@@ -29,6 +38,9 @@ public class ApplyClassroomService extends BaseService {
 
     private ApplyClassroomDAO applyClassroomDAO;
     private ApplyCommentDAO applyCommentDAO;
+    private AuthDAO authDAO;
+    private UserDAO userDAO;
+    private EmailDAO emailDAO;
 
     @Transactional
     public CRoomApplyEntity getCRoomApplyEntityById(int id, int userid) {
@@ -143,6 +155,7 @@ public class ApplyClassroomService extends BaseService {
 	entity.setAllocateDate(null);
 	applyCommentDAO.markAsOld(entity.getComments());
 	applyClassroomDAO.updateCRoomApplyEntity(entity);
+        sendEmailByIdentity(entity.getIdentityType(), entity.getID());
 	return entity;
     }
 
@@ -157,6 +170,7 @@ public class ApplyClassroomService extends BaseService {
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
 	applyCommentDAO.addComment(commentEntity);
+
         if(isApprove != 3)
         {
             if (type == ShowApplyMessage.APPROVE_TYPE_IDENTITY) {
@@ -164,6 +178,7 @@ public class ApplyClassroomService extends BaseService {
                 if (isApprove == 1) {
                     applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_ACCEPTED);
                     applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_TODO);
+                    sendEmailByResource(applyEntity.getResourceType(), applyEntity.getID());
                 } else if(isApprove == 2) 
                 {
                     applyEntity.setIdentityStatus(CRoomApplyEntity.IDENTITY_STATUS_REJECTED);
@@ -174,6 +189,7 @@ public class ApplyClassroomService extends BaseService {
                 if (isApprove == 1) {
                     applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_ACCEPTED);
                     applyEntity.setAllocateStatus(CRoomApplyEntity.ALLOCATE_STATUS_TODO);
+                    sendEmailByAllocate(applyEntity.getAllocateType(), applyEntity.getID());
                 } else if(isApprove == 2){
                     applyEntity.setResourceStatus(CRoomApplyEntity.RESOURCE_STATUS_REJECTED);
                     applyEntity.setApplyStatus(CRoomApplyEntity.APPLY_STATUS_REJECTED);
@@ -190,6 +206,7 @@ public class ApplyClassroomService extends BaseService {
             }
             applyClassroomDAO.updateCRoomApplyEntity(applyEntity);
         }
+
     }
 
     @Transactional
@@ -270,5 +287,84 @@ public class ApplyClassroomService extends BaseService {
 
     public void setApplyCommentDAO(ApplyCommentDAO applyCommentDAO) {
 	this.applyCommentDAO = applyCommentDAO;
+    }
+    
+     @Transactional
+    public void sendEmailByIdentity(int identityType, int applyId){
+        List<UserEntity> userlist = userDAO.getUserListByIdentity(identityType);
+        sendEmailByUserList(userlist, applyId);
+    }
+    @Transactional
+    public void sendEmailByResource(int resourceType, int applyId){
+        List<UserEntity> userlist = userDAO.getUserListByResource(resourceType);
+        sendEmailByUserList(userlist, applyId);
+    }
+    
+    @Transactional
+    public void sendEmailByAllocate(int allocateType, int applyId){
+        List<UserEntity> userlist = userDAO.getUserListByAllocate(allocateType);
+        sendEmailByUserList(userlist, applyId);
+    }
+     @Transactional
+    public void sendEmailByUserList(List<UserEntity> userList, int applyId){
+         String link = "www.student.tsinghua.edu.cn/login.do?redirectURL=%2factivity%2fshowApply.do%3fapplyId%3d" + String.valueOf(applyId);
+       for(int i = 0; i < userList.size(); i ++){
+            if(userList.get(i) != null){
+                EmailEntity email = emailDAO.getEmailById(userList.get(i).getID());
+                if(email != null){
+                    if(email.isIsReceiveRemindEmail()){
+                        MailMessage mailMessage = new MailMessage(userList.get(i).getNickname(), email.getEmail(), link);
+                        try{
+                            SendEmailService.getMailSenderPool().send(mailMessage);
+                        }
+                        catch (Exception e){
+                            
+                        }
+                    }
+                }
+            }
+        }
+     
+    }
+    /**
+     * @return the authDAO
+     */
+    public AuthDAO getAuthDAO() {
+        return authDAO;
+    }
+
+    /**
+     * @param authDAO the authDAO to set
+     */
+    public void setAuthDAO(AuthDAO authDAO) {
+        this.authDAO = authDAO;
+    }
+
+    /**
+     * @return the userDAO
+     */
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    /**
+     * @param userDAO the userDAO to set
+     */
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    /**
+     * @return the emailDAO
+     */
+    public EmailDAO getEmailDAO() {
+        return emailDAO;
+    }
+
+    /**
+     * @param emailDAO the emailDAO to set
+     */
+    public void setEmailDAO(EmailDAO emailDAO) {
+        this.emailDAO = emailDAO;
     }
 }
