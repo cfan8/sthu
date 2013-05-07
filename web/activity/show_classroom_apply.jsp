@@ -178,6 +178,11 @@
 		{
 		    background-color: #d3fac2;
 		}
+                
+                .comment3
+                {
+                    background-color: #feff80;
+                }
 
 		#approveDiv
 		{
