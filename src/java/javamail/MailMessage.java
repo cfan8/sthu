@@ -29,7 +29,7 @@ import org.springframework.mail.MailException;
 public class MailMessage {
     private String receiverName;
     private String applyLink;
-    private String mail_from = "xxx@mails.tsinghua.edu.cn";//改成你的邮箱
+    private String mail_from = "xxx@mails.tsinghua.edu.cn";
     private String mail_head_name = "学生清华";
     private String mail_head_value = "学生清华邮件提醒";
     private String mail_to = "xxx@gmail.com";

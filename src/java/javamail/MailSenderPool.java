@@ -14,6 +14,8 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  *
@@ -22,7 +24,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 public class MailSenderPool extends Thread{
     private MailSender mailSender;
     private Thread thread;
-    private Queue queue = new Queue();
+    private Queue<Object> queue = new LinkedList<Object>();
     private Object mutex = new Object();
     private Session session;
     private String host="mail.tsinghua.edu.cn";
@@ -107,6 +109,7 @@ public class MailSenderPool extends Thread{
 
     public void doSend(MailMessage mailMessage) throws Exception {
         synchronized(this){
+            mailMessage.setMail_from(getUsername());
             mailSender.send(mailMessage);
         }
     }
