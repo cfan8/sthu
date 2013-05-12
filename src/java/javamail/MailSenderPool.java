@@ -16,20 +16,25 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import java.util.Queue;
 import java.util.LinkedList;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.hibernate.annotations.common.util.impl.Log_$logger;
+import org.apache.commons.logging.*;
 /**
  *
  * @author elsie
  */
 public class MailSenderPool extends Thread{
+    
+    private static Logger logger = Logger.getLogger(MailSenderPool.class.getName());
     private MailSender mailSender;
     private Thread thread;
     private Queue<Object> queue = new LinkedList<Object>();
     private Object mutex = new Object();
     private Session session;
     private String host="mail.tsinghua.edu.cn";
-    private String username = "xxx@mails.tsinghua.edu.cn";//改成你的邮箱
-    private String password = "******";//改成你的密码
+    private String username = "chengcai@mail.tsinghua.edu.cn";//改成你的邮箱
+    private String password = "blooming";//改成你的密码
     public MailSenderPool(){
         init();
    
@@ -51,7 +56,7 @@ public class MailSenderPool extends Thread{
                     doSend(object);
                 } 
                 catch (Exception ex) {
-                    ex.printStackTrace();
+                    logger.log(Level.SEVERE, null, ex);
                 }
             }
    // 等~直到add方法的通知!
@@ -60,6 +65,7 @@ public class MailSenderPool extends Thread{
                     mutex.wait();
                 } 
                 catch (InterruptedException e) {
+		    logger.log(Level.SEVERE, null, e);
                 }
             }
         }

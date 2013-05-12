@@ -29,7 +29,7 @@ import org.springframework.mail.MailException;
 public class MailMessage {
     private String receiverName;
     private String applyLink;
-    private String mail_from = "xxx@mails.tsinghua.edu.cn";
+    private String mail_from = "chengcai@mail.tsinghua.edu.cn";//改成你的邮箱
     private String mail_head_name = "学生清华";
     private String mail_head_value = "学生清华邮件提醒";
     private String mail_to = "xxx@gmail.com";
@@ -172,8 +172,8 @@ public class MailMessage {
      * @param mail_body the mail_body to set
      */
     public void setMail_body() {
-        String mail_body = "尊敬的" + getReceiverName() + "管理员您好！<br/>您有新的教室申请/活动资源申请需要审批，请登录学生清华进行审批。点此进入"
-                +"<a href='"+getApplyLink()+"'>"+getApplyLink()+"</a>";
+        String mail_body = "尊敬的" + getReceiverName() + "管理员：<br/>您好！您有新的教室申请/活动资源申请需要审批，请登录学生清华进行审批。请点击下面的链接查看："
+                +"<a href='http://"+getApplyLink()+"' target='_blank'>http://"+getApplyLink()+"</a><br/>祝好！<br/>-------<br/>这是一封系统自动发出的邮件，请勿回复；如您需要取消提醒，请进入<a href='http://www.student.tsinghua.edu.cn/login.do?redirectURL=%2FshowEmail.do' target='_blank'>我的学清</a>取消邮件提醒。";
         this.mail_body = mail_body;
     }
 

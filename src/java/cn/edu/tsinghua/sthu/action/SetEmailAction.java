@@ -53,7 +53,7 @@ public class SetEmailAction extends BaseAction{
     }
     
     public static boolean isVaildEmail(String email){ 
-      String emailPattern="[a-zA-Z0-9][a-zA-Z0-9._-]{2,16}[a-zA-Z0-9]@[a-zA-Z0-9]+.[a-zA-Z0-9]+"; 
+      String emailPattern="[a-zA-Z0-9][a-zA-Z0-9._-]{2,32}[a-zA-Z0-9]@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)+"; 
       boolean result=Pattern.matches(emailPattern, email); 
       return result; 
     }
