@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package cn.edu.tsinghua.sthu.action;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.ShowEmailMessage;
 import cn.edu.tsinghua.sthu.service.EmailService;
 /**
@@ -27,6 +28,15 @@ public class ShowEmailAction extends BaseAction{
     @Override
     public boolean needLogin() {
         return true;
+    }
+    
+     @Override
+    public boolean hasAuth(){
+        if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     /**

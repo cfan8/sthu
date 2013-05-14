@@ -4,9 +4,11 @@
  */
 package cn.edu.tsinghua.sthu.action;
 
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.EmailEntity;
 import cn.edu.tsinghua.sthu.service.EmailService;
 import java.util.regex.Pattern;
+import org.eclipse.jdt.internal.compiler.ast.TrueLiteral;
 
 /**
  *
@@ -33,7 +35,7 @@ public class SetEmailAction extends BaseAction{
     public boolean valid() {
         if(isValid(getEmail())){
             if(isVaildEmail(getEmail())){
-                alertMessage.setSimpleAlert("修改成功！");
+                //alertMessage.setSimpleAlert("修改成功！");
                 return true;
             }
             else{
@@ -42,14 +44,29 @@ public class SetEmailAction extends BaseAction{
             }
         }
         else{
-            alertMessage.setSimpleAlert("您输入的信息有误！");
-            return false;
+            //alertMessage.setSimpleAlert("您输入的信息有误！");
+            //return false;
+            if(isIsReceiveRemindEmail()){
+                alertMessage.setSimpleAlert("请输入邮箱！");
+                return false;
+            }
+            else
+                return true;
         }
     }
 
     @Override
     public boolean needLogin() {
         return true;
+    }
+    
+    @Override
+    public boolean hasAuth(){
+        if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
     
     public static boolean isVaildEmail(String email){ 

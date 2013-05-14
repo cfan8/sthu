@@ -29,8 +29,15 @@ public class EmailDAO extends BaseDAO<EmailEntity>{
     }
     public void updateEmail(EmailEntity emailEntity){
         EmailEntity email = (EmailEntity) select().add(Restrictions.eq("userid", emailEntity.getUserid())).list().get(0);
-        email.setEmail(emailEntity.getEmail());
-        email.setIsReceiveRemindEmail(emailEntity.isIsReceiveRemindEmail());
+        if(emailEntity.getEmail()=="" || emailEntity.getEmail()==null)
+        {
+            email.setEmail("");
+            email.setIsReceiveRemindEmail(false);
+        }
+        else{
+            email.setEmail(emailEntity.getEmail());
+            email.setIsReceiveRemindEmail(emailEntity.isIsReceiveRemindEmail());
+        }
         update(email);
     }
 }
