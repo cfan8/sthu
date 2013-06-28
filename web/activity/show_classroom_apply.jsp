@@ -238,7 +238,7 @@
 	    <tr><td class="tag">活动参与人数：</td><td class="value"><%=entity.getNumber()%></td></tr>
 	    <tr><td class="tag">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
-		    <p>院系学生组（分团委）审批状态：<%=entity.getIdentityStatusText()%></p>
+		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
 		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
 		    <p>物业/注册中心/C楼审批状态：<%=entity.getAllocateStatusText()%></p>
 		</td></tr>

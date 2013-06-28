@@ -114,7 +114,9 @@
 		$("#submitbtn").unbind('click');
 		setMaxDigits(150);
 		key = new RSAKeyPair("<%=message.getPublicKey() %>","","<%=message.getModulus() %>");
-		$("#password").val(encryptedString(key, $("#password").val()));
+		var password = $("#password").val().substr(0, 32);
+		password = "<%=message.getTimestamp() %>" + ":" + password;
+		$("#password").val(encryptedString(key, password));
 		$("#loginForm").submit();
 	    });
 	</script>

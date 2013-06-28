@@ -12,6 +12,7 @@ public class ShowLoginPageMessage extends BaseMessage{
     private String redirectURL;
     private String publicKey;
     private String modulus;
+    private long timestamp;
 
     public String getRedirectURL() {
 	return redirectURL;
@@ -35,5 +36,13 @@ public class ShowLoginPageMessage extends BaseMessage{
 
     public void setModulus(String modulus) {
 	this.modulus = modulus;
+    }
+
+    public long getTimestamp() {
+	return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+	this.timestamp = timestamp;
     }
 }

@@ -27,6 +27,7 @@ public class ShowLoginPageAction extends BaseAction {
 	    showLoginPageMessage.setRedirectURL(redirectURL);
 	    showLoginPageMessage.setPublicKey(Util.publicString);
 	    showLoginPageMessage.setModulus(Util.modulusString);
+	    showLoginPageMessage.setTimestamp(System.currentTimeMillis());
 	    return SUCCESS;
 	}
     }

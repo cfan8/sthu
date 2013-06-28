@@ -9,7 +9,6 @@ import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.LoginMessage;
 import cn.edu.tsinghua.sthu.service.UserService;
-import java.math.BigInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -44,6 +43,28 @@ public class LoginAction extends BaseAction {
     public String onExecute() {
 	UserEntity entity;
 	this.setPassword(Util.RSADecryption(this.getPassword()));
+	int t = this.getPassword().indexOf(":");
+	if (t == -1)
+	{
+	    alertMessage.setSimpleAlert("参数错误！");
+	    return ALERT;
+	}
+	else
+	{
+	    String timeString = this.getPassword().substring(0, t);
+	    String passwordString = this.getPassword().substring(t + 1);
+	    long timestamp = Long.parseLong(timeString);
+	    long delta = System.currentTimeMillis() - timestamp;
+	    if (delta > 300000 || delta < 0)    //密码有效期为：300000毫秒=300秒=5分钟
+	    {
+		alertMessage.setSimpleAlert("登陆页失效，请重新登录！");
+		return ALERT;
+	    }
+	    else
+	    {
+		this.setPassword(passwordString);
+	    }
+	}
 	try {
 	    entity = getUserService().userLogin(username, password);
 	} catch (Exception ex) {

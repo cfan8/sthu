@@ -242,7 +242,7 @@
 	    <tr><td class="tag">电子邮箱：</td><td class="value"><%=entity.getApplicatantEmail()%></td></tr>
 	    <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
-		    <p>院系学生组（分团委）审批状态：<%=entity.getIdentityStatusText()%></p>
+		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
 		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
 		</td></tr>
 	</table>
