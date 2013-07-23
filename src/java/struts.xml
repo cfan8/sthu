@@ -133,6 +133,18 @@ and open the template in the editor.
 	    <result name="success">allColumns.jsp</result>
 	</action>
     </package>
+    <package name="studentActivityActionPackage" extends="defaultAction" namespace="/studentActivity">
+	<action name="applyStudentActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction">
+	    <result name="create">create_student_activity_form.jsp</result>
+	    <result name="modify">modify_classroom_form.jsp</result>
+	</action>
+	<action name="submitStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.SaveStudentActivityApplyAction">
+	    <result name="create">create_student_activity_form.jsp</result>
+	</action>
+	<action name="showApply" class="cn.edu.tsinghua.sthu.action.ShowApplyAction">
+	    <result name="success">show_student_activity_apply.jsp</result>
+	</action>
+    </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">
 	    <result name="create">create_classroom_form.jsp</result>

@@ -127,6 +127,10 @@
 	<div class="title">我的活动资源申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请活动资源</a></div>
 	<div class="content"><iframe id="frame1" src="/outdoor/showMyActivityApply.do"></iframe></div>
     </div>
+    <div id="activityapply">
+	<div class="title">我的学生活动申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请学生活动</a></div>
+	<div class="content"><iframe id="frame1"></iframe></div>
+    </div>
     <div id="ticketapply">
 	<div class="title"><a name="ticket">我的订票</a></div>
 	<div class="content" style="text-align: center;padding: 12px;width: 656px;" >没有订票！</div>

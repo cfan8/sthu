@@ -33,5 +33,6 @@
     <bean id="initMessage" class="cn.edu.tsinghua.sthu.message.InitMessage" scope="prototype" autowire="byName"/>
     <bean id="forInfoNewBoxMessage" class="cn.edu.tsinghua.sthu.message.info.ForInfoNewBoxMessage" scope="prototype" autowire="byName"/>
     <bean id="showEmailMessage" class="cn.edu.tsinghua.sthu.message.ShowEmailMessage" scope="prototype" autowire="byName"/>
+    <bean id="showApplyStudentActivityPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowApplyStudentActivityPageMessage" scope="prototype" autowire="byName"/>
 </beans>
 
