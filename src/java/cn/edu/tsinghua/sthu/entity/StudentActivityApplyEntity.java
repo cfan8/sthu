@@ -45,6 +45,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Column(length = 20)
     private String applicantCell; //申请人联系电话
     private int activityType; //活动类型
+    private String usageComment; //活动类型为其他时用户所填
     @Column(length = 32)
     private String managerName; //负责人
     @Column(length = 20)
@@ -53,6 +54,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     private String activityTheme; //活动主题
     private int participantsNumber; //活动参与人数
     private int activityRange; //活动对象：院系/全校
+    private int applyPath; //申请通道
     @Column(length = 4000)
     private String activityContent; //活动具体内容和相关材料
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -68,7 +70,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Index(name="confirmDateIndex")
     private Date confirmDate;	//确认申请日期
     @Index(name="applyStatusIndex")
-    private int applyStatus;
+    private int applyStatus;    //申请状态
     
 //    //涉校外
 //    @Column(length = 1024)
@@ -345,355 +347,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
         this.confirmDate = confirmDate;
     }
 
-//    /**
-//     * @return the externalIntro
-//     */
-//    public String getExternalIntro() {
-//        return externalIntro;
-//    }
-//
-//    /**
-//     * @param externalIntro the externalIntro to set
-//     */
-//    public void setExternalIntro(String externalIntro) {
-//        this.externalIntro = externalIntro;
-//    }
-//
-//    /**
-//     * @return the externalOrganizationIntro
-//     */
-//    public String getExternalOrganizationIntro() {
-//        return externalOrganizationIntro;
-//    }
-//
-//    /**
-//     * @param externalOrganizationIntro the externalOrganizationIntro to set
-//     */
-//    public void setExternalOrganizationIntro(String externalOrganizationIntro) {
-//        this.externalOrganizationIntro = externalOrganizationIntro;
-//    }
-//
-//    /**
-//     * @return the securityPreparedness
-//     */
-//    public String getSecurityPreparedness() {
-//        return securityPreparedness;
-//    }
-//
-//    /**
-//     * @param securityPreparedness the securityPreparedness to set
-//     */
-//    public void setSecurityPreparedness(String securityPreparedness) {
-//        this.securityPreparedness = securityPreparedness;
-//    }
-//
-//    /**
-//     * @return the overseasIntro
-//     */
-//    public String getOverseasIntro() {
-//        return overseasIntro;
-//    }
-//
-//    /**
-//     * @param overseasIntro the overseasIntro to set
-//     */
-//    public void setOverseasIntro(String overseasIntro) {
-//        this.overseasIntro = overseasIntro;
-//    }
-//
-//    /**
-//     * @return the overseasOrganizationIntro
-//     */
-//    public String getOverseasOrganizationIntro() {
-//        return overseasOrganizationIntro;
-//    }
-//
-//    /**
-//     * @param overseasOrganizationIntro the overseasOrganizationIntro to set
-//     */
-//    public void setOverseasOrganizationIntro(String overseasOrganizationIntro) {
-//        this.overseasOrganizationIntro = overseasOrganizationIntro;
-//    }
-//
-//    /**
-//     * @return the overseasMaterial
-//     */
-//    public String getOverseasMaterial() {
-//        return overseasMaterial;
-//    }
-//
-//    /**
-//     * @param overseasMaterial the overseasMaterial to set
-//     */
-//    public void setOverseasMaterial(String overseasMaterial) {
-//        this.overseasMaterial = overseasMaterial;
-//    }
-//
-//    /**
-//     * @return the croomType
-//     */
-//    public int getCroomType() {
-//        return croomType;
-//    }
-//
-//    /**
-//     * @param croomType the croomType to set
-//     */
-//    public void setCroomType(int croomType) {
-//        this.croomType = croomType;
-//    }
-//
-//    /**
-//     * @return the allowAdjust
-//     */
-//    public int getAllowAdjust() {
-//        return allowAdjust;
-//    }
-//
-//    /**
-//     * @param allowAdjust the allowAdjust to set
-//     */
-//    public void setAllowAdjust(int allowAdjust) {
-//        this.allowAdjust = allowAdjust;
-//    }
-//
-//    /**
-//     * @return the croomCapacity
-//     */
-//    public int getCroomCapacity() {
-//        return croomCapacity;
-//    }
-//
-//    /**
-//     * @param croomCapacity the croomCapacity to set
-//     */
-//    public void setCroomCapacity(int croomCapacity) {
-//        this.croomCapacity = croomCapacity;
-//    }
-//
-//    /**
-//     * @return the croomStartTime
-//     */
-//    public Date getCroomStartTime() {
-//        return croomStartTime;
-//    }
-//
-//    /**
-//     * @param croomStartTime the croomStartTime to set
-//     */
-//    public void setCroomStartTime(Date croomStartTime) {
-//        this.croomStartTime = croomStartTime;
-//    }
-//
-//    /**
-//     * @return the croomEndTime
-//     */
-//    public Date getCroomEndTime() {
-//        return croomEndTime;
-//    }
-//
-//    /**
-//     * @param croomEndTime the croomEndTime to set
-//     */
-//    public void setCroomEndTime(Date croomEndTime) {
-//        this.croomEndTime = croomEndTime;
-//    }
-//
-//    /**
-//     * @return the LEDContent
-//     */
-//    public String getLEDContent() {
-//        return LEDContent;
-//    }
-//
-//    /**
-//     * @param LEDContent the LEDContent to set
-//     */
-//    public void setLEDContent(String LEDContent) {
-//        this.LEDContent = LEDContent;
-//    }
-//
-//    /**
-//     * @return the LEDStartTime
-//     */
-//    public Date getLEDStartTime() {
-//        return LEDStartTime;
-//    }
-//
-//    /**
-//     * @param LEDStartTime the LEDStartTime to set
-//     */
-//    public void setLEDStartTime(Date LEDStartTime) {
-//        this.LEDStartTime = LEDStartTime;
-//    }
-//
-//    /**
-//     * @return the LEDEndTime
-//     */
-//    public Date getLEDEndTime() {
-//        return LEDEndTime;
-//    }
-//
-//    /**
-//     * @param LEDEndTime the LEDEndTime to set
-//     */
-//    public void setLEDEndTime(Date LEDEndTime) {
-//        this.LEDEndTime = LEDEndTime;
-//    }
-//
-//    /**
-//     * @return the acticityLocation
-//     */
-//    public int getActicityLocation() {
-//        return acticityLocation;
-//    }
-//
-//    /**
-//     * @param acticityLocation the acticityLocation to set
-//     */
-//    public void setActicityLocation(int acticityLocation) {
-//        this.acticityLocation = acticityLocation;
-//    }
-//
-//    /**
-//     * @return the outsideBorrowDate
-//     */
-//    public Date getOutsideBorrowDate() {
-//        return outsideBorrowDate;
-//    }
-//
-//    /**
-//     * @param outsideBorrowDate the outsideBorrowDate to set
-//     */
-//    public void setOutsideBorrowDate(Date outsideBorrowDate) {
-//        this.outsideBorrowDate = outsideBorrowDate;
-//    }
-//
-//    /**
-//     * @return the outsideTimePeriod
-//     */
-//    public String getOutsideTimePeriod() {
-//        return outsideTimePeriod;
-//    }
-//
-//    /**
-//     * @param outsideTimePeriod the outsideTimePeriod to set
-//     */
-//    public void setOutsideTimePeriod(String outsideTimePeriod) {
-//        this.outsideTimePeriod = outsideTimePeriod;
-//    }
-//
-//    /**
-//     * @return the boardMaterial
-//     */
-//    public String getBoardMaterial() {
-//        return boardMaterial;
-//    }
-//
-//    /**
-//     * @param boardMaterial the boardMaterial to set
-//     */
-//    public void setBoardMaterial(String boardMaterial) {
-//        this.boardMaterial = boardMaterial;
-//    }
-//
-//    /**
-//     * @return the boardSize
-//     */
-//    public int getBoardSize() {
-//        return boardSize;
-//    }
-//
-//    /**
-//     * @param boardSize the boardSize to set
-//     */
-//    public void setBoardSize(int boardSize) {
-//        this.boardSize = boardSize;
-//    }
-//
-//    /**
-//     * @return the BoardStartTime
-//     */
-//    public Date getBoardStartTime() {
-//        return BoardStartTime;
-//    }
-//
-//    /**
-//     * @param BoardStartTime the BoardStartTime to set
-//     */
-//    public void setBoardStartTime(Date BoardStartTime) {
-//        this.BoardStartTime = BoardStartTime;
-//    }
-//
-//    /**
-//     * @return the BoardEndTime
-//     */
-//    public Date getBoardEndTime() {
-//        return BoardEndTime;
-//    }
-//
-//    /**
-//     * @param BoardEndTime the BoardEndTime to set
-//     */
-//    public void setBoardEndTime(Date BoardEndTime) {
-//        this.BoardEndTime = BoardEndTime;
-//    }
-//
-//    /**
-//     * @return the publicityMaterials
-//     */
-//    public String getPublicityMaterials() {
-//        return publicityMaterials;
-//    }
-//
-//    /**
-//     * @param publicityMaterials the publicityMaterials to set
-//     */
-//    public void setPublicityMaterials(String publicityMaterials) {
-//        this.publicityMaterials = publicityMaterials;
-//    }
-//
-//    /**
-//     * @return the ticketNum
-//     */
-//    public int getTicketNum() {
-//        return ticketNum;
-//    }
-//
-//    /**
-//     * @param ticketNum the ticketNum to set
-//     */
-//    public void setTicketNum(int ticketNum) {
-//        this.ticketNum = ticketNum;
-//    }
-//
-//    /**
-//     * @return the ticketTime
-//     */
-//    public Date getTicketTime() {
-//        return ticketTime;
-//    }
-//
-//    /**
-//     * @param ticketTime the ticketTime to set
-//     */
-//    public void setTicketTime(Date ticketTime) {
-//        this.ticketTime = ticketTime;
-//    }
-//
-//    /**
-//     * @return the ticketLocation
-//     */
-//    public String getTicketLocation() {
-//        return ticketLocation;
-//    }
-//
-//    /**
-//     * @param ticketLocation the ticketLocation to set
-//     */
-//    public void setTicketLocation(String ticketLocation) {
-//        this.ticketLocation = ticketLocation;
-//    }
+
 
     /**
      * @return the identityType
@@ -777,6 +431,34 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setApplyStatus(int applyStatus) {
         this.applyStatus = applyStatus;
+    }
+
+    /**
+     * @return the applyPath
+     */
+    public int getApplyPath() {
+        return applyPath;
+    }
+
+    /**
+     * @param applyPath the applyPath to set
+     */
+    public void setApplyPath(int applyPath) {
+        this.applyPath = applyPath;
+    }
+
+    /**
+     * @return the usageComment
+     */
+    public String getUsageComment() {
+        return usageComment;
+    }
+
+    /**
+     * @param usageComment the usageComment to set
+     */
+    public void setUsageComment(String usageComment) {
+        this.usageComment = usageComment;
     }
     
    

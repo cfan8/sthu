@@ -22,36 +22,36 @@ public class ShowActivityApplyAction extends BaseAction {
     
     @Override
     public String onExecute() {
-	ActivityApplyEntity entity = getApplyActivityService().getActivityApplyEntityById(getApplyId());
-	if (entity == null) {
-	    alertMessage.setSimpleAlert("指定的申请不存在！");
-	    return ALERT;
-	} else {
-	    showActivityApplyMessage.setApplyEntity(entity);
-	    if (getCurrentUser().getID() == showActivityApplyMessage.getApplyEntity().getApplyUserID()
-		    && (showActivityApplyMessage.getApplyEntity().getApplyStatus() == ActivityApplyEntity.APPLY_STATUS_UNCONFIRMED
-		    || showActivityApplyMessage.getApplyEntity().getApplyStatus() == ActivityApplyEntity.APPLY_STATUS_REJECTED)) {
-		showActivityApplyMessage.setShowConfirm(true);
-	    } else {
-		showActivityApplyMessage.setShowConfirm(false);
-	    }
-	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
-		if (entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_TODO
-			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
-		    showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_IDENTITY);
-		    showActivityApplyMessage.setShowApprove(true);
-		} else if (entity.getResourceStatus() == ActivityApplyEntity.RESOURCE_STATUS_TODO
-			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()) {
-		    showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_RESOURCE);
-		    showActivityApplyMessage.setShowApprove(true);
-		} else {
-		    showActivityApplyMessage.setShowApprove(false);
-		}
-	    } else {
-		showActivityApplyMessage.setShowApprove(false);
-	    }
-	    return SUCCESS;
-	}
+            ActivityApplyEntity entity = getApplyActivityService().getActivityApplyEntityById(getApplyId());
+            if (entity == null) {
+                alertMessage.setSimpleAlert("指定的申请不存在！");
+                return ALERT;
+            } else {
+                showActivityApplyMessage.setApplyEntity(entity);
+                if (getCurrentUser().getID() == showActivityApplyMessage.getApplyEntity().getApplyUserID()
+                        && (showActivityApplyMessage.getApplyEntity().getApplyStatus() == ActivityApplyEntity.APPLY_STATUS_UNCONFIRMED
+                        || showActivityApplyMessage.getApplyEntity().getApplyStatus() == ActivityApplyEntity.APPLY_STATUS_REJECTED)) {
+                    showActivityApplyMessage.setShowConfirm(true);
+                } else {
+                    showActivityApplyMessage.setShowConfirm(false);
+                }
+                if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
+                    if (entity.getIdentityStatus() == ActivityApplyEntity.IDENTITY_STATUS_TODO
+                            && getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
+                        showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_IDENTITY);
+                        showActivityApplyMessage.setShowApprove(true);
+                    } else if (entity.getResourceStatus() == ActivityApplyEntity.RESOURCE_STATUS_TODO
+                            && getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()) {
+                        showActivityApplyMessage.setApproveType(showActivityApplyMessage.APPROVE_TYPE_RESOURCE);
+                        showActivityApplyMessage.setShowApprove(true);
+                    } else {
+                        showActivityApplyMessage.setShowApprove(false);
+                    }
+                } else {
+                    showActivityApplyMessage.setShowApprove(false);
+                }
+                return SUCCESS;
+            }
     }
 
     @Override

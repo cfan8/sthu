@@ -141,7 +141,7 @@ and open the template in the editor.
 	<action name="submitStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.SaveStudentActivityApplyAction">
 	    <result name="create">create_student_activity_form.jsp</result>
 	</action>
-	<action name="showApply" class="cn.edu.tsinghua.sthu.action.ShowApplyAction">
+	<action name="showApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction">
 	    <result name="success">show_student_activity_apply.jsp</result>
 	</action>
     </package>

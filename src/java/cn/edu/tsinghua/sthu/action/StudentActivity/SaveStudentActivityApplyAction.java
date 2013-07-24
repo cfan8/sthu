@@ -32,6 +32,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     
     @XSSProtect(XSSProtectLevel.Strict)
     private String applicantCell;    //申请人联系电话
+    
     private Integer activityType;	//活动类型
     
     @XSSProtect(XSSProtectLevel.Strict)
@@ -62,11 +63,11 @@ public class SaveStudentActivityApplyAction extends BaseAction{
         this.setApplicantName(getCurrentUser().getNickname());
 	StudentActivityApplyEntity entity;
 	if (applyId == null || applyId == -1) {
-	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
-		    getCurrentUser().getID(), getActivityRange());
+	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
+		    getCurrentUser().getID(), getActivityRange(), getApplyType());
 	} else {
-	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
-		    getCurrentUser().getID(), getActivityRange(), applyId);
+	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
+		    getCurrentUser().getID(), getActivityRange(), getApplyType(),applyId);
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的教室申请！");
 		return ALERT;
