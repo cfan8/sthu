@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.message.studentActivity;
 
+import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.message.BaseMessage;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 /**
@@ -15,7 +16,7 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private boolean showConfirm;
     private boolean showApprove;
     private int approveType;
-    
+    private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
     public static final int APPROVE_TYPE_RESOURCE = 2;
 
@@ -73,5 +74,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setApproveType(int approveType) {
         this.approveType = approveType;
+    }
+
+    /**
+     * @return the commentEntity
+     */
+    public CommentEntity getCommentEntity() {
+        return commentEntity;
+    }
+
+    /**
+     * @param commentEntity the commentEntity to set
+     */
+    public void setCommentEntity(CommentEntity commentEntity) {
+        this.commentEntity = commentEntity;
     }
 }

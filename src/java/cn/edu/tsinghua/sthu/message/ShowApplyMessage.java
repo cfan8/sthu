@@ -14,7 +14,7 @@ import cn.edu.tsinghua.sthu.entity.CRoomApplyEntity;
 public class ShowApplyMessage extends BaseMessage{
     private CRoomApplyEntity applyEntity;
     private boolean showConfirm;
-    private boolean showApprove; 
+    private boolean showApprove;
     private boolean showComment;
     private int approveType;
     

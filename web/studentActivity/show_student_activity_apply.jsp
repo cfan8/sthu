@@ -6,7 +6,7 @@
 <%@page import="java.util.Date" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowApplyStudentActivityPageMessage"%>
+<%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.CommentEntity" %>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction"%>
@@ -14,8 +14,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<% ShowApplyStudentActivityPageMessage message = Util.getMessage(ShowApplyStudentActivityPageAction.class);
-    StudentActivityApplyEntity entity = message.getStudentActivityApplyEntity();
+<% ShowStudentActivityApplyMessage message = Util.getMessage(ShowApplyStudentActivityPageAction.class);
+    StudentActivityApplyEntity entity = message.getApplyEntity();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     CommentEntity commentEntity = message.getCommentEntity();
 %>
@@ -266,7 +266,7 @@
     </div>
     <% if (message.isShowConfirm()) {%>
     <div id="confirmDiv">
-        <a href="applyActivity.do?applyId=<%=entity.getID()%>">修改申请</a>
+        <a href="applyStudentActivity?applyId=<%=entity.getID()%>">修改申请</a>
         <a href="confirmOutdoorApply.do?applyId=<%=entity.getID()%>" id="confirmApply">确认申请</a>
         <script type="text/javascript">
             $("#confirmApply").click(function() {
