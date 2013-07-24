@@ -35,7 +35,7 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	    }
 	    else
 	    {
-		getShowApplyStudentActivityPageMessage().setApplyEntity(entity);
+		getShowApplyStudentActivityPageMessage().setStudentActivityApplyEntity(entity);
 		getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
 		return RETURN_MODIFY;
 	    }

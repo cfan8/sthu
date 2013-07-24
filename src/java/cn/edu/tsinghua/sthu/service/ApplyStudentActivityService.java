@@ -4,8 +4,8 @@
  */
 package cn.edu.tsinghua.sthu.service;
 
-import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
+import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author user
  */
-public class ApplyStudentActivityService {
+public class ApplyStudentActivityService extends BaseService{
     private ApplyStudentActivityDAO applyStudentActivityDAO;
     private ApplyCommentDAO applyCommentDAO;
     private AuthDAO authDAO;

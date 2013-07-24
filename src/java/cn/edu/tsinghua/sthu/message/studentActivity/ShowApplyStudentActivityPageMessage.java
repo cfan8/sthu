@@ -5,27 +5,28 @@
 package cn.edu.tsinghua.sthu.message.studentActivity;
 
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.message.BaseMessage;
 
 /**
  *
  * @author user
  */
-public class ShowApplyStudentActivityPageMessage {
-    private StudentActivityApplyEntity applyEntity;
+public class ShowApplyStudentActivityPageMessage extends BaseMessage{
+    private StudentActivityApplyEntity studentActivityApplyEntity;
     private String applyUserNickname;
 
     /**
-     * @return the applyEntity
+     * @return the studentActivityApplyEntity
      */
-    public StudentActivityApplyEntity getApplyEntity() {
-        return applyEntity;
+    public StudentActivityApplyEntity getStudentActivityApplyEntity() {
+        return studentActivityApplyEntity;
     }
 
     /**
-     * @param applyEntity the applyEntity to set
+     * @param studentActivityApplyEntity the studentActivityApplyEntity to set
      */
-    public void setApplyEntity(StudentActivityApplyEntity applyEntity) {
-        this.applyEntity = applyEntity;
+    public void setStudentActivityApplyEntity(StudentActivityApplyEntity studentActivityApplyEntity) {
+        this.studentActivityApplyEntity = studentActivityApplyEntity;
     }
 
     /**

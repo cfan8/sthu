@@ -32,7 +32,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     
     @XSSProtect(XSSProtectLevel.Strict)
     private String applicantCell;    //申请人联系电话
-    private Integer activityType;	//用处:常量见下
+    private Integer activityType;	//活动类型
     
     @XSSProtect(XSSProtectLevel.Strict)
     private String usageComment;
@@ -55,6 +55,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String activityTheme;  //活动名称
     private Integer applyId;    //用于修改申请时使用
     private Integer activityRange;  //活动对象
+    private Integer applyType;  //一级审批部门
     private ApplyStudentActivityService applyStudentActivityService;
     @Override
     public String onExecute() throws Exception {
@@ -77,7 +78,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 
     @Override
     public boolean valid() {
-       if (isValid(getOrganizerName()) && isValid(getApplicantName()) && isValid(getApplicantCell()) && isValid(getUsageComment())
+       if (isValid(getOrganizerName()) && isValid(getAssociateOrganizerName()) && isValid(getApplicantName()) && isValid(getApplicantCell()) && isValid(getUsageComment())
 		&& isValid(getActivityContent()) && isValid(getManagerName()) && isValid(getManagerCell()) && isValid(getTimePeriod())
 		&& isValid(getActivityTheme()) && activityType != null  && participantsNumber != null && activityRange != null && activityDate != null) {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -341,6 +342,20 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
         this.applyStudentActivityService = applyStudentActivityService;
+        }
+
+    /**
+     * @return the applyType
+     */
+    public Integer getApplyType() {
+        return applyType;
+    }
+
+    /**
+     * @param applyType the applyType to set
+     */
+    public void setApplyType(Integer applyType) {
+        this.applyType = applyType;
     }
     
 }

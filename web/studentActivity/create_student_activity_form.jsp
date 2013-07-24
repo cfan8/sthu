@@ -31,13 +31,13 @@
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
-	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizer"/></span></div>
-	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizer"/></span></div>
+	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName"/></span></div>
+	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName"/></span></div>
 	    
             <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
 	    <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell"/></span></div>
 	    <div><span class="tag">活动类型：</span><span class="value_select">
-		    <select name="activityUsage" id="activityUsage">
+		    <select name="activityType" id="activityUsage">
 			<option value="<%=StudentActivityApplyEntity.USAGE_GROUP%>" selected="selected">党团活动</option>
 			<option value="<%=StudentActivityApplyEntity.USAGE_SPORTS%>">体育赛事</option>
 			<option value="<%=StudentActivityApplyEntity.USAGE_LECTURE%>">学术报告</option>
