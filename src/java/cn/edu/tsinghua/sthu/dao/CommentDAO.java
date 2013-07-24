@@ -18,10 +18,6 @@ public class CommentDAO extends BaseDAO<CommentEntity>{
         super(CommentEntity.class);
     }
     
-    public CommentEntity getCommentsByID(int ID){
-        CommentEntity commentEntity = (CommentEntity) select().add(Restrictions.eq("IDIndex", ID));
-        return  commentEntity;
-    }
     
     public List<CommentEntity> getCommentEntityByApplyID(int applyID){
         List<CommentEntity> list = (List<CommentEntity>) select().add(Restrictions.eq("applyIDIndex", applyID));
