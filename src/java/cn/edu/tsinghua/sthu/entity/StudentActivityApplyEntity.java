@@ -779,4 +779,6 @@ public class StudentActivityApplyEntity extends BaseEntity{
         this.applyStatus = applyStatus;
     }
     
+   
+    
 }
