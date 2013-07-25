@@ -18,7 +18,7 @@ import org.hibernate.annotations.Index;
 @Entity
 @Table(name="t_apply_comment")
 public class CommentEntity extends BaseEntity{
-  
+
    @Index(name="applyIDIndex")
     private int applyID;
     @Column(length = 5000)
@@ -31,7 +31,7 @@ public class CommentEntity extends BaseEntity{
     @Index(name="userIDIndex")
     private int userid;
 
-    
+
 
     /**
      * @return the applyID

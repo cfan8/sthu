@@ -50,6 +50,7 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplicantName(applicant);
 	entity.setApplicantCell(applicantCell);
 	entity.setActivityType(activityType);
+        entity.setUsageComment(usageComment);
 	entity.setActivityContent(content);
 	entity.setManagerName(manager);
 	entity.setManagerCell(managerCell);
@@ -60,7 +61,7 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyUserid(userid);
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
-        
+        entity.setApplyPath(applyType);
         entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	entity.setIdentityType(applyType);
 	//configureApplyStatus(entity, applyType);
@@ -83,6 +84,7 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplicantName(applicant);
 	entity.setApplicantCell(applicantCell);
 	entity.setActivityType(activityType);
+        entity.setUsageComment(usageComment);
 	entity.setActivityContent(content);
 	entity.setManagerName(manager);
 	entity.setManagerCell(managerCell);
@@ -93,11 +95,22 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyUserid(userid);
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
+        entity.setApplyPath(applyType);
 	//configureApplyStatus(entity, applyType);
         entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	entity.setIdentityType(applyType);
 	applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
 	return entity;
+    }
+    
+    @Transactional
+    public StudentActivityApplyEntity confirmApply(StudentActivityApplyEntity entity){
+        entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_CONFIRMED);
+        entity.setConfirmDate(new Date());
+        entity.setIdentityStatus(StudentActivityApplyEntity.IDENTITY_STATUS_TODO);
+        entity.setIdentityDate(null);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+        return entity;
     }
     
     /**

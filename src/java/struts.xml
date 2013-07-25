@@ -136,13 +136,15 @@ and open the template in the editor.
     <package name="studentActivityActionPackage" extends="defaultAction" namespace="/studentActivity">
 	<action name="applyStudentActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction">
 	    <result name="create">create_student_activity_form.jsp</result>
-	    <result name="modify">modify_classroom_form.jsp</result>
+	    <result name="modify">modify_student_activity_form.jsp</result>
 	</action>
 	<action name="submitStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.SaveStudentActivityApplyAction">
 	    <result name="create">create_student_activity_form.jsp</result>
 	</action>
 	<action name="showApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction">
 	    <result name="success">show_student_activity_apply.jsp</result>
+	</action>
+        <action name="confirmApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ConfirmStudentActivityApplyAction">
 	</action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">

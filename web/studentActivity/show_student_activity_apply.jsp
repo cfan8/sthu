@@ -3,6 +3,7 @@
     Created on : 2013-7-23, 13:20:51
     Author     : Wang Silun
 --%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page import="java.util.Date" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -14,7 +15,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<% ShowStudentActivityApplyMessage message = Util.getMessage(ShowApplyStudentActivityPageAction.class);
+<% ShowStudentActivityApplyMessage message = Util.getMessage(ShowStudentActivityApplyAction.class);
     StudentActivityApplyEntity entity = message.getApplyEntity();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     CommentEntity commentEntity = message.getCommentEntity();
@@ -226,19 +227,20 @@
     <div class="onlyprint" style="text-align:center;" id="printurl"></div>
     <div id="tablediv">
         <table>
-            <tr><td class="tag">活动类型：</td><td class="value"><%=entity.getActivityTheme()%></td></tr>
+            <tr><td class="tag">活动主题：</td><td class="value"><%=entity.getActivityTheme()%></td></tr>
+            <tr><td class="tag">活动类型：</td><td class="value"><%=entity.getUsageComment()%></td></tr>
             <tr><td class="tag">活动参与人数：</td><td class="value"><%=entity.getParticipantsNumber()%></td></tr>
-            <tr><td class="tag">活动对象：</td><td class="value"><%=entity.getActivityRange() %></td></tr>
-            <tr><td class="blocktag" colspan="2">活动具体内容和相关材料：</td></tr>
-            <tr><td class="blockvalue" colspan="2"><%=entity.getActivityContent()%></td></tr>
-            <tr><td class="tag">活动日期：</td><td class="value"><%=df.format(entity.getActivityDate())%></td></tr>
-            <tr><td class="tag">活动时间：</td><td class="value"><%=df.format(entity.getTimePeriod())%></td></tr>
+            <tr><td class="tag">活动对象：</td><td class="value"><%=entity.getActivityRangeText() %></td></tr>
             <tr><td class="tag">主办方（者）名称：</td><td class="value"><%=entity.getOrganizerName()%></td></tr>
             <tr><td class="tag">协办方（者）名称：</td><td class="value"><%=entity.getAssociateOrganizerName() %></td></tr>
             <tr><td class="tag">申请人：</td><td class="value"><%=entity.getApplicantName()%></td></tr>
             <tr><td class="tag">申请人联系电话：</td><td class="value"><%=entity.getApplicantCell()%></td></tr>
             <tr><td class="tag">负责人：</td><td class="value"><%=entity.getManagerName()%></td></tr>
             <tr><td class="tag">负责人联系电话：</td><td class="value"><%=entity.getManagerCell()%></td></tr>
+            <tr><td class="tag">活动日期：</td><td class="value"><%=entity.getActivityDate()%></td></tr>
+            <tr><td class="tag">活动时间：</td><td class="value"><%=entity.getTimePeriod()%></td></tr>
+            <tr><td class="blocktag" colspan="2">活动具体内容和相关材料：</td></tr>
+            <tr><td class="blockvalue" colspan="2"><%=entity.getActivityContent()%></td></tr>
             <tr><td class="tag applyStatus">当前申请状态：</td></tr>
         </table>
     </div>
@@ -266,8 +268,8 @@
     </div>
     <% if (message.isShowConfirm()) {%>
     <div id="confirmDiv">
-        <a href="applyStudentActivity?applyId=<%=entity.getID()%>">修改申请</a>
-        <a href="confirmOutdoorApply.do?applyId=<%=entity.getID()%>" id="confirmApply">确认申请</a>
+        <a href="applyStudentActivity.do?applyId=<%=entity.getID()%>">修改申请</a>
+        <a href="confirmApply.do?applyId=<%=entity.getID()%>" id="confirmApply">确认申请</a>
         <script type="text/javascript">
             $("#confirmApply").click(function() {
                 return confirm("是否确认申请？一旦确认将无法修改！");

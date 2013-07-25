@@ -461,6 +461,17 @@ public class StudentActivityApplyEntity extends BaseEntity{
         this.usageComment = usageComment;
     }
     
+    public String getActivityRangeText(){
+        switch(this.activityRange){
+            case RANGE_DEPART:
+                return "院系";
+            case RANGE_SCHOOL:
+                return "全校";
+            default:
+                return "";
+        }
+    }
+    
    
     
 }
