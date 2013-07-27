@@ -4,17 +4,20 @@
  */
 package cn.edu.tsinghua.sthu.service;
 
+import cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction;
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import java.util.Date;
+import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author user
+ * @author xiaobo
  */
 public class ApplyStudentActivityService extends BaseService{
     private ApplyStudentActivityDAO applyStudentActivityDAO;
@@ -111,6 +114,58 @@ public class ApplyStudentActivityService extends BaseService{
         entity.setIdentityDate(null);
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
         return entity;
+    }
+    
+     @Transactional
+    public int getMyApplyTotalPageNumber(int userID, int numberPerPage)
+    {
+	int r = applyStudentActivityDAO.getMyApplyCountByUserID(userID);
+	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+     
+    @Transactional
+    public List<StudentActivityApplyEntity> getMyApplyList(int userid, int page, int numberPerPage)
+    {
+	return applyStudentActivityDAO.getMyApplyListByUserid(userid, (page - 1)*numberPerPage, numberPerPage);
+    }
+    
+     @Transactional
+    public List<StudentActivityApplyEntity> getPagedApply(int viewType, int page, int number, AuthEntity auth, int approveType) {
+	List<StudentActivityApplyEntity> list = null;
+	int begin = (page - 1) * number;
+	if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyStudentActivityDAO.getPastApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyStudentActivityDAO.getTodoApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+	    }
+	} 
+	return list;
+    }
+     
+      @Transactional
+    public int getTotalPageNumber(int viewType, int numberPerPage, AuthEntity auth, int approveType) {
+	int resultCount = 0;
+	if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyStudentActivityDAO.getPastApplyCountByIdentityType(auth.getOpIdentityCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyStudentActivityDAO.getTodoApplyCountByIdentityType(auth.getOpIdentityCode());
+	    }
+	} else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+	}
+	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
     
     /**

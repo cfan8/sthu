@@ -129,7 +129,7 @@
     </div>
     <div id="activityapply">
 	<div class="title">我的学生活动申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请学生活动</a></div>
-	<div class="content"><iframe id="frame1"></iframe></div>
+	<div class="content"><iframe id="frame1" src="/studentActivity/showMyStudentActivityApply.do"></iframe></div>
     </div>
     <div id="ticketapply">
 	<div class="title"><a name="ticket">我的订票</a></div>

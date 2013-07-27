@@ -34,6 +34,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int IDENTITY_STATUS_AWAIT = 0;
     public static final int IDENTITY_STATUS_TODO = 1;
     public static final int IDENTITY_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    public static final int RESOURCE_STATUS_REJECTED = -1;
+    public static final int RESOURCE_STATUS_AWAIT = 0;
+    public static final int RESOURCE_STATUS_TODO = 1;
+    public static final int RESOURCE_STATUS_ACCEPTED = Integer.MAX_VALUE;
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     @Column(length = 128)
@@ -134,6 +138,11 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Index(name="identityDateIndex")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date identityDate;	//一级审批日期
+    
+    @Index(name="resourceTypeIndex")
+    private int resourceType;   //二级审批类型
+    @Index(name="resourceStatusIndex")
+    private int resourceStatus; //二级审批状态
 
 
     
@@ -470,6 +479,34 @@ public class StudentActivityApplyEntity extends BaseEntity{
             default:
                 return "";
         }
+    }
+
+    /**
+     * @return the resourceType
+     */
+    public int getResourceType() {
+        return resourceType;
+    }
+
+    /**
+     * @param resourceType the resourceType to set
+     */
+    public void setResourceType(int resourceType) {
+        this.resourceType = resourceType;
+    }
+
+    /**
+     * @return the resourceStatus
+     */
+    public int getResourceStatus() {
+        return resourceStatus;
+    }
+
+    /**
+     * @param resourceStatus the resourceStatus to set
+     */
+    public void setResourceStatus(int resourceStatus) {
+        this.resourceStatus = resourceStatus;
     }
     
    

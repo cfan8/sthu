@@ -35,6 +35,10 @@
     <bean id="showEmailMessage" class="cn.edu.tsinghua.sthu.message.ShowEmailMessage" scope="prototype" autowire="byName"/>
     <bean id="showApplyStudentActivityPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowApplyStudentActivityPageMessage" scope="prototype" autowire="byName"/>
     <bean id="showStudentActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage" scope="prototype" autowire="byName"/>
+    <bean id="showStudentActivityApplyListPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyListPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showStudentActivityApplyListMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyListMessage" scope="prototype" autowire="byName"/>
+    <bean id="showMyStudentActivityApplyPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyPageMessage" scope="prototype" autowire="byName"/>
+    <bean id="showMyStudentActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyMessage" scope="prototype" autowire="byName"/>
     
 </beans>
 

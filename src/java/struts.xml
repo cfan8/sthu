@@ -146,6 +146,18 @@ and open the template in the editor.
 	</action>
         <action name="confirmApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ConfirmStudentActivityApplyAction">
 	</action>
+        <action name="showMyStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowMyStudentActivityApplyAction">
+	    <result name="success">show_my_student_activity_apply_list.jsp</result>
+	</action>
+	<action name="showMyStudentActivityApplyPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowMyStudentActivityApplyPageAction">
+	    <result name="success">show_my_student_activity_apply_list_page.jsp</result>
+	</action>
+	<action name="showStudentActivityApplyList" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListAction">
+	    <result name="success">show_student_activity_apply_list.jsp</result>
+	</action>
+	<action name="showStudentActivityApplyPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction">
+	    <result name="success">show_student_activity_paged_apply.jsp</result>
+	</action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">
