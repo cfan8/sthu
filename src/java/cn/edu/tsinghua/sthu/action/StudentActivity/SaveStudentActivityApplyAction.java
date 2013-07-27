@@ -6,10 +6,12 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.security.XSSProtect;
 import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.security.XSSProtectedClass;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import cn.edu.tsinghua.sthu.service.StudentApplyOptionsService;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,14 +59,29 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private Integer applyId;    //用于修改申请时使用
     private Integer activityRange;  //活动对象
     private Integer applyType;  //一级审批部门
+
+    private Integer activityArea; //活动范围
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String externalIntro;   //校外人员情况简介
+    private String externalOrganizationIntro;   //校外合作单位情况简介
+    private String securityPreparedness;    //出校活动安全预案
+    
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String overseasIntro;   //境外人员情况简介
+    private String overseasOrganizationIntro;   //境外合作单位情况介绍
+    private String overseasMaterial;    //相关材料
+    
     private ApplyStudentActivityService applyStudentActivityService;
+    private StudentApplyOptionsService studentApplyOptionsService;
     @Override
     public String onExecute() throws Exception {
         this.setApplicantName(getCurrentUser().getNickname());
 	StudentActivityApplyEntity entity;
+        StudentApplyOptionsEntity option;
 	if (applyId == null || applyId == -1) {
 	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType());
+            option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial());
 	} else {
 	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(),applyId);
@@ -357,6 +374,118 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setApplyType(Integer applyType) {
         this.applyType = applyType;
+    }
+
+    /**
+     * @return the externalIntro
+     */
+    public String getExternalIntro() {
+        return externalIntro;
+    }
+
+    /**
+     * @param externalIntro the externalIntro to set
+     */
+    public void setExternalIntro(String externalIntro) {
+        this.externalIntro = externalIntro;
+    }
+
+    /**
+     * @return the externalOrganizationIntro
+     */
+    public String getExternalOrganizationIntro() {
+        return externalOrganizationIntro;
+    }
+
+    /**
+     * @param externalOrganizationIntro the externalOrganizationIntro to set
+     */
+    public void setExternalOrganizationIntro(String externalOrganizationIntro) {
+        this.externalOrganizationIntro = externalOrganizationIntro;
+    }
+
+    /**
+     * @return the securityPreparedness
+     */
+    public String getSecurityPreparedness() {
+        return securityPreparedness;
+    }
+
+    /**
+     * @param securityPreparedness the securityPreparedness to set
+     */
+    public void setSecurityPreparedness(String securityPreparedness) {
+        this.securityPreparedness = securityPreparedness;
+    }
+
+    /**
+     * @return the overseasIntro
+     */
+    public String getOverseasIntro() {
+        return overseasIntro;
+    }
+
+    /**
+     * @param overseasIntro the overseasIntro to set
+     */
+    public void setOverseasIntro(String overseasIntro) {
+        this.overseasIntro = overseasIntro;
+    }
+
+    /**
+     * @return the overseasOrganizationIntro
+     */
+    public String getOverseasOrganizationIntro() {
+        return overseasOrganizationIntro;
+    }
+
+    /**
+     * @param overseasOrganizationIntro the overseasOrganizationIntro to set
+     */
+    public void setOverseasOrganizationIntro(String overseasOrganizationIntro) {
+        this.overseasOrganizationIntro = overseasOrganizationIntro;
+    }
+
+    /**
+     * @return the overseasMaterial
+     */
+    public String getOverseasMaterial() {
+        return overseasMaterial;
+    }
+
+    /**
+     * @param overseasMaterial the overseasMaterial to set
+     */
+    public void setOverseasMaterial(String overseasMaterial) {
+        this.overseasMaterial = overseasMaterial;
+    }
+
+    /**
+     * @return the studentApplyOptionsService
+     */
+    public StudentApplyOptionsService getStudentApplyOptionsService() {
+        return studentApplyOptionsService;
+    }
+
+    /**
+     * @param studentApplyOptionsService the studentApplyOptionsService to set
+     */
+    public void setStudentApplyOptionsService(StudentApplyOptionsService studentApplyOptionsService) {
+        this.studentApplyOptionsService = studentApplyOptionsService;
+    }
+
+    /**
+     * @return the activityArea
+     */
+    public Integer getActivityArea() {
+        return activityArea;
+    }
+
+    /**
+     * @param activityArea the activityArea to set
+     */
+    public void setActivityArea(Integer activityArea) {
+        this.activityArea = activityArea;
     }
     
 }

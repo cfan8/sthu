@@ -8,6 +8,7 @@
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
     ShowApplyStudentActivityPageMessage message = Util.getMessage(ShowApplyStudentActivityPageAction.class);
@@ -31,45 +32,63 @@
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
-	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName"/></span></div>
-	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName"/></span></div>
-	    
-            <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
-	    <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell"/></span></div>
-	    <div><span class="tag">活动类型：</span><span class="value_select">
-		    <select name="activityType" id="activityUsage">
-			<option value="<%=StudentActivityApplyEntity.USAGE_GROUP%>" selected="selected">党团活动</option>
-			<option value="<%=StudentActivityApplyEntity.USAGE_SPORTS%>">体育赛事</option>
-			<option value="<%=StudentActivityApplyEntity.USAGE_LECTURE%>">学术报告</option>
-			<option value="<%=StudentActivityApplyEntity.USAGE_CULTURE%>">文化活动</option>
-			<option value="<%=StudentActivityApplyEntity.USAGE_AMUSE%>">文艺活动</option>
-			<option value="<%=StudentActivityApplyEntity.USAGE_OTHER%>">其它活动</option>
-		    </select>
-		    <input type="text" name="usageComment" id="usageComment" style="display: none;" placeholder="请在此填写"  value="党团活动"/>
+            <div id="requiredinfo">
+                <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName"/></span></div>
+                <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName"/></span></div>
+
+                <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
+                <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell"/></span></div>
+                <div><span class="tag">活动类型：</span><span class="value_select">
+                        <select name="activityType" id="activityUsage">
+                            <option value="<%=StudentActivityApplyEntity.USAGE_GROUP%>" selected="selected">党团活动</option>
+                            <option value="<%=StudentActivityApplyEntity.USAGE_SPORTS%>">体育赛事</option>
+                            <option value="<%=StudentActivityApplyEntity.USAGE_LECTURE%>">学术报告</option>
+                            <option value="<%=StudentActivityApplyEntity.USAGE_CULTURE%>">文化活动</option>
+                            <option value="<%=StudentActivityApplyEntity.USAGE_AMUSE%>">文艺活动</option>
+                            <option value="<%=StudentActivityApplyEntity.USAGE_OTHER%>">其它活动</option>
+                        </select>
+                        <input type="text" name="usageComment" id="usageComment" style="display: none;" placeholder="请在此填写"  value="党团活动"/>
+                    </span></div>
+                <div><span class="tag">活动对象：</span><span class="value_select">
+                    <select name="activityRange" id="activityRange">
+                        <option value="<%=StudentActivityApplyEntity.RANGE_DEPART%>" selected="selected">院系</option>
+                        <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>">全校</option>
+                    </select>
+                    </span></div>   
+                <div><span class="tag">一级审批部门：</span><span class="value_select">
+                        <select name="applyType">
+                            <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
+                            <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
+                            <% }%>
+                        </select>
+                    </span></div>
+                <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>
+                <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
+                <div><span class="tag">活动主题：</span><span class="value"><input type="text" name="activityTheme"/></span></div>
+                <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="participantsNumber" />
+                        <input type="hidden" name="applyId" value="-1"></span></div>
+
+                <div><span class="tag">活动日期：</span><span class="value"><input type="text" id="activityDate" name="activityDate"/></span></div>
+                <div><span class="tag">活动时间：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="请用24小时制，例：11:00-13:00"/></span></div>
+            </div>
+            <div><span class="tag">活动范围：</span><span class="value_select">
+		    <select name="activityArea" id="activityArea">
+			<option value="<%=StudentApplyOptionsEntity.AREA_INSCHOOL%>" selected="selected">仅校内</option>
+			<option value="<%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>">涉校外</option>
+			<option value="<%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>">涉境外</option>
+		    </select>  
 		</span></div>
-            <div><span class="tag">活动对象：</span><span class="value_select">
-                <select name="activityRange" id="activityRange">
-                    <option value="<%=StudentActivityApplyEntity.RANGE_DEPART%>" selected="selected">院系</option>
-                    <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>">全校</option>
-                </select>
-                </span></div>   
-            <div><span class="tag">一级审批部门：</span><span class="value_select">
-		    <select name="applyType">
-			<% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
-			<option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
-			<% }%>
-		    </select>
-		</span></div>
-	    <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>
-	    <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
-	    <div><span class="tag">活动主题：</span><span class="value"><input type="text" name="activityTheme"/></span></div>
-            <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="participantsNumber" />
-                    <input type="hidden" name="applyId" value="-1"></span></div>
-	    
-            <div><span class="tag">活动日期：</span><span class="value"><input type="text" id="activityDate" name="activityDate"/></span></div>
-	    <div><span class="tag">活动时间：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="请用24小时制，例：11:00-13:00"/></span></div>
-	    
-	    <div><span class="tag">活动具体内容：</span>
+            <div id="outSchoolInfo" style="display: none">
+                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro"/></span></div>
+                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro"/></span></div>
+                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness"/></span></div>
+            </div>
+            <div id="outCountryInfo" style="display: none">
+                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro"/></span></div>
+                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
+                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
+            </div>
+            <div><span class="tag">活动具体内容：</span>
 		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="activityContent" id="contentInput"/></div>
 	    </div>
 	    <div id="submitbutton"><a href="#" id="submitbtn">下一步</a></div>
@@ -89,6 +108,20 @@
 		$("#usageComment").hide();
 	    }
 	});
+        
+        $("#activityArea").change(function(){
+            if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_INSCHOOL%>){
+                $("#outSchoolInfo").hide();
+                $("#outCountryInfo").hide();
+            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>){
+                $("#outSchoolInfo").show();
+                $("#outCountryInfo").hide();
+            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>){
+                $("#outSchoolInfo").hide();
+                $("#outCountryInfo").show();
+            } 
+        });
+        
 	var picker = new Pikaday({
 	    field: document.getElementById('activityDate'),
 	    format: 'YYYY-MM-DD',
@@ -108,13 +141,30 @@
 	$("#submitbtn").click(function(){
 	    $("#contentInput").val(ce.getContent());
 	    var needalert = false;
-	    $("form input").each(function(){
+	    $("form #requiredinfo input").each(function(){
 		if ($(this).val() == "")
 		{
 		    needalert = true;
 		    return false;
 		}
 	    });
+            if($("#activityArea").val()=="2"){
+                $("form #outSchoolInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }else if($("#activityArea").val()=="3"){
+                $("form #outCountryInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
 	    if ($("select[name='applyType']").val() == 0)
 	    {
 		needalert = true;
