@@ -179,18 +179,7 @@
     </div>
     <div id="approveDiv">
         
-        <!--% if (classType != -1) {%>
-	<div id="classapply">
-	    <div class="title">教室申请审批</div>
-	    <div class="content"><iframe id="frame0" src="/activity/showApplyList.do?viewType=1&approveType=<%=classType%>"></iframe></div>
-	</div>
-	<!--% }%>
-	<!--% if (actType != -1) {%>
-	<div id="actapply">
-	    <div class="title">活动申请审批</div>
-	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyPage.do?viewType=1&approveType=<%=actType%>"></iframe></div>
-	</div>
-	<!--% }%-->
+        
 	<% if (approveType != -1) {%>
 	<div id="actapply">
 	    <div class="title">活动申请审批</div>
