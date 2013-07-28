@@ -26,7 +26,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int USAGE_OTHER = 6;
     public static final int RANGE_DEPART = 1;
     public static final int RANGE_SCHOOL = 2;
-    public static final int APPLY_STATUS_UNCONFIRMED = 1;
+   public static final int APPLY_STATUS_UNCONFIRMED = 1;
     public static final int APPLY_STATUS_CONFIRMED = 2;
     public static final int APPLY_STATUS_ACCEPTED = 3;
     public static final int APPLY_STATUS_REJECTED = -1;
@@ -38,6 +38,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int RESOURCE_STATUS_AWAIT = 0;
     public static final int RESOURCE_STATUS_TODO = 1;
     public static final int RESOURCE_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    public static final int ALLOCATE_STATUS_REJECTED = -1;
+    public static final int ALLOCATE_STATUS_AWAIT = 0;
+    public static final int ALLOCATE_STATUS_TODO = 1;
+    public static final int ALLOCATE_STATUS_ACCEPTED = Integer.MAX_VALUE;
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     @Column(length = 128)
@@ -143,7 +147,19 @@ public class StudentActivityApplyEntity extends BaseEntity{
     private int resourceType;   //二级审批类型
     @Index(name="resourceStatusIndex")
     private int resourceStatus; //二级审批状态
-
+    @Index(name="allocateTypeIndex")
+    private int allocateType;
+    @Index(name="allocateStatusIndex")
+    private int allocateStatus;
+    
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="resourceDateIndex")
+    private Date resourceDate;	//二级审批日期
+    @Column(columnDefinition="DATETIME")
+    @Index(name="allocateDateIndex")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date allocateDate;	//三级审批日期(按照申请要求分配申请)
 
     
     /**
@@ -507,6 +523,62 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setResourceStatus(int resourceStatus) {
         this.resourceStatus = resourceStatus;
+    }
+
+    /**
+     * @return the allocateType
+     */
+    public int getAllocateType() {
+        return allocateType;
+    }
+
+    /**
+     * @param allocateType the allocateType to set
+     */
+    public void setAllocateType(int allocateType) {
+        this.allocateType = allocateType;
+    }
+
+    /**
+     * @return the allocateStatus
+     */
+    public int getAllocateStatus() {
+        return allocateStatus;
+    }
+
+    /**
+     * @param allocateStatus the allocateStatus to set
+     */
+    public void setAllocateStatus(int allocateStatus) {
+        this.allocateStatus = allocateStatus;
+    }
+
+    /**
+     * @return the resourceDate
+     */
+    public Date getResourceDate() {
+        return resourceDate;
+    }
+
+    /**
+     * @param resourceDate the resourceDate to set
+     */
+    public void setResourceDate(Date resourceDate) {
+        this.resourceDate = resourceDate;
+    }
+
+    /**
+     * @return the allocateDate
+     */
+    public Date getAllocateDate() {
+        return allocateDate;
+    }
+
+    /**
+     * @param allocateDate the allocateDate to set
+     */
+    public void setAllocateDate(Date allocateDate) {
+        this.allocateDate = allocateDate;
     }
     
    
