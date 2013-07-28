@@ -9,8 +9,10 @@ import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
+import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import java.util.Date;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,43 @@ public class ApplyStudentActivityService extends BaseService{
 	    return entity;
 	}
     }
+    
+    @Transactional
+    public void processComment(StudentActivityApplyEntity studentActivityApplyEntity, ApplyCommentEntity applyCommentEntity, boolean isApprove, String comment, int type, String nickName, int userid){
+        if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY){
+            applyCommentEntity.setComment(comment);
+            applyCommentEntity.setUserid(userid);
+            applyCommentEntity.setNickname(nickName);
+        }
+        else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE){
+            applyCommentEntity.setComment(comment);
+            applyCommentEntity.setUserid(userid);
+            applyCommentEntity.setNickname(nickName);
+        }
+	if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY) {
+	    applyCommentEntity.setPubDate(new Date());
+	    if (isApprove == true) {
+                                    studentActivityApplyEntity.setIdentityStatus(StudentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
+                                    studentActivityApplyEntity.setResourceStatus(StudentActivityApplyEntity.RESOURCE_STATUS_TODO);
+                                   //sendEmailByResource(studentActivityApplyEntity.getResourceType(), applyCommentEntity.getID());
+	    } else {
+                                     studentActivityApplyEntity.setIdentityStatus(StudentActivityApplyEntity.IDENTITY_STATUS_REJECTED);
+                                     studentActivityApplyEntity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	} else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE) {
+	    applyCommentEntity.setPubDate(new Date());
+	    if (isApprove) {
+		studentActivityApplyEntity.setResourceStatus(StudentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
+		studentActivityApplyEntity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+	    } else {
+		studentActivityApplyEntity.setResourceStatus(StudentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
+		studentActivityApplyEntity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_REJECTED);
+	    }
+	} 
+	applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
+                       applyCommentDAO.updateApplyCommentEntity(applyCommentEntity);
+    }
+    
      @Transactional
     public StudentActivityApplyEntity createStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,

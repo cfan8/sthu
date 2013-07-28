@@ -25,7 +25,10 @@ public class ApplyCommentDAO extends BaseDAO<ApplyCommentEntity> {
     {
 	return select().add(Restrictions.eq("applyId", applyId)).addOrder(Order.desc("pubDate")).list();
     }
-    
+    public ApplyCommentEntity updateApplyCommentEntity(ApplyCommentEntity entity){
+        update(entity);
+        return entity;
+    }
     public List<ApplyCommentEntity> markAsOld(List<ApplyCommentEntity> list)
     {
 	for(int i = 0; i < list.size(); i++)

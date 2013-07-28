@@ -29,4 +29,9 @@ public class CommentDAO extends BaseDAO<CommentEntity>{
         return  list;
     }
     
+    public void addComment(CommentEntity commentEntity)
+    {
+	insert(commentEntity);
+    }
+    
 }

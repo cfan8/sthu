@@ -144,8 +144,10 @@ and open the template in the editor.
 	<action name="showStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction">
 	    <result name="success">show_student_activity_apply.jsp</result>
 	</action>
+        <action name="approveActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.SaveStudentActivityCommentAction">
+        </action>
         <action name="confirmApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ConfirmStudentActivityApplyAction">
-	</action>
+        </action>
         <action name="showMyStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowMyStudentActivityApplyAction">
 	    <result name="success">show_my_student_activity_apply_list.jsp</result>
 	</action>

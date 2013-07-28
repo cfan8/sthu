@@ -4,6 +4,9 @@
     Author     : linangran
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.AuthEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowHomeAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
@@ -12,6 +15,15 @@
 <%@page import="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% HomeMessage message = Util.getMessage(ShowHomeAction.class);
+    AuthEntity entity = message.getAuth();
+    int approveType = -1;
+    if (entity.getOpIdentityCode() != -1) {
+	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
+    } else if (entity.getOpResourceCode() != -1) {
+	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
+    }
+%>
+<!--% HomeMessage message = Util.getMessage(ShowHomeAction.class);
     AuthEntity entity = message.getAuth();
     int classType = -1;
     int actType = -1;
@@ -24,7 +36,7 @@
     } else if (entity.getOpAllocateCode() != -1) {
 	classType = ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE;
     }
-%>
+%-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -166,16 +178,23 @@
         <% } %>
     </div>
     <div id="approveDiv">
-	<% if (classType != -1) {%>
+        
+        <!--% if (classType != -1) {%>
 	<div id="classapply">
 	    <div class="title">教室申请审批</div>
 	    <div class="content"><iframe id="frame0" src="/activity/showApplyList.do?viewType=1&approveType=<%=classType%>"></iframe></div>
 	</div>
-	<% }%>
-	<% if (actType != -1) {%>
+	<!--% }%>
+	<!--% if (actType != -1) {%>
 	<div id="actapply">
 	    <div class="title">活动申请审批</div>
 	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyPage.do?viewType=1&approveType=<%=actType%>"></iframe></div>
+	</div>
+	<!--% }%-->
+	<% if (approveType != -1) {%>
+	<div id="actapply">
+	    <div class="title">活动申请审批</div>
+	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=approveType%>"></iframe></div>
 	</div>
 	<% }%>
 	<div style="clear: both"></div>

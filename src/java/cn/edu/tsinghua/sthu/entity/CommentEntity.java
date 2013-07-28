@@ -18,6 +18,13 @@ import org.hibernate.annotations.Index;
 @Entity
 @Table(name="t_apply_comment")
 public class CommentEntity extends BaseEntity{
+    
+    public static final int COMMENT_STATUS_NEW = 1;
+    public static final int COMMENT_STATUS_OLD = 2;
+    
+    public static final int COMMENT_TYPE_ACCEPT = 1;
+    public static final int COMMENT_TYPE_REJECT = 2;
+    public static final int COMMENT_TYPE_COMMENT = 3;
 
    @Index(name="applyIDIndex")
     private int applyID;
@@ -30,6 +37,7 @@ public class CommentEntity extends BaseEntity{
     private Date pubDate;
     @Index(name="userIDIndex")
     private int userid;
+    private int commentStatus;
 
 
 
@@ -115,5 +123,19 @@ public class CommentEntity extends BaseEntity{
      */
     public void setUserid(int userid) {
         this.userid = userid;
+    }
+
+    /**
+     * @return the commentStatus
+     */
+    public int getCommentStatus() {
+        return commentStatus;
+    }
+
+    /**
+     * @param commentStatus the commentStatus to set
+     */
+    public void setCommentStatus(int commentStatus) {
+        this.commentStatus = commentStatus;
     }
 }
