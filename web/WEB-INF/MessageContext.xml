@@ -39,6 +39,5 @@
     <bean id="showStudentActivityApplyListMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyListMessage" scope="prototype" autowire="byName"/>
     <bean id="showMyStudentActivityApplyPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyPageMessage" scope="prototype" autowire="byName"/>
     <bean id="showMyStudentActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyMessage" scope="prototype" autowire="byName"/>
-    
 </beans>
 

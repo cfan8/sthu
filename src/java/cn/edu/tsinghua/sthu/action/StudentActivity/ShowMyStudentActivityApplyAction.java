@@ -8,7 +8,6 @@ import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
-import org.eclipse.jdt.internal.compiler.ast.TrueLiteral;
 
 /**
  *

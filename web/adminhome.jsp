@@ -175,7 +175,7 @@
 	<% if (actType != -1) {%>
 	<div id="actapply">
 	    <div class="title">活动申请审批</div>
-	    <div class="content"><iframe id="frame1" src="/outdoor/showActivityApplyList.do?viewType=1&approveType=<%=actType%>"></iframe></div>
+	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyPage.do?viewType=1&approveType=<%=actType%>"></iframe></div>
 	</div>
 	<% }%>
 	<div style="clear: both"></div>
