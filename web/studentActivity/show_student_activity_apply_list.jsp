@@ -52,7 +52,7 @@
 	<script type="text/javascript">
 	    var pageConfig = {
 		root:$("#pageview"),
-		url:"showActivityApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>",
+		url:"showStudentActivityApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>",
 		total:<%=message.getTotalPageNumber()%>,
 		current:1,
 		arguName:"page",
@@ -61,7 +61,7 @@
 	    init(pageConfig);
 	    $("#chooseApproveType").change(function(){
 		var type = $("#chooseApproveType").val();
-		self.location.href = "showActivityApplyList.do?viewType=" + type + "&approveType=<%=message.getApproveType()%>";
+		self.location.href = "showStudentActivityApplyList.do?viewType=" + type + "&approveType=<%=message.getApproveType()%>";
 	    });
 	</script>
     </body>

@@ -90,7 +90,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 		return ALERT;
 	    }
 	}
-	alertMessage.setSimpleAlert("已保存，请确认申请！", "showApply.do?applyId=" + entity.getID());
+	alertMessage.setSimpleAlert("已保存，请确认申请！", "showStudentActivityApply.do?applyId=" + entity.getID());
 	return ALERT;
     }
 

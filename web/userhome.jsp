@@ -16,7 +16,7 @@
 		padding-bottom: 10px;
 	    }
 	    
-	    #classapply, #actapply, #ticketapply
+	    #classapply, #actapply, #ticketapply, #activityapply
 	    {
 		width: 670px;
 		border: #cccccc;

@@ -22,7 +22,7 @@ public class ConfirmStudentActivityApplyAction extends BaseAction{
     @Override
     public String onExecute() {
         applyStudentActivityService.confirmApply(getEntity());
-        alertMessage.setSimpleAlert("已确认申请，请耐心等待审批！", "showApply.do?applyId=" + getApplyId());
+        alertMessage.setSimpleAlert("已确认申请，请耐心等待审批！", "showStudentActivityApply.do?applyId=" + getApplyId());
 	return ALERT;
     }
 
