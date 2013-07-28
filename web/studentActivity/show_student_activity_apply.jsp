@@ -9,6 +9,7 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.CommentEntity" %>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
@@ -17,6 +18,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <% ShowStudentActivityApplyMessage message = Util.getMessage(ShowStudentActivityApplyAction.class);
     StudentActivityApplyEntity entity = message.getApplyEntity();
+    StudentApplyOptionsEntity options = message.getOptionsEntity();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     CommentEntity commentEntity = message.getCommentEntity();
 %>
@@ -241,6 +243,21 @@
             <tr><td class="tag">活动时间：</td><td class="value"><%=entity.getTimePeriod()%></td></tr>
             <tr><td class="blocktag" colspan="2">活动具体内容和相关材料：</td></tr>
             <tr><td class="blockvalue" colspan="2"><%=entity.getActivityContent()%></td></tr>
+            <%if(options.getActivityArea() == 1) {%>
+            <tr><td class="tag">活动范围:</td><td class="value">仅校内</td></tr>
+            <% }%>
+            <%if(options.getActivityArea() == 2) {%>
+            <tr><td class="tag">活动范围:</td><td class="value">涉校外</td></tr>
+            <tr><td class="tag">校外人员情况:</td><td class="value"><%=options.getExternalIntro()%></td></tr>
+            <tr><td class="tag">校外合作单位:</td><td class="value"><%=options.getExternalOrganizationIntro()%></td></tr>
+            <tr><td class="tag">出校活动安全预案:</td><td class="value"><%=options.getSecurityPreparedness()%></td></tr>
+            <% }%>
+            <%if(options.getActivityArea() == 3) {%>
+            <tr><td class="tag">活动范围:</td><td class="value">涉境外</td></tr>
+            <tr><td class="tag">境外人员情况:</td><td class="value"><%=options.getOverseasIntro()%></td></tr>
+            <tr><td class="tag">境外合作单位:</td><td class="value"><%=options.getOverseasOrganizationIntro()%></td></tr>
+            <tr><td class="tag">相关材料:</td><td class="value"><%=options.getOverseasMaterial()%></td></tr>
+            <% }%>
             <tr><td class="tag applyStatus">当前申请状态：</td></tr>
         </table>
     </div>

@@ -7,12 +7,14 @@ package cn.edu.tsinghua.sthu.message.studentActivity;
 import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.message.BaseMessage;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 /**
  *
  * @author xiaobo
  */
 public class ShowStudentActivityApplyMessage extends BaseMessage{
     private StudentActivityApplyEntity applyEntity;
+    private StudentApplyOptionsEntity optionsEntity;
     private boolean showConfirm;
     private boolean showApprove;
     private int approveType;
@@ -88,5 +90,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setCommentEntity(CommentEntity commentEntity) {
         this.commentEntity = commentEntity;
+    }
+
+    /**
+     * @return the optionsEntity
+     */
+    public StudentApplyOptionsEntity getOptionsEntity() {
+        return optionsEntity;
+    }
+
+    /**
+     * @param optionsEntity the optionsEntity to set
+     */
+    public void setOptionsEntity(StudentApplyOptionsEntity optionsEntity) {
+        this.optionsEntity = optionsEntity;
     }
 }

@@ -7,8 +7,10 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import cn.edu.tsinghua.sthu.service.StudentApplyOptionsService;
 
 /**
  *
@@ -17,16 +19,19 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 public class ShowStudentActivityApplyAction extends BaseAction{
     private Integer applyId;
     private ApplyStudentActivityService applyStudentActivityService;
+    private StudentApplyOptionsService studentApplyOptionsService;
     private ShowStudentActivityApplyMessage showStudentActivityApplyMessage;
     
     @Override
     public String onExecute() throws Exception {
         StudentActivityApplyEntity entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId());
+        StudentApplyOptionsEntity options = getStudentApplyOptionsService().getStudentApplyOptionsEntityByApplyId(getApplyId());
 	if (entity == null) {
 	    alertMessage.setSimpleAlert("指定的申请不存在！");
 	    return ALERT;
 	} else {
 	    showStudentActivityApplyMessage.setApplyEntity(entity);
+            showStudentActivityApplyMessage.setOptionsEntity(options);
 	    if (getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()
 		    && (showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED
 		    || showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_REJECTED)) {
@@ -121,5 +126,19 @@ public class ShowStudentActivityApplyAction extends BaseAction{
      */
     public void setShowStudentActivityApplyMessage(ShowStudentActivityApplyMessage showStudentActivityApplyMessage) {
         this.showStudentActivityApplyMessage = showStudentActivityApplyMessage;
+    }
+
+    /**
+     * @return the studentApplyOptionsService
+     */
+    public StudentApplyOptionsService getStudentApplyOptionsService() {
+        return studentApplyOptionsService;
+    }
+
+    /**
+     * @param studentApplyOptionsService the studentApplyOptionsService to set
+     */
+    public void setStudentApplyOptionsService(StudentApplyOptionsService studentApplyOptionsService) {
+        this.studentApplyOptionsService = studentApplyOptionsService;
     }
 }

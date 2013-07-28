@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.message.studentActivity;
 
 import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.message.BaseMessage;
 
 /**
@@ -14,6 +15,7 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
  */
 public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     private StudentActivityApplyEntity studentActivityApplyEntity;
+    private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
     private CommentEntity commentEntity;
     private boolean showConfirm;
@@ -104,5 +106,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setShowComment(boolean showComment) {
         this.showComment = showComment;
+    }
+
+    /**
+     * @return the studentApplyOptionsEntity
+     */
+    public StudentApplyOptionsEntity getStudentApplyOptionsEntity() {
+        return studentApplyOptionsEntity;
+    }
+
+    /**
+     * @param studentApplyOptionsEntity the studentApplyOptionsEntity to set
+     */
+    public void setStudentApplyOptionsEntity(StudentApplyOptionsEntity studentApplyOptionsEntity) {
+        this.studentApplyOptionsEntity = studentApplyOptionsEntity;
     }
 }

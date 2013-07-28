@@ -9,11 +9,14 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowApplyStudentActivityPageMessage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <% ShowApplyStudentActivityPageMessage message = Util.getMessage(ShowApplyStudentActivityPageAction.class);
     StudentActivityApplyEntity entity = message.getStudentActivityApplyEntity();
+    StudentApplyOptionsEntity options = message.getStudentApplyOptionsEntity();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>
@@ -33,6 +36,7 @@
     <div class="processtype" id="processtype0"></div>
     <div id="formdiv">
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
+            <div id="requiredinfo">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName" value="<%=entity.getOrganizerName()%>"/></span></div>
 	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName" value="<%=entity.getAssociateOrganizerName()%>"/></span></div>
 	    
@@ -70,7 +74,36 @@
 	    
             <div><span class="tag">活动日期：</span><span class="value"><input type="text" id="activityDate" name="activityDate" value="<%=entity.getActivityDate()%>"/></span></div>
 	    <div><span class="tag">活动时间：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="<%=entity.getTimePeriod()%>"/></span></div>
-	    
+            </div>
+            <div><span class="tag">活动范围：</span><span class="value_select">
+		    <select name="activityArea" id="activityArea">
+			<option value="<%=StudentApplyOptionsEntity.AREA_INSCHOOL%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL ? "selected = \"selected\"" : ""%>>仅校内</option>
+			<option value="<%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_OUTSCHOOL ? "selected = \"selected\"" : ""%>>涉校外</option>
+			<option value="<%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_OUTCOUNTRY ? "selected = \"selected\"" : ""%>>涉境外</option>
+		    </select>  
+		</span></div>
+            <%if(options.getActivityArea() == 2) {%>
+            <div id="outSchoolInfo">
+                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro" value="<%=options.getExternalIntro()%>"/></span></div>
+                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro" value="<%=options.getExternalOrganizationIntro()%>"/></span></div>
+                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness" value="<%=options.getSecurityPreparedness()%>"/></span></div>
+            </div>
+            <div id="outCountryInfo" style="display: none">
+                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro"/></span></div>
+                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
+                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
+            </div>
+            <% }%> <%if(options.getActivityArea() == 3) {%>
+            <div id="outSchoolInfo" style="display: none">
+                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro"/></span></div>
+                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro"/></span></div>
+                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness"/></span></div>
+            </div>
+            <div id="outCountryInfo">
+                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro" value="<%=options.getOverseasIntro()%>"/></span></div>
+                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro" value="<%=options.getOverseasOrganizationIntro()%>"/></span></div>
+                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial" value="<%=options.getOverseasMaterial()%>"/></span></div>
+            </div><% }%>
 	    <div><span class="tag">活动具体内容：</span>
 		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;"><%=entity.getActivityContent()%></script><input type="hidden" name="activityContent" id="contentInput"/></div>
 	    </div>
@@ -95,6 +128,18 @@
 		$("#usageComment").hide();
 	    }
 	});
+        $("#activityArea").change(function(){
+            if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_INSCHOOL%>){
+                $("#outSchoolInfo").hide();
+                $("#outCountryInfo").hide();
+            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>){
+                $("#outSchoolInfo").show();
+                $("#outCountryInfo").hide();
+            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>){
+                $("#outSchoolInfo").hide();
+                $("#outCountryInfo").show();
+            } 
+        });
 	var picker = new Pikaday({
 	    field: document.getElementById('activityDate'),
 	    format: 'YYYY-MM-DD',
@@ -114,13 +159,30 @@
 	$("#submitbtn").click(function(){
 	    $("#contentInput").val(ce.getContent());
 	    var needalert = false;
-	    $("form input").each(function(){
+	    $("form #requiredinfo input").each(function(){
 		if ($(this).val() == "")
 		{
 		    needalert = true;
 		    return false;
 		}
 	    });
+            if($("#activityArea").val()=="2"){
+                $("form #outSchoolInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }else if($("#activityArea").val()=="3"){
+                $("form #outCountryInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
 	    if ($("select[name='applyType']").val() == 0)
 	    {
 		needalert = true;

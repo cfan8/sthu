@@ -19,6 +19,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int AREA_OUTSCHOOL = 2;
     public static final int AREA_OUTCOUNTRY = 3;
     
+    private int applyId; //通过applyId与StudentActivityApplyEntity关联
+        
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     
@@ -547,5 +549,19 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setTicketFlag(int ticketFlag) {
         this.ticketFlag = ticketFlag;
+    }
+
+    /**
+     * @return the applyId
+     */
+    public int getApplyId() {
+        return applyId;
+    }
+
+    /**
+     * @param applyId the applyId to set
+     */
+    public void setApplyId(int applyId) {
+        this.applyId = applyId;
     }
 }

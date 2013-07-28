@@ -28,9 +28,10 @@ public class StudentApplyOptionsService {
     }
     
     @Transactional
-    public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
+    public StudentApplyOptionsEntity createStudentApplyOptions(int applyid, int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
+        entity.setApplyId(applyid);
         entity.setApplyUserid(userid);
         entity.setActivityArea(activityArea);
         entity.setExternalIntro(externalIntro);
@@ -43,6 +44,15 @@ public class StudentApplyOptionsService {
         return entity;
     }
 
+    @Transactional
+    public StudentApplyOptionsEntity getStudentApplyOptionsEntityByApplyId(int applyId){
+        StudentApplyOptionsEntity options = studentApplyOptionsDAO.getOptionsById(applyId);
+        if(options == null)
+            return null;
+        else
+            return options;
+    }
+    
     /**
      * @return the studentApplyOptionsDAO
      */
