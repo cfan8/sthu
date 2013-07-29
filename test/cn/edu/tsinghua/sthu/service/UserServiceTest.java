@@ -37,7 +37,7 @@ public class UserServiceTest extends BaseTest {
 	UserEntity result = userService.userLogin(username, password);
 	assertNotNull(result);
     }
-
+    */
     @Test
     public void testAddUser() {
 	System.out.println("addUser");
@@ -48,11 +48,11 @@ public class UserServiceTest extends BaseTest {
 	boolean result = userService.addUser(username, password, nickname);
 	assertEquals(expResult, result);
     }
-    * */
-    
+    /*
     @Test
     public void testMail()
     {
         applyClassroomService.sendEmailByIdentity(1, 20);
     }
+    * */
 }

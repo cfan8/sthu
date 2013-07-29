@@ -6,7 +6,9 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
 /**
@@ -16,8 +18,9 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 public class SaveStudentActivityCommentAction extends BaseAction{
     
     private ApplyStudentActivityService applyStudentActivityService;
+    private StudentActivityApplyEntity entity;
     private ApplyCommentEntity commentEntity;
-    private StudentActivityApplyEntity studentActivityApplyEntity;
+    
     private Integer applyId;
     private Integer isApprove;
     private String comment;
@@ -25,7 +28,7 @@ public class SaveStudentActivityCommentAction extends BaseAction{
 
     @Override
     public String onExecute() throws Exception {
-         getApplyStudentActivityService().processComment(studentActivityApplyEntity, commentEntity, isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
+         getApplyStudentActivityService().processComment(getEntity(), commentEntity, isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
         if (getIsApprove() == 1)
         {
             alertMessage.setSimpleAlert("已通过审批！");
@@ -41,6 +44,41 @@ public class SaveStudentActivityCommentAction extends BaseAction{
         return ALERT;
     }
 
+    @Override
+    public boolean hasAuth(){
+        if (getCurrentUser().getAuth().getRole() != AuthEntity.ADMIN_ROLE) {
+	    return false;
+	}
+	entity = applyStudentActivityService.getStudentActivityApplyEntityById(applyId);
+	if (entity == null)
+	{
+	    return false;
+	}
+        if((isApprove == 1) || (isApprove == 2))
+        {
+            if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY && entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType())
+            {
+                return true;
+            }
+            else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE && entity.getResourceStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType())
+            {
+                return true;
+            }
+            else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE && entity.getAllocateStatus() == StudentActivityApplyEntity.ALLOCATE_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType())
+            {
+                return true;
+            }
+        }
+        else if(isApprove == 3)
+        {
+            return true;
+        }
+	return false;
+    }
+    
     @Override
     public boolean valid() {
         if (getApplyId() == null || getIsApprove() == null || getComment() == null || getType() == null)
@@ -127,6 +165,20 @@ public class SaveStudentActivityCommentAction extends BaseAction{
      */
     public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
         this.applyStudentActivityService = applyStudentActivityService;
+    }
+
+    /**
+     * @return the entity
+     */
+    public StudentActivityApplyEntity getEntity() {
+        return entity;
+    }
+
+    /**
+     * @param entity the entity to set
+     */
+    public void setEntity(StudentActivityApplyEntity entity) {
+        this.entity = entity;
     }
     
 }

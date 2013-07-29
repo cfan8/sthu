@@ -297,8 +297,8 @@
 
     <% if (message.isShowApprove()) {%>
     <div id="approveDiv" class="noprint">
-        <form action="approveActivityApply.do?applyId=<%=entity.getID()%>" id="approveForm" method="post">
-            <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="true" checked="checked"/>同意<input type="radio" name="isApprove" value="false"/>驳回</p>
+        <form action="approveStudentActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
+            <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="1" checked="checked"/>同意<input type="radio" name="isApprove" value="2"/>驳回<input type="radio" name="isApprove" value="3"/>仅评论</p>
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
         </form>

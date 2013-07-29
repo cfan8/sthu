@@ -18,5 +18,9 @@
 	    昵称：<input type="text" name="nickname" /><br/>
 	    <input type="submit" value="提交">
 	</form>
+        <form action="batchAddUser.do" method="post">
+	    <input type="submit" value="提交">
+	</form>
+        
     </body>
 </html>
