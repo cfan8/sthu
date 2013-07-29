@@ -88,6 +88,66 @@
                 <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
                 <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
             </div>
+            <div><span class="tag">教室申请：</span><span class="value">
+                    <input type="radio" name="croomFlag" value="1"/>是
+                    <input type="radio" name="croomFlag" value="2" checked="true"/>否
+                </span>
+            </div> 
+            <div id="croomInfo" style="display:hidden">
+                <div><span class="tag">教室类型要求：</span><span class="value_select">
+		    <select name="croomType">
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_ORDINARY%>" selected="selected">普通教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_MEDIA%>">多媒体教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_NORMAL%>">C楼普通教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_MEDIA%>">C楼多媒体教室</option>
+		    </select>
+		</span></div>
+                <div><span class="tag">是否服从调剂：</span><span class="value">
+                    <input type="radio" name="allowAdjust" value="1" checked="true"/>是
+                    <input type="radio" name="allowAdjust" value="2"/>否
+                </span></div>
+                <div><span class="tag">教室容量：</span><span class="value"><input type="text" name="croomCapacity"/></span></div>
+            </div>
+            <div><span class="tag">电子屏申请：</span><span class="value">
+                    <input type="radio" name="LEDFlag" value="1"/>是
+                    <input type="radio" name="LEDFlag" value="2" checked="true"/>否
+                </span>
+            </div>
+            <div id="LEDInfo" style="display: hidden">
+
+            </div>
+            <div><span class="tag">室外场地申请：</span><span class="value">
+                    <input type="radio" name="outsideFlag" value="1"/>是
+                    <input type="radio" name="outsideFlag" value="2" checked="true"/>否
+                </span>
+            </div>
+            <div id="outsideInfo" style="display: hidden">
+                
+            </div>
+            <div><span class="tag">展板申请：</span><span class="value">
+                    <input type="radio" name="boardFlag" value="1"/>是
+                    <input type="radio" name="boardFlag" value="2" checked="true"/>否
+                </span>
+            </div>
+            <div id="boardInfo" style="display: hidden">
+                
+            </div>
+            <div><span class="tag">学生清华发布申请：</span><span class="value">
+                    <input type="radio" name="publicityFlag" value="1"/>是
+                    <input type="radio" name="publicityFlag" value="2" checked="true"/>否
+                </span>
+            </div>
+            <div id="publicityInfo" style="display: hidden">
+                
+            </div>
+            <div><span class="tag">门票抽签申请：</span><span class="value">
+                    <input type="radio" name="ticketFlag" value="1"/>是
+                    <input type="radio" name="ticketFlag" value="2" checked="true"/>否
+                </span>
+            </div>
+            <div id="ticketInfo" style="display: hidden">
+                
+            </div>
             <div><span class="tag">活动具体内容：</span>
 		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="activityContent" id="contentInput"/></div>
 	    </div>

@@ -18,6 +18,10 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int AREA_INSCHOOL = 1;
     public static final int AREA_OUTSCHOOL = 2;
     public static final int AREA_OUTCOUNTRY = 3;
+    public static final int ROOMTYPE_ORDINARY = 1;
+    public static final int ROOMTYPE_MEDIA = 2;
+    public static final int ROOMTYPE_CBUILDING_NORMAL = 3;
+    public static final int ROOMTYPE_CBUILDING_MEDIA = 4;
     
     private int applyId; //通过applyId与StudentActivityApplyEntity关联
         
@@ -40,7 +44,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Column(length = 4000)
     private String overseasMaterial; //相关材料
     
-    private int croomFlag; //标记是否申请教室，0：不申请，1：申请
+    private int croomFlag; //标记是否申请教室，1：申请，2：不申请
     //教室申请
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
@@ -50,7 +54,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date croomEndTime; //结束日期和时间
     
-    private int LEDFlag; //标记是否申请电子屏，0：不申请，1：申请
+    private int LEDFlag; //标记是否申请电子屏，1：申请，2：不申请
     //电子屏申请
     @Column(length = 1024)
     private String LEDContent; //电子屏显示内容
@@ -59,14 +63,14 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date LEDEndTime; //结束日期和时间
     
-    private int outsideFlag; //标记是否申请室外场地，0：不申请，1：申请
+    private int outsideFlag; //标记是否申请室外场地，1：申请，2：不申请
     //室外场地申请
     private int acticityLocation; //活动地点
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date outsideBorrowDate;	//借用日期
     private String outsideTimePeriod;	//借用时间段
     
-    private int boardFlag; //标记是否申请展板，0：不申请，1：申请
+    private int boardFlag; //标记是否申请展板，1：申请，2：不申请
     //展板申请
     @Column(length = 4000)
     private String boardMaterial; //活动材料 附件
@@ -76,12 +80,12 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date BoardEndTime; //结束日期和时间
     
-    private int publicityFlag; //标记是否申请发布学生清华，0：不申请，1：申请
+    private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
     //学生清华发布申请
     @Column(length = 4000)
     private String publicityMaterials; //宣传材料
     
-    private int ticketFlag; //标记是否申请门票抽签，0：不申请，1：申请
+    private int ticketFlag; //标记是否申请门票抽签，1：申请，2：不申请
     //门票抽签申请
     private int ticketNum; //门票数目
     @Temporal(javax.persistence.TemporalType.DATE)
