@@ -8,9 +8,11 @@ import cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListP
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
+import cn.edu.tsinghua.sthu.dao.CommentDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import java.util.Date;
@@ -23,14 +25,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class ApplyStudentActivityService extends BaseService{
     private ApplyStudentActivityDAO applyStudentActivityDAO;
-    private ApplyCommentDAO applyCommentDAO;
+    private CommentDAO commentDAO;
     private AuthDAO authDAO;
     private UserDAO userDAO;
 
     @Transactional
     public StudentActivityApplyEntity getStudentActivityApplyEntityById(int applyId) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
-	entity.setComments(applyCommentDAO.getCommentsByApplyId(applyId));
+	entity.setComments(commentDAO.getCommentEntityByApplyID(applyId));
 	return entity;
     }
     @Transactional
@@ -46,17 +48,17 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
-    public void processComment(StudentActivityApplyEntity studentActivityApplyEntity, ApplyCommentEntity applyCommentEntity, Integer isApprove, String comment, int type, String nickName, int userid){
-        ApplyCommentEntity commentEntity = new ApplyCommentEntity();
-	commentEntity.setApplyId(studentActivityApplyEntity.getID());
+    public void processComment(StudentActivityApplyEntity studentActivityApplyEntity, Integer isApprove, String comment, int type, String nickName, int userid){
+        CommentEntity commentEntity = new CommentEntity();
+	commentEntity.setApplyID(studentActivityApplyEntity.getID());
 	commentEntity.setComment(comment);
 	commentEntity.setCommentStatus(ApplyCommentEntity.COMMENT_STATUS_NEW);
 	commentEntity.setCommentType(isApprove);
 	commentEntity.setNickname(nickName);
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
-	applyCommentDAO.addComment(commentEntity);
-        if(isApprove != 3)
+	commentDAO.addComment(commentEntity);
+        if(isApprove !=     3)
         {
             if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY) {
                 studentActivityApplyEntity.setIdentityDate(new Date());
@@ -235,17 +237,17 @@ public class ApplyStudentActivityService extends BaseService{
     }
 
     /**
-     * @return the applyCommentDAO
+     * @return the commentDAO
      */
-    public ApplyCommentDAO getApplyCommentDAO() {
-        return applyCommentDAO;
+    public CommentDAO getCommentDAO() {
+        return commentDAO;
     }
 
     /**
-     * @param applyCommentDAO the applyCommentDAO to set
+     * @param commentDAO the commentDAO to set
      */
-    public void setApplyCommentDAO(ApplyCommentDAO applyCommentDAO) {
-        this.applyCommentDAO = applyCommentDAO;
+    public void setCommentDAO(CommentDAO commentDAO) {
+        this.commentDAO = commentDAO;
     }
 
     /**

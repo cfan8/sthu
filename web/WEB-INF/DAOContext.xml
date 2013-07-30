@@ -13,6 +13,6 @@
      <bean id="authDAO" class="cn.edu.tsinghua.sthu.dao.AuthDAO" scope="prototype" autowire="byName" />
      <bean id="applyStudentActivityDAO" class="cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO" scope="prototype" autowire="byName" />
      <bean id="studentApplyOptionsDAO" class="cn.edu.tsinghua.sthu.dao.StudentApplyOptionsDAO" scope="prototype" autowire="byName" />
-    
+    <bean id="commentDAO" class="cn.edu.tsinghua.sthu.dao.CommentDAO" scope="prototype" autowire="byName" />
 </beans>
 

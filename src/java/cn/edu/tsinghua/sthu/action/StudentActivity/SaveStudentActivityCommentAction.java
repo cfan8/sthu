@@ -19,7 +19,6 @@ public class SaveStudentActivityCommentAction extends BaseAction{
     
     private ApplyStudentActivityService applyStudentActivityService;
     private StudentActivityApplyEntity entity;
-    private ApplyCommentEntity commentEntity;
     
     private Integer applyId;
     private Integer isApprove;
@@ -28,7 +27,7 @@ public class SaveStudentActivityCommentAction extends BaseAction{
 
     @Override
     public String onExecute() throws Exception {
-         getApplyStudentActivityService().processComment(getEntity(), commentEntity, isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
+         getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
         if (getIsApprove() == 1)
         {
             alertMessage.setSimpleAlert("已通过审批！");

@@ -137,7 +137,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Index(name="identityStatusIndex")
     private int identityStatus; //一级审批状态
     @Transient 
-    private List<ApplyCommentEntity> comments; //一级审批意见
+    private List<CommentEntity> comments; //一级审批意见
     @Column(columnDefinition="DATETIME")
     @Index(name="identityDateIndex")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -405,14 +405,14 @@ public class StudentActivityApplyEntity extends BaseEntity{
     /**
      * @return the comments
      */
-    public List<ApplyCommentEntity> getComments() {
+    public List<CommentEntity> getComments() {
         return comments;
     }
 
     /**
      * @param comments the comments to set
      */
-    public void setComments(List<ApplyCommentEntity> comments) {
+    public void setComments(List<CommentEntity> comments) {
         this.comments = comments;
     }
 
@@ -581,6 +581,68 @@ public class StudentActivityApplyEntity extends BaseEntity{
         this.allocateDate = allocateDate;
     }
     
-   
+   public String getApplyStatusText()
+    {
+	switch(this.applyStatus)
+	{
+	    case APPLY_STATUS_UNCONFIRMED:
+		return "未确认";
+	    case APPLY_STATUS_CONFIRMED:
+		return "已确认，审批中";
+	    case APPLY_STATUS_REJECTED:
+		return "已驳回";
+	    case APPLY_STATUS_ACCEPTED:
+		return "已通过";
+	}
+	return "";
+    }
+    
+    public String getIdentityStatusText()
+    {
+	switch(this.identityStatus)
+	{
+	    case IDENTITY_STATUS_ACCEPTED:
+		return "已通过";
+	    case IDENTITY_STATUS_AWAIT:
+		return "等待审批";
+	    case IDENTITY_STATUS_TODO:
+		return "正在审批";
+	    case IDENTITY_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
+    
+    public String getResourceStatusText()
+    {
+	switch(this.resourceStatus)
+	{
+	    case RESOURCE_STATUS_ACCEPTED:
+		return "已通过";
+	    case RESOURCE_STATUS_AWAIT:
+		return "等待审批";
+	    case RESOURCE_STATUS_TODO:
+		return "正在审批";
+	    case RESOURCE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
+    
+    public String getAllocateStatusText()
+    {
+	switch(this.allocateStatus)
+	{
+	    case ALLOCATE_STATUS_ACCEPTED:
+		return "已通过";
+	    case ALLOCATE_STATUS_AWAIT:
+		return "等待审批";
+	    case ALLOCATE_STATUS_TODO:
+		return "正在审批";
+	    case ALLOCATE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
     
 }

@@ -3,6 +3,7 @@
     Created on : 2013-7-23, 13:20:51
     Author     : Wang Silun
 --%>
+<%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page import="java.util.Date" %>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -20,7 +21,7 @@
     StudentActivityApplyEntity entity = message.getApplyEntity();
     StudentApplyOptionsEntity options = message.getOptionsEntity();
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    CommentEntity commentEntity = message.getCommentEntity();
+    List<CommentEntity> comments = entity.getComments();
 %>
 
 <html>
@@ -258,7 +259,12 @@
             <tr><td class="tag">境外合作单位:</td><td class="value"><%=options.getOverseasOrganizationIntro()%></td></tr>
             <tr><td class="tag">相关材料:</td><td class="value"><%=options.getOverseasMaterial()%></td></tr>
             <% }%>
-            <tr><td class="tag applyStatus">当前申请状态：</td></tr>
+            <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
+		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
+		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
+		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
+		    <p>物业/注册中心/C楼审批状态：<%=entity.getAllocateStatusText()%></p>
+		</td></tr>
         </table>
     </div>
 
@@ -268,18 +274,38 @@
         </div>
         <div id="commentShow" >
             <div class="commentDiv toprint" id="currentCommentDiv">
-                <% if (entity.getIdentityStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED || entity.getIdentityStatus() == StudentActivityApplyEntity.APPLY_STATUS_REJECTED) {%>
-                <div class="commentitem comment<%= entity.getIdentityStatus()%>">
-                    <div class="commenttitle">
-                        <%=commentEntity.getNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(commentEntity.getPubDate())%> :
-                    </div>
-                    <div class="commentcontent">
-                        <%=commentEntity.getComment()%>
-                    </div>
-                    <div style="clear:both;"></div>
-                </div>
-                <% }%>
-            </div>
+		<% for (int i = 0; i < comments.size(); i++) {
+			CommentEntity comment = comments.get(i);
+			if (comment.getCommentStatus() == CommentEntity.COMMENT_STATUS_NEW) {%>
+		<div class="commentitem comment<%=comment.getCommentType()%>">
+		    <div class="commenttitle">
+			<%=comment.getNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(comment.getPubDate())%> :
+		    </div>
+		    <div class="commentcontent">
+			<%=comment.getComment()%>
+		    </div>
+		    <div style="clear:both;"></div>
+		</div>
+		<% }
+			}%>
+	    </div>
+            <div class="commentDiv noprint" id="oldCommentDiv">
+
+		<% for (int i = 0; i < comments.size(); i++) {
+			CommentEntity comment = comments.get(i);
+			if (comment.getCommentStatus() == CommentEntity.COMMENT_STATUS_OLD) {%>
+		<div class="commentitem comment<%=comment.getCommentType()%>">
+		    <div class="commenttitle">
+			<%=comment.getNickname()%> @ <%=new SimpleDateFormat("yyyy-MM-dd").format(comment.getPubDate())%> :
+		    </div>
+		    <div class="commentcontent">
+			<%=comment.getComment()%>
+		    </div>
+		    <div style="clear:both;"></div>
+		</div>
+		<% }
+			}%>
+	    </div>
             <div style="clear:both;"></div>
         </div>
     </div>
