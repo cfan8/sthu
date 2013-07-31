@@ -71,6 +71,43 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String overseasOrganizationIntro;   //境外合作单位情况介绍
     private String overseasMaterial;    //相关材料
     
+    //教室申请
+    private int croomFlag; //标记是否申请教室，1：申请，2：不申请
+    private int croomType; //借用教室类型
+    private int allowAdjust; //服从调剂
+    private int croomCapacity; //教室容量
+    private String croomStartTime; //开始日期和时间
+    private String croomEndTime; //结束日期和时间
+    
+    //电子屏申请
+    private int LEDFlag; //标记是否申请电子屏，1：申请，2：不申请
+    private String LEDContent; //电子屏显示内容
+    private String LEDStartTime; //开始日期和时间
+    private String LEDEndTime; //结束日期和时间
+    
+    //室外场地申请
+    private int outsideFlag; //标记是否申请室外场地，1：申请，2：不申请
+    private int activityLocation; //活动地点
+    private String outsideBorrowDate;	//借用日期
+    private String outsideTimePeriod;	//借用时间段
+    
+    //展板申请
+    private int boardFlag; //标记是否申请展板，1：申请，2：不申请
+    private String boardMaterial; //活动材料 附件
+    private int boardSize; //规格
+    private String BoardStartTime; //开始日期和时间
+    private String BoardEndTime; //结束日期和时间
+    
+    //学生清华发布申请
+    private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
+    private String publicityMaterials; //宣传材料
+    
+    //门票抽签申请
+    private int ticketFlag; //标记是否申请门票抽签，1：申请，2：不申请
+    private int ticketNum; //门票数目
+    private String ticketTime; //发票时间
+    private String ticketLocation; //发票地点
+    
     private ApplyStudentActivityService applyStudentActivityService;
     private StudentApplyOptionsService studentApplyOptionsService;
     @Override
@@ -81,10 +118,17 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	if (applyId == null || applyId == -1) {
 	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType());
-            option = getStudentApplyOptionsService().createStudentApplyOptions(entity.getID(),getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial());
+            option = getStudentApplyOptionsService().createStudentApplyOptions(entity.getID(),getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
+                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getTicketNum(), getTicketTime(), getTicketLocation());
 	} else {
 	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(),applyId);
+            option = getStudentApplyOptionsService().modifyStudentApplyOptions(applyId, getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
+                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getTicketNum(), getTicketTime(), getTicketLocation());
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的教室申请！");
 		return ALERT;
@@ -486,6 +530,356 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setActivityArea(Integer activityArea) {
         this.activityArea = activityArea;
+    }
+
+    /**
+     * @return the croomFlag
+     */
+    public int getCroomFlag() {
+        return croomFlag;
+    }
+
+    /**
+     * @param croomFlag the croomFlag to set
+     */
+    public void setCroomFlag(int croomFlag) {
+        this.croomFlag = croomFlag;
+    }
+
+    /**
+     * @return the croomType
+     */
+    public int getCroomType() {
+        return croomType;
+    }
+
+    /**
+     * @param croomType the croomType to set
+     */
+    public void setCroomType(int croomType) {
+        this.croomType = croomType;
+    }
+
+    /**
+     * @return the allowAdjust
+     */
+    public int getAllowAdjust() {
+        return allowAdjust;
+    }
+
+    /**
+     * @param allowAdjust the allowAdjust to set
+     */
+    public void setAllowAdjust(int allowAdjust) {
+        this.allowAdjust = allowAdjust;
+    }
+
+    /**
+     * @return the croomCapacity
+     */
+    public int getCroomCapacity() {
+        return croomCapacity;
+    }
+
+    /**
+     * @param croomCapacity the croomCapacity to set
+     */
+    public void setCroomCapacity(int croomCapacity) {
+        this.croomCapacity = croomCapacity;
+    }
+
+    /**
+     * @return the croomStartTime
+     */
+    public String getCroomStartTime() {
+        return croomStartTime;
+    }
+
+    /**
+     * @param croomStartTime the croomStartTime to set
+     */
+    public void setCroomStartTime(String croomStartTime) {
+        this.croomStartTime = croomStartTime;
+    }
+
+    /**
+     * @return the croomEndTime
+     */
+    public String getCroomEndTime() {
+        return croomEndTime;
+    }
+
+    /**
+     * @param croomEndTime the croomEndTime to set
+     */
+    public void setCroomEndTime(String croomEndTime) {
+        this.croomEndTime = croomEndTime;
+    }
+
+    /**
+     * @return the LEDFlag
+     */
+    public int getLEDFlag() {
+        return LEDFlag;
+    }
+
+    /**
+     * @param LEDFlag the LEDFlag to set
+     */
+    public void setLEDFlag(int LEDFlag) {
+        this.LEDFlag = LEDFlag;
+    }
+
+    /**
+     * @return the LEDContent
+     */
+    public String getLEDContent() {
+        return LEDContent;
+    }
+
+    /**
+     * @param LEDContent the LEDContent to set
+     */
+    public void setLEDContent(String LEDContent) {
+        this.LEDContent = LEDContent;
+    }
+
+    /**
+     * @return the LEDStartTime
+     */
+    public String getLEDStartTime() {
+        return LEDStartTime;
+    }
+
+    /**
+     * @param LEDStartTime the LEDStartTime to set
+     */
+    public void setLEDStartTime(String LEDStartTime) {
+        this.LEDStartTime = LEDStartTime;
+    }
+
+    /**
+     * @return the LEDEndTime
+     */
+    public String getLEDEndTime() {
+        return LEDEndTime;
+    }
+
+    /**
+     * @param LEDEndTime the LEDEndTime to set
+     */
+    public void setLEDEndTime(String LEDEndTime) {
+        this.LEDEndTime = LEDEndTime;
+    }
+
+    /**
+     * @return the outsideFlag
+     */
+    public int getOutsideFlag() {
+        return outsideFlag;
+    }
+
+    /**
+     * @param outsideFlag the outsideFlag to set
+     */
+    public void setOutsideFlag(int outsideFlag) {
+        this.outsideFlag = outsideFlag;
+    }
+
+    /**
+     * @return the activityLocation
+     */
+    public int getActivityLocation() {
+        return activityLocation;
+    }
+
+    /**
+     * @param activityLocation the activityLocation to set
+     */
+    public void setActivityLocation(int activityLocation) {
+        this.activityLocation = activityLocation;
+    }
+
+    /**
+     * @return the outsideBorrowDate
+     */
+    public String getOutsideBorrowDate() {
+        return outsideBorrowDate;
+    }
+
+    /**
+     * @param outsideBorrowDate the outsideBorrowDate to set
+     */
+    public void setOutsideBorrowDate(String outsideBorrowDate) {
+        this.outsideBorrowDate = outsideBorrowDate;
+    }
+
+    /**
+     * @return the outsideTimePeriod
+     */
+    public String getOutsideTimePeriod() {
+        return outsideTimePeriod;
+    }
+
+    /**
+     * @param outsideTimePeriod the outsideTimePeriod to set
+     */
+    public void setOutsideTimePeriod(String outsideTimePeriod) {
+        this.outsideTimePeriod = outsideTimePeriod;
+    }
+
+    /**
+     * @return the boardFlag
+     */
+    public int getBoardFlag() {
+        return boardFlag;
+    }
+
+    /**
+     * @param boardFlag the boardFlag to set
+     */
+    public void setBoardFlag(int boardFlag) {
+        this.boardFlag = boardFlag;
+    }
+
+    /**
+     * @return the boardMaterial
+     */
+    public String getBoardMaterial() {
+        return boardMaterial;
+    }
+
+    /**
+     * @param boardMaterial the boardMaterial to set
+     */
+    public void setBoardMaterial(String boardMaterial) {
+        this.boardMaterial = boardMaterial;
+    }
+
+    /**
+     * @return the boardSize
+     */
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    /**
+     * @param boardSize the boardSize to set
+     */
+    public void setBoardSize(int boardSize) {
+        this.boardSize = boardSize;
+    }
+
+    /**
+     * @return the BoardStartTime
+     */
+    public String getBoardStartTime() {
+        return BoardStartTime;
+    }
+
+    /**
+     * @param BoardStartTime the BoardStartTime to set
+     */
+    public void setBoardStartTime(String BoardStartTime) {
+        this.BoardStartTime = BoardStartTime;
+    }
+
+    /**
+     * @return the BoardEndTime
+     */
+    public String getBoardEndTime() {
+        return BoardEndTime;
+    }
+
+    /**
+     * @param BoardEndTime the BoardEndTime to set
+     */
+    public void setBoardEndTime(String BoardEndTime) {
+        this.BoardEndTime = BoardEndTime;
+    }
+
+    /**
+     * @return the publicityFlag
+     */
+    public int getPublicityFlag() {
+        return publicityFlag;
+    }
+
+    /**
+     * @param publicityFlag the publicityFlag to set
+     */
+    public void setPublicityFlag(int publicityFlag) {
+        this.publicityFlag = publicityFlag;
+    }
+
+    /**
+     * @return the publicityMaterials
+     */
+    public String getPublicityMaterials() {
+        return publicityMaterials;
+    }
+
+    /**
+     * @param publicityMaterials the publicityMaterials to set
+     */
+    public void setPublicityMaterials(String publicityMaterials) {
+        this.publicityMaterials = publicityMaterials;
+    }
+
+    /**
+     * @return the ticketFlag
+     */
+    public int getTicketFlag() {
+        return ticketFlag;
+    }
+
+    /**
+     * @param ticketFlag the ticketFlag to set
+     */
+    public void setTicketFlag(int ticketFlag) {
+        this.ticketFlag = ticketFlag;
+    }
+
+    /**
+     * @return the ticketNum
+     */
+    public int getTicketNum() {
+        return ticketNum;
+    }
+
+    /**
+     * @param ticketNum the ticketNum to set
+     */
+    public void setTicketNum(int ticketNum) {
+        this.ticketNum = ticketNum;
+    }
+
+    /**
+     * @return the ticketTime
+     */
+    public String getTicketTime() {
+        return ticketTime;
+    }
+
+    /**
+     * @param ticketTime the ticketTime to set
+     */
+    public void setTicketTime(String ticketTime) {
+        this.ticketTime = ticketTime;
+    }
+
+    /**
+     * @return the ticketLocation
+     */
+    public String getTicketLocation() {
+        return ticketLocation;
+    }
+
+    /**
+     * @param ticketLocation the ticketLocation to set
+     */
+    public void setTicketLocation(String ticketLocation) {
+        this.ticketLocation = ticketLocation;
     }
     
 }

@@ -88,12 +88,13 @@
                 <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
                 <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">教室申请：</span><span class="value">
-                    <input type="radio" name="croomFlag" value="1"/>是
-                    <input type="radio" name="croomFlag" value="2" checked="true"/>否
+                    <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_APPLY%>" onclick="changeCroomState(1)"/>是
+                    <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY%>" onclick="changeCroomState(2)" checked="true"/>否
                 </span>
             </div> 
-            <div id="croomInfo" style="display:hidden">
+            <div id="croomInfo" style="display:none">
                 <div><span class="tag">教室类型要求：</span><span class="value_select">
 		    <select name="croomType">
 			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_ORDINARY%>" selected="selected">普通教室</option>
@@ -103,51 +104,68 @@
 		    </select>
 		</span></div>
                 <div><span class="tag">是否服从调剂：</span><span class="value">
-                    <input type="radio" name="allowAdjust" value="1" checked="true"/>是
-                    <input type="radio" name="allowAdjust" value="2"/>否
+                    <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_ACCEPT%>" checked="true"/>是
+                    <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_REJECT%>"/>否
                 </span></div>
                 <div><span class="tag">教室容量：</span><span class="value"><input type="text" name="croomCapacity"/></span></div>
+                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="croomStartTime"/></span></div>
+                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="croomEndTime"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">电子屏申请：</span><span class="value">
-                    <input type="radio" name="LEDFlag" value="1"/>是
-                    <input type="radio" name="LEDFlag" value="2" checked="true"/>否
+                    <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_APPLY%>" onclick="changeLEDState(1)"/>是
+                    <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY%>" checked="true" onclick="changeLEDState(2)"/>否
                 </span>
             </div>
-            <div id="LEDInfo" style="display: hidden">
-
+            <div id="LEDInfo" style="display: none">
+                <div><span class="tag">电子屏显示内容：</span><span class="value"><input type="text" name="LEDContent"/></span></div>
+                <div><span class="tag">开始日期和时间：</span><span class="value"><input type="text" name="LEDStartTime"/></span></div>
+                <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">室外场地申请：</span><span class="value">
-                    <input type="radio" name="outsideFlag" value="1"/>是
-                    <input type="radio" name="outsideFlag" value="2" checked="true"/>否
+                    <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY%>" onclick="changeOutsideState(1)"/>是
+                    <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY%>" checked="true" onclick="changeOutsideState(2)"/>否
                 </span>
             </div>
-            <div id="outsideInfo" style="display: hidden">
-                
+            <div id="outsideInfo" style="display: none">
+                <div><span class="tag">活动地点:</span><span class="value"><input type="text" name="activityLocation"/></span></div>
+                <div><span class="tag">借用日期:</span><span class="value"><input type="text" name="outsideBorrowDate"/></span></div>
+                <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">展板申请：</span><span class="value">
-                    <input type="radio" name="boardFlag" value="1"/>是
-                    <input type="radio" name="boardFlag" value="2" checked="true"/>否
+                    <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_APPLY%>" onclick="changeBoardState(1)"/>是
+                    <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY%>" checked="true" onclick="changeBoardState(2)"/>否
                 </span>
             </div>
-            <div id="boardInfo" style="display: hidden">
-                
+            <div id="boardInfo" style="display: none">
+                <div><span class="tag">活动材料（附件）:</span><span class="value"><input type="text" name="boardMaterial"/></span></div>
+                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize"/></span></div>
+                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime"/></span></div>
+                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">学生清华发布申请：</span><span class="value">
-                    <input type="radio" name="publicityFlag" value="1"/>是
-                    <input type="radio" name="publicityFlag" value="2" checked="true"/>否
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)"/>是
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" checked="true" onclick="changePublicityState(2)"/>否
                 </span>
             </div>
-            <div id="publicityInfo" style="display: hidden">
-                
+            <div id="publicityInfo" style="display: none">
+                <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">门票抽签申请：</span><span class="value">
-                    <input type="radio" name="ticketFlag" value="1"/>是
-                    <input type="radio" name="ticketFlag" value="2" checked="true"/>否
+                    <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_APPLY%>" onclick="changeTicketState(1)"/>是
+                    <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY%>" checked="true" onclick="changeTicketState(2)"/>否
                 </span>
             </div>
-            <div id="ticketInfo" style="display: hidden">
-                
+            <div id="ticketInfo" style="display: none">
+                <div><span class="tag">门票数目:</span><span class="value"><input type="text" name="ticketNum"/></span></div>
+                <div><span class="tag">发票时间:</span><span class="value"><input type="text" name="ticketTime"/></span></div>
+                <div><span class="tag">发票地点:</span><span class="value"><input type="text" name="ticketLocation"/></span></div>
             </div>
+            <hr />
             <div><span class="tag">活动具体内容：</span>
 		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="activityContent" id="contentInput"/></div>
 	    </div>
@@ -157,6 +175,54 @@
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
+        function changeCroomState(state){
+            if(state == 1){
+                $("#croomInfo").show();
+            }else{
+                $("#croomInfo").hide();
+            }
+        }
+        
+        function changeLEDState(state){
+            if(state == 1){
+                $("#LEDInfo").show();
+            }else{
+                $("#LEDInfo").hide();
+            }
+        }
+        
+        function changeOutsideState(state){
+            if(state == 1){
+                $("#outsideInfo").show();
+            }else{
+                $("#outsideInfo").hide();
+            }
+        }
+        
+        function changeBoardState(state){
+            if(state == 1){
+                $("#boardInfo").show();
+            }else{
+                $("#boardInfo").hide();
+            }
+        }
+        
+        function changePublicityState(state){
+            if(state == 1){
+                $("#publicityInfo").show();
+            }else{
+                $("#publicityInfo").hide();
+            }
+        }
+        
+        function changeTicketState(state){
+            if(state == 1){
+                $("#ticketInfo").show();
+            }else{
+                $("#ticketInfo").hide();
+            }
+        }
+        
 	$("#activityUsage").change(function(){
 	    $("#usageComment").val($("#activityUsage").find("option:selected").text());
 	    if ($("#activityUsage").val() == <%=StudentActivityApplyEntity.USAGE_OTHER%>){
@@ -218,6 +284,60 @@
                 });
             }else if($("#activityArea").val()=="3"){
                 $("form #outCountryInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='croomFlag']")[0].checked){
+                $("#croomInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='LEDFlag']")[0].checked){
+                $("#LEDInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='outsideFlag']")[0].checked){
+                $("#outsideInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='boardFlag']")[0].checked){
+                $("#boardInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='publicityFlag']")[0].checked){
+                $("#publicityInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='ticketFlag']")[0].checked){
+                $("#ticketInfo input").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;

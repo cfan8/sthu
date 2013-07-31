@@ -29,7 +29,10 @@ public class StudentApplyOptionsService {
     
     @Transactional
     public StudentApplyOptionsEntity createStudentApplyOptions(int applyid, int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
-    String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial){
+    String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
+    String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
+    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
+    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
         entity.setApplyId(applyid);
         entity.setApplyUserid(userid);
@@ -40,10 +43,79 @@ public class StudentApplyOptionsService {
         entity.setOverseasIntro(overseasIntro);
         entity.setOverseasOrganizationIntro(overseasOrganizationIntro);
         entity.setOverseasMaterial(overseasMaterial);
+        entity.setCroomFlag(croomFlag);
+        entity.setCroomType(croomType);
+        entity.setAllowAdjust(allowAdjust);
+        entity.setCroomCapacity(croomCapacity);
+        entity.setCroomStartTime(croomStartTime);
+        entity.setCroomEndTime(croomEndTime);
+        entity.setLEDFlag(LEDFlag);
+        entity.setLEDContent(LEDContent);
+        entity.setLEDStartTime(LEDStartTime);
+        entity.setLEDEndTime(LEDEndTime);
+        entity.setOutsideFlag(outsideFlag);
+        entity.setActivityLocation(activityLocation);
+        entity.setOutsideBorrowDate(outsideBorrowDate);
+        entity.setOutsideTimePeriod(outsideTimePeriod);
+        entity.setBoardFlag(boardFlag);
+        entity.setBoardMaterial(boardMaterial);
+        entity.setBoardSize(boardSize);
+        entity.setBoardStartTime(BoardStartTime);
+        entity.setBoardEndTime(BoardEndTime);
+        entity.setPublicityFlag(publicityFlag);
+        entity.setPublicityMaterials(publicityMaterials);
+        entity.setTicketFlag(ticketFlag);
+        entity.setTicketNum(ticketNum);
+        entity.setTicketTime(ticketTime);
+        entity.setTicketLocation(ticketLocation);
         getStudentApplyOptionsDAO().saveStudentApplyOptionsEntity(entity);
         return entity;
     }
-
+    
+    @Transactional
+    public StudentApplyOptionsEntity modifyStudentApplyOptions(int applyId, int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
+    String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
+    String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
+    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
+    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
+        StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getOptionsById(applyId);
+        entity.setApplyUserid(userid);
+        entity.setActivityArea(activityArea);
+        entity.setExternalIntro(externalIntro);
+        entity.setExternalOrganizationIntro(externalOrganizationIntro);
+        entity.setSecurityPreparedness(securityPreparedness);
+        entity.setOverseasIntro(overseasIntro);
+        entity.setOverseasOrganizationIntro(overseasOrganizationIntro);
+        entity.setOverseasMaterial(overseasMaterial);
+        entity.setCroomFlag(croomFlag);
+        entity.setCroomType(croomType);
+        entity.setAllowAdjust(allowAdjust);
+        entity.setCroomCapacity(croomCapacity);
+        entity.setCroomStartTime(croomStartTime);
+        entity.setCroomEndTime(croomEndTime);
+        entity.setLEDFlag(LEDFlag);
+        entity.setLEDContent(LEDContent);
+        entity.setLEDStartTime(LEDStartTime);
+        entity.setLEDEndTime(LEDEndTime);
+        entity.setOutsideFlag(outsideFlag);
+        entity.setActivityLocation(activityLocation);
+        entity.setOutsideBorrowDate(outsideBorrowDate);
+        entity.setOutsideTimePeriod(outsideTimePeriod);
+        entity.setBoardFlag(boardFlag);
+        entity.setBoardMaterial(boardMaterial);
+        entity.setBoardSize(boardSize);
+        entity.setBoardStartTime(BoardStartTime);
+        entity.setBoardEndTime(BoardEndTime);
+        entity.setPublicityFlag(publicityFlag);
+        entity.setPublicityMaterials(publicityMaterials);
+        entity.setTicketFlag(ticketFlag);
+        entity.setTicketNum(ticketNum);
+        entity.setTicketTime(ticketTime);
+        entity.setTicketLocation(ticketLocation);
+        studentApplyOptionsDAO.updateStudentApplyOptionsEntity(entity);
+        return entity;
+    }
+    
     @Transactional
     public StudentApplyOptionsEntity getStudentApplyOptionsEntityByApplyId(int applyId){
         StudentApplyOptionsEntity options = studentApplyOptionsDAO.getOptionsById(applyId);

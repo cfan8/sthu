@@ -259,6 +259,43 @@
             <tr><td class="tag">境外合作单位:</td><td class="value"><%=options.getOverseasOrganizationIntro()%></td></tr>
             <tr><td class="tag">相关材料:</td><td class="value"><%=options.getOverseasMaterial()%></td></tr>
             <% }%>
+            <%if(options.getCroomFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">教室申请:</td></tr>
+            <tr><td class="tag">教室类型要求：</td><td class="value"><%=options.getCroomType()%></td></tr>
+            <tr><td class="tag">是否服从调剂：</td><td class="value"><%=options.getAllowAdjust()%></td></tr>
+            <tr><td class="tag">教室容量：</td><td class="value"><%=options.getCroomCapacity()%></td></tr>
+            <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getCroomStartTime()%></td></tr>
+            <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getCroomEndTime()%></td></tr>
+            <%}%>
+            <%if(options.getLEDFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">电子屏申请:</td></tr>
+            <tr><td class="tag">电子屏显示内容：</td><td class="value"><%=options.getLEDContent()%></td></tr>
+            <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getLEDStartTime()%></td></tr>
+            <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getLEDEndTime()%></td></tr>
+            <%}%>
+            <%if(options.getOutsideFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">室外场地申请:</td></tr>
+            <tr><td class="tag">活动地点:</td><td class="value"><%=options.getActivityLocation()%></td></tr>
+            <tr><td class="tag">借用日期:</td><td class="value"><%=options.getOutsideBorrowDate()%></td></tr>
+            <tr><td class="tag">借用时间段:</td><td class="value"><%=options.getOutsideTimePeriod()%></td></tr>
+            <%}%>
+            <%if(options.getBoardFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">展板申请:</td></tr>
+            <tr><td class="tag">活动材料（附件）:</td><td class="value"><%=options.getBoardMaterial()%></td></tr>
+            <tr><td class="tag">规格:</td><td class="value"><%=options.getBoardSize()%></td></tr>
+            <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getBoardStartTime()%></td></tr>
+            <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getBoardEndTime()%></td></tr>
+            <%}%>
+            <%if(options.getPublicityFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">学生清华发布申请:</td></tr>
+            <tr><td class="tag">宣传材料:</td><td class="value"><%=options.getPublicityMaterials()%></td></tr>
+            <%}%>
+            <%if(options.getTicketFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">门票抽签申请:</td></tr>
+            <tr><td class="tag">门票数目:</td><td class="value"><%=options.getTicketNum()%></td></tr>
+            <tr><td class="tag">发票时间:</td><td class="value"><%=options.getTicketTime()%></td></tr>
+            <tr><td class="tag">发票地点:</td><td class="value"><%=options.getTicketLocation()%></td></tr>
+            <%}%>
             <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>

@@ -22,6 +22,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int ROOMTYPE_MEDIA = 2;
     public static final int ROOMTYPE_CBUILDING_NORMAL = 3;
     public static final int ROOMTYPE_CBUILDING_MEDIA = 4;
+    public static final int CROOMFLAG_NOTAPPLY = 0;
+    public static final int CROOMFLAG_APPLY = 1;
+    public static final int ALLOWADJUST_ACCEPT = 0;
+    public static final int ALLOWADJUST_REJECT = 1;
+    public static final int LEDFLAG_NOTAPPLY = 0;
+    public static final int LEDFLAG_APPLY = 1;
+    public static final int OUTSIDEFLAG_NOTAPPLY = 0;
+    public static final int OUTSIDEFLAG_APPLY = 1;
+    public static final int BOARDFLAG_NOTAPPLY = 0;
+    public static final int BOARDFLAG_APPLY = 1;
+    public static final int PUBLICITYFLAG_NOTAPPLY = 0;
+    public static final int PUBLICITYFLAG_APPLY = 1;
+    public static final int TICKETFLAG_NOTAPPLY = 0;
+    public static final int TICKETFLAG_APPLY = 1;
     
     private int applyId; //通过applyId与StudentActivityApplyEntity关联
         
@@ -44,52 +58,51 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Column(length = 4000)
     private String overseasMaterial; //相关材料
     
-    private int croomFlag; //标记是否申请教室，1：申请，2：不申请
+    private int croomFlag; //标记是否申请教室
     //教室申请
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
     private int croomCapacity; //教室容量
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date croomStartTime; //开始日期和时间
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date croomEndTime; //结束日期和时间
+    private String croomStartTime; //开始日期和时间
+  //  @Temporal(javax.persistence.TemporalType.DATE)
+    private String croomEndTime; //结束日期和时间
     
-    private int LEDFlag; //标记是否申请电子屏，1：申请，2：不申请
+    private int LEDFlag; //标记是否申请电子屏
     //电子屏申请
     @Column(length = 1024)
     private String LEDContent; //电子屏显示内容
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date LEDStartTime; //开始日期和时间
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date LEDEndTime; //结束日期和时间
+ //   @Temporal(javax.persistence.TemporalType.DATE)
+    private String LEDStartTime; //开始日期和时间
+ //   @Temporal(javax.persistence.TemporalType.DATE)
+    private String LEDEndTime; //结束日期和时间
     
-    private int outsideFlag; //标记是否申请室外场地，1：申请，2：不申请
+    private int outsideFlag; //标记是否申请室外场地
     //室外场地申请
-    private int acticityLocation; //活动地点
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date outsideBorrowDate;	//借用日期
+    private int activityLocation; //活动地点
+ //   @Temporal(javax.persistence.TemporalType.DATE)
+    private String outsideBorrowDate;	//借用日期
     private String outsideTimePeriod;	//借用时间段
     
-    private int boardFlag; //标记是否申请展板，1：申请，2：不申请
+    private int boardFlag; //标记是否申请展板
     //展板申请
     @Column(length = 4000)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date BoardStartTime; //开始日期和时间
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date BoardEndTime; //结束日期和时间
+ //   @Temporal(javax.persistence.TemporalType.DATE)
+    private String BoardStartTime; //开始日期和时间
+  //  @Temporal(javax.persistence.TemporalType.DATE)
+    private String BoardEndTime; //结束日期和时间
     
-    private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
+    private int publicityFlag; //标记是否申请发布学生清华
     //学生清华发布申请
     @Column(length = 4000)
     private String publicityMaterials; //宣传材料
     
-    private int ticketFlag; //标记是否申请门票抽签，1：申请，2：不申请
+    private int ticketFlag; //标记是否申请门票抽签
     //门票抽签申请
     private int ticketNum; //门票数目
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date ticketTime; //发票时间
+ //   @Temporal(javax.persistence.TemporalType.DATE)
+    private String ticketTime; //发票时间
     @Column(length = 256)
     private String ticketLocation; //发票地点
 
@@ -236,28 +249,28 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     /**
      * @return the croomStartTime
      */
-    public Date getCroomStartTime() {
+    public String getCroomStartTime() {
         return croomStartTime;
     }
 
     /**
      * @param croomStartTime the croomStartTime to set
      */
-    public void setCroomStartTime(Date croomStartTime) {
+    public void setCroomStartTime(String croomStartTime) {
         this.croomStartTime = croomStartTime;
     }
 
     /**
      * @return the croomEndTime
      */
-    public Date getCroomEndTime() {
+    public String getCroomEndTime() {
         return croomEndTime;
     }
 
     /**
      * @param croomEndTime the croomEndTime to set
      */
-    public void setCroomEndTime(Date croomEndTime) {
+    public void setCroomEndTime(String croomEndTime) {
         this.croomEndTime = croomEndTime;
     }
 
@@ -278,56 +291,56 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     /**
      * @return the LEDStartTime
      */
-    public Date getLEDStartTime() {
+    public String getLEDStartTime() {
         return LEDStartTime;
     }
 
     /**
      * @param LEDStartTime the LEDStartTime to set
      */
-    public void setLEDStartTime(Date LEDStartTime) {
+    public void setLEDStartTime(String LEDStartTime) {
         this.LEDStartTime = LEDStartTime;
     }
 
     /**
      * @return the LEDEndTime
      */
-    public Date getLEDEndTime() {
+    public String getLEDEndTime() {
         return LEDEndTime;
     }
 
     /**
      * @param LEDEndTime the LEDEndTime to set
      */
-    public void setLEDEndTime(Date LEDEndTime) {
+    public void setLEDEndTime(String LEDEndTime) {
         this.LEDEndTime = LEDEndTime;
     }
 
     /**
-     * @return the acticityLocation
+     * @return the activityLocation
      */
-    public int getActicityLocation() {
-        return acticityLocation;
+    public int getActivityLocation() {
+        return activityLocation;
     }
 
     /**
-     * @param acticityLocation the acticityLocation to set
+     * @param activityLocation the activityLocation to set
      */
-    public void setActicityLocation(int acticityLocation) {
-        this.acticityLocation = acticityLocation;
+    public void setActivityLocation(int activityLocation) {
+        this.activityLocation = activityLocation;
     }
 
     /**
      * @return the outsideBorrowDate
      */
-    public Date getOutsideBorrowDate() {
+    public String getOutsideBorrowDate() {
         return outsideBorrowDate;
     }
 
     /**
      * @param outsideBorrowDate the outsideBorrowDate to set
      */
-    public void setOutsideBorrowDate(Date outsideBorrowDate) {
+    public void setOutsideBorrowDate(String outsideBorrowDate) {
         this.outsideBorrowDate = outsideBorrowDate;
     }
 
@@ -376,28 +389,28 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     /**
      * @return the BoardStartTime
      */
-    public Date getBoardStartTime() {
+    public String getBoardStartTime() {
         return BoardStartTime;
     }
 
     /**
      * @param BoardStartTime the BoardStartTime to set
      */
-    public void setBoardStartTime(Date BoardStartTime) {
+    public void setBoardStartTime(String BoardStartTime) {
         this.BoardStartTime = BoardStartTime;
     }
 
     /**
      * @return the BoardEndTime
      */
-    public Date getBoardEndTime() {
+    public String getBoardEndTime() {
         return BoardEndTime;
     }
 
     /**
      * @param BoardEndTime the BoardEndTime to set
      */
-    public void setBoardEndTime(Date BoardEndTime) {
+    public void setBoardEndTime(String BoardEndTime) {
         this.BoardEndTime = BoardEndTime;
     }
 
@@ -432,14 +445,14 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     /**
      * @return the ticketTime
      */
-    public Date getTicketTime() {
+    public String getTicketTime() {
         return ticketTime;
     }
 
     /**
      * @param ticketTime the ticketTime to set
      */
-    public void setTicketTime(Date ticketTime) {
+    public void setTicketTime(String ticketTime) {
         this.ticketTime = ticketTime;
     }
 

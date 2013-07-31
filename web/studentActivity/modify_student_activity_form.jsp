@@ -70,8 +70,8 @@
 	    <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell" value="<%=entity.getManagerCell()%>"/></span></div>
 	    <div><span class="tag">活动主题：</span><span class="value"><input type="text" name="activityTheme" value="<%=entity.getActivityTheme()%>"/></span></div>
             <div><span class="tag">活动参与人数：</span><span class="value"><input type="text" name="participantsNumber" value="<%=entity.getParticipantsNumber()%>"/>
-                    <input type="hidden" name="applyId" value="-1"></span></div>
-	    
+                    <input type="hidden" name="applyId" value="<%=entity.getID()%>" /></span></div>
+                    
             <div><span class="tag">活动日期：</span><span class="value"><input type="text" id="activityDate" name="activityDate" value="<%=entity.getActivityDate()%>"/></span></div>
 	    <div><span class="tag">活动时间：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="<%=entity.getTimePeriod()%>"/></span></div>
             </div>
@@ -104,6 +104,84 @@
                 <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro" value="<%=options.getOverseasOrganizationIntro()%>"/></span></div>
                 <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial" value="<%=options.getOverseasMaterial()%>"/></span></div>
             </div><% }%>
+            <hr />
+            <div><span class="tag">教室申请：</span><span class="value">
+                    <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_APPLY%>" onclick="changeCroomState(1)" <%=options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY%>" onclick="changeCroomState(2)" <%=options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>>否
+                </span>
+            </div> 
+            <div id="croomInfo" <%if(options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">教室类型要求：</span><span class="value_select">
+		    <select name="croomType">
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_ORDINARY%>" <%=options.getCroomType() == StudentApplyOptionsEntity.ROOMTYPE_ORDINARY ? "selected = \"selected\"" : ""%>>普通教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_MEDIA%>" <%=options.getCroomType() == StudentApplyOptionsEntity.ROOMTYPE_MEDIA ? "selected = \"selected\"" : ""%>>多媒体教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_NORMAL%>" <%=options.getCroomType() == StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_NORMAL ? "selected = \"selected\"" : ""%>>C楼普通教室</option>
+			<option value="<%=StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_MEDIA%>" <%=options.getCroomType() == StudentApplyOptionsEntity.ROOMTYPE_CBUILDING_MEDIA ? "selected = \"selected\"" : ""%>>C楼多媒体教室</option>
+		    </select>
+		</span></div>
+                <div><span class="tag">是否服从调剂：</span><span class="value">
+                    <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_ACCEPT%>" <%=options.getAllowAdjust() == StudentApplyOptionsEntity.ALLOWADJUST_ACCEPT ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_REJECT%>" <%=options.getAllowAdjust() == StudentApplyOptionsEntity.CROOMFLAG_APPLY ? "checked = \"true\"" : ""%>/>否
+                </span></div>
+                <div><span class="tag">教室容量：</span><span class="value" ><input type="text" name="croomCapacity" value="<%=options.getCroomCapacity()%>"/></span></div>
+                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="croomStartTime" value="<%=options.getCroomStartTime()%>"/></span></div>
+                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="croomEndTime" value="<%=options.getCroomEndTime()%>"/></span></div>
+            </div>
+            <hr />
+            <div><span class="tag">电子屏申请：</span><span class="value">
+                    <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_APPLY%>" onclick="changeLEDState(1)" <%=options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY%>" onclick="changeLEDState(2)" <%=options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
+                </span>
+            </div>
+            <div id="LEDInfo" <%if(options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">电子屏显示内容：</span><span class="value"><input type="text" name="LEDContent" value="<%=options.getLEDContent()%>"/></span></div>
+                <div><span class="tag">开始日期和时间：</span><span class="value"><input type="text" name="LEDStartTime" value="<%=options.getLEDStartTime()%>"/></span></div>
+                <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime" value="<%=options.getLEDEndTime()%>"/></span></div>
+            </div>
+            <hr />
+            <div><span class="tag">室外场地申请：</span><span class="value">
+                    <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY%>" onclick="changeOutsideState(1)" <%=options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY%>" onclick="changeOutsideState(2)" <%=options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
+                </span>
+            </div>
+            <div id="outsideInfo" <%if(options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">活动地点:</span><span class="value"><input type="text" name="activityLocation" value="<%=options.getActivityLocation()%>"/></span></div>
+                <div><span class="tag">借用日期:</span><span class="value"><input type="text" name="outsideBorrowDate" value="<%=options.getOutsideBorrowDate()%>"/></span></div>
+                <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod" value="<%=options.getOutsideTimePeriod()%>"/></span></div>
+            </div>
+            <hr />
+            <div><span class="tag">展板申请：</span><span class="value">
+                    <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_APPLY%>" onclick="changeBoardState(1)" <%=options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY%>" onclick="changeBoardState(2)" <%=options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
+                </span>
+            </div>
+            <div id="boardInfo" <%if(options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">活动材料（附件）:</span><span class="value"><input type="text" name="boardMaterial" value="<%=options.getBoardMaterial()%>"/></span></div>
+                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize" value="<%=options.getBoardSize()%>"/></span></div>
+                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime" value="<%=options.getBoardStartTime()%>"/></span></div>
+                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime" value="<%=options.getBoardEndTime()%>"/></span></div>
+            </div>
+            <hr />
+            <div><span class="tag">学生清华发布申请：</span><span class="value">
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" onclick="changePublicityState(2)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
+                </span>
+            </div>
+            <div id="publicityInfo" <%if(options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials" value="<%=options.getPublicityMaterials()%>"/></span></div>
+            </div>
+            <hr />
+            <div><span class="tag">门票抽签申请：</span><span class="value">
+                    <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_APPLY%>" onclick="changeTicketState(1)" <%=options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY%>" onclick="changeTicketState(2)" <%=options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
+                </span>
+            </div>
+            <div id="ticketInfo" <%if(options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">门票数目:</span><span class="value"><input type="text" name="ticketNum" value="<%=options.getTicketNum()%>"/></span></div>
+                <div><span class="tag">发票时间:</span><span class="value"><input type="text" name="ticketTime" value="<%=options.getTicketTime()%>"/></span></div>
+                <div><span class="tag">发票地点:</span><span class="value"><input type="text" name="ticketLocation" value="<%=options.getTicketLocation()%>"/></span></div>
+            </div>
+            <hr />
 	    <div><span class="tag">活动具体内容：</span>
 		<div class="ueditorBlock"><script id="contentEditor" type="text/plain" style="width: 400px;"><%=entity.getActivityContent()%></script><input type="hidden" name="activityContent" id="contentInput"/></div>
 	    </div>
@@ -113,6 +191,54 @@
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
+        function changeCroomState(state){
+            if(state == 1){
+                $("#croomInfo").show();
+            }else{
+                $("#croomInfo").hide();
+            }
+        }
+        
+        function changeLEDState(state){
+            if(state == 1){
+                $("#LEDInfo").show();
+            }else{
+                $("#LEDInfo").hide();
+            }
+        }
+        
+        function changeOutsideState(state){
+            if(state == 1){
+                $("#outsideInfo").show();
+            }else{
+                $("#outsideInfo").hide();
+            }
+        }
+        
+        function changeBoardState(state){
+            if(state == 1){
+                $("#boardInfo").show();
+            }else{
+                $("#boardInfo").hide();
+            }
+        }
+        
+        function changePublicityState(state){
+            if(state == 1){
+                $("#publicityInfo").show();
+            }else{
+                $("#publicityInfo").hide();
+            }
+        }
+        
+        function changeTicketState(state){
+            if(state == 1){
+                $("#ticketInfo").show();
+            }else{
+                $("#ticketInfo").hide();
+            }
+        }
+        
 	if ($("#classUsage").val() == <%=StudentActivityApplyEntity.USAGE_OTHER%>)
 	{
 	    $("#usageComment").show();
@@ -176,6 +302,60 @@
                 });
             }else if($("#activityArea").val()=="3"){
                 $("form #outCountryInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='croomFlag']")[0].checked){
+                $("#croomInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='LEDFlag']")[0].checked){
+                $("#LEDInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='outsideFlag']")[0].checked){
+                $("#outsideInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='boardFlag']")[0].checked){
+                $("#boardInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='publicityFlag']")[0].checked){
+                $("#publicityInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='ticketFlag']")[0].checked){
+                $("#ticketInfo input").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
