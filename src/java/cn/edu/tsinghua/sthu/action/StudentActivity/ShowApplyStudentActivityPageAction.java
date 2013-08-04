@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 public class ShowApplyStudentActivityPageAction extends BaseAction{
     public static final String RETURN_CREATE = "create";
     public static final String RETURN_MODIFY = "modify";
+    public static final String RETURN_GROUP_CREATE = "group_create";
     
     private Integer applyId;
     private ShowApplyStudentActivityPageMessage showApplyStudentActivityPageMessage;
@@ -47,14 +48,18 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	}
 	else
 	{
-	    getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
-	    return RETURN_CREATE;
+            if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
+                getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
+                return RETURN_CREATE;
+            }else{
+                return RETURN_GROUP_CREATE;
+            }   
 	}
     }
-
+    
     @Override
     public boolean hasAuth(){
-	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE) {
+	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE && getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE) {
 	    return false;
 	}
 	else

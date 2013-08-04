@@ -20,7 +20,7 @@ public class ShowHomeAction extends BaseAction{
     
     @Override
     public String onExecute() {
-	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE)
+	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE || getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE)
 	{
 	    return USER_HOME;
 	}

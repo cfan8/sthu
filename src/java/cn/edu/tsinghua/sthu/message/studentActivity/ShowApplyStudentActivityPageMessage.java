@@ -14,9 +14,12 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
  * @author user
  */
 public class ShowApplyStudentActivityPageMessage extends BaseMessage{
+    public static final int USER_APPLY = 1;
+    public static final int GROUP_APPLY = 2;
     private StudentActivityApplyEntity studentActivityApplyEntity;
     private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
+    private int applyType = USER_APPLY;
     private CommentEntity commentEntity;
     private boolean showConfirm;
     private boolean showApprove; 
@@ -120,5 +123,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setStudentApplyOptionsEntity(StudentApplyOptionsEntity studentApplyOptionsEntity) {
         this.studentApplyOptionsEntity = studentApplyOptionsEntity;
+    }
+
+    /**
+     * @return the applyType
+     */
+    public int getApplyType() {
+        return applyType;
+    }
+
+    /**
+     * @param applyType the applyType to set
+     */
+    public void setApplyType(int applyType) {
+        this.applyType = applyType;
     }
 }

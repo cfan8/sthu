@@ -4,6 +4,7 @@
     Author     : xiaobo
 --%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.GroupUserValidationAction"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowApplyStudentActivityPageMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
@@ -55,13 +56,19 @@
                         <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>">全校</option>
                     </select>
                     </span></div>   
-                <div><span class="tag">一级审批部门：</span><span class="value_select">
+                <div><span class="tag">一级审批部门：</span>
+                    <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%>
+                    <span class="value_select">
                         <select name="applyType">
                             <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
                             <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
                             <% }%>
                         </select>
-                    </span></div>
+                    </span>
+                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%>
+                    <span class="value"><input disabled="disabled" type="text" name="applyType" value="<%=IdentityMapping.names[1]%>" /></span>
+                    <%}%>
+                </div>
                 <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>
                 <div><span class="tag">负责人联系电话：</span><span class="value"><input type="text" name="managerCell"/></span></div>
                 <div><span class="tag">活动主题：</span><span class="value"><input type="text" name="activityTheme"/></span></div>

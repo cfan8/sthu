@@ -38,7 +38,7 @@ public class ShowMyStudentActivityApplyPageAction extends BaseAction{
     
     @Override
     public boolean hasAuth() {
-	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE)
+	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE && getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE)
 	{
 	    return false;
 	}

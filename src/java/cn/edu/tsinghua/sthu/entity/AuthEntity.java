@@ -17,6 +17,7 @@ public class AuthEntity extends BaseEntity{
     
     public static final int USER_ROLE = 1;
     public static final int ADMIN_ROLE = 2;
+    public static final int GROUP_ROLE = 3;
     
     @Column(name="userrole")
     private int role = USER_ROLE;

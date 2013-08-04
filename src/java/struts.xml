@@ -140,7 +140,12 @@ and open the template in the editor.
 	<action name="applyStudentActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowApplyStudentActivityPageAction">
 	    <result name="create">create_student_activity_form.jsp</result>
 	    <result name="modify">modify_student_activity_form.jsp</result>
+            <result name="group_create">group_user_validation.jsp</result>
 	</action>
+        <action name="groupUserValidation" class="cn.edu.tsinghua.sthu.action.StudentActivity.GroupUserValidationAction">
+            <result name="create">create_student_activity_form.jsp</result>
+            <result name="false">group_user_validation.jsp</result>
+        </action>
 	<action name="submitStudentActivityApply" class="cn.edu.tsinghua.sthu.action.StudentActivity.SaveStudentActivityApplyAction">
 	    <result name="create">create_student_activity_form.jsp</result>
 	</action>
