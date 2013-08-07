@@ -21,6 +21,10 @@
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
     } else if (entity.getOpResourceCode() != -1) {
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
+    }else if(entity.getOpGroupCode() != -1) {
+        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP;
+    }else if(entity.getOpAllocateCode() != -1){
+        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE;
     }
 %>
 <!--% HomeMessage message = Util.getMessage(ShowHomeAction.class);

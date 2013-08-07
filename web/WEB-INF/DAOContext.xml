@@ -14,5 +14,6 @@
      <bean id="applyStudentActivityDAO" class="cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO" scope="prototype" autowire="byName" />
      <bean id="studentApplyOptionsDAO" class="cn.edu.tsinghua.sthu.dao.StudentApplyOptionsDAO" scope="prototype" autowire="byName" />
     <bean id="commentDAO" class="cn.edu.tsinghua.sthu.dao.CommentDAO" scope="prototype" autowire="byName" />
+    <bean id="studentActivityApproveDAO" class="cn.edu.tsinghua.sthu.dao.StudentActivityApproveDAO" scope="prototype" autowire="byName" />
 </beans>
 

@@ -42,6 +42,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int ALLOCATE_STATUS_AWAIT = 0;
     public static final int ALLOCATE_STATUS_TODO = 1;
     public static final int ALLOCATE_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    public static final int GROUP_STATUS_REJECTED = -1;
+    public static final int GROUP_STATUS_AWAIT = 0;
+    public static final int GROUP_STATUS_TODO = 1;
+    public static final int GROUP_STATUS_ACCEPTED = Integer.MAX_VALUE;
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     @Column(length = 128)
@@ -80,58 +84,6 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Index(name="applyStatusIndex")
     private int applyStatus;    //申请状态
     
-//    //涉校外
-//    @Column(length = 1024)
-//    private String externalIntro; //校外人员情况简介
-//    @Column(length = 1024)
-//    private String externalOrganizationIntro; //校外合作单位情况介绍
-//    @Column(length = 1024)
-//    private String securityPreparedness; //出校活动的安全预案
-//    //涉境外
-//    @Column(length = 1024)
-//    private String overseasIntro; //境外人员情况简介
-//    @Column(length = 1024)
-//    private String overseasOrganizationIntro; //境外合作单位情况介绍
-//    @Column(length = 4000)
-//    private String overseasMaterial; //相关材料
-//    //教室申请
-//    private int croomType; //借用教室类型
-//    private int allowAdjust; //服从调剂
-//    private int croomCapacity; //教室容量
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date croomStartTime; //开始日期和时间
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date croomEndTime; //结束日期和时间
-//    //电子屏申请
-//    @Column(length = 1024)
-//    private String LEDContent; //电子屏显示内容
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date LEDStartTime; //开始日期和时间
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date LEDEndTime; //结束日期和时间
-//    //室外场地申请
-//    private int acticityLocation; //活动地点
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date outsideBorrowDate;	//借用日期
-//    private String outsideTimePeriod;	//借用时间段
-//    //展板申请
-//    @Column(length = 4000)
-//    private String boardMaterial; //活动材料 附件
-//    private int boardSize; //规格
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date BoardStartTime; //开始日期和时间
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date BoardEndTime; //结束日期和时间
-//    //学生清华发布申请
-//    @Column(length = 4000)
-//    private String publicityMaterials; //宣传材料
-//    //门票抽签申请
-//    private int ticketNum; //门票数目
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date ticketTime; //发票时间
-//    @Column(length = 256)
-//    private String ticketLocation; //发票地点
-    
     @Index(name="identityTypeIndex")
     private int identityType;   //一级审批类型
     @Index(name="identityStatusIndex")
@@ -143,6 +95,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date identityDate;	//一级审批日期
     
+    @Transient
+    private List<StudentActivityApproveEntity> approveEntities;
+    
+    
     @Index(name="resourceTypeIndex")
     private int resourceType;   //二级审批类型
     @Index(name="resourceStatusIndex")
@@ -151,6 +107,15 @@ public class StudentActivityApplyEntity extends BaseEntity{
     private int allocateType;
     @Index(name="allocateStatusIndex")
     private int allocateStatus;
+    
+    @Index(name="groupTypeIndex")
+    private int groupType;
+    @Index(name="groupStatusIndex")
+    private int groupStatus;
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="groupDateIndex")
+    private Date groupDate;
     
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -643,6 +608,78 @@ public class StudentActivityApplyEntity extends BaseEntity{
 		return "已驳回";
 	}
 	return "";
+    }
+    
+    public String getGroupStatusText()
+    {
+	switch(this.groupStatus)
+	{
+	    case ALLOCATE_STATUS_ACCEPTED:
+		return "已通过";
+	    case ALLOCATE_STATUS_AWAIT:
+		return "等待审批";
+	    case ALLOCATE_STATUS_TODO:
+		return "正在审批";
+	    case ALLOCATE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
+
+    /**
+     * @return the approveEntities
+     */
+    public List<StudentActivityApproveEntity> getApproveEntities() {
+        return approveEntities;
+    }
+
+    /**
+     * @param approveEntities the approveEntities to set
+     */
+    public void setApproveEntities(List<StudentActivityApproveEntity> approveEntities) {
+        this.approveEntities = approveEntities;
+    }
+
+    /**
+     * @return the groupStatus
+     */
+    public int getGroupStatus() {
+        return groupStatus;
+    }
+
+    /**
+     * @param groupStatus the groupStatus to set
+     */
+    public void setGroupStatus(int groupStatus) {
+        this.groupStatus = groupStatus;
+    }
+
+    /**
+     * @return the groupType
+     */
+    public int getGroupType() {
+        return groupType;
+    }
+
+    /**
+     * @param groupType the groupType to set
+     */
+    public void setGroupType(int groupType) {
+        this.groupType = groupType;
+    }
+
+    /**
+     * @return the groupDate
+     */
+    public Date getGroupDate() {
+        return groupDate;
+    }
+
+    /**
+     * @param groupDate the groupDate to set
+     */
+    public void setGroupDate(Date groupDate) {
+        this.groupDate = groupDate;
     }
     
 }

@@ -48,7 +48,25 @@ public class ShowStudentActivityApplyAction extends BaseAction{
 //			&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()) {
 //		    showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE);
 //		    showStudentActivityApplyMessage.setShowApprove(true);
-		} else {
+		}
+                else if(entity.getGroupStatus() == StudentActivityApplyEntity.GROUP_STATUS_TODO
+                        && getCurrentUser().getAuth().getOpGroupCode() == entity.getGroupType()){
+                    showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_GROUP);
+                    showStudentActivityApplyMessage.setShowApprove(true);
+                }
+                else if(entity.getResourceStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO){
+                    if(applyStudentActivityService.isUserApproveResourceStatusToDo(entity.getID(), getCurrentUser().getID())){
+                        showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE);
+                        showStudentActivityApplyMessage.setShowApprove(true);
+                    }
+                }
+                else if(entity.getAllocateStatus() == StudentActivityApplyEntity.ALLOCATE_STATUS_TODO){
+                    if(applyStudentActivityService.isUserApproveAllocateStatusToDo(entity.getID(), getCurrentUser().getID())){
+                        showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE);
+                        showStudentActivityApplyMessage.setShowApprove(true);
+                    }
+                }
+                else {
 		    showStudentActivityApplyMessage.setShowApprove(false);
 		}
 	    } else {

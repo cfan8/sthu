@@ -24,10 +24,12 @@ public class SaveStudentActivityCommentAction extends BaseAction{
     private Integer isApprove;
     private String comment;
     private Integer type;
+    private Integer[] allocates;
+    private Integer[] resources;
 
     @Override
     public String onExecute() throws Exception {
-         getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, getCurrentUser().getNickname(), getCurrentUser().getID());
+         getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, allocates, resources, getCurrentUser().getNickname(), getCurrentUser().getID());
         if (getIsApprove() == 1)
         {
             alertMessage.setSimpleAlert("已通过审批！");
@@ -61,14 +63,20 @@ public class SaveStudentActivityCommentAction extends BaseAction{
                 return true;
             }
             else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE && entity.getResourceStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO
-                    && getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType())
+                    /*&& getCurrentUser().getAuth().getOpResourceCode() == entity.getResourceType()*/)
             {
-                return true;
+                if(applyStudentActivityService.isUserApproveResourceStatusToDo(entity.getID(), getCurrentUser().getID()))
+                    return true;
             }
             else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE && entity.getAllocateStatus() == StudentActivityApplyEntity.ALLOCATE_STATUS_TODO
-                    && getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType())
+                    /*&& getCurrentUser().getAuth().getOpAllocateCode() == entity.getAllocateType()*/)
             {
-                return true;
+                if(applyStudentActivityService.isUserApproveAllocateStatusToDo(entity.getID(), getCurrentUser().getID()))
+                    return true;
+            }
+            else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP && entity.getGroupStatus() == StudentActivityApplyEntity.GROUP_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpGroupCode() == entity.getGroupType()){
+                    return true;
             }
         }
         else if(isApprove == 3)
@@ -178,6 +186,34 @@ public class SaveStudentActivityCommentAction extends BaseAction{
      */
     public void setEntity(StudentActivityApplyEntity entity) {
         this.entity = entity;
+    }
+
+    /**
+     * @return the allocates
+     */
+    public Integer[] getAllocates() {
+        return allocates;
+    }
+
+    /**
+     * @param allocates the allocates to set
+     */
+    public void setAllocates(Integer[] allocates) {
+        this.allocates = allocates;
+    }
+
+    /**
+     * @return the resources
+     */
+    public Integer[] getResources() {
+        return resources;
+    }
+
+    /**
+     * @param resources the resources to set
+     */
+    public void setResources(Integer[] resources) {
+        this.resources = resources;
     }
     
 }

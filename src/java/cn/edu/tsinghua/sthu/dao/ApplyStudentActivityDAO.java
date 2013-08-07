@@ -71,7 +71,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 
     public List<StudentActivityApplyEntity> getTodoApplyListByResourceType(int begin, int number, int resourceType) {
 	return select().add(Restrictions.and(Restrictions.eq("resourceType", resourceType),Restrictions.eq("resourceStatus", StudentActivityApplyEntity.RESOURCE_STATUS_TODO)))
-		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("identityDate")).setFirstResult(begin).setMaxResults(number).list();
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("resourceDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 
     public int getTodoApplyCountByResourceType(int resourceType) {
@@ -92,4 +92,30 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }
+    
+    public List<StudentActivityApplyEntity> getTodoApplyListByGroupType(int begin, int number, int groupType) {
+	return select().add(Restrictions.and(Restrictions.eq("groupType", groupType) , Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_TODO)))
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("confirmDate")).setFirstResult(begin).setMaxResults(number).list();
+    }
+
+    public int getTodoApplyCountByGroupType(int groupType) {
+	Object r = select().add(Restrictions.and(Restrictions.eq("groupType", groupType), 
+		Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_TODO)))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+
+    public List<StudentActivityApplyEntity> getPastApplyListByGroupType(int begin, int number, int groupType) {
+	return select().add(Restrictions.and(Restrictions.eq("groupType", groupType), Restrictions.or(
+		Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_ACCEPTED), Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_REJECTED))))
+		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("groupDate")).setFirstResult(begin).setMaxResults(number).list();
+    }
+
+    public int getPastApplyCountByGroupType(int groupType) {
+	Object r = select().add(Restrictions.and(Restrictions.eq("groupType", groupType), Restrictions.or(
+		Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_ACCEPTED), Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_REJECTED))))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+    
 }

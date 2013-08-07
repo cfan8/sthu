@@ -22,6 +22,8 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
     
     public static final int APPROVE_TYPE_IDENTITY = 1;
     public static final int APPROVE_TYPE_RESOURCE = 2;
+    public static final int APPROVE_TYPE_ALLOCATE = 3;
+    public static final int APPROVE_TYPE_GROUP = 4;
     
     private Integer viewType;
     private Integer approveType;
@@ -41,7 +43,7 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
     @Override
     public boolean valid() {
        if (getViewType() == null || (getViewType() != VIEW_TYPE_TODO && getViewType() != VIEW_TYPE_PAST) 
-		|| getApproveType() == null ||( getApproveType() != APPROVE_TYPE_IDENTITY && getApproveType() != APPROVE_TYPE_RESOURCE)
+		|| getApproveType() == null ||( getApproveType() != APPROVE_TYPE_IDENTITY && getApproveType() != APPROVE_TYPE_RESOURCE  && getApproveType() != APPROVE_TYPE_ALLOCATE && getApproveType() != APPROVE_TYPE_GROUP)
 		|| getPage() == null || getPage() < 1)
 	{
 	    alertMessage.setSimpleAlert("参数错误！");
@@ -65,6 +67,12 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
 		return true;
 	    }
 	    else if (getApproveType() == APPROVE_TYPE_RESOURCE && getCurrentUser().getAuth().getOpResourceCode() != -1) {
+		return true;
+	    }
+            else if (getApproveType() == APPROVE_TYPE_ALLOCATE && getCurrentUser().getAuth().getOpAllocateCode() != -1) {
+		return true;
+	    }
+            else if (getApproveType() == APPROVE_TYPE_GROUP && getCurrentUser().getAuth().getOpGroupCode() != -1) {
 		return true;
 	    }
 	}

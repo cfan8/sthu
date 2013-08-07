@@ -22,6 +22,7 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     public static final int APPROVE_TYPE_IDENTITY = 1;
     public static final int APPROVE_TYPE_RESOURCE = 2;
      public static final int APPROVE_TYPE_ALLOCATE = 3;
+     public static final int APPROVE_TYPE_GROUP = 4;
 
     /**
      * @return the applyEntity

@@ -3,6 +3,8 @@
     Created on : 2013-7-23, 13:20:51
     Author     : Wang Silun
 --%>
+<%@page import="cn.edu.tsinghua.sthu.constant.ResourceMapping"%>
+<%@page import="cn.edu.tsinghua.sthu.constant.AllocateMapping"%>
 <%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page import="java.util.Date" %>
@@ -361,7 +363,23 @@
     <% if (message.isShowApprove()) {%>
     <div id="approveDiv" class="noprint">
         <form action="approveStudentActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
-            <p><label>是否同意该申请？</label><input type="radio" name="isApprove" value="1" checked="checked"/>同意<input type="radio" name="isApprove" value="2"/>驳回<input type="radio" name="isApprove" value="3"/>仅评论</p>
+            <p><label>是否同意该申请？</label>
+            <input type="radio" name="isApprove" value="1" checked="checked"/>同意
+            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
+                <label>接下来需要审批的部门（可留空）：</label>
+                <% for(int i = 1; i < AllocateMapping.names.length; i ++){ %>
+                <input type="checkbox" name="allocates" value="<%=i%>"/><%=AllocateMapping.names[i] %>
+                <% } %>
+            <% }%>
+            <input type="radio" name="isApprove" value="2"/>驳回
+            <input type="radio" name="isApprove" value="3"/>仅评论
+            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
+                <label>之前需要审批的部门（可留空）：</label>
+                <% for(int i = 1; i < ResourceMapping.names.length; i ++){ %>
+                <input type="checkbox" name="resources" value="<%=i %>"/>  <%=ResourceMapping.names[i]%>      
+                <% } %>
+            <% }%>
+            </p>
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
         </form>
