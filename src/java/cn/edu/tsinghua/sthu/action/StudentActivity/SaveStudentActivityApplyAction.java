@@ -112,7 +112,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private StudentApplyOptionsService studentApplyOptionsService;
     @Override
     public String onExecute() throws Exception {
-        this.setApplicantName(getCurrentUser().getNickname());
+    //    this.setApplicantName(getCurrentUser().getNickname());
 	StudentActivityApplyEntity entity;
         StudentApplyOptionsEntity option;
 	if (applyId == null || applyId == -1) {

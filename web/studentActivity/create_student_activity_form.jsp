@@ -66,7 +66,7 @@
                         </select>
                     </span>
                     <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%>
-                    <span class="value"><input disabled="disabled" type="text" name="applyType" value="<%=IdentityMapping.names[1]%>" /></span>
+                    <span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
                     <%}%>
                 </div>
                 <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>

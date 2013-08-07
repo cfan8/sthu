@@ -40,6 +40,11 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	    }
 	    else
 	    {
+                if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
+                    getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.USER_APPLY);
+                }else{
+                    getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
+                }
 		getShowApplyStudentActivityPageMessage().setStudentActivityApplyEntity(entity);
 		getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
                 getShowApplyStudentActivityPageMessage().setStudentApplyOptionsEntity(options);
