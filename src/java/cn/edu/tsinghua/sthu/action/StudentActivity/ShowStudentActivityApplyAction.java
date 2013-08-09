@@ -25,7 +25,7 @@ public class ShowStudentActivityApplyAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
         StudentActivityApplyEntity entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId());
-        StudentApplyOptionsEntity options = getStudentApplyOptionsService().getStudentApplyOptionsEntityByApplyId(getApplyId());
+        StudentApplyOptionsEntity options = entity.getOption();
 	if (entity == null) {
 	    alertMessage.setSimpleAlert("指定的申请不存在！");
 	    return ALERT;

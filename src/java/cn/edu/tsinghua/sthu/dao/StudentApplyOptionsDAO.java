@@ -18,26 +18,26 @@ public class StudentApplyOptionsDAO extends BaseDAO<StudentApplyOptionsEntity>{
     public StudentApplyOptionsDAO(){
         super(StudentApplyOptionsEntity.class);
     }
-    public StudentApplyOptionsEntity getOptionsById(int applyId){
-        List<StudentApplyOptionsEntity> list = select().add(Restrictions.eq("applyId", applyId)).list();
-        if(list.size() == 1){
-            return list.get(0);
-        }
-        else 
-            return null;
-    }
+//    public StudentApplyOptionsEntity getOptionsById(int applyId){
+//        List<StudentApplyOptionsEntity> list = select().add(Restrictions.eq("applyId", applyId)).list();
+//        if(list.size() == 1){
+//            return list.get(0);
+//        }
+//        else 
+//            return null;
+//    }
     
     public StudentApplyOptionsEntity getStudentApplyOptionsById(int id){
         return queryById(id);
     }
-    
-    public StudentApplyOptionsEntity saveStudentApplyOptionsEntity(StudentApplyOptionsEntity entity){
-        insert(entity);
-        return entity;
-    }
-    
-    public StudentApplyOptionsEntity updateStudentApplyOptionsEntity(StudentApplyOptionsEntity entity){
-        update(entity);
-        return entity;
-    }
+//    
+//    public StudentApplyOptionsEntity saveStudentApplyOptionsEntity(StudentApplyOptionsEntity entity){
+//        insert(entity);
+//        return entity;
+//    }
+//    
+//    public StudentApplyOptionsEntity updateStudentApplyOptionsEntity(StudentApplyOptionsEntity entity){
+//        update(entity);
+//        return entity;
+//    }
 }

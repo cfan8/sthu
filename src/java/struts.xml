@@ -168,6 +168,12 @@ and open the template in the editor.
 	<action name="showStudentActivityApplyPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction">
 	    <result name="success">show_student_activity_paged_apply.jsp</result>
 	</action>
+        <action name="showActivitiesList" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesListAction">
+	    <result name="success">show_activities_list.jsp</result>
+	</action>
+	<action name="showActivitiesPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesPageAction">
+	    <result name="success">show_activities_list_page.jsp</result>
+	</action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">

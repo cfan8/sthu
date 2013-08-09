@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.dao;
 
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -116,6 +117,19 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 		Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_ACCEPTED), Restrictions.eq("groupStatus", StudentActivityApplyEntity.GROUP_STATUS_REJECTED))))
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
+    }
+    
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivities(int begin, int number){
+         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(begin).setMaxResults(number).list();       
+	return list;
+    }
+    public int getAcceptedPublicActivitiesCount(){
+        Object r = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
+        return ((Long) r).intValue();
     }
     
 }

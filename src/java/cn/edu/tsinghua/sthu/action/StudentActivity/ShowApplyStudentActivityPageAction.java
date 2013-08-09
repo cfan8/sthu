@@ -32,7 +32,7 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	if (getApplyId() != null)
 	{
 	    StudentActivityApplyEntity entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId(), getCurrentUser().getID());
-            StudentApplyOptionsEntity options = getStudentApplyOptionsService().getStudentApplyOptionsEntityByApplyId(getApplyId());
+            StudentApplyOptionsEntity options = entity.getOption();
 	    if (entity == null)
 	    {
 		alertMessage.setSimpleAlert("无法编辑指定的教室申请！");

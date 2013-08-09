@@ -37,8 +37,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int TICKETFLAG_NOTAPPLY = 0;
     public static final int TICKETFLAG_APPLY = 1;
     
-    private int applyId; //通过applyId与StudentActivityApplyEntity关联
-        
+      
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     
@@ -568,17 +567,4 @@ public class StudentApplyOptionsEntity extends BaseEntity{
         this.ticketFlag = ticketFlag;
     }
 
-    /**
-     * @return the applyId
-     */
-    public int getApplyId() {
-        return applyId;
-    }
-
-    /**
-     * @param applyId the applyId to set
-     */
-    public void setApplyId(int applyId) {
-        this.applyId = applyId;
-    }
 }

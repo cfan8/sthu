@@ -5,8 +5,10 @@
 package cn.edu.tsinghua.sthu.entity;
 
 import java.util.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
@@ -125,6 +127,9 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Index(name="allocateDateIndex")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date allocateDate;	//三级审批日期(按照申请要求分配申请)
+    
+    @OneToOne(cascade={CascadeType.ALL})
+    private StudentApplyOptionsEntity option;
 
     
     /**
@@ -680,6 +685,20 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setGroupDate(Date groupDate) {
         this.groupDate = groupDate;
+    }
+
+    /**
+     * @return the option
+     */
+    public StudentApplyOptionsEntity getOption() {
+        return option;
+    }
+
+    /**
+     * @param option the option to set
+     */
+    public void setOption(StudentApplyOptionsEntity option) {
+        this.option = option;
     }
     
 }

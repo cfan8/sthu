@@ -97,7 +97,7 @@ public class ApplyStudentActivityService extends BaseService{
                 if (isApprove == 1) {
                     studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
                     if(studentActivityApplyEntity.getActivityRange() == StudentActivityApplyEntity.RANGE_DEPART){
-                        StudentApplyOptionsEntity studentApplyOptionsEntity = studentApplyOptionsDAO.getOptionsById(studentActivityApplyEntity.getID());
+                        StudentApplyOptionsEntity studentApplyOptionsEntity = studentActivityApplyEntity.getOption();
                         if(studentApplyOptionsEntity.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
                                 && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
                                 && studentApplyOptionsEntity.getOutsideFlag() == studentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY
@@ -123,16 +123,18 @@ public class ApplyStudentActivityService extends BaseService{
                     for (StudentActivityApproveEntity e : approveEntities) {
                         studentActivityApproveDAO.deleteApproveEntity(e);
                     }
-                    for (int i = 0; i < allocates.length; i ++) {
-                        StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
-                        approveEntity.setApplyId(studentActivityApplyEntity.getID());
-                        approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
-                        approveEntity.setApproveType(allocates[i]);
-                        approveEntity.setApproveStatus(StudentActivityApplyEntity.ALLOCATE_STATUS_TODO);
-                        studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+                    if(allocates != null){
+                        for (int i = 0; i < allocates.length; i ++) {
+                            StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
+                            approveEntity.setApplyId(studentActivityApplyEntity.getID());
+                            approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
+                            approveEntity.setApproveType(allocates[i]);
+                            approveEntity.setApproveStatus(StudentActivityApplyEntity.ALLOCATE_STATUS_TODO);
+                            studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+                        }
+                        if(allocates.length != 0)
+                            studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_TODO);
                     }
-                    if(allocates.length != 0)
-                        studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_TODO);
                     else{
                         studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
                     }
@@ -209,17 +211,19 @@ public class ApplyStudentActivityService extends BaseService{
                 for (StudentActivityApproveEntity e : approveEntities) {
                     studentActivityApproveDAO.deleteApproveEntity(e);
                 }
-                for (int i = 0; i < resources.length; i ++) {
-                    StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
-                    approveEntity.setApplyId(studentActivityApplyEntity.getID());
-                    approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
-                    approveEntity.setApproveType(resources[i]);
-                    approveEntity.setApproveStatus(StudentActivityApplyEntity.RESOURCE_STATUS_TODO);
-                    studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
-                }
-                if(resources.length != 0){
-                    studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_TODO);
-                    studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_AWAIT);
+                if(resources != null){
+                    for (int i = 0; i < resources.length; i ++) {
+                        StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
+                        approveEntity.setApplyId(studentActivityApplyEntity.getID());
+                        approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
+                        approveEntity.setApproveType(resources[i]);
+                        approveEntity.setApproveStatus(StudentActivityApplyEntity.RESOURCE_STATUS_TODO);
+                        studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+                    }
+                    if(resources.length != 0){
+                        studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_TODO);
+                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_AWAIT);
+                    }
                 }
             }
             applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
@@ -231,7 +235,7 @@ public class ApplyStudentActivityService extends BaseService{
     public StudentActivityApplyEntity createStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
-	     int number, String title, int userid, int applyRange, int applyType) {
+	     int number, String title, int userid, int applyRange, int applyType, StudentApplyOptionsEntity option) {
 	StudentActivityApplyEntity entity = new StudentActivityApplyEntity();
 	entity.setOrganizerName(organizerName);
         entity.setAssociateOrganizerName(associateOrganizerName);
@@ -250,6 +254,7 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
         entity.setApplyPath(applyType);
+        entity.setOption(option);
         //entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	//entity.setIdentityType(applyType);
 	configureApplyStatus(entity, applyType);
@@ -271,7 +276,7 @@ public class ApplyStudentActivityService extends BaseService{
     public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
-	     int number, String title, int userid, int applyRange, int applyType,int applyId) {
+	     int number, String title, int userid, int applyRange, int applyType, StudentApplyOptionsEntity option, int applyId) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
 	/*if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
 		&& entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
@@ -294,6 +299,7 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
         entity.setApplyPath(applyType);
+        entity.setOption(option);
 	configureApplyStatus(entity, applyType);
         //entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	//entity.setIdentityType(applyType);
@@ -419,6 +425,21 @@ public class ApplyStudentActivityService extends BaseService{
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
     
+    @Transactional
+    public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage)
+    {
+	int r = applyStudentActivityDAO.getAcceptedPublicActivitiesCount();
+	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+     
+    @Transactional
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesList(int page, int numberPerPage)
+    {
+	return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage);
+    }
+      
+      
+      
     /**
      * @return the applyStudentActivityDAO
      */

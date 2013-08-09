@@ -17,24 +17,20 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class StudentApplyOptionsService {
     private StudentApplyOptionsDAO studentApplyOptionsDAO;
-    private ApplyCommentDAO applyCommentDAO;
-    private AuthDAO authDAO;
-    private UserDAO userDAO;
+    
+//    @Transactional
+//    public StudentApplyOptionsEntity getStudentApplyOptionsEntityById(int applyId){
+//        StudentApplyOptionsEntity entity = getStudentApplyOptionsDAO().getStudentApplyOptionsById(applyId);
+//	return entity;
+//    }
     
     @Transactional
-    public StudentApplyOptionsEntity getStudentApplyOptionsEntityById(int applyId){
-        StudentApplyOptionsEntity entity = getStudentApplyOptionsDAO().getStudentApplyOptionsById(applyId);
-	return entity;
-    }
-    
-    @Transactional
-    public StudentApplyOptionsEntity createStudentApplyOptions(int applyid, int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
+    public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
     int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
-        entity.setApplyId(applyid);
         entity.setApplyUserid(userid);
         entity.setActivityArea(activityArea);
         entity.setExternalIntro(externalIntro);
@@ -68,17 +64,17 @@ public class StudentApplyOptionsService {
         entity.setTicketNum(ticketNum);
         entity.setTicketTime(ticketTime);
         entity.setTicketLocation(ticketLocation);
-        getStudentApplyOptionsDAO().saveStudentApplyOptionsEntity(entity);
+        //getStudentApplyOptionsDAO().saveStudentApplyOptionsEntity(entity);
         return entity;
     }
     
     @Transactional
-    public StudentApplyOptionsEntity modifyStudentApplyOptions(int applyId, int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
+    public StudentApplyOptionsEntity modifyStudentApplyOptions(int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
-    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
-        StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getOptionsById(applyId);
+    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation, int optionId){
+        StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getStudentApplyOptionsById(optionId);
         entity.setApplyUserid(userid);
         entity.setActivityArea(activityArea);
         entity.setExternalIntro(externalIntro);
@@ -112,18 +108,18 @@ public class StudentApplyOptionsService {
         entity.setTicketNum(ticketNum);
         entity.setTicketTime(ticketTime);
         entity.setTicketLocation(ticketLocation);
-        studentApplyOptionsDAO.updateStudentApplyOptionsEntity(entity);
+        //studentApplyOptionsDAO.updateStudentApplyOptionsEntity(entity);
         return entity;
     }
     
-    @Transactional
-    public StudentApplyOptionsEntity getStudentApplyOptionsEntityByApplyId(int applyId){
-        StudentApplyOptionsEntity options = studentApplyOptionsDAO.getOptionsById(applyId);
-        if(options == null)
-            return null;
-        else
-            return options;
-    }
+//    @Transactional
+//    public StudentApplyOptionsEntity getStudentApplyOptionsEntityByApplyId(int applyId){
+//        StudentApplyOptionsEntity options = studentApplyOptionsDAO.getOptionsById(applyId);
+//        if(options == null)
+//            return null;
+//        else
+//            return options;
+//    }
     
     /**
      * @return the studentApplyOptionsDAO
