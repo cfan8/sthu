@@ -12,8 +12,11 @@
         <title>学生活动</title>
     </head>
     <%@include file="/templates/general_header.jsp" %>
+    
     <div>
-        
+        <iframe width="100%" src ="/studentActivity/showActivitiesList.do">
+            
+        </iframe>
         </div>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

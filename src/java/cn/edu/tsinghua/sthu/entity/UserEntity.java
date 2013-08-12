@@ -5,10 +5,14 @@
 package cn.edu.tsinghua.sthu.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.FetchMode;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.Index;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -39,6 +43,10 @@ public class UserEntity extends BaseEntity
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
 
+    @ManyToMany(cascade={CascadeType.ALL})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name="user_activity", joinColumns={@JoinColumn(name="user_id")}, inverseJoinColumns={@JoinColumn(name="activity_id")})
+    private Set<StudentActivityApplyEntity> interestedActivities = new HashSet<StudentActivityApplyEntity>();
 
     public UserEntity()
     {
@@ -97,6 +105,20 @@ public class UserEntity extends BaseEntity
 
     public void setAuth(AuthEntity auth) {
 	this.auth = auth;
+    }
+
+    /**
+     * @return the interestedActivities
+     */
+    public Set<StudentActivityApplyEntity> getInterestedActivities() {
+        return interestedActivities;
+    }
+
+    /**
+     * @param interestedActivities the interestedActivities to set
+     */
+    public void setInterestedActivities(Set<StudentActivityApplyEntity> interestedActivities) {
+        this.interestedActivities = interestedActivities;
     }
 
 }

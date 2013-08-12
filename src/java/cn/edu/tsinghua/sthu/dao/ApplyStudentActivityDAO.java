@@ -122,7 +122,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
     public List<StudentActivityApplyEntity> getAcceptedPublicActivities(int begin, int number){
          List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
                  Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
-                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).setFirstResult(begin).setMaxResults(number).list();       
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
 	return list;
     }
     public int getAcceptedPublicActivitiesCount(){
@@ -131,5 +131,18 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
-    
+        public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByActivityType(int begin, int number, int activityType){
+         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("activityType", activityType))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
+	return list;
+    }
+    public int getAcceptedPublicActivitiesCountByActivityType(int activityType){
+        Object r = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("activityType", activityType))).setProjection(Projections.rowCount()).uniqueResult();
+        return ((Long) r).intValue();
+    }
 }

@@ -10,7 +10,7 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
 /**
  *
- * @author user
+ * @author xiaobo
  */
 public class ShowActivitiesListAction extends BaseAction{
     private Integer activityClass;
@@ -19,8 +19,10 @@ public class ShowActivitiesListAction extends BaseAction{
 
     @Override
     public String onExecute() throws Exception {
-        //showActivitiesListMessage.setActivityClass(activityClass);
-        showActivitiesListMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumber(10));
+        if(activityClass == null)
+            activityClass = ShowActivitiesPageAction.ACTIVITY_ALL;
+        showActivitiesListMessage.setActivityClass(activityClass);
+        showActivitiesListMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumber(10, activityClass));
         return SUCCESS;
     }
     

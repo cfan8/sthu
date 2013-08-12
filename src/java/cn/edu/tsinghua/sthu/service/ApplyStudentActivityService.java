@@ -20,10 +20,12 @@ import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApproveEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
+import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -426,19 +428,53 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
-    public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage)
+    public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage, int activityType)
     {
-	int r = applyStudentActivityDAO.getAcceptedPublicActivitiesCount();
+        int r;
+        if(activityType == 0)
+            r = applyStudentActivityDAO.getAcceptedPublicActivitiesCount();
+        else
+            r = applyStudentActivityDAO.getAcceptedPublicActivitiesCountByActivityType(activityType);
 	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
     }
      
     @Transactional
-    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesList(int page, int numberPerPage)
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesList(int page, int numberPerPage, int activityType)
     {
-	return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage);
+        if(activityType == 0)
+            return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage);
+        else 
+            return applyStudentActivityDAO.getAcceptedPublicActivitiesByActivityType((page - 1)*numberPerPage, numberPerPage, activityType);
     }
-      
-      
+    
+    @Transactional
+    public UserEntity followActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
+        if(checkActivityFollowedByUser(user, activity))
+            return null;
+        user.getInterestedActivities().add(activity);
+        userDAO.updateUserEntity(user);
+        
+        return user;
+    }
+    
+    @Transactional
+    public UserEntity unFollowActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
+        if(!checkActivityFollowedByUser(user, activity))
+            return null;
+        user.getInterestedActivities().remove(activity);
+        userDAO.updateUserEntity(user);
+        return user;
+    }
+    
+    @Transactional 
+    public boolean checkActivityFollowedByUser(UserEntity user, StudentActivityApplyEntity activity){
+        if(user.getInterestedActivities() == null)
+            return false;
+        if(user.getInterestedActivities().contains(activity))
+            return true;
+        return false;
+    }
+
       
     /**
      * @return the applyStudentActivityDAO

@@ -8,11 +8,14 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import org.hibernate.annotations.Index;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 /**
  *
  * @author xiaobo
@@ -131,6 +134,24 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @OneToOne(cascade={CascadeType.ALL})
     private StudentApplyOptionsEntity option;
 
+    @ManyToMany(mappedBy="interestedActivities")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Set<UserEntity> interestedUsers = new HashSet<UserEntity>();
+    
+    //重写hash
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o.getClass() == StudentActivityApplyEntity.class){
+            StudentActivityApplyEntity e = (StudentActivityApplyEntity)o;
+            return (e.getID() == getID());
+        }
+        return false;
+    }
+    public int hashCode(){
+        return getID();
+    }
     
     /**
      * @return the organizerName
@@ -699,6 +720,20 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setOption(StudentApplyOptionsEntity option) {
         this.option = option;
+    }
+
+    /**
+     * @return the interestedUsers
+     */
+    public Set<UserEntity> getInterestedUsers() {
+        return interestedUsers;
+    }
+
+    /**
+     * @param interestedUsers the interestedUsers to set
+     */
+    public void setInterestedUsers(Set<UserEntity> interestedUsers) {
+        this.interestedUsers = interestedUsers;
     }
     
 }

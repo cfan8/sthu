@@ -41,5 +41,6 @@ public class ShowActivitiesListMessage extends BaseMessage{
     public void setTotalPageNumber(int totalPageNumber) {
         this.totalPageNumber = totalPageNumber;
     }
+
     
 }

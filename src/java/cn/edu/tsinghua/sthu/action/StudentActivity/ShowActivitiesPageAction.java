@@ -6,22 +6,53 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesPageMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author xiaobo
  */
 public class ShowActivitiesPageAction extends BaseAction{
-
+    public static final int ACTIVITY_ALL = 0;
+    public static final int ACTIVITY_GROUP = 1;
+    public static final int ACTIVITY_SPORTS = 2;
+    public static final int ACTIVITY_LECTURE = 3;
+    public static final int ACTIVITY_CULTURE = 4;
+    public static final int ACTIVITY_AMUSE = 5;
+    public static final int ACTIVITY_OTHER = 6;
+    
+    
+    private Integer activityClass;
     private Integer page;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowActivitiesPageMessage showActivitiesPageMessage;
     
     @Override
     public String onExecute() throws Exception {
-        getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesList(getPage(), 10));
+        if(getCurrentUser() == null || getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE){
+            getShowActivitiesPageMessage().setShowFollow(0);
+        }
+        else
+            getShowActivitiesPageMessage().setShowFollow(1);
+        if(activityClass == null)
+            activityClass = ACTIVITY_ALL;
+        getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesList(getPage(), 10, activityClass));
+        List<Boolean> isFollowedList = new ArrayList<Boolean>();
+        if(getShowActivitiesPageMessage().getShowFollow() == 1){
+            for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
+                isFollowedList.add(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), entity));
+            }
+        }
+        else{
+            for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
+                isFollowedList.add(Boolean.FALSE);
+            }
+        }
+        getShowActivitiesPageMessage().setIsFollowedList(isFollowedList);
         return SUCCESS;
     }
 
@@ -86,6 +117,20 @@ public class ShowActivitiesPageAction extends BaseAction{
      */
     public void setShowActivitiesPageMessage(ShowActivitiesPageMessage showActivitiesPageMessage) {
         this.showActivitiesPageMessage = showActivitiesPageMessage;
+    }
+
+    /**
+     * @return the activityClass
+     */
+    public Integer getActivityClass() {
+        return activityClass;
+    }
+
+    /**
+     * @param activityClass the activityClass to set
+     */
+    public void setActivityClass(Integer activityClass) {
+        this.activityClass = activityClass;
     }
     
 }

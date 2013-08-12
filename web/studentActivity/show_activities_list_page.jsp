@@ -14,6 +14,8 @@
 <%
     ShowActivitiesPageMessage message = Util.getMessage(ShowActivitiesPageAction.class);
     List<StudentActivityApplyEntity> list = message.getList();
+    List<Boolean> isFollowedList = message.getIsFollowedList();
+    Integer showFollow = message.getShowFollow();
     if (list.size() == 0) {
 %>
 <div style="width: 100%; text-align: center;">没有申请！</div>
@@ -21,8 +23,18 @@
 %><ul><%
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
+        Boolean isFollowed = isFollowedList.get(i);
     %>
-    <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a></li>
+    <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a>
+    <br/>
+    <%if(showFollow == 1){%>
+        <%if(isFollowed){%>
+        <a href="followActivity.do?activityId=<%=entity.getID()%>&type=0">取消关注</a>
+        <%}else{%>
+            <a href="followActivity.do?activityId=<%=entity.getID()%>&type=1">添加关注</a>
+         <%}%>
+     <%}%>
+    </li>
     <%
 	    }
     %></ul><%
