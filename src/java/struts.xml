@@ -55,6 +55,14 @@ and open the template in the editor.
 	</action>
 	<action name="saveIndexSetting" class="cn.edu.tsinghua.sthu.action.SaveIndexSettingAction">
 	</action>
+        <action name="showGroupHome" class="cn.edu.tsinghua.sthu.action.ShowGroupHomeAction">
+            <result name="success">grouphome.jsp</result>
+        </action>
+        <action name="showGroupPageHome" class="cn.edu.tsinghua.sthu.action.ShowGroupHomePageAction">
+            <result name="success">grouphome_page.jsp</result>
+        </action>
+        <action name="followGroup" class="cn.edu.tsinghua.sthu.action.FollowGroupAction">
+        </action>
     </package>
     <package name="testActionPackage" extends="defaultAction" namespace="/test">
 	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">

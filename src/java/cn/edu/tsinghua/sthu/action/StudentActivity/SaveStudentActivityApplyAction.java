@@ -63,12 +63,16 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private Integer activityArea; //活动范围
     @XSSProtect(XSSProtectLevel.Strict)
     private String externalIntro;   //校外人员情况简介
+    @XSSProtect(XSSProtectLevel.Strict)
     private String externalOrganizationIntro;   //校外合作单位情况简介
+    @XSSProtect(XSSProtectLevel.Strict)
     private String securityPreparedness;    //出校活动安全预案
     
     @XSSProtect(XSSProtectLevel.Strict)
     private String overseasIntro;   //境外人员情况简介
+    @XSSProtect(XSSProtectLevel.Strict)
     private String overseasOrganizationIntro;   //境外合作单位情况介绍
+    @XSSProtect(XSSProtectLevel.Strict)
     private String overseasMaterial;    //相关材料
     
     //教室申请
@@ -76,13 +80,18 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
     private int croomCapacity; //教室容量
+    @XSSProtect(XSSProtectLevel.Strict)
     private String croomStartTime; //开始日期和时间
+    @XSSProtect(XSSProtectLevel.Strict)
     private String croomEndTime; //结束日期和时间
     
     //电子屏申请
     private int LEDFlag; //标记是否申请电子屏，1：申请，2：不申请
+    @XSSProtect(XSSProtectLevel.Strict)
     private String LEDContent; //电子屏显示内容
+    @XSSProtect(XSSProtectLevel.Strict)
     private String LEDStartTime; //开始日期和时间
+    @XSSProtect(XSSProtectLevel.Strict)
     private String LEDEndTime; //结束日期和时间
     
     //室外场地申请
@@ -93,19 +102,25 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     
     //展板申请
     private int boardFlag; //标记是否申请展板，1：申请，2：不申请
+    @XSSProtect(XSSProtectLevel.Strict)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
+    @XSSProtect(XSSProtectLevel.Strict)
     private String BoardStartTime; //开始日期和时间
+    @XSSProtect(XSSProtectLevel.Strict)
     private String BoardEndTime; //结束日期和时间
     
     //学生清华发布申请
     private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
+    @XSSProtect(XSSProtectLevel.Strict)
     private String publicityMaterials; //宣传材料
     
     //门票抽签申请
     private int ticketFlag; //标记是否申请门票抽签，1：申请，2：不申请
     private int ticketNum; //门票数目
+    @XSSProtect(XSSProtectLevel.Strict)
     private String ticketTime; //发票时间
+    @XSSProtect(XSSProtectLevel.Strict)
     private String ticketLocation; //发票地点
     
     private ApplyStudentActivityService applyStudentActivityService;
@@ -124,13 +139,13 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option);
             
 	} else {
-             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
+            
+	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
+		    getCurrentUser().getID(), getActivityRange(), getApplyType(), applyId);
+            option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
                     getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
-                    getTicketNum(), getTicketTime(), getTicketLocation(), applyStudentActivityService.getStudentActivityApplyEntityById(applyId).getOption().getID());
-	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
-		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option, applyId);
-           
+                    getTicketNum(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的教室申请！");
 		return ALERT;

@@ -19,6 +19,7 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     private StudentActivityApplyEntity studentActivityApplyEntity;
     private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
+    private String organizerName;
     private int applyType = USER_APPLY;
     private CommentEntity commentEntity;
     private boolean showConfirm;
@@ -137,5 +138,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setApplyType(int applyType) {
         this.applyType = applyType;
+    }
+
+    /**
+     * @return the organizerName
+     */
+    public String getOrganizerName() {
+        return organizerName;
+    }
+
+    /**
+     * @param organizerName the organizerName to set
+     */
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
     }
 }

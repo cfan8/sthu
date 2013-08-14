@@ -42,11 +42,14 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	    {
                 if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.USER_APPLY);
+                    getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
                 }else{
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
+                    getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
+                    getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getApplicantName());
                 }
 		getShowApplyStudentActivityPageMessage().setStudentActivityApplyEntity(entity);
-		getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
+		
                 getShowApplyStudentActivityPageMessage().setStudentApplyOptionsEntity(options);
 		return RETURN_MODIFY;
 	    }
@@ -57,6 +60,7 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
                 getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
                 return RETURN_CREATE;
             }else{
+                getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
                 return RETURN_GROUP_CREATE;
             }   
 	}

@@ -34,7 +34,11 @@
     <div id="formdiv">
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
             <div id="requiredinfo">
+                <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%>
                 <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName"/></span></div>
+                <%}else{%>
+                <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" disabled="disabled" name="organizerName" value="<%=message.getOrganizerName()%>"/></span></div>
+                <%}%>
                 <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName"/></span></div>
 
                 <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>

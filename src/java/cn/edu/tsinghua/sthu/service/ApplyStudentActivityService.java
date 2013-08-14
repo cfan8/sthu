@@ -106,6 +106,9 @@ public class ApplyStudentActivityService extends BaseService{
                                 && studentApplyOptionsEntity.getPublicityFlag() == studentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY && studentApplyOptionsEntity.getTicketFlag() == studentApplyOptionsEntity.TICKETFLAG_NOTAPPLY){
                             studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
                         }
+                        else{
+                            studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
+                        }
                     }
                     else{
                         studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
@@ -278,7 +281,7 @@ public class ApplyStudentActivityService extends BaseService{
     public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
-	     int number, String title, int userid, int applyRange, int applyType, StudentApplyOptionsEntity option, int applyId) {
+	     int number, String title, int userid, int applyRange, int applyType, int applyId) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
 	/*if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
 		&& entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
@@ -301,7 +304,6 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
         entity.setApplyPath(applyType);
-        entity.setOption(option);
 	configureApplyStatus(entity, applyType);
         //entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	//entity.setIdentityType(applyType);
@@ -445,6 +447,17 @@ public class ApplyStudentActivityService extends BaseService{
             return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage);
         else 
             return applyStudentActivityDAO.getAcceptedPublicActivitiesByActivityType((page - 1)*numberPerPage, numberPerPage, activityType);
+    }
+    
+    @Transactional 
+    public int getAcceptedPublicActivitiesTotalPageNumberByUserId(int numberPerPage, int userid){
+        int r = applyStudentActivityDAO.getAcceptedPublicActivitiesCountByApplyUserid(userid);
+        return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+    
+    @Transactional
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesListByUserId(int page, int numberPerPage, int userid){
+        return applyStudentActivityDAO.getAcceptedPublicActivitiesByApplyUserid((page - 1)*numberPerPage, numberPerPage, userid);
     }
     
     @Transactional

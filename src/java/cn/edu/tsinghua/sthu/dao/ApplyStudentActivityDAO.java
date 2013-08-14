@@ -131,7 +131,22 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
-        public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByActivityType(int begin, int number, int activityType){
+    
+        public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByApplyUserid(int begin, int number, int userID){
+         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), Restrictions.eq("applyUserid",userID))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
+	return list;
+    }
+    public int getAcceptedPublicActivitiesCountByApplyUserid(int userID){
+        Object r = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("applyUserid", userID))).setProjection(Projections.rowCount()).uniqueResult();
+        return ((Long) r).intValue();
+    }
+    
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByActivityType(int begin, int number, int activityType){
          List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
                  Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),

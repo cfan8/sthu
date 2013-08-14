@@ -41,5 +41,8 @@
     <bean id="showMyStudentActivityApplyMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyMessage" scope="prototype" autowire="byName"/>
     <bean id="showActivitiesPageMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesPageMessage" scope="prototype" autowire="byName"/>
     <bean id="showActivitiesListMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesListMessage" scope="prototype" autowire="byName"/>
+    <bean id="showGroupHomeMessage" class="cn.edu.tsinghua.sthu.message.ShowGroupHomeMessage" scope="prototype" autowire="byName" />
+    <bean id="showGroupHomePageMessage" class="cn.edu.tsinghua.sthu.message.ShowGroupHomePageMessage" scope="prototype" autowire="byName" />
+
 </beans>
 

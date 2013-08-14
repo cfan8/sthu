@@ -52,6 +52,7 @@ public class GroupUserValidationAction extends BaseAction{
         }
 	if (entity != null) {
             getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getNickname());
+            getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
             getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
 	    return RETURN_CREATE;
 	} else {

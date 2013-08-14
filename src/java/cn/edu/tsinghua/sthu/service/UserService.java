@@ -135,6 +135,37 @@ public class UserService extends BaseService {
 	}
     }
 
+    @Transactional
+    public UserEntity getUserEntityById(int userId){
+        return userDAO.getUserById(userId);
+    }
+    
+    @Transactional
+    public UserEntity followGroup(UserEntity user, UserEntity group){
+        if(checkGroupFollowedByUser(user, group))
+            return null;
+        user.getInterestedGroups().add(group);
+        userDAO.updateUserEntity(user);
+        return user;
+    }
+    
+    @Transactional
+    public UserEntity unfollowGroup(UserEntity user, UserEntity group){
+        if(!checkGroupFollowedByUser(user, group))
+            return null;
+        user.getInterestedGroups().remove(group);
+        userDAO.updateUserEntity(user);
+        return user;
+    }
+    
+    @Transactional
+    public boolean checkGroupFollowedByUser(UserEntity user, UserEntity group){
+        if(user.getInterestedGroups() == null)
+            return false;
+        if(user.getInterestedGroups().contains(group))
+            return true;
+        return false;
+    }
     
 
     public UserDAO getUserDAO() {
