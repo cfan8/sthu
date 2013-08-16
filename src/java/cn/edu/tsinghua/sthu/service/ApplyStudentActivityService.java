@@ -92,148 +92,169 @@ public class ApplyStudentActivityService extends BaseService{
 	commentEntity.setPubDate(new Date());
 	commentEntity.setUserid(userid);
 	commentDAO.addComment(commentEntity);
-        if(isApprove != 3)
-        {
-            if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY) {
-                studentActivityApplyEntity.setIdentityDate(new Date());
-                if (isApprove == 1) {
-                    studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
-                    if(studentActivityApplyEntity.getActivityRange() == StudentActivityApplyEntity.RANGE_DEPART){
-                        StudentApplyOptionsEntity studentApplyOptionsEntity = studentActivityApplyEntity.getOption();
-                        if(studentApplyOptionsEntity.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
-                                && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
-                                && studentApplyOptionsEntity.getOutsideFlag() == studentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY
-                                && studentApplyOptionsEntity.getPublicityFlag() == studentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY && studentApplyOptionsEntity.getTicketFlag() == studentApplyOptionsEntity.TICKETFLAG_NOTAPPLY){
-                            studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
-                        }
-                        else{
-                            studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
-                        }
-                    }
-                    else{
-                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
-                    }
-                    //sendEmailByResource(studentActivityApplyEntity.getResourceType(), studentActivityApplyEntity.getID());
-                } else if(isApprove == 2) 
-                {
-                    studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_REJECTED);
-                    studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
-                }
+        if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_PUBLISH){
+            studentActivityApplyEntity.setPublishDate(new Date());
+            if(isApprove == 1){
+                studentActivityApplyEntity.setPublishStatus(studentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED);
             }
-            else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP){
-                studentActivityApplyEntity.setGroupDate(new Date());
-                if(isApprove == 1){
-                    studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_ACCEPTED);
-                    List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
-                    for (StudentActivityApproveEntity e : approveEntities) {
-                        studentActivityApproveDAO.deleteApproveEntity(e);
-                    }
-                    if(allocates != null){
-                        for (int i = 0; i < allocates.length; i ++) {
-                            StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
-                            approveEntity.setApplyId(studentActivityApplyEntity.getID());
-                            approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
-                            approveEntity.setApproveType(allocates[i]);
-                            approveEntity.setApproveStatus(StudentActivityApplyEntity.ALLOCATE_STATUS_TODO);
-                            studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
-                        }
-                        if(allocates.length != 0)
-                            studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_TODO);
-                    }
-                    else{
-                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
-                    }
-                }
-                else if(isApprove == 2){
-                    studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_REJECTED);
-                    studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
-                }
-            }
-            else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE) {
-                //studentActivityApplyEntity.setResourceDate(new Date());
-                if (isApprove == 1) {
-                    List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
-                    int approveNum = 0;
-                    for (StudentActivityApproveEntity e : approveEntities) {
-                        if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
-                            e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
-                            e.setApproveDate(new Date());
-                        }
-                        if(e.getApproveStatus() == studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED)
-                            approveNum ++;
-                    }
-                    if(approveNum == approveEntities.size()){
-                        studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
-                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
-                    }
-                    //sendEmailByAllocate(studentActivityApplyEntity.getAllocateType(), studentActivityApplyEntity.getID());
-                } else if(isApprove == 2){
-                    List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
-                    for (StudentActivityApproveEntity e : approveEntities) {
-                        if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
-                            e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
-                            e.setApproveDate(new Date());
-                        }
-                    }
-                    studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
-                    studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
-                }
-            } else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE) {
-                //studentActivityApplyEntity.setAllocateDate(new Date());
-                if (isApprove == 1) {
-                     List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
-                    int approveNum = 0;
-                    for (StudentActivityApproveEntity e : approveEntities) {
-                        if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
-                            e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
-                            e.setApproveDate(new Date());
-                        }
-                        if(e.getApproveStatus() == studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED)
-                            approveNum ++;
-                    }
-                    if(approveNum == approveEntities.size()){
-                        studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
-                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
-                    }
-                    
-                } else if(isApprove == 2){
-                    List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
-                    for (StudentActivityApproveEntity e : approveEntities) {
-                        if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
-                            e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
-                            e.setApproveDate(new Date());
-                        }
-                    }
-                    studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
-                    studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
-                }
+            else if(isApprove == 2){
+                studentActivityApplyEntity.setPublishStatus(studentActivityApplyEntity.PUBLISH_STATUS_REJECTED);
             }
             applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
         }
         else{
-            if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP){
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    studentActivityApproveDAO.deleteApproveEntity(e);
-                }
-                if(resources != null){
-                    for (int i = 0; i < resources.length; i ++) {
-                        StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
-                        approveEntity.setApplyId(studentActivityApplyEntity.getID());
-                        approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
-                        approveEntity.setApproveType(resources[i]);
-                        approveEntity.setApproveStatus(StudentActivityApplyEntity.RESOURCE_STATUS_TODO);
-                        studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+            if(isApprove != 3)
+            {
+                if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY) {
+                    studentActivityApplyEntity.setIdentityDate(new Date());
+                    if (isApprove == 1) {
+                        studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
+                        if(studentActivityApplyEntity.getActivityRange() == StudentActivityApplyEntity.RANGE_DEPART){
+                            StudentApplyOptionsEntity studentApplyOptionsEntity = studentActivityApplyEntity.getOption();
+                            if(studentApplyOptionsEntity.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
+                                    && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
+                                    && studentApplyOptionsEntity.getOutsideFlag() == studentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY
+                                    && studentApplyOptionsEntity.getPublicityFlag() == studentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY && studentApplyOptionsEntity.getTicketFlag() == studentApplyOptionsEntity.TICKETFLAG_NOTAPPLY){
+                                studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+                            }
+                            else{
+                                studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
+                            }
+                        }
+                        else{
+                            studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
+                        }
+                        //sendEmailByResource(studentActivityApplyEntity.getResourceType(), studentActivityApplyEntity.getID());
+                    } else if(isApprove == 2) 
+                    {
+                        studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_REJECTED);
+                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
                     }
-                    if(resources.length != 0){
-                        studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_TODO);
-                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_AWAIT);
+                }
+                else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP){
+                    studentActivityApplyEntity.setGroupDate(new Date());
+                    if(isApprove == 1){
+                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_ACCEPTED);
+                        List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
+                        for (StudentActivityApproveEntity e : approveEntities) {
+                            studentActivityApproveDAO.deleteApproveEntity(e);
+                        }
+                        if(allocates != null){
+                            for (int i = 0; i < allocates.length; i ++) {
+                                StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
+                                approveEntity.setApplyId(studentActivityApplyEntity.getID());
+                                approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
+                                approveEntity.setApproveType(allocates[i]);
+                                approveEntity.setApproveStatus(StudentActivityApplyEntity.ALLOCATE_STATUS_TODO);
+                                studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+                            }
+                            if(allocates.length != 0)
+                                studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_TODO);
+                        }
+                        else{
+                            studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+                        }
+                    }
+                    else if(isApprove == 2){
+                        studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_REJECTED);
+                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
                     }
                 }
+                else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE) {
+                    //studentActivityApplyEntity.setResourceDate(new Date());
+                    if (isApprove == 1) {
+                        List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
+                        int approveNum = 0;
+                        for (StudentActivityApproveEntity e : approveEntities) {
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
+                                e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
+                                e.setApproveDate(new Date());
+                            }
+                            if(e.getApproveStatus() == studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED)
+                                approveNum ++;
+                        }
+                        if(approveNum == approveEntities.size()){
+                            studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
+                            studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_TODO);
+                        }
+                        //sendEmailByAllocate(studentActivityApplyEntity.getAllocateType(), studentActivityApplyEntity.getID());
+                    } else if(isApprove == 2){
+                        List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
+                        for (StudentActivityApproveEntity e : approveEntities) {
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
+                                e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
+                                e.setApproveDate(new Date());
+                            }
+                        }
+                        studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
+                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
+                    }
+                } else if (type == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE) {
+                    //studentActivityApplyEntity.setAllocateDate(new Date());
+                    if (isApprove == 1) {
+                         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
+                        int approveNum = 0;
+                        for (StudentActivityApproveEntity e : approveEntities) {
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
+                                e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
+                                e.setApproveDate(new Date());
+                            }
+                            if(e.getApproveStatus() == studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED)
+                                approveNum ++;
+                        }
+                        if(approveNum == approveEntities.size()){
+                            studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
+                            studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+                        }
+
+                    } else if(isApprove == 2){
+                        List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
+                        for (StudentActivityApproveEntity e : approveEntities) {
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
+                                e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
+                                e.setApproveDate(new Date());
+                            }
+                        }
+                        studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
+                        studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_REJECTED);
+                    }
+                }
+                applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
             }
-            applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
+            else{
+                if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP){
+                    List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
+                    for (StudentActivityApproveEntity e : approveEntities) {
+                        studentActivityApproveDAO.deleteApproveEntity(e);
+                    }
+                    if(resources != null){
+                        for (int i = 0; i < resources.length; i ++) {
+                            StudentActivityApproveEntity approveEntity = new StudentActivityApproveEntity();
+                            approveEntity.setApplyId(studentActivityApplyEntity.getID());
+                            approveEntity.setApproveStep(StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
+                            approveEntity.setApproveType(resources[i]);
+                            approveEntity.setApproveStatus(StudentActivityApplyEntity.RESOURCE_STATUS_TODO);
+                            studentActivityApproveDAO.saveStudentActivityApproveEntity(approveEntity);
+                        }
+                        if(resources.length != 0){
+                            studentActivityApplyEntity.setResourceStatus(studentActivityApplyEntity.RESOURCE_STATUS_TODO);
+                            studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_AWAIT);
+                        }
+                    }
+                }
+                applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
+            }
         }
 	
+    }
+    
+    @Transactional
+    public void confirmPublishMaterial(String publishMaterial, StudentActivityApplyEntity entity){
+        entity.getOption().setPublicityMaterials(publishMaterial);
+        entity.setPublishStatus(StudentActivityApplyEntity.PUBLISH_STATUS_TODO);
+        entity.setPublishType(1); //成才中心 
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+        
     }
     
      @Transactional
@@ -274,6 +295,7 @@ public class ApplyStudentActivityService extends BaseService{
         entity.setGroupType(GroupMapping.getIdByName("校团委"));
         entity.setResourceStatus(StudentActivityApplyEntity.RESOURCE_STATUS_AWAIT);
         entity.setAllocateStatus(StudentActivityApplyEntity.ALLOCATE_STATUS_AWAIT);
+        entity.setPublishStatus(StudentActivityApplyEntity.PUBLISH_STATUS_AWAIT);
         return entity;
     }
      
@@ -353,6 +375,14 @@ public class ApplyStudentActivityService extends BaseService{
                 list = applyStudentActivityDAO.getTodoApplyListByGroupType(begin, number, auth.getOpGroupCode());
             }
         }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH && auth.getOpPublishCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                list = applyStudentActivityDAO.getPastApplyListByPublishType(begin, number, auth.getOpPublishCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                list = applyStudentActivityDAO.getTodoApplyListByPublishType(begin, number, auth.getOpPublishCode());
+            }
+        }
         else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
 	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
 		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
@@ -406,6 +436,14 @@ public class ApplyStudentActivityService extends BaseService{
             }
             else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
                 resultCount = applyStudentActivityDAO.getTodoApplyCountByGroupType(auth.getOpGroupCode());
+            }
+        }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH && auth.getOpPublishCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                resultCount = applyStudentActivityDAO.getPastApplyCountByPublishType(auth.getOpPublishCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                resultCount = applyStudentActivityDAO.getTodoApplyCountByPublishType(auth.getOpPublishCode());
             }
         }
         else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {

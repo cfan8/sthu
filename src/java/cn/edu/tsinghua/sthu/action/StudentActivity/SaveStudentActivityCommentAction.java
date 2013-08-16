@@ -78,6 +78,10 @@ public class SaveStudentActivityCommentAction extends BaseAction{
                     && getCurrentUser().getAuth().getOpGroupCode() == entity.getGroupType()){
                     return true;
             }
+            else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_PUBLISH && entity.getPublishStatus() == StudentActivityApplyEntity.PUBLISH_STATUS_TODO
+                    && getCurrentUser().getAuth().getOpPublishCode() == entity.getPublishType()){
+                    return true;
+            }
         }
         else if(isApprove == 3)
         {

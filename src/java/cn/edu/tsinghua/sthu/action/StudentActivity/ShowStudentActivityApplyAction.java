@@ -39,6 +39,14 @@ public class ShowStudentActivityApplyAction extends BaseAction{
 	    } else {
 		showStudentActivityApplyMessage.setShowConfirm(false);
 	    }
+            if(getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()
+                    && showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED
+                    && showStudentActivityApplyMessage.getApplyEntity().getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY){
+                showStudentActivityApplyMessage.setShowPublishEdit(true);
+            }
+            else{
+                showStudentActivityApplyMessage.setShowPublishEdit(false);
+            }
 	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
 		if (entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_TODO
 			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
@@ -52,6 +60,11 @@ public class ShowStudentActivityApplyAction extends BaseAction{
                 else if(entity.getGroupStatus() == StudentActivityApplyEntity.GROUP_STATUS_TODO
                         && getCurrentUser().getAuth().getOpGroupCode() == entity.getGroupType()){
                     showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_GROUP);
+                    showStudentActivityApplyMessage.setShowApprove(true);
+                }
+                else if(entity.getPublishStatus() == StudentActivityApplyEntity.PUBLISH_STATUS_TODO
+                        && getCurrentUser().getAuth().getOpPublishCode() == entity.getPublishType()){
+                    showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_PUBLISH);
                     showStudentActivityApplyMessage.setShowApprove(true);
                 }
                 else if(entity.getResourceStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO){

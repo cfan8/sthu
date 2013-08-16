@@ -301,8 +301,10 @@
             <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
-		    <p>校团委审批状态：<%=entity.getResourceStatusText()%></p>
-		    <p>物业/注册中心/C楼审批状态：<%=entity.getAllocateStatusText()%></p>
+		    <p>校团委审批状态：<%=entity.getGroupStatusText()%></p>
+                    <p>其他（前）审批状态：<%=entity.getResourceStatusText()%></p>
+		    <p>其他（后）审批状态：<%=entity.getAllocateStatusText()%></p>
+                    <p>成才中心审批状态：<%=entity.getPublishStatusText()%></p>
 		</td></tr>
         </table>
     </div>
@@ -396,6 +398,24 @@
         </script>
     </div>
     <% }%>
+    
+    <%if(message.isShowPublishEdit()){%>
+    <div>学生清华发布申请：
+        <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
+        <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials" value="<%=entity.getOption().getPublicityMaterials()%>"/></span></div>
+        <a href="#" class="button" id="submitPublishEdit">确认/修改学生清华发布宣传材料</a>
+        </form>
+        <script type="text/javascript">
+            $("#submitPublishEdit").click(function() {
+                if (confirm("是否确认提交？") == true)
+                {
+                    $("#publishForm").submit();
+                }
+                return false;
+            });
+        </script>
+    </div>
+    <%}%>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
         $("#printurl").html("此表线上地址：" + window.location.href + "<br/>纸质申请表只有内容和线上申请信息一致时才有效！");

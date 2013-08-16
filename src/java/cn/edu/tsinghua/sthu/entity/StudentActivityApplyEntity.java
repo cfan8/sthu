@@ -51,6 +51,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int GROUP_STATUS_AWAIT = 0;
     public static final int GROUP_STATUS_TODO = 1;
     public static final int GROUP_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    public static final int PUBLISH_STATUS_REJECTED = -1;
+    public static final int PUBLISH_STATUS_AWAIT = 0;
+    public static final int PUBLISH_STATUS_TODO = 1;
+    public static final int PUBLISH_STATUS_ACCEPTED = Integer.MAX_VALUE;
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     @Column(length = 128)
@@ -121,6 +125,15 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Index(name="groupDateIndex")
     private Date groupDate;
+    
+    @Index(name="publishTypeIndex")
+    private int publishType;
+    @Index(name="publishStatusIndex")
+    private int publishStatus;
+    @Column(columnDefinition="DATETIME")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Index(name="publishDateIndex")
+    private Date publishDate;
     
     @Column(columnDefinition="DATETIME")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -651,6 +664,22 @@ public class StudentActivityApplyEntity extends BaseEntity{
 	}
 	return "";
     }
+    
+    public String getPublishStatusText()
+    {
+	switch(this.publishStatus)
+	{
+	    case ALLOCATE_STATUS_ACCEPTED:
+		return "已通过";
+	    case ALLOCATE_STATUS_AWAIT:
+		return "等待审批";
+	    case ALLOCATE_STATUS_TODO:
+		return "正在审批";
+	    case ALLOCATE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
 
     /**
      * @return the approveEntities
@@ -734,6 +763,48 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setInterestedUsers(Set<UserEntity> interestedUsers) {
         this.interestedUsers = interestedUsers;
+    }
+
+    /**
+     * @return the publishType
+     */
+    public int getPublishType() {
+        return publishType;
+    }
+
+    /**
+     * @param publishType the publishType to set
+     */
+    public void setPublishType(int publishType) {
+        this.publishType = publishType;
+    }
+
+    /**
+     * @return the publishStatus
+     */
+    public int getPublishStatus() {
+        return publishStatus;
+    }
+
+    /**
+     * @param publishStatus the publishStatus to set
+     */
+    public void setPublishStatus(int publishStatus) {
+        this.publishStatus = publishStatus;
+    }
+
+    /**
+     * @return the publishDate
+     */
+    public Date getPublishDate() {
+        return publishDate;
+    }
+
+    /**
+     * @param publishDate the publishDate to set
+     */
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
     
 }

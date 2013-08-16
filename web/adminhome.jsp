@@ -25,6 +25,8 @@
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP;
     }else if(entity.getOpAllocateCode() != -1){
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE;
+    }else if(entity.getOpPublishCode() != -1){
+        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH;
     }
 %>
 <!--% HomeMessage message = Util.getMessage(ShowHomeAction.class);
