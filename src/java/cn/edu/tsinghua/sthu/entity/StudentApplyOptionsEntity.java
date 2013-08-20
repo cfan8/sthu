@@ -36,6 +36,10 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int LOCATION_TINGTAOBEI = 4;
     public static final int BOARDFLAG_NOTAPPLY = 0;
     public static final int BOARDFLAG_APPLY = 1;
+    public static final int BOARDSIZE_LARGE = 1;
+    public static final int BOARDSIZE_MEDIUMONE = 2;
+    public static final int BOARDSIZE_MEDIUMTWO = 3;
+    public static final int BOARDSIZE_SMALL = 4;
     public static final int PUBLICITYFLAG_NOTAPPLY = 0;
     public static final int PUBLICITYFLAG_APPLY = 1;
     public static final int TICKETFLAG_NOTAPPLY = 0;
@@ -428,7 +432,22 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public void setBoardSize(int boardSize) {
         this.boardSize = boardSize;
     }
-
+    
+    public String getBoardSizeText(){
+        switch(this.boardSize){
+            case BOARDSIZE_LARGE:
+                return "2x3(1块)";
+            case BOARDSIZE_MEDIUMONE:
+                return "2x1.5(1块)";
+            case BOARDSIZE_MEDIUMTWO:
+                return "2x1.5(2块)";
+            case BOARDSIZE_SMALL:
+                return "0.9x1.2(1块)";
+            default:
+                return "";
+        }
+    }
+    
     /**
      * @return the BoardStartTime
      */

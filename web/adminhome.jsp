@@ -56,7 +56,7 @@
 	    
 	    #classapply, #actapply, #approvedapply
 	    {
-		width: 430px;
+		width: 670px;
 		border: #cccccc;
 		border-style: solid;
 		border-width: 1px;

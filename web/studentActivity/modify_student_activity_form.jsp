@@ -163,7 +163,14 @@
                 </span>
             </div>
             <div id="boardInfo" <%if(options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
-                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize" value="<%=options.getBoardSize()%>"/></span></div>
+                <div><span class="tag">规格:</span><span class="value_select">
+                        <select name="boardSize">
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_LARGE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_LARGE ? "selected = \"selected\"" : ""%>>2x3(1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE ? "selected = \"selected\"" : ""%>>2x1.5(1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMTWO%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_MEDIUMTWO ? "selected = \"selected\"" : ""%>>2x1.5(2块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_SMALL%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_SMALL ? "selected = \"selected\"" : ""%>>0.9x1.2(1块)</option>
+                        </select>
+                    </span></div>
                 <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime" value="<%=options.getBoardStartTime()%>"/></span></div>
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime" value="<%=options.getBoardEndTime()%>"/></span></div>
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>

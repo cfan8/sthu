@@ -164,7 +164,14 @@
                 </span>
             </div>
             <div id="boardInfo" style="display: none">
-                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize" placeholder="2x3（<=1）/2x1.5（<=2）/0.9x1.2"/></span></div>
+                <div><span class="tag">规格:</span><span class="value_select">
+                        <select name="boardSize">
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_LARGE%>" selected="selected">2x3(1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE%>">2x1.5(1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMTWO%>">2x1.5(2块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_SMALL%>">0.9x1.2(1块)</option>
+                        </select>
+                    </span></div>
                 <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime"/></span></div>
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime"/></span></div>
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;">必须上传附件。</script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>

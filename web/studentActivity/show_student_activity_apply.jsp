@@ -340,7 +340,7 @@
             <%if(options.getBoardFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">展板申请:</td></tr>
             <tr><td class="tag">活动材料（附件）:</td><td class="value"><%=options.getBoardMaterial()%></td></tr>
-            <tr><td class="tag">规格:</td><td class="value"><%=options.getBoardSize()%></td></tr>
+            <tr><td class="tag">规格:</td><td class="value"><%=options.getBoardSizeText()%></td></tr>
             <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getBoardStartTime()%></td></tr>
             <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getBoardEndTime()%></td></tr>
             <%}%>
