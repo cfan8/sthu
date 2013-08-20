@@ -11,6 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     ShowActivitiesListMessage message = Util.getMessage(ShowActivitiesListAction.class);
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -53,8 +54,11 @@
 		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_AMUSE%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_AMUSE ? "selected=\"selected\"" : ""%>>文艺活动</option>
 		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_OTHER%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_OTHER ? "selected=\"selected\"" : ""%>>其他活动</option>
 		</select>
+                <input type="text" name="activityname" id="activityname" />
+                <input type="button" name ="submitsearch" value="search" id="submitsearch"/>
 	    </p>
             </div>
+                
 	    <div id="pageview"></div>
 	</div>
 	<script type="text/javascript">
@@ -70,6 +74,12 @@
              $("#chooseActivityClass").change(function(){
 		var type = $("#chooseActivityClass").val();
 		self.location.href = "showActivitiesList.do?activityClass=" + type;
+	    });
+             $("#submitsearch").click(function(){
+	
+		var searchKeyword = $("#activityname").val();
+                self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword+"&page="+1;
+              
 	    });
 	</script>
     <%@include file="/templates/general_footer.jsp" %>

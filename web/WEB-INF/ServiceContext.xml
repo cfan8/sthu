@@ -11,4 +11,5 @@
         <bean id="emailService" class="cn.edu.tsinghua.sthu.service.EmailService" scope="prototype" autowire="byName" />
         <bean id="applyStudentActivityService" class="cn.edu.tsinghua.sthu.service.ApplyStudentActivityService" scope="prototype" autowire="byName" />
         <bean id="studentApplyOptionsService" class="cn.edu.tsinghua.sthu.service.StudentApplyOptionsService" scope="prototype" autowire="byName" />
+        
 </beans>

@@ -172,6 +172,9 @@ and open the template in the editor.
 	<action name="showMyStudentActivityApplyPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowMyStudentActivityApplyPageAction">
 	    <result name="success">show_my_student_activity_apply_list_page.jsp</result>
 	</action>
+        <action name="searchStudentActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityAction">
+            <result name="success">search_student_activities.jsp</result>
+        </action>
 	<action name="showStudentActivityApplyList" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListAction">
 	    <result name="success">show_student_activity_apply_list.jsp</result>
 	</action>
@@ -184,6 +187,9 @@ and open the template in the editor.
 	<action name="showActivitiesPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesPageAction">
 	    <result name="success">show_activities_list_page.jsp</result>
 	</action>
+        <action name="searchStudentActivityPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityPageAction">
+            <result name="success">search_student_activities_page.jsp</result>
+         </action>
         <action name="followActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.FollowActivityAction">
         </action>
     </package>

@@ -498,6 +498,35 @@ public class ApplyStudentActivityService extends BaseService{
         return applyStudentActivityDAO.getAcceptedPublicActivitiesByApplyUserid((page - 1)*numberPerPage, numberPerPage, userid);
     }
     
+    
+    // additional
+    @Transactional
+    public int  getAcceptedActivitiesByContentAndType(int numberPerPage, String keywords,int activityType){
+        int r;
+        if(activityType == 0){
+        r = applyStudentActivityDAO.getAcceptedActivitiesCountByContent(keywords);
+        }
+        else{
+         r = applyStudentActivityDAO.getAcceptedActivitiesCountByContentAndType(keywords, activityType);
+        }
+        return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+     
+    @Transactional
+     public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int page,int numberPerPage, String keywords,int activityType) {
+        if(keywords==null) {
+            return null;
+        }
+        else if(activityType == 0){
+            
+            return applyStudentActivityDAO.getAcceptedActivitiesByContent((page - 1)*numberPerPage, numberPerPage,keywords);
+        }
+        else{
+            return applyStudentActivityDAO.getAcceptedActivitiesByContentAndType((page - 1)*numberPerPage, numberPerPage, keywords, activityType);
+        }
+    }
+    
+    
     @Transactional
     public UserEntity followActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(checkActivityFollowedByUser(user, activity))

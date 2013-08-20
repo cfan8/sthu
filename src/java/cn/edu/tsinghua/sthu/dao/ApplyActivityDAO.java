@@ -96,5 +96,5 @@ public class ApplyActivityDAO extends BaseDAO<ActivityApplyEntity> {
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }
-
+   
 }

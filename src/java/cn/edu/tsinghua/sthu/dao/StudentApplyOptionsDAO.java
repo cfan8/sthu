@@ -9,6 +9,7 @@ import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import java.util.List;
+import org.hibernate.Criteria;
 /**
  *
  * @author john
@@ -40,4 +41,13 @@ public class StudentApplyOptionsDAO extends BaseDAO<StudentApplyOptionsEntity>{
 //        update(entity);
 //        return entity;
 //    }
+    /*
+    public List<StudentApplyOptionEntity> getAppliyActivityListByTheme(String keywords){
+        return select().add(Restrictions.or(Restrictions.like("activityName", keywords),Restrictions.like("activityContent", keywords)))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("startTime")).list();
+   }//publicityMaterials
+     public List<StudentApplyOptionEntity> getStudentApplyOptionsListByPublicityMaterials(String keywords){
+        return select().add(Restrictions.or(Restrictions.like("activityName", keywords),Restrictions.like("activityContent", keywords)))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("startTime")).list();
+   }*/
 }

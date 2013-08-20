@@ -1,18 +1,20 @@
 <%-- 
-    Document   : show_my_student_activity_apply_list_page
-    Created on : 2013-7-27, 14:56:02
-    Author     : xiaobo
+    Document   : search_student_activities_page
+    Created on : 2013-8-17, 21:38:16
+    Author     : anna
 --%>
-<%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
-<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowMyStudentActivityApplyPageAction"%>
+<%@page import="java.util.List"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.message.studentActivity.SearchActivitiesPageMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
-<%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowMyStudentActivityApplyPageMessage"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    ShowMyStudentActivityApplyPageMessage message = Util.getMessage(ShowMyStudentActivityApplyPageAction.class);
+    SearchActivitiesPageMessage message = Util.getMessage(SearchActivityPageAction.class);
     List<StudentActivityApplyEntity> list = message.getList();
+    List<Boolean> isFollowedList = message.getIsFollowedList();
+    Integer showFollow = message.getShowFollow();
     if (list.size() == 0) {
 %>
 <div style="width: 100%; text-align: center;">没有申请！</div>
@@ -20,8 +22,9 @@
 %><ul><%
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
+        Boolean isFollowed = isFollowedList.get(i);
     %>
-      <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a>
+    <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a>
         &nbsp; <a href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"><%=entity.getOrganizerName()%></a>
     <br/>
     <%if(showFollow == 1){%>
@@ -37,3 +40,4 @@
     %></ul><%
 	}
     %>
+

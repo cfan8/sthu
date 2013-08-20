@@ -6,10 +6,12 @@ package cn.edu.tsinghua.sthu.dao;
 
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -32,6 +34,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
     {
 	return select().add(Restrictions.eq("applyUserid", userid)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 		.addOrder(Order.desc("applyDate")).setFirstResult(begin).setMaxResults(number).list();
+       
     }
     
     public StudentActivityApplyEntity getStudentActivityApplyEntityById(int id){
@@ -192,4 +195,53 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("activityType", activityType))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
+      public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent( String keywords){
+        List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
+                  Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).list();  
+         return list;
+	
+    }
+        public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int begin, int number, String keywords){
+        List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
+                  Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate"))
+                .setFirstResult(begin).setMaxResults(number).list();  
+         return list;
+	
+    }
+     public int getAcceptedActivitiesCountByContent( String keywords){
+         Object r = select().add(Restrictions.and( 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
+                  Restrictions.like("activityContent", keywords),
+                 Restrictions.like("activityTheme", keywords)))))
+                 .setProjection(Projections.rowCount()).uniqueResult();
+         return ((Long)r).intValue();
+     }
+       public List<StudentActivityApplyEntity> getAcceptedActivitiesByContentAndType(int begin, int number, String keywords, int activityType){
+        List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("activityType", activityType),
+                 (Restrictions.or(
+                  Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate"))
+                .setFirstResult(begin).setMaxResults(number).list();  
+         return list;
+                
+    }
+       public int getAcceptedActivitiesCountByContentAndType( String keywords, int activityType){
+         Object r = select().add(Restrictions.and( 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("activityType", activityType),
+                 (Restrictions.or(
+                  Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 .setProjection(Projections.rowCount()).uniqueResult();
+         return ((Long)r).intValue();
+     }
 }
