@@ -26,10 +26,17 @@ public class SaveStudentActivityCommentAction extends BaseAction{
     private Integer type;
     private Integer[] allocates;
     private Integer[] resources;
+    private Integer identityAccount;
 
     @Override
     public String onExecute() throws Exception {
-         getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, allocates, resources, getCurrentUser().getNickname(), getCurrentUser().getID());
+        int identityInt;
+        if(identityAccount == null){
+            identityInt = -1;
+        }else{
+            identityInt = identityAccount;
+        }
+         getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, allocates, resources, getCurrentUser().getNickname(), getCurrentUser().getID(), getCurrentUser().getAuth().getOpIdentityCode(), identityInt);
         if (getIsApprove() == 1)
         {
             alertMessage.setSimpleAlert("已通过审批！");
@@ -40,7 +47,12 @@ public class SaveStudentActivityCommentAction extends BaseAction{
         }
         else if(getIsApprove() == 3)
         {
-            alertMessage.setSimpleAlert("已评论！");
+            if(getCurrentUser().getAuth().getOpIdentityCode() == ShowStudentActivityApplyMessage.IDENTITY_SHETUANBU){
+                //shetuanbu
+                alertMessage.setSimpleAlert("已评论并发往其他账号代为审批！");
+            }else{
+                alertMessage.setSimpleAlert("已评论！");
+            }
         }
         return ALERT;
     }
@@ -218,6 +230,20 @@ public class SaveStudentActivityCommentAction extends BaseAction{
      */
     public void setResources(Integer[] resources) {
         this.resources = resources;
+    }
+
+    /**
+     * @return the identityAccount
+     */
+    public Integer getIdentityAccount() {
+        return identityAccount;
+    }
+
+    /**
+     * @param identityAccount the identityAccount to set
+     */
+    public void setIdentityAccount(Integer identityAccount) {
+        this.identityAccount = identityAccount;
     }
     
 }

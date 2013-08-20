@@ -244,4 +244,15 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  .setProjection(Projections.rowCount()).uniqueResult();
          return ((Long)r).intValue();
      }
+       public List<StudentActivityApplyEntity> getApprovedApplyList(int begin, int number){
+           List<StudentActivityApplyEntity> list = select().add(Restrictions.eq("applyStatus",StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))
+                   .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
+           return list;
+       }
+       
+       public int getApprovedApplyCount(){
+           Object r = select().add(Restrictions.eq("applyStatus",StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED))
+                   .setProjection(Projections.rowCount()).uniqueResult();
+        return ((Long) r).intValue();
+       }
 }

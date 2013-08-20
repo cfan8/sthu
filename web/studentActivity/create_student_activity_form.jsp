@@ -27,6 +27,13 @@
 	    <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+            <style type="text/css">
+                textarea{
+                    vertical-align: top;
+                    resize: none;
+                    width:200px;
+                }
+            </style>
     </head>
         <%@include file="/templates/general_header.jsp" %>
     <span id="position">您当前的位置：学生活动申请</span>
@@ -60,17 +67,14 @@
                         <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>">全校</option>
                     </select>
                     </span></div>   
-                <div><span class="tag">一级审批部门：</span>
-                    <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%>
-                    <span class="value_select">
-                        <select name="applyType">
+                <div><span class="tag">一级审批部门：</span><%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%><span class="value_select">
+                        <select name="applyType" id="applyType">
                             <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
                             <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
                             <% }%>
                         </select>
                     </span>
-                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%>
-                    <span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
+                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%><span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
                     <%}%>
                 </div>
                 <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>
@@ -90,14 +94,16 @@
 		    </select>  
 		</span></div>
             <div id="outSchoolInfo" style="display: none">
-                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro"/></span></div>
-                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro"/></span></div>
-                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness"/></span></div>
+                <div><span class="tag">校外人员情况：</span><span class="value"><textarea name="externalIntro" rows="5"></textarea></span></div>
+                <div><span class="tag">校外合作单位：</span><span class="value"><textarea name="externalOrganizationIntro" rows="5"></textarea></span></div>
+                <div><span class="tag">出校活动安全预案：</span>
+                    <div class="ueditorBlock"><script id="securityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="securityPreparedness" id="securityPreparedness"/></div>
+                </div>
             </div>
             <div id="outCountryInfo" style="display: none">
-                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro"/></span></div>
-                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
-                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
+                <div><span class="tag">境外人员情况：</span><span class="value"><textarea name="overseasIntro" rows="5"></textarea></span></div>
+                <div><span class="tag">境外合作单位：</span><span class="value"><textarea name="overseasOrganizationIntro" rows="5"></textarea></span></div>
+                <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
             </div>
             <hr />
             <div><span class="tag">教室申请：</span><span class="value">
@@ -129,7 +135,7 @@
                 </span>
             </div>
             <div id="LEDInfo" style="display: none">
-                <div><span class="tag">电子屏显示内容：</span><span class="value"><input type="text" name="LEDContent"/></span></div>
+                <div><span class="tag">电子屏显示内容：</span><span class="value"><textarea name="LEDContent" rows="3"></textarea></span></div>
                 <div><span class="tag">开始日期和时间：</span><span class="value"><input type="text" name="LEDStartTime"/></span></div>
                 <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime"/></span></div>
             </div>
@@ -140,7 +146,14 @@
                 </span>
             </div>
             <div id="outsideInfo" style="display: none">
-                <div><span class="tag">活动地点:</span><span class="value"><input type="text" name="activityLocation"/></span></div>
+                <div><span class="tag">活动地点:</span><span class="value_select">
+		    <select name="activityLocation">
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_ZIJING%>" selected="selected">紫荆园门口</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TAOLI%>">桃李园门口</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TINGTAOSHULIN%>">听涛园附近小树林区域</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TINGTAOBEI%>">听涛园以北学堂路段学生生活区</option>
+		    </select>
+		</span></div>
                 <div><span class="tag">借用日期:</span><span class="value"><input type="text" name="outsideBorrowDate"/></span></div>
                 <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod"/></span></div>
             </div>
@@ -151,10 +164,10 @@
                 </span>
             </div>
             <div id="boardInfo" style="display: none">
-                <div><span class="tag">活动材料（附件）:</span><span class="value"><input type="text" name="boardMaterial"/></span></div>
-                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize"/></span></div>
+                <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize" placeholder="2x3（<=1）/2x1.5（<=2）/0.9x1.2"/></span></div>
                 <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime"/></span></div>
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime"/></span></div>
+                <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;">必须上传附件。</script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
             <div><span class="tag">学生清华发布申请：</span><span class="value">
@@ -163,7 +176,7 @@
                 </span>
             </div>
             <div id="publicityInfo" style="display: none">
-                <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials"/></span></div>
+                <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
             <div><span class="tag">门票抽签申请：</span><span class="value">
@@ -186,6 +199,10 @@
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
+        var se = UE.getEditor('securityEditor');
+        var oe = UE.getEditor('overseasEditor');
+        var be = UE.getEditor('boardEditor');
+        var pe = UE.getEditor('publicityEditor');
         function changeCroomState(state){
             if(state == 1){
                 $("#croomInfo").show();
@@ -286,7 +303,8 @@
 		}
 	    });
             if($("#activityArea").val()=="2"){
-                $("form #outSchoolInfo input").each(function(){
+                $("#securityPreparedness").val(se.getContent());
+                $("form #outSchoolInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
@@ -294,7 +312,8 @@
                     }
                 });
             }else if($("#activityArea").val()=="3"){
-                $("form #outCountryInfo input").each(function(){
+                $("#overseasMaterial").val(oe.getContent());
+                $("form #outCountryInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
@@ -319,6 +338,13 @@
                         return false;
                     }
                 });
+                $("#LEDInfo textarea").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
             }
             if($("input[name='outsideFlag']")[0].checked){
                 $("#outsideInfo input").each(function(){
@@ -330,6 +356,7 @@
                 });
             }
             if($("input[name='boardFlag']")[0].checked){
+                $("#boardMaterial").val(be.getContent());
                 $("#boardInfo input").each(function(){
                     if ($(this).val() == "")
                     {
@@ -339,6 +366,7 @@
                 });
             }
             if($("input[name='publicityFlag']")[0].checked){
+                $("#publicityMaterials").val(pe.getContent());
                 $("#publicityInfo input").each(function(){
                     if ($(this).val() == "")
                     {

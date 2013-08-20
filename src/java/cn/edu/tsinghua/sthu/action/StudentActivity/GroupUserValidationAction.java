@@ -50,17 +50,22 @@ public class GroupUserValidationAction extends BaseAction{
 	    alertMessage.setAlertType(AlertMessage.BOX_TYPE);
 	    return ALERT;
         }
-	if (entity != null) {
+	if (entity == null) {
+            getAlertMessage().setAlertType(AlertMessage.BOX_TYPE);
+	    getAlertMessage().setAlertTitle("申请人用户名密码错误");
+	    getAlertMessage().setAlertContent("请重新输入申请人用户名密码！");
+	    return ALERT;
+	} else if(entity.getAuth().getRole() != AuthEntity.USER_ROLE){
+	    getAlertMessage().setAlertType(AlertMessage.BOX_TYPE);
+	    getAlertMessage().setAlertTitle("无法访问页面！");
+	    getAlertMessage().setAlertContent("您请求的内容不存在，或者您缺少访问此内容的权限。");
+	    return ALERT;
+	} else{
             getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getNickname());
             getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
             getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
-	    return RETURN_CREATE;
-	} else {
-	    getAlertMessage().setAlertType(AlertMessage.BOX_TYPE);
-	    getAlertMessage().setAlertTitle("用户名密码错误");
-	    getAlertMessage().setAlertContent("请重新输入用户名密码！");
-	    return ALERT;
-	}
+	    return RETURN_CREATE;   
+        }
     }
     
     @Override

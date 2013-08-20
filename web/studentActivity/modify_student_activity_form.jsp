@@ -30,6 +30,13 @@
 	    <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+            <style type="text/css">
+                textarea{
+                    vertical-align: top;
+                    resize: none;
+                    width:200px;
+                }
+            </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="postion">您当前的位置：学生活动申请</span>
@@ -59,17 +66,14 @@
                     <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>" <%=entity.getActivityType() == StudentActivityApplyEntity.RANGE_SCHOOL ? "selected = \"selected\"" : ""%>>全校</option>
                 </select>
                 </span></div>   
-            <div><span class="tag">一级审批部门：</span>
-                    <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%>
-                    <span class="value_select">
+            <div><span class="tag">一级审批部门：</span><%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%><span class="value_select">
                         <select name="applyType">
                             <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
                             <option value="<%=i%>" <%=i == entity.getApplyPath() ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
                             <% }%>
                         </select>
                     </span>
-                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%>
-                    <span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
+                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%><span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
                     <%}%>
             </div>
 	    <div><span class="tag">负责人：</span><span class="value" ><input type="text" name="managerName" value="<%=entity.getManagerName()%>"/></span></div>
@@ -88,28 +92,17 @@
 			<option value="<%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_OUTCOUNTRY ? "selected = \"selected\"" : ""%>>涉境外</option>
 		    </select>  
 		</span></div>
-            <%if(options.getActivityArea() == 2) {%>
-            <div id="outSchoolInfo">
-                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro" value="<%=options.getExternalIntro()%>"/></span></div>
-                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro" value="<%=options.getExternalOrganizationIntro()%>"/></span></div>
-                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness" value="<%=options.getSecurityPreparedness()%>"/></span></div>
+            
+            <div id="outSchoolInfo" <%if(options.getActivityArea() != 2) {%>style="display:none"<% }%>>
+                <div><span class="tag">校外人员情况：</span><span class="value"><textarea name="externalIntro" rows="5"><%=options.getExternalIntro()%></textarea></span></div>
+                <div><span class="tag">校外合作单位：</span><span class="value"><textarea name="externalOrganizationIntro" rows="5"><%=options.getExternalOrganizationIntro()%></textarea></span></div>
+                <div><span class="tag">出校活动安全预案：</span><div class="ueditorBlock"><script id="securityEditor" type="text/plain" style="width: 400px;"><%=options.getSecurityPreparedness()%></script><input type="hidden" name="securityPreparedness" id="securityPreparedness"/></div></div>
+            </div>    
+            <div id="outCountryInfo" <%if(options.getActivityArea() != 3) {%>style="display:none"<% }%>>
+                <div><span class="tag">境外人员情况：</span><span class="value"><textarea name="overseasIntro" rows="5"><%=options.getOverseasIntro()%></textarea></span></div>
+                <div><span class="tag">境外合作单位：</span><span class="value"><textarea name="overseasOrganizationIntro" rows="5"><%=options.getOverseasOrganizationIntro()%></textarea></span></div>
+                <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;"><%=options.getOverseasMaterial()%></script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
             </div>
-            <div id="outCountryInfo" style="display: none">
-                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro"/></span></div>
-                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro"/></span></div>
-                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial"/></span></div>
-            </div>
-            <% }%> <%if(options.getActivityArea() == 3) {%>
-            <div id="outSchoolInfo" style="display: none">
-                <div><span class="tag">校外人员情况：</span><span class="value"><input type="text" name="externalIntro"/></span></div>
-                <div><span class="tag">校外合作单位：</span><span class="value"><input type="text" name="externalOrganizationIntro"/></span></div>
-                <div><span class="tag">出校活动安全预案：</span><span class="value"><input type="text" name="securityPreparedness"/></span></div>
-            </div>
-            <div id="outCountryInfo">
-                <div><span class="tag">境外人员情况：</span><span class="value"><input type="text" name="overseasIntro" value="<%=options.getOverseasIntro()%>"/></span></div>
-                <div><span class="tag">境外合作单位：</span><span class="value"><input type="text" name="overseasOrganizationIntro" value="<%=options.getOverseasOrganizationIntro()%>"/></span></div>
-                <div><span class="tag">相关材料：</span><span class="value"><input type="text" name="overseasMaterial" value="<%=options.getOverseasMaterial()%>"/></span></div>
-            </div><% }%>
             <hr />
             <div><span class="tag">教室申请：</span><span class="value">
                     <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_APPLY%>" onclick="changeCroomState(1)" <%=options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
@@ -140,7 +133,7 @@
                 </span>
             </div>
             <div id="LEDInfo" <%if(options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
-                <div><span class="tag">电子屏显示内容：</span><span class="value"><input type="text" name="LEDContent" value="<%=options.getLEDContent()%>"/></span></div>
+                <div><span class="tag">电子屏显示内容：</span><span class="value"><textarea name="LEDContent" rows="3"><%=options.getLEDContent()%></textarea></span></div>
                 <div><span class="tag">开始日期和时间：</span><span class="value"><input type="text" name="LEDStartTime" value="<%=options.getLEDStartTime()%>"/></span></div>
                 <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime" value="<%=options.getLEDEndTime()%>"/></span></div>
             </div>
@@ -151,6 +144,14 @@
                 </span>
             </div>
             <div id="outsideInfo" <%if(options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">活动地点:</span><span class="value_select">
+		    <select name="activityLocation">
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_ZIJING%>" <%=options.getActivityLocation() == StudentApplyOptionsEntity.LOCATION_ZIJING ? "selected = \"selected\"" : ""%>>紫荆园门口</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TAOLI%>" <%=options.getActivityLocation() == StudentApplyOptionsEntity.LOCATION_TAOLI ? "selected = \"selected\"" : ""%>>桃李园门口</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TINGTAOSHULIN%>" <%=options.getActivityLocation() == StudentApplyOptionsEntity.LOCATION_TINGTAOSHULIN ? "selected = \"selected\"" : ""%>>听涛园附近小树林区域</option>
+			<option value="<%=StudentApplyOptionsEntity.LOCATION_TINGTAOBEI%>" <%=options.getActivityLocation() == StudentApplyOptionsEntity.LOCATION_TINGTAOBEI ? "selected = \"selected\"" : ""%>>听涛园以北学堂路段学生生活区</option>
+		    </select>
+		</span></div>
                 <div><span class="tag">活动地点:</span><span class="value"><input type="text" name="activityLocation" value="<%=options.getActivityLocation()%>"/></span></div>
                 <div><span class="tag">借用日期:</span><span class="value"><input type="text" name="outsideBorrowDate" value="<%=options.getOutsideBorrowDate()%>"/></span></div>
                 <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod" value="<%=options.getOutsideTimePeriod()%>"/></span></div>
@@ -162,10 +163,10 @@
                 </span>
             </div>
             <div id="boardInfo" <%if(options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
-                <div><span class="tag">活动材料（附件）:</span><span class="value"><input type="text" name="boardMaterial" value="<%=options.getBoardMaterial()%>"/></span></div>
                 <div><span class="tag">规格:</span><span class="value"><input type="text" name="boardSize" value="<%=options.getBoardSize()%>"/></span></div>
                 <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime" value="<%=options.getBoardStartTime()%>"/></span></div>
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime" value="<%=options.getBoardEndTime()%>"/></span></div>
+                <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
             <div><span class="tag">学生清华发布申请：</span><span class="value">
@@ -174,7 +175,7 @@
                 </span>
             </div>
             <div id="publicityInfo" <%if(options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
-                <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials" value="<%=options.getPublicityMaterials()%>"/></span></div>
+                <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;"><%=options.getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
             <div><span class="tag">门票抽签申请：</span><span class="value">
@@ -197,6 +198,10 @@
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
+        var se = UE.getEditor('securityEditor');
+        var oe = UE.getEditor('overseasEditor');
+        var be = UE.getEditor('boardEditor');
+        var pe = UE.getEditor('publicityEditor');
         function changeCroomState(state){
             if(state == 1){
                 $("#croomInfo").show();
@@ -299,7 +304,8 @@
 		}
 	    });
             if($("#activityArea").val()=="2"){
-                $("form #outSchoolInfo input").each(function(){
+                $("#securityPreparedness").val(se.getContent());
+                $("form #outSchoolInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
@@ -307,7 +313,8 @@
                     }
                 });
             }else if($("#activityArea").val()=="3"){
-                $("form #outCountryInfo input").each(function(){
+                $("#overseasMaterial").val(oe.getContent());
+                $("form #outCountryInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
@@ -332,6 +339,13 @@
                         return false;
                     }
                 });
+                $("#LEDInfo textarea").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
             }
             if($("input[name='outsideFlag']")[0].checked){
                 $("#outsideInfo input").each(function(){
@@ -343,6 +357,7 @@
                 });
             }
             if($("input[name='boardFlag']")[0].checked){
+                $("#boardMaterial").val(be.getContent());
                 $("#boardInfo input").each(function(){
                     if ($(this).val() == "")
                     {
@@ -352,6 +367,7 @@
                 });
             }
             if($("input[name='publicityFlag']")[0].checked){
+                $("#publicityMaterials").val(pe.getContent());
                 $("#publicityInfo input").each(function(){
                     if ($(this).val() == "")
                     {

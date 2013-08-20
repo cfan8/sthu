@@ -10,6 +10,7 @@
 <%@page import="java.util.Date" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
+<%@page import="cn.edu.tsinghua.sthu.constant.IdentityMapping"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity"%>
@@ -47,7 +48,16 @@
             .blockvalue{
                 width: 600px;
             }
-
+            
+            table{
+              table-layout: fixed;  
+            }
+            
+            td{
+                word-wrap:break-word;
+                word-break: break-all;
+            }
+            
             tr
             {
                 border-top-width: 1px;
@@ -158,14 +168,14 @@
             .commenttitle
             {
                 float: left;
-                width: 175px;
+                width: 195px;
                 padding-left: 5px;
                 text-align: left;
             }
 
             .commentcontent
             {
-                width: 392px;
+                width: 370px;
                 padding-right: 6px;
                 float: right;
             }
@@ -222,12 +232,58 @@
                 font-size: 14.67px;
                 letter-spacing: 4px;
             }
+            
+            #publishDiv
+            {
+                width: 600px;
+                margin: 0 auto;
+                margin-top:20px;
+            }
+            
+            #publishDiv a
+            {
+                display: inline-block;
+                width: 180px;
+                height: 26px;
+                background-color: #ff7900;
+                text-align: center;
+                margin-top:10px;
+            }
 
+            #publishDiv a:link, #confirmDiv a:visited
+            {
+                text-decoration: none;
+                color: white;
+                padding-top: 10.5px;
+                font-size: 14.67px;
+                letter-spacing: 4px;
+            }
         </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <div id="position" class="noprint">您当前的位置：活动申请</div>
     <div class="processtype noprint" id="processtype<%=entity.getApplyStatus()%>"></div>
+    <%if(message.isShowPublishEdit()){%>
+    <div id="publishDiv">学生清华发布申请：
+        <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
+        <div style="margin-top:10px"><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;margin-top:10px"><%=entity.getOption().getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
+        <a href="#" class="button" id="submitPublishEdit">确认/修改</a>
+        </form>
+        <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
+        <script type="text/javascript">
+            var pe = UE.getEditor('publicityEditor');
+            $("#submitPublishEdit").click(function() {
+                $("#publicityMaterials").val(pe.getContent());
+                if (confirm("是否确认提交？") == true)
+                {
+                    $("#publishForm").submit();
+                }
+                return false;
+            });
+        </script>
+        <hr />
+    </div>
+    <%}%>
     <div class="onlyprint" style="text-align:center; font-family: 黑体; font-size: 30px;">学生活动审批表</div>
     <div class="onlyprint" style="text-align:center;" id="printurl"></div>
     <div id="tablediv">
@@ -263,8 +319,8 @@
             <% }%>
             <%if(options.getCroomFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">教室申请:</td></tr>
-            <tr><td class="tag">教室类型要求：</td><td class="value"><%=options.getCroomType()%></td></tr>
-            <tr><td class="tag">是否服从调剂：</td><td class="value"><%=options.getAllowAdjust()%></td></tr>
+            <tr><td class="tag">教室类型要求：</td><td class="value"><%=options.getCroomTypeText()%></td></tr>
+            <tr><td class="tag">是否服从调剂：</td><td class="value"><%=options.getAllowAdjustText()%></td></tr>
             <tr><td class="tag">教室容量：</td><td class="value"><%=options.getCroomCapacity()%></td></tr>
             <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getCroomStartTime()%></td></tr>
             <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getCroomEndTime()%></td></tr>
@@ -277,7 +333,7 @@
             <%}%>
             <%if(options.getOutsideFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">室外场地申请:</td></tr>
-            <tr><td class="tag">活动地点:</td><td class="value"><%=options.getActivityLocation()%></td></tr>
+            <tr><td class="tag">活动地点:</td><td class="value"><%=options.getActivityLocationText()%></td></tr>
             <tr><td class="tag">借用日期:</td><td class="value"><%=options.getOutsideBorrowDate()%></td></tr>
             <tr><td class="tag">借用时间段:</td><td class="value"><%=options.getOutsideTimePeriod()%></td></tr>
             <%}%>
@@ -298,6 +354,7 @@
             <tr><td class="tag">发票时间:</td><td class="value"><%=options.getTicketTime()%></td></tr>
             <tr><td class="tag">发票地点:</td><td class="value"><%=options.getTicketLocation()%></td></tr>
             <%}%>
+            <tr><td colspan="2"><hr/></td></tr>
             <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
@@ -308,7 +365,7 @@
 		</td></tr>
         </table>
     </div>
-
+                
     <div id="commentBlock">
         <div id="showControl">
             <div id="currentcomment">当前的审批消息</div><div id="borderDiv" class="noprint"></div>
@@ -367,31 +424,57 @@
         <form action="approveStudentActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
             <p><label>是否同意该申请？</label>
             <input type="radio" name="isApprove" value="1" checked="checked"/>同意
-            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
+            <input type="radio" name="isApprove" value="2"/>驳回
+            <%if(message.getIdentityAuth() == ShowStudentActivityApplyMessage.IDENTITY_SHETUANBU){%>
+            <input type="radio" name="isApprove" value="3"/>发往指定账号审批
+            <select name="identityAccount" id="identityAccount">
+                <% for (int i = 0; i < IdentityMapping.names.length; i++) { if(i != 1){%>
+                <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
+                <% }}%>
+            </select> 
+            <%}else{%>
+            <input type="radio" name="isApprove" value="3"/>仅评论
+            <%}%>
+            </p>
+            <p><% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
                 <label>接下来需要审批的部门（可留空）：</label>
                 <% for(int i = 1; i < AllocateMapping.names.length; i ++){ %>
                 <input type="checkbox" name="allocates" value="<%=i%>"/><%=AllocateMapping.names[i] %>
                 <% } %>
-            <% }%>
-            <input type="radio" name="isApprove" value="2"/>驳回
-            <input type="radio" name="isApprove" value="3"/>仅评论
-            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
+            <% }%></p>
+            <p>
+                <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
                 <label>之前需要审批的部门（可留空）：</label>
                 <% for(int i = 1; i < ResourceMapping.names.length; i ++){ %>
                 <input type="checkbox" name="resources" value="<%=i %>"/>  <%=ResourceMapping.names[i]%>      
                 <% } %>
-            <% }%>
+                <% }%>
             </p>
+            <%if(message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE){%>
+            <p><label>地点</label><input type="text" id="croomLocation"/></p>
+            <%}%>
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
         </form>
         <script type="text/javascript">
             ue = UE.getEditor('editor');
             $("#submitApprove").click(function() {
-                if (confirm("是否确认提交？一旦提交无法修改！") == true)
-                {
-                    $("#comment").val(ue.getContent());
-                    $("#approveForm").submit();
+                if($("input[name='isApprove']")[0].checked && !!$("#croomLocation")[0]){
+                    if($('#croomLocation').val() == ""){
+                        alert("请输入教室位置");
+                    }else{
+                        if (confirm("是否确认提交？一旦提交无法修改！") == true)
+                        {
+                            $("#comment").val("教室位置："+$('#croomLocation').val()+"<br/>"+ue.getContent());
+                            $("#approveForm").submit();
+                        }
+                    }
+                }else{
+                    if (confirm("是否确认提交？一旦提交无法修改！") == true)
+                    {
+                        $("#comment").val(ue.getContent());
+                        $("#approveForm").submit();
+                    }
                 }
                 return false;
             });
@@ -399,23 +482,6 @@
     </div>
     <% }%>
     
-    <%if(message.isShowPublishEdit()){%>
-    <div>学生清华发布申请：
-        <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
-        <div><span class="tag">宣传材料:</span><span class="value"><input type="text" name="publicityMaterials" value="<%=entity.getOption().getPublicityMaterials()%>"/></span></div>
-        <a href="#" class="button" id="submitPublishEdit">确认/修改学生清华发布宣传材料</a>
-        </form>
-        <script type="text/javascript">
-            $("#submitPublishEdit").click(function() {
-                if (confirm("是否确认提交？") == true)
-                {
-                    $("#publishForm").submit();
-                }
-                return false;
-            });
-        </script>
-    </div>
-    <%}%>
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">
         $("#printurl").html("此表线上地址：" + window.location.href + "<br/>纸质申请表只有内容和线上申请信息一致时才有效！");

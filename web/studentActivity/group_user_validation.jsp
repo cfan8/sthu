@@ -14,6 +14,15 @@
         <title>申请人验证</title>
         <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
         <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+        <style type="text/css">
+            #username, #password
+	    {
+		border-width: 1px;
+		border-style: solid;
+		width: 190px;
+		padding-left: 5px;
+	    }
+        </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="position">您当前的位置：申请人验证</span>

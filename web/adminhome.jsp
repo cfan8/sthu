@@ -54,7 +54,7 @@
 		padding-bottom: 10px;
 	    }
 	    
-	    #classapply, #actapply
+	    #classapply, #actapply, #approvedapply
 	    {
 		width: 430px;
 		border: #cccccc;
@@ -72,6 +72,11 @@
 		 margin-left: 30px;
 	     }
 	    
+             #approvedapply
+	     {
+		 margin-left: 30px;
+	     }
+             
 	    iframe
 	    {
 		border: none;
@@ -185,13 +190,19 @@
     </div>
     <div id="approveDiv">
         
-        
-	<% if (approveType != -1) {%>
+        <% if (approveType != -1) {%>
 	<div id="actapply">
 	    <div class="title">活动申请审批</div>
 	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=approveType%>"></iframe></div>
 	</div>
 	<% }%>
+	 
+        <% if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP){%>
+        <div id="approvedapply">
+	    <div class="title">已审批通过的活动</div>
+	    <div class="content"><iframe id="frame2" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED%>"></iframe></div>
+	</div>
+        <%}%>
 	<div style="clear: both"></div>
     </div>
 

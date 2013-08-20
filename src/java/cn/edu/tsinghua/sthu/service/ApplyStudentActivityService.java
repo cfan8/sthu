@@ -82,7 +82,7 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
-    public void processComment(StudentActivityApplyEntity studentActivityApplyEntity, Integer isApprove, String comment, int type, Integer[] allocates, Integer[] resources,String nickName, int userid){
+    public void processComment(StudentActivityApplyEntity studentActivityApplyEntity, Integer isApprove, String comment, int type, Integer[] allocates, Integer[] resources,String nickName, int userid, int identityAuth, int identityAccount){
         CommentEntity commentEntity = new CommentEntity();
 	commentEntity.setApplyID(studentActivityApplyEntity.getID());
 	commentEntity.setComment(comment);
@@ -241,11 +241,12 @@ public class ApplyStudentActivityService extends BaseService{
                             studentActivityApplyEntity.setGroupStatus(studentActivityApplyEntity.GROUP_STATUS_AWAIT);
                         }
                     }
+                }else if(type == ShowStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY && identityAuth == ShowStudentActivityApplyMessage.IDENTITY_SHETUANBU && identityAccount != -1){
+                    studentActivityApplyEntity.setIdentityType(identityAccount);
                 }
                 applyStudentActivityDAO.updateStudentActivityApplyEntity(studentActivityApplyEntity);
             }
         }
-	
     }
     
     @Transactional
@@ -416,7 +417,14 @@ public class ApplyStudentActivityService extends BaseService{
                     list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
                 }
 	    }
-	} 
+	}
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
+             List<StudentActivityApplyEntity> approveEntities = applyStudentActivityDAO.getApprovedApplyList(begin, number);
+             list = new ArrayList<StudentActivityApplyEntity>();
+             for(StudentActivityApplyEntity e: approveEntities){
+                 list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getID()));
+             }
+         }
 	return list;
     }
      
@@ -464,6 +472,9 @@ public class ApplyStudentActivityService extends BaseService{
                 resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
 	    }
 	}
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
+            resultCount = applyStudentActivityDAO.getApprovedApplyCount();
+        }
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
     

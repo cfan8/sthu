@@ -41,14 +41,18 @@
 	</style>
     </head>
     <body>
-	<div>
-	    <p><select id="chooseApproveType">
-		    <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO ? "selected=\"selected\"" : ""%>>未处理的申请</option>
-		    <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST ? "selected=\"selected\"" : ""%>>已处理的申请</option>
-		</select>
-	    </p>
-	    <div id="pageview"></div>
-	</div>
+        
+        <div>
+            <%if(message.getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED){%>
+            <p><select id="chooseApproveType">
+                    <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO ? "selected=\"selected\"" : ""%>>未处理的申请</option>
+                    <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST ? "selected=\"selected\"" : ""%>>已处理的申请</option>
+                </select>
+            </p>
+            <%}%>
+            <div id="pageview"></div>
+        </div>
+        
 	<script type="text/javascript">
 	    var pageConfig = {
 		root:$("#pageview"),

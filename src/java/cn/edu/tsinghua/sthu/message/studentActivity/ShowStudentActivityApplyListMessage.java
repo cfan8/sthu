@@ -14,7 +14,7 @@ public class ShowStudentActivityApplyListMessage extends BaseMessage{
     private int viewType;
     private int approveType;
     private int totalPageNumber;
-
+    
     /**
      * @return the viewType
      */

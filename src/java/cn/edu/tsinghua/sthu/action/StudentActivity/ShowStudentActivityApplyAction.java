@@ -32,6 +32,7 @@ public class ShowStudentActivityApplyAction extends BaseAction{
 	} else {
 	    showStudentActivityApplyMessage.setApplyEntity(entity);
             showStudentActivityApplyMessage.setOptionsEntity(options);
+            showStudentActivityApplyMessage.setIdentityAuth(getCurrentUser().getAuth().getOpIdentityCode());
 	    if (getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()
 		    && (showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED
 		    || showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_REJECTED)) {

@@ -84,4 +84,5 @@ public class StudentActivityApproveDAO extends BaseDAO<StudentActivityApproveEnt
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }
+    
 }

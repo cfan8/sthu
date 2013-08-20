@@ -30,6 +30,10 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int LEDFLAG_APPLY = 1;
     public static final int OUTSIDEFLAG_NOTAPPLY = 0;
     public static final int OUTSIDEFLAG_APPLY = 1;
+    public static final int LOCATION_ZIJING = 1;
+    public static final int LOCATION_TAOLI = 2;
+    public static final int LOCATION_TINGTAOSHULIN = 3;
+    public static final int LOCATION_TINGTAOBEI = 4;
     public static final int BOARDFLAG_NOTAPPLY = 0;
     public static final int BOARDFLAG_APPLY = 1;
     public static final int PUBLICITYFLAG_NOTAPPLY = 0;
@@ -216,7 +220,22 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public void setCroomType(int croomType) {
         this.croomType = croomType;
     }
-
+    
+    public String getCroomTypeText(){
+        switch(this.croomType){
+            case ROOMTYPE_ORDINARY:
+                return "普通教室";
+            case ROOMTYPE_MEDIA:
+                return "多媒体教室";
+            case ROOMTYPE_CBUILDING_NORMAL:
+                return "C楼普通教室";
+            case ROOMTYPE_CBUILDING_MEDIA:
+                return "C楼多媒体教室";
+            default:
+                return "";
+        }
+    }
+    
     /**
      * @return the allowAdjust
      */
@@ -231,6 +250,16 @@ public class StudentApplyOptionsEntity extends BaseEntity{
         this.allowAdjust = allowAdjust;
     }
 
+    public String getAllowAdjustText(){
+        switch(this.allowAdjust){
+            case ALLOWADJUST_ACCEPT:
+                return "是";
+            case ALLOWADJUST_REJECT:
+                return "否";
+            default:
+                return "";
+        }
+    }
     /**
      * @return the croomCapacity
      */
@@ -329,6 +358,21 @@ public class StudentApplyOptionsEntity extends BaseEntity{
         this.activityLocation = activityLocation;
     }
 
+    public String getActivityLocationText(){
+        switch(this.activityLocation){
+            case LOCATION_ZIJING:
+                return "紫荆园门口";
+            case LOCATION_TAOLI:
+                return "桃李园门口";
+            case LOCATION_TINGTAOSHULIN:
+                return "听涛园附近小树林区域";
+            case LOCATION_TINGTAOBEI:
+                return "听涛园以北学堂路段学生生活区";
+            default:
+                return "";
+        }
+    }
+    
     /**
      * @return the outsideBorrowDate
      */

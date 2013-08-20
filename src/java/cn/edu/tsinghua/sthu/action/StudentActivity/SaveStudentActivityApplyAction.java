@@ -65,14 +65,14 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String externalIntro;   //校外人员情况简介
     @XSSProtect(XSSProtectLevel.Strict)
     private String externalOrganizationIntro;   //校外合作单位情况简介
-    @XSSProtect(XSSProtectLevel.Strict)
+    @XSSProtect(XSSProtectLevel.RichText)
     private String securityPreparedness;    //出校活动安全预案
     
     @XSSProtect(XSSProtectLevel.Strict)
     private String overseasIntro;   //境外人员情况简介
     @XSSProtect(XSSProtectLevel.Strict)
     private String overseasOrganizationIntro;   //境外合作单位情况介绍
-    @XSSProtect(XSSProtectLevel.Strict)
+    @XSSProtect(XSSProtectLevel.RichText)
     private String overseasMaterial;    //相关材料
     
     //教室申请
@@ -102,7 +102,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     
     //展板申请
     private int boardFlag; //标记是否申请展板，1：申请，2：不申请
-    @XSSProtect(XSSProtectLevel.Strict)
+    @XSSProtect(XSSProtectLevel.RichText)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
     @XSSProtect(XSSProtectLevel.Strict)
@@ -112,7 +112,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     
     //学生清华发布申请
     private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
-    @XSSProtect(XSSProtectLevel.Strict)
+    @XSSProtect(XSSProtectLevel.RichText)
     private String publicityMaterials; //宣传材料
     
     //门票抽签申请

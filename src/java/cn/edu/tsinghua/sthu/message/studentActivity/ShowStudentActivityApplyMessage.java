@@ -13,6 +13,7 @@ import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
  * @author xiaobo
  */
 public class ShowStudentActivityApplyMessage extends BaseMessage{
+    private int identityAuth;
     private StudentActivityApplyEntity applyEntity;
     private StudentApplyOptionsEntity optionsEntity;
     private boolean showConfirm;
@@ -22,9 +23,10 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
     public static final int APPROVE_TYPE_RESOURCE = 2;
-     public static final int APPROVE_TYPE_ALLOCATE = 3;
-     public static final int APPROVE_TYPE_GROUP = 4;
-     public static final int APPROVE_TYPE_PUBLISH = 5;
+    public static final int APPROVE_TYPE_ALLOCATE = 3;
+    public static final int APPROVE_TYPE_GROUP = 4;
+    public static final int APPROVE_TYPE_PUBLISH = 5;
+    public static final int IDENTITY_SHETUANBU = 1;
 
     /**
      * @return the applyEntity
@@ -122,5 +124,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setShowPublishEdit(boolean showPublishEdit) {
         this.showPublishEdit = showPublishEdit;
+    }
+
+    /**
+     * @return the identityAuth
+     */
+    public int getIdentityAuth() {
+        return identityAuth;
+    }
+
+    /**
+     * @param identityAuth the identityAuth to set
+     */
+    public void setIdentityAuth(int identityAuth) {
+        this.identityAuth = identityAuth;
     }
 }
