@@ -205,7 +205,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 	
     }
         public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int begin, int number, String keywords){
-        List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
+        List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(Restrictions.and( 
+                 Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
                   Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
                  Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
@@ -215,7 +216,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 	
     }
      public int getAcceptedActivitiesCountByContent( String keywords){
-         Object r = select().add(Restrictions.and( 
+         Object r = select().createAlias("option", "a").add(Restrictions.and( 
+                  Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
                   Restrictions.like("activityContent", keywords),
                  Restrictions.like("activityTheme", keywords)))))
@@ -223,7 +225,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
          return ((Long)r).intValue();
      }
        public List<StudentActivityApplyEntity> getAcceptedActivitiesByContentAndType(int begin, int number, String keywords, int activityType){
-        List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
+        List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(Restrictions.and( 
+                Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(
@@ -235,7 +238,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                 
     }
        public int getAcceptedActivitiesCountByContentAndType( String keywords, int activityType){
-         Object r = select().add(Restrictions.and( 
+         Object r = select().createAlias("option", "a").add(Restrictions.and( 
+                 Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(
