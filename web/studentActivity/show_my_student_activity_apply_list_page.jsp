@@ -21,17 +21,7 @@
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
     %>
-      <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a>
-        &nbsp; <a href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"><%=entity.getOrganizerName()%></a>
-    <br/>
-    <%if(showFollow == 1){%>
-        <%if(isFollowed){%>
-        <a href="followActivity.do?activityId=<%=entity.getID()%>&type=0">取消关注</a>
-        <%}else{%>
-            <a href="followActivity.do?activityId=<%=entity.getID()%>&type=1">添加关注</a>
-         <%}%>
-     <%}%>
-    </li>
+    <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a></li>
     <%
 	    }
     %></ul><%
