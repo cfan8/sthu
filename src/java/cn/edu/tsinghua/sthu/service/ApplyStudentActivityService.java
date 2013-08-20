@@ -512,29 +512,23 @@ public class ApplyStudentActivityService extends BaseService{
     
     // additional
     @Transactional
-    public int  getAcceptedActivitiesByContentAndType(int numberPerPage, String keywords,int activityType){
-        int r;
-        if(activityType == 0){
-        r = applyStudentActivityDAO.getAcceptedActivitiesCountByContent(keywords);
-        }
-        else{
-         r = applyStudentActivityDAO.getAcceptedActivitiesCountByContentAndType(keywords, activityType);
-        }
+    public int  getAcceptedActivitiesByContent(int numberPerPage, String keywords){
+        int r = applyStudentActivityDAO.getAcceptedActivitiesCountByContent(keywords);
+        
+      
         return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
     }
      
     @Transactional
-     public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int page,int numberPerPage, String keywords,int activityType) {
+     public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int page,int numberPerPage, String keywords) {
         if(keywords==null) {
             return null;
         }
-        else if(activityType == 0){
+        else {
             
             return applyStudentActivityDAO.getAcceptedActivitiesByContent((page - 1)*numberPerPage, numberPerPage,keywords);
         }
-        else{
-            return applyStudentActivityDAO.getAcceptedActivitiesByContentAndType((page - 1)*numberPerPage, numberPerPage, keywords, activityType);
-        }
+       
     }
     
     

@@ -15,10 +15,7 @@ import java.util.List;
 public class SearchActivitiesMessage extends BaseMessage{
     private String searchKeyword;
    // private List<StudentActivityApplyEntity> list;
-    private int activityClass;
     private int totalPageNumber;
-   // private List<Boolean> isFollowedList;
-   // private Integer showFollow;
      private Integer page;
     public String getSearchKeyword() {
         return searchKeyword;
@@ -30,19 +27,6 @@ public class SearchActivitiesMessage extends BaseMessage{
         this.searchKeyword = searchKeyword;
     }
 
-    /**
-     * @return the activityClass
-     */
-    public int getActivityClass() {
-        return activityClass;
-    }
-
-    /**
-     * @param activityClass the activityClass to set
-     */
-    public void setActivityClass(int activityClass) {
-        this.activityClass = activityClass;
-    }
 
     /**
      * @return the totalPageNumber

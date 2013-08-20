@@ -51,22 +51,14 @@
                <input type="text" name="activityname" id="activityname" />
                 <input type="button" name ="submitsearch" value="search" id="submitsearch"/>
             
-             <select id="chooseActivityClass">
-		   <option value="<%=SearchActivityPageAction.ACTIVITY_ALL%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_ALL ? "selected=\"selected\"" : ""%>>全部</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_GROUP%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_GROUP ? "selected=\"selected\"" : ""%>>党团活动</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_SPORTS%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_SPORTS ? "selected=\"selected\"" : ""%>>体育赛事</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_LECTURE%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_LECTURE ? "selected=\"selected\"" : ""%>>学术讲座</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_CULTURE%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_CULTURE ? "selected=\"selected\"" : ""%>>文化活动</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_AMUSE%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_AMUSE ? "selected=\"selected\"" : ""%>>文艺活动</option>
-		    <option value="<%=SearchActivityPageAction.ACTIVITY_OTHER%>" <%=message.getActivityClass() == SearchActivityPageAction.ACTIVITY_OTHER ? "selected=\"selected\"" : ""%>>其他活动</option>
-		</select>
+             
                 </div>
              <div id="pageview"></div>
 	
 	<script type="text/javascript">
 	    var pageConfig = {
 		root:$("#pageview"),
-		url:"searchStudentActivityPage.do?activityClass=<%=message.getActivityClass()%>&searchKeywords=<%=message.getSearchKeyword()%>",
+		url:"searchStudentActivityPage.do?searchKeywords=<%=message.getSearchKeyword()%>",
 		total:<%=message.getTotalPageNumber()%>,
 		current:1,
 		arguName:"page",
@@ -78,11 +70,7 @@
                 self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword;
               
 	    });
-              $("#chooseActivityClass").change(function(){
-		var type = $("#chooseActivityClass").val();
-                var searchKeyword = $("#activityname").val();
-		self.location.href = "searchStudentActivity.do?activityClass="+type+"&searchKeywords="+searchKeyword;
-	    });
+              
 	</script>
     <%@include file="/templates/general_footer.jsp" %>
 

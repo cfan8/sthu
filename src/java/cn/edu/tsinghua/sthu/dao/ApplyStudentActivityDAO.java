@@ -195,6 +195,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("activityType", activityType))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
+    /*
       public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent( String keywords){
         List<StudentActivityApplyEntity> list = select().add(Restrictions.and( 
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
@@ -203,12 +204,13 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).list();  
          return list;
 	
-    }
+    }*/
         public List<StudentActivityApplyEntity> getAcceptedActivitiesByContent(int begin, int number, String keywords){
         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(Restrictions.and( 
                  Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
+                  Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
-                  Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
+                  Restrictions.like("a.publicityMaterials", keywords,MatchMode.ANYWHERE),
                  Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
                  .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate"))
                 .setFirstResult(begin).setMaxResults(number).list();  
@@ -218,15 +220,17 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
      public int getAcceptedActivitiesCountByContent( String keywords){
          Object r = select().createAlias("option", "a").add(Restrictions.and( 
                   Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
+                   Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
-                  Restrictions.like("activityContent", keywords),
-                 Restrictions.like("activityTheme", keywords)))))
+                  Restrictions.like("a.publicityMaterials", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
                  .setProjection(Projections.rowCount()).uniqueResult();
          return ((Long)r).intValue();
      }
        public List<StudentActivityApplyEntity> getAcceptedActivitiesByContentAndType(int begin, int number, String keywords, int activityType){
         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(Restrictions.and( 
                 Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(
@@ -240,6 +244,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
        public int getAcceptedActivitiesCountByContentAndType( String keywords, int activityType){
          Object r = select().createAlias("option", "a").add(Restrictions.and( 
                  Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
+                 
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(

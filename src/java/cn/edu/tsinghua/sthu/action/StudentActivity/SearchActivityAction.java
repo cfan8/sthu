@@ -18,30 +18,19 @@ import java.util.List;
  */
 public class SearchActivityAction extends BaseAction{
     
-     public static int ACTIVITY_ALL = 0;
- public static int ACTIVITY_GROUP = 1;
- public static int ACTIVITY_SPORTS = 2;
- public static int ACTIVITY_LECTURE = 3;
- public static int ACTIVITY_CULTURE = 4;
- public static int ACTIVITY_AMUSE = 5;
- public static int ACTIVITY_OTHER = 6;
+ 
  
     private String searchKeywords ;  //
     private SearchActivitiesMessage searchActivitiesMessage;
     private ApplyStudentActivityService applyStudentActivityService;
-    private Integer activityClass ;
  
 
     
     @Override
     public String onExecute() throws Exception {
-     //  List<StudentActivityApplyEntity> entityList;
-      if(getActivityClass() == null) setActivityClass(ACTIVITY_ALL);
-     //  entityList = getApplyStudentActivityService().getAcceptedActivitiesByContent(getPage(),10,getSearchKeywords(),getActivityClass());
-    //getSearchActivitiesMessage().setList(entityList);
+   
     
-    getSearchActivitiesMessage().setTotalPageNumber(getApplyStudentActivityService().getAcceptedActivitiesByContentAndType(10, getSearchKeywords(),getActivityClass()));
-     getSearchActivitiesMessage().setActivityClass(getActivityClass()); 
+    getSearchActivitiesMessage().setTotalPageNumber(getApplyStudentActivityService().getAcceptedActivitiesByContent(10, getSearchKeywords()));
    getSearchActivitiesMessage().setSearchKeyword(getSearchKeywords());
         return SUCCESS;
     }
@@ -100,19 +89,7 @@ public class SearchActivityAction extends BaseAction{
         this.applyStudentActivityService = applyStudentActivityService;
     }
 
-    /**
-     * @return the activityClass
-     */
-    public Integer getActivityClass() {
-        return activityClass;
-    }
-
-    /**
-     * @param activityClass the activityClass to set
-     */
-    public void setActivityClass(Integer activityClass) {
-        this.activityClass = activityClass;
-    }
+ 
 
    
    

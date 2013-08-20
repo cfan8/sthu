@@ -15,13 +15,7 @@ import java.util.ArrayList;
  * @author anna
  */
 public class SearchActivityPageAction extends BaseAction{
- public static int ACTIVITY_ALL = 0;
- public static int ACTIVITY_GROUP = 1;
- public static int ACTIVITY_SPORTS = 2;
- public static int ACTIVITY_LECTURE = 3;
- public static int ACTIVITY_CULTURE = 4;
- public static int ACTIVITY_AMUSE = 5;
- public static int ACTIVITY_OTHER = 6;
+
 
    
     
@@ -33,8 +27,8 @@ public class SearchActivityPageAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
          List<StudentActivityApplyEntity> entityList;
-      if(getActivityClass() == null) setActivityClass(ACTIVITY_ALL); 
-       entityList = getApplyStudentActivityService().getAcceptedActivitiesByContent(getPage(),10,getSearchKeywords(),getActivityClass());
+     
+       entityList = getApplyStudentActivityService().getAcceptedActivitiesByContent(getPage(),10,getSearchKeywords());
         getSearchActivitiesPageMessage().setList(entityList);
        // getSearchActivitiesMessage().setTotalPageNumber(getApplyStudentActivityService().getAcceptedActivitiesByContentAndType(10, getSearchKeywords(),getActivityClass()));
           

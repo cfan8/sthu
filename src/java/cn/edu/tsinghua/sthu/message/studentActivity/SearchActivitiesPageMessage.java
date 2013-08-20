@@ -15,8 +15,6 @@ import java.util.List;
 public class SearchActivitiesPageMessage extends BaseMessage{
     private String searchKeyword;
     private List<StudentActivityApplyEntity> list;
-    private int activityClass;
-   // private int totalPageNumber;
     private List<Boolean> isFollowedList;
     private Integer showFollow;
 
@@ -48,19 +46,7 @@ public class SearchActivitiesPageMessage extends BaseMessage{
         this.list = list;
     }
 
-    /**
-     * @return the activityClass
-     */
-    public int getActivityClass() {
-        return activityClass;
-    }
-
-    /**
-     * @param activityClass the activityClass to set
-     */
-    public void setActivityClass(int activityClass) {
-        this.activityClass = activityClass;
-    }
+ 
 
    
 
