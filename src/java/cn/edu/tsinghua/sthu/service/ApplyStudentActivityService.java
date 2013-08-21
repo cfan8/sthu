@@ -304,7 +304,7 @@ public class ApplyStudentActivityService extends BaseService{
     public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
-	     int number, String title, int userid, int applyRange, int applyType, int applyId, int groupAuth) {
+	     int number, String title, int applyRange, int applyType, int applyId, int groupAuth) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
 	/*if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
 		&& entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
@@ -323,7 +323,6 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setTimePeriod(timePeriod);
 	entity.setParticipantsNumber(number);
 	entity.setActivityTheme(title);
-	entity.setApplyUserid(userid);
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
         entity.setApplyPath(applyType);
