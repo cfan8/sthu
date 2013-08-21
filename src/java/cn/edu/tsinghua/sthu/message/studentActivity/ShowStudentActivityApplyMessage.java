@@ -19,6 +19,8 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private boolean showConfirm;
     private boolean showApprove;
     private boolean showPublishEdit;
+    private boolean showCancel;
+    private boolean showModify; //校团委修改申请
     private int approveType;
     private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
@@ -138,5 +140,33 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setIdentityAuth(int identityAuth) {
         this.identityAuth = identityAuth;
+    }
+
+    /**
+     * @return the showCancel
+     */
+    public boolean isShowCancel() {
+        return showCancel;
+    }
+
+    /**
+     * @param showCancel the showCancel to set
+     */
+    public void setShowCancel(boolean showCancel) {
+        this.showCancel = showCancel;
+    }
+
+    /**
+     * @return the showModify
+     */
+    public boolean isShowModify() {
+        return showModify;
+    }
+
+    /**
+     * @param showModify the showModify to set
+     */
+    public void setShowModify(boolean showModify) {
+        this.showModify = showModify;
     }
 }

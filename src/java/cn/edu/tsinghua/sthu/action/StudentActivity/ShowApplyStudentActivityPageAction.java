@@ -31,11 +31,16 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
     public String onExecute() {
 	if (getApplyId() != null)
 	{
-	    StudentActivityApplyEntity entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId(), getCurrentUser().getID());
+            StudentActivityApplyEntity entity;
+            if(getCurrentUser().getAuth().getOpGroupCode() == -1){
+                entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId(), getCurrentUser().getID());
+            }else{
+                entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId());
+            }
             StudentApplyOptionsEntity options = entity.getOption();
 	    if (entity == null)
 	    {
-		alertMessage.setSimpleAlert("无法编辑指定的教室申请！");
+		alertMessage.setSimpleAlert("无法编辑指定的活动申请！");
 		return ALERT;
 	    }
 	    else
@@ -43,10 +48,12 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
                 if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.USER_APPLY);
                     getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
-                }else{
+                }else if(getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE){
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
                     getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
                     getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getApplicantName());
+                }else if(getCurrentUser().getAuth().getOpGroupCode() != -1){
+                    getShowApplyStudentActivityPageMessage().setShowProcess(false);
                 }
 		getShowApplyStudentActivityPageMessage().setStudentActivityApplyEntity(entity);
 		
@@ -68,12 +75,12 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
     
     @Override
     public boolean hasAuth(){
-	if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE && getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE) {
-	    return false;
+	if (getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE || getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE || getCurrentUser().getAuth().getOpGroupCode() != -1) {
+	    return true;
 	}
 	else
 	{
-	    return true;
+	    return false;
 	}
     }
     

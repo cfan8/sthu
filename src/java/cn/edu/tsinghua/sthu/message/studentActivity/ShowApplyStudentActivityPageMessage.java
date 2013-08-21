@@ -25,7 +25,8 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     private boolean showConfirm;
     private boolean showApprove; 
     private boolean showComment;
-
+    private boolean showProcess;
+    
     /**
      * @return the studentActivityApplyEntity
      */
@@ -152,5 +153,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setOrganizerName(String organizerName) {
         this.organizerName = organizerName;
+    }
+
+    /**
+     * @return the showProcess
+     */
+    public boolean isShowProcess() {
+        return showProcess;
+    }
+
+    /**
+     * @param showProcess the showProcess to set
+     */
+    public void setShowProcess(boolean showProcess) {
+        this.showProcess = showProcess;
     }
 }

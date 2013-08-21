@@ -48,6 +48,18 @@ public class ShowStudentActivityApplyAction extends BaseAction{
             else{
                 showStudentActivityApplyMessage.setShowPublishEdit(false);
             }
+            if((getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid() && entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED)
+                    || (getCurrentUser().getAuth().getOpGroupCode() != -1 && entity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED)){
+                showStudentActivityApplyMessage.setShowCancel(true);
+            }else{
+                showStudentActivityApplyMessage.setShowCancel(false);
+            }
+            if(entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED
+                    && getCurrentUser().getAuth().getOpGroupCode() != -1){
+                showStudentActivityApplyMessage.setShowModify(true);
+            }else{
+                showStudentActivityApplyMessage.setShowModify(false);
+            }
 	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
 		if (entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_TODO
 			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {

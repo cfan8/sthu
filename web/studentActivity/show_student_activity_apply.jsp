@@ -69,14 +69,14 @@
             }
 
 
-            #confirmDiv
+            #confirmDiv,#cancelDiv
             {
                 width: 780px;
                 margin: 20px auto 0px auto;
                 text-align: center;
             }
 
-            #confirmDiv a
+            #confirmDiv a, #cancelDiv a
             {
                 display: inline-block;
                 width: 180px;
@@ -85,7 +85,7 @@
                 text-align: center;
             }
 
-            #confirmDiv a:link, #confirmDiv a:visited
+            #confirmDiv a:link, #confirmDiv a:visited, #cancelDiv a:link, #cancelDiv a:visited
             {
                 text-decoration: none;
                 color: white;
@@ -93,9 +93,7 @@
                 font-size: 14.67px;
                 letter-spacing: 4px;
             }
-
-
-
+            
             #commentBlock
             {
                 width: 600px;
@@ -258,11 +256,32 @@
                 font-size: 14.67px;
                 letter-spacing: 4px;
             }
+            
+            #validDiv
+            {
+                width: 600px;
+                margin: 30px auto;
+                font-size: 32px;
+                text-align: center;
+                font-weight: bold;
+            }
+            #modifyDiv
+            {
+                width: 600px;
+                margin: 0 auto;
+                margin-top:20px;
+            }
+            #modifyDiv a{
+                font-family: 黑体;
+                font-size: 18px;
+                color:#3A5FCD;
+                text-decoration:none;
+            }
         </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <div id="position" class="noprint">您当前的位置：活动申请</div>
-    <div class="processtype noprint" id="processtype<%=entity.getApplyStatus()%>"></div>
+    <%if(entity.isValid()){%><div class="processtype noprint" id="processtype<%=entity.getApplyStatus()%>"></div>
     <%if(message.isShowPublishEdit()){%>
     <div id="publishDiv">学生清华发布申请：
         <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
@@ -283,6 +302,14 @@
         </script>
         <hr />
     </div>
+    <%}}else{%>
+    <div id="validDiv">该申请已被取消！</div>
+    <hr />
+    <%}%>
+    <%if(message.isShowModify()){%>
+        <div id="modifyDiv">
+            <a href="applyStudentActivity.do?applyId=<%=entity.getID()%>" id="modifyApply">修改申请材料</a>
+        </div>
     <%}%>
     <div class="onlyprint" style="text-align:center; font-family: 黑体; font-size: 30px;">学生活动审批表</div>
     <div class="onlyprint" style="text-align:center;" id="printurl"></div>
@@ -365,7 +392,7 @@
 		</td></tr>
         </table>
     </div>
-                
+    <%if(entity.isValid()){%>       
     <div id="commentBlock">
         <div id="showControl">
             <div id="currentcomment">当前的审批消息</div><div id="borderDiv" class="noprint"></div>
@@ -418,7 +445,18 @@
         </script>
     </div>
     <% }%>
-
+    
+    <%if(message.isShowCancel()){%>
+    <div id="cancelDiv">
+        <a href="cancelApply.do?applyId=<%=entity.getID()%>" id="cancelApply">取消申请</a>
+        <script type="text/javascript">
+            $("#confirmApply").click(function() {
+                return confirm("是否确认取消申请？一旦确认将无法修改！");
+            });
+        </script>
+    </div>
+    <%}%>
+    
     <% if (message.isShowApprove()) {%>
     <div id="approveDiv" class="noprint">
         <form action="approveStudentActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
@@ -480,7 +518,7 @@
             });
         </script>
     </div>
-    <% }%>
+    <% }}%>
     
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">

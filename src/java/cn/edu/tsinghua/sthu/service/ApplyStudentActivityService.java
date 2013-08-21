@@ -304,7 +304,7 @@ public class ApplyStudentActivityService extends BaseService{
     public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
-	     int number, String title, int userid, int applyRange, int applyType, int applyId) {
+	     int number, String title, int userid, int applyRange, int applyType, int applyId, int groupAuth) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
 	/*if (entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_UNCONFIRMED
 		&& entity.getApplyStatus() != CRoomApplyEntity.APPLY_STATUS_REJECTED) {
@@ -327,7 +327,10 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setApplyDate(new Date());
 	entity.setActivityRange(applyRange);
         entity.setApplyPath(applyType);
-	configureApplyStatus(entity, applyType);
+        if(groupAuth == -1){
+            //不是校团委修改申请
+            configureApplyStatus(entity, applyType);
+        }
         //entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED);
 	//entity.setIdentityType(applyType);
 	applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
@@ -342,6 +345,12 @@ public class ApplyStudentActivityService extends BaseService{
         entity.setIdentityDate(null);
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
         return entity;
+    }
+    
+    @Transactional
+    public void cancelApply(StudentActivityApplyEntity entity){
+        entity.setApplyStatus(StudentActivityApplyEntity.APPLY_STATUS_CANCELED);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
     }
     
      @Transactional

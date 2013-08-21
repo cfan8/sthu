@@ -108,7 +108,7 @@
 	    
 	    #main .title
 	    {
-		width: 422px;
+		width: 662px;
 		height: 26px;
 		padding: 6px 0px 6px 8px;
 		font-size: 18px;

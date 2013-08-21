@@ -141,17 +141,22 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	} else {
             
 	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
-		    getCurrentUser().getID(), getActivityRange(), getApplyType(), applyId);
+		    getCurrentUser().getID(), getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
                     getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
                     getTicketNum(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
 	    if (entity == null) {
-		alertMessage.setSimpleAlert("只能修改未确认的教室申请！");
+		alertMessage.setSimpleAlert("只能修改未确认的活动申请！");
 		return ALERT;
 	    }
 	}
-	alertMessage.setSimpleAlert("已保存，请确认申请！", "showStudentActivityApply.do?applyId=" + entity.getID());
+        if(getCurrentUser().getAuth().getOpGroupCode() == -1){
+            alertMessage.setSimpleAlert("已保存，请确认申请！", "showStudentActivityApply.do?applyId=" + entity.getID());
+        }else{
+            alertMessage.setSimpleAlert("已保存！", "showStudentActivityApply.do?applyId=" + entity.getID());
+        }
+	
 	return ALERT;
     }
 
@@ -182,14 +187,19 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 
     @Override
     public boolean hasAuth(){
-        if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE && getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE) {
+        if (getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE && getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE && getCurrentUser().getAuth().getOpGroupCode() == -1) {
 	    return false;
 	}
 	if (getApplyId() != -1) {
-	    StudentActivityApplyEntity entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId(), getCurrentUser().getID());
-	    if (entity == null) {
-		return false;
-	    }
+	    StudentActivityApplyEntity entity;
+            if(getCurrentUser().getAuth().getOpGroupCode() == -1){
+                entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId(), getCurrentUser().getID());
+            }else{
+                entity = getApplyStudentActivityService().getStudentActivityApplyEntityById(getApplyId());
+            }
+            if(entity == null){
+                return false;
+            }
 	}
 	return true;
     }

@@ -40,14 +40,16 @@
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="postion">您当前的位置：学生活动申请</span>
-    <div class="processtype" id="processtype0"></div>
+    <%if(message.isShowProcess()){%>
+        <div class="processtype" id="processtype0"></div>
+    <%}%>
     <div id="formdiv">
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
             <div id="requiredinfo">
 	    <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName" <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%> disabled="disabled" <%}%> value="<%=entity.getOrganizerName()%>"/></span></div>
 	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName" value="<%=entity.getAssociateOrganizerName()%>"/></span></div>
 	    
-            <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
+            <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=entity.getApplicantName() %>" /></span></div>
 	    <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell" value="<%=entity.getApplicantCell()%>"/></span></div>
 	    <div><span class="tag">活动类型：</span><span class="value_select">
 		    <select name="activityType" id="activityUsage">

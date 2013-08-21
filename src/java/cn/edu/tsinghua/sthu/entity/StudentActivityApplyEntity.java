@@ -35,6 +35,7 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int APPLY_STATUS_CONFIRMED = 2;
     public static final int APPLY_STATUS_ACCEPTED = 3;
     public static final int APPLY_STATUS_REJECTED = -1;
+    public static final int APPLY_STATUS_CANCELED = -2;
     public static final int IDENTITY_STATUS_REJECTED = -1;
     public static final int IDENTITY_STATUS_AWAIT = 0;
     public static final int IDENTITY_STATUS_TODO = 1;
@@ -55,6 +56,8 @@ public class StudentActivityApplyEntity extends BaseEntity{
     public static final int PUBLISH_STATUS_AWAIT = 0;
     public static final int PUBLISH_STATUS_TODO = 1;
     public static final int PUBLISH_STATUS_ACCEPTED = Integer.MAX_VALUE;
+    public static final int APPLY_VALID = 1;
+    public static final int APPLY_INVALID = 0;
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     @Column(length = 128)
@@ -166,6 +169,12 @@ public class StudentActivityApplyEntity extends BaseEntity{
         return getID();
     }
     
+    public boolean isValid(){
+        if(this.applyStatus != APPLY_STATUS_CANCELED){
+            return true;
+        }
+        return false;
+    }
     /**
      * @return the organizerName
      */
