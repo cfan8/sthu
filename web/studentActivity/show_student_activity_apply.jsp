@@ -450,7 +450,7 @@
     <div id="cancelDiv">
         <a href="cancelApply.do?applyId=<%=entity.getID()%>" id="cancelApply">取消申请</a>
         <script type="text/javascript">
-            $("#confirmApply").click(function() {
+            $("#cancelApply").click(function() {
                 return confirm("是否确认取消申请？一旦确认将无法修改！");
             });
         </script>

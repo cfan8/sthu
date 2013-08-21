@@ -49,7 +49,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
         return entity;
     }
     public List<StudentActivityApplyEntity> getTodoApplyListByIdentityType(int begin, int number, int identityType) {
-	return select().add(Restrictions.and(Restrictions.eq("identityType", identityType) , Restrictions.eq("identityStatus", StudentActivityApplyEntity.IDENTITY_STATUS_TODO)))
+	return select().add(Restrictions.and(Restrictions.eq("identityType", identityType) , Restrictions.eq("identityStatus", StudentActivityApplyEntity.IDENTITY_STATUS_TODO),Restrictions.eq("applyStatus",StudentActivityApplyEntity.APPLY_STATUS_CONFIRMED)))
 		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("confirmDate")).setFirstResult(begin).setMaxResults(number).list();
     }
 

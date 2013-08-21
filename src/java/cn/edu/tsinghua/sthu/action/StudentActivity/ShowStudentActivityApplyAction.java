@@ -61,7 +61,7 @@ public class ShowStudentActivityApplyAction extends BaseAction{
                 showStudentActivityApplyMessage.setShowModify(false);
             }
 	    if (getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE) {
-		if (entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_TODO
+		if (entity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_CONFIRMED && entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_TODO
 			&& getCurrentUser().getAuth().getOpIdentityCode() == entity.getIdentityType()) {
 		    showStudentActivityApplyMessage.setApproveType(showStudentActivityApplyMessage.APPROVE_TYPE_IDENTITY);
 		    showStudentActivityApplyMessage.setShowApprove(true);
