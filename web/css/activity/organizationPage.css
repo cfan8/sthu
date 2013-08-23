@@ -1,0 +1,109 @@
+﻿html {
+    height:100%
+}
+body {
+    margin:0px 0px 0px 0px;
+    min-width:1240px;
+    background-color:#eee;
+    width:100%;
+}
+li {
+    list-style-type:none;
+}
+.main-style {
+    margin-top:40px;
+}
+.main-content-style {
+    margin: 0 auto;
+    width: 1000px;
+}
+.title-part-style {
+    position:relative;
+    min-height:550px;
+}
+.title-background-style {
+    background-color:#28e;
+    height:230px;
+    padding:25px 40px 20px 0px;
+}
+.slide-style {
+    position:absolute;
+    top:40px;
+    height:515px;
+    width:700px;
+}
+.slide-img {
+    height:515px;
+    width:750px;
+}
+.xsh-logo-part {
+    float:right;
+}
+.follow-style {
+    margin-top:30px;
+    font-size:large;
+    text-align:center;
+}
+.xsh-intro-style {
+    height:230px;
+}
+.intro-right-part {
+    float:right;
+    width:250px;
+    padding:20px 0px 3px 0px;
+}
+.btn-border {
+    margin:15px 0px 5px 25px;
+    float:left;
+}
+.blue-border {
+    color:#fff;
+    background-color:#bde;
+
+    font-weight:800;
+
+    transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    border-radius: 3px;
+
+    cursor:pointer;
+}
+
+.content-style {
+    height:500px;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+.activity-style {
+    background-color:#fff;
+    height:500px;
+    padding:20px 10px 10px 10px;
+    color:#888;
+}
+.activity-li {
+}
+
+.activity-cata-div {
+    float: left;
+    width: 100px;
+    text-align: center;
+    margin: 10px 20px 0px 0px;
+}
+.activity-content-div {
+    float: left; 
+    width: 550px;
+}
+.hr-li {
+    height: 30px; 
+    padding: 5px 20px 5px 0px;
+}
+.function-style {
+    height:40px;
+    background-color:#fff;
+    padding:20px 20px 20px 20px;
+}
+.org-logo {
+    width:40px;
+    height:40px;
+}

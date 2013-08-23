@@ -16,6 +16,7 @@ import cn.edu.tsinghua.sthu.service.UserService;
  */
 public class ShowGroupHomeAction extends BaseAction{
     private Integer groupId;
+    private String organizeName;
     private UserService userService;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowGroupHomeMessage showGroupHomeMessage;
@@ -35,7 +36,9 @@ public class ShowGroupHomeAction extends BaseAction{
                 getShowGroupHomeMessage().setIsGroupFollowed(0);
             }
         }
+        organizeName = userService.getUserEntityById(groupId).getNickname();
         showGroupHomeMessage.setGroupId(groupId);
+        showGroupHomeMessage.setOrganizeName(organizeName);
         showGroupHomeMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumberByUserId(5, groupId));
         return SUCCESS;
     }

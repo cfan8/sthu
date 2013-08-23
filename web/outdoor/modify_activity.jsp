@@ -133,7 +133,7 @@
 		formatUtcOffset: "%: (%@)"} );
 	    AnyTime.picker( "field2",
 	    {format: "%Y-%m-%d %H:%i",
-		formatUtcOffset: "%: (%@)"} );
+		formatUtcOffset: "%: (%@)"} ); 
     </script>
 
 </html>

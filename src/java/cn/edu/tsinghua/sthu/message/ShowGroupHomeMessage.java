@@ -16,7 +16,7 @@ public class ShowGroupHomeMessage extends BaseMessage{
     private int totalPageNumber;
     private int groupId;
     private int isGroupFollowed;
-
+    private String OrganizeName;
     /**
      * @return the showFollow
      */
@@ -71,6 +71,20 @@ public class ShowGroupHomeMessage extends BaseMessage{
      */
     public void setIsGroupFollowed(int isGroupFollowed) {
         this.isGroupFollowed = isGroupFollowed;
+    }
+    
+    /**
+     * @return the OrganizeName
+     */
+    public String getOrganizeName() {
+        return OrganizeName;
+    }
+
+    /**
+     * @param OrganizeName the isGroupFollowed to set
+     */
+    public void setOrganizeName(String OrganizeName) {
+        this.OrganizeName = OrganizeName;
     }
 
 }

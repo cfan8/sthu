@@ -1,0 +1,11 @@
+﻿.flexagon-style {
+    height:8px;
+}
+#flexagon1,#flexagon3{
+    float:left;
+    height:8px;
+}
+#flexagon2,#flexagon4{
+    float:right;
+    height:8px;
+}
