@@ -19,7 +19,7 @@
     List<StudentActivityApplyEntity> list = message.getList();
     List<Boolean> isFollowedList = message.getIsFollowedList();
     Integer showFollow = message.getShowFollow();
-    
+    String[] ActivityTypeStrings = {"","党团活动","体育赛事","学术报告","文化活动","文艺活动","其它活动"};
 %>
 
 <%
@@ -37,16 +37,19 @@
             <div class="activity-cata-div">    
                 <a style="font-weight: bold;color: #888;text-decoration:none;"
                     href="/studentActivity/showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank">
-                    <%=entity.getActivityTheme()%>
+                    <%=ActivityTypeStrings[entity.getActivityType()] %>
                 </a>
             </div>
             <div class="activity-content-div">
                 <div style="font-size: x-large;">
                     <a style="font-weight: bold; color: #888; text-decoration:none;"
                         href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>">
-                        <%=entity.getOrganizerName()%>
+                        <%=entity.getActivityTheme()%>
                     </a>
                 </div>
+                <div style="font-size: smaller; margin: 5px 0px 0px 0px; color: #888;">
+                    <a><%=entity.getActivityDate() %></a>
+                </div>    
             </div>
         </div>
     </li>

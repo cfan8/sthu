@@ -28,7 +28,7 @@
             <div id="navi">
                 <div id="navi_text_left" class="navi-left">
                     <div class="navi-main-name"><a href="/login.do?redirectURL=%2Fmysthu.do"><b><%=nickName%></b></a></div>
-                    <div class="navi-main"><a id="activity_link" href="/column/column.do?id=4" target="_blank"><b>活动</b></a></div>
+                    <div class="navi-main"><a id="activity_link" href="/studentActivity/showActivitiesList.do" target="_blank"><b>活动</b></a></div>
                     <div class="navi-main"><a id="individual_link" href="/login.do?redirectURL=%2Fmysthu.do"><b>个人主页</b></a></div>
                 </div>
                 <div id="navi_text_right" class="navi-side">
