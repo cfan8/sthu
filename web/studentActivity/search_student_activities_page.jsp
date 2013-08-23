@@ -13,28 +13,39 @@
 <%
     SearchActivitiesPageMessage message = Util.getMessage(SearchActivityPageAction.class);
     List<StudentActivityApplyEntity> list = message.getList();
-    List<Boolean> isFollowedList = message.getIsFollowedList();
-    Integer showFollow = message.getShowFollow();
     if (list.size() == 0) {
 %>
 <div style="width: 100%; text-align: center;">没有申请！</div>
 <%} else {
-%><ul><%
+%><ul style="list-style-type:none;"><%
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
-        Boolean isFollowed = isFollowedList.get(i);
     %>
-    <li><a href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank"><%=entity.getActivityTheme()%></a>
-        &nbsp; <a href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"><%=entity.getOrganizerName()%></a>
-    <br/>
-    <%if(showFollow == 1){%>
-        <%if(isFollowed){%>
-        <a href="followActivity.do?activityId=<%=entity.getID()%>&type=0">取消关注</a>
-        <%}else{%>
-            <a href="followActivity.do?activityId=<%=entity.getID()%>&type=1">添加关注</a>
-         <%}%>
-     <%}%>
+    <li style="height:55px;">
+        <div style="padding:5px 80px 5px 0px">
+            <div style="float:left;width:140px;text-align:center;margin:15px 20px 0px 0px;">
+                <a style="color:#000;  text-decoration:none;"
+                    href="showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank">
+                    <b><%=entity.getOrganizerName()%></b>
+                </a>
+            </div>
+            <div style="float:left;width:600px;">
+                <div style="font-size:x-large;">    
+                    <a  style="color:#000; text-decoration:none;"
+                        href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>">
+                        <%=entity.getActivityTheme()%>
+                    </a>
+                </div>
+                <div style="font-size:smaller;margin:5px 0px 0px 0px;color:#888;">
+                    <a><%=entity.getTimePeriod() %></a>
+                </div>
+            </div>
+            <div style="float:right;color:#888;margin-top:15px;">
+                <a><b><%=entity.getActivityDate()%></b></a>
+            </div>
+        </div>
     </li>
+    <li style="height:40px;padding:15px 80px 5px 20px;"><hr/></li>
     <%
 	    }
     %></ul><%

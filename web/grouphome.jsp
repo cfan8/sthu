@@ -99,9 +99,9 @@
                                 <%}else{%>
                                 <a href="/followGroup.do?type=1&groupId=<%=message.getGroupId()%>">
                                     <img src="/css/activity/follow_btn.png" />
-                                </a>
+                                </a>                 
+                                <%}}%>        
                                 </div>
-                                <%}}%>                            
                         </div>
                         <div id="txt_intro" style="font-size: large; float: right; width: 220px; word-wrap: break-word; overflow: hidden;">
                             <p>清华美院学生会是属于清华大学美术学院学生自己的组织，她来自广大同学，在美院党委和团委的领导下，为活跃本院学习气氛，丰富广大同学的课余生活.....<a class="blue-border"><b>&ensp;+&ensp;</b></a></p>

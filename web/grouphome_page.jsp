@@ -17,8 +17,6 @@
 <%
     ShowGroupHomePageMessage message = Util.getMessage(ShowGroupHomePageAction.class);
     List<StudentActivityApplyEntity> list = message.getList();
-    List<Boolean> isFollowedList = message.getIsFollowedList();
-    Integer showFollow = message.getShowFollow();
     String[] ActivityTypeStrings = {"","党团活动","体育赛事","学术报告","文化活动","文艺活动","其它活动"};
 %>
 
@@ -30,7 +28,6 @@
 %><ul style="list-style-type: none;"><%
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
-        Boolean isFollowed = isFollowedList.get(i);
     %>
     <li style="height: 55px;">
         <div style="padding: 5px 10px 5px 0px">
