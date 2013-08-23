@@ -34,9 +34,6 @@
         <div id="input_main" class="input-main-style">
             <div><input id="input_box" class="input-border"/></div>
             <div class="input-text">
-                <div id="btn_club" class="unselected-border">
-                    <div class="search-bar-text"><a style="cursor: pointer;"><b>社团</b></a></div>
-                </div>
                 <div id="btn_activity" class="unselected-border">
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>活动</b></a></div>
                 </div>
@@ -190,6 +187,10 @@
         $("#btn_search").click(function(){
 	var searchKeyword = $("#input_box").val();   
         self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword;
+        });
+        
+        $("#btn_activity").click(function(){
+            self.location.href ="/studentActivity/showActivitiesList.do";
         });
     </script>
     <%@include file="/templates/new_general_footer.jsp" %>

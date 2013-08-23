@@ -33,14 +33,16 @@
         <div style="padding: 5px 10px 5px 0px">
             <div class="activity-cata-div">    
                 <a style="font-weight: bold;color: #888;text-decoration:none;"
-                    href="/studentActivity/showStudentActivityApply.do?applyId=<%=entity.getID()%>" target="_blank">
+                    href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"
+                    target="_blank">
                     <%=ActivityTypeStrings[entity.getActivityType()] %>
                 </a>
             </div>
             <div class="activity-content-div">
                 <div style="font-size: x-large;">
                     <a style="font-weight: bold; color: #888; text-decoration:none;"
-                        href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>">
+                       href="/studentActivity/showStudentActivityApply.do?applyId=<%=entity.getID()%>" 
+                       >
                         <%=entity.getActivityTheme()%>
                     </a>
                 </div>
