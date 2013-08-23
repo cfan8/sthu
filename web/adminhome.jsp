@@ -19,7 +19,9 @@
     int approveType = -1;
     if (entity.getOpIdentityCode() != -1) {
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
-    } else if (entity.getOpResourceCode() != -1) {
+    }else if(entity.getOpAllocateCode() != -1 && entity.getOpResourceCode() != -1){
+        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE;
+    }else if (entity.getOpResourceCode() != -1) {
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
     }else if(entity.getOpGroupCode() != -1) {
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP;

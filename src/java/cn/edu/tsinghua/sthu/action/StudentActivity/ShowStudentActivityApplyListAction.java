@@ -45,6 +45,8 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
             return true;
         }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && getCurrentUser().getAuth().getOpGroupCode() != -1){
             return true;
+        }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && getCurrentUser().getAuth().getOpAllocateCode() != -1 && getCurrentUser().getAuth().getOpResourceCode() != -1){
+            return true;
         }
         
 	return false;
@@ -55,7 +57,8 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
         if (getViewType() == null || (getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST && getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO)
 		|| getApproveType() == null || (getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE  
                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH
-                && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED)) {
+                && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED
+                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE)) {
 	    return false;
 	} else {
 	    return true;

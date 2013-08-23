@@ -103,4 +103,20 @@ public class StudentActivityApproveEntity extends BaseEntity{
     public void setApproveDate(Date approveDate) {
         this.approveDate = approveDate;
     }
+    
+    public String getApproveStatusText()
+    {
+	switch(this.approveStatus)
+	{
+	    case StudentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED:
+		return "已通过";
+	    case StudentActivityApplyEntity.ALLOCATE_STATUS_AWAIT:
+		return "等待审批";
+	    case StudentActivityApplyEntity.ALLOCATE_STATUS_TODO:
+		return "正在审批";
+	    case StudentActivityApplyEntity.ALLOCATE_STATUS_REJECTED:
+		return "已驳回";
+	}
+	return "";
+    }
 }

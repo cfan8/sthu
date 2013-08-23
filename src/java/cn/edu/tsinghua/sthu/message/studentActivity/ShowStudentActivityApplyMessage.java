@@ -21,6 +21,7 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private boolean showPublishEdit;
     private boolean showCancel;
     private boolean showModify; //校团委修改申请
+    private String otherApproveString; //校团委选择的其他部门的审批状态
     private int approveType;
     private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
@@ -168,5 +169,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setShowModify(boolean showModify) {
         this.showModify = showModify;
+    }
+
+    /**
+     * @return the otherApproveString
+     */
+    public String getOtherApproveString() {
+        return otherApproveString;
+    }
+
+    /**
+     * @param otherApproveString the otherApproveString to set
+     */
+    public void setOtherApproveString(String otherApproveString) {
+        this.otherApproveString = otherApproveString;
     }
 }

@@ -50,6 +50,13 @@ public class CancelStudentActivityApplyAction extends BaseAction{
 	    alertMessage.setSimpleAlert("参数错误！");
 	    return false;
 	}
+        if(getEntity().getApplyUserid() == getCurrentUser().getID()){
+            if(getEntity().getGroupStatus() != StudentActivityApplyEntity.GROUP_STATUS_AWAIT 
+                    && getEntity().getGroupStatus() != StudentActivityApplyEntity.GROUP_STATUS_TODO){
+                alertMessage.setSimpleAlert("校团委审批过的活动不能被申请者取消！");
+                return false;
+            }
+        }
 	return true;
     }
     

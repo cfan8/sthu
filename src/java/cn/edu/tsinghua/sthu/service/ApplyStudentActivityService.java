@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.service;
 
 import cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction;
+import cn.edu.tsinghua.sthu.constant.AllocateMapping;
 import cn.edu.tsinghua.sthu.constant.GroupMapping;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
@@ -426,6 +427,33 @@ public class ApplyStudentActivityService extends BaseService{
                 }
 	    }
 	}
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+            if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities1) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+                for (StudentActivityApproveEntity e : approveEntities2) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities1) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+                for (StudentActivityApproveEntity e : approveEntities2) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    }
+             
+         }
          else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
              List<StudentActivityApplyEntity> approveEntities = applyStudentActivityDAO.getApprovedApplyList(begin, number);
              list = new ArrayList<StudentActivityApplyEntity>();
@@ -480,6 +508,17 @@ public class ApplyStudentActivityService extends BaseService{
                 resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
 	    }
 	}
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+            if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
+                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
+                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+        }
         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
             resultCount = applyStudentActivityDAO.getApprovedApplyCount();
         }
@@ -568,6 +607,18 @@ public class ApplyStudentActivityService extends BaseService{
         return false;
     }
 
+    @Transactional
+    public String getOtherApproveStatusString(StudentActivityApplyEntity entity){
+        if(entity.getApproveEntities() == null)
+            return "";
+        String str = "";
+        for(StudentActivityApproveEntity e : entity.getApproveEntities()){
+            if(e.getApproveStatus() != StudentActivityApplyEntity.ALLOCATE_STATUS_AWAIT){
+                str += AllocateMapping.names[e.getApproveType()] + " 审批状态: " + e.getApproveStatusText() + "<br />";
+            }
+        }
+        return str;
+    }
       
     /**
      * @return the applyStudentActivityDAO

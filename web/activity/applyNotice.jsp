@@ -98,6 +98,6 @@
     <li>如果对借用教室及活动资源申请仍有疑问，请联系校团委办公室咨询电话：62786244，62797505，办公时间每周一至周五，上午8:00-12:00，下午13:00-17:00。</li>
     <li>线下申请相关表格下载：<a href="/download/dxhd.doc" target="_blank">清华大学学生大型活动审批表</a>、<a href="/download/jsjy.doc" target="_blank">清华大学学生活动教室借用审批表</a>、<a href="/download/jsjy_sjw.doc" target="_blank">清华大学学生活动教室借用审批表-涉境外活动</a>、<a href="/download/twyz.docx" target="_blank">团委印章用印申请单</a>。</li>
     </ol>
-    <p id="buttonP"><a class="button" href="/activity/applyClassroom.do">申请借用教室</a><a class="button" href="/outdoor/applyActivity.do">申请活动资源</a><a class="button" href="/studentActivity/applyStudentActivity.do">申请学生活动</a></p>
+    <p id="buttonP"><a class="button" href="/activity/applyClassroom.do">申请借用教室</a><a class="button" href="/outdoor/applyActivity.do">申请活动资源</a><a class="button" href="/studentActivity/applyStudentActivity.do">申请学生活动(测试)</a></p>
     <%@include file="/templates/general_footer.jsp" %>
 </html>

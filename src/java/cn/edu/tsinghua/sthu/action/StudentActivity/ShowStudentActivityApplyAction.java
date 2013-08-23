@@ -33,6 +33,7 @@ public class ShowStudentActivityApplyAction extends BaseAction{
 	    showStudentActivityApplyMessage.setApplyEntity(entity);
             showStudentActivityApplyMessage.setOptionsEntity(options);
             showStudentActivityApplyMessage.setIdentityAuth(getCurrentUser().getAuth().getOpIdentityCode());
+            showStudentActivityApplyMessage.setOtherApproveString(getApplyStudentActivityService().getOtherApproveStatusString(entity));
 	    if (getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()
 		    && (showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_UNCONFIRMED
 		    || showStudentActivityApplyMessage.getApplyEntity().getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_REJECTED)) {
@@ -48,9 +49,14 @@ public class ShowStudentActivityApplyAction extends BaseAction{
             else{
                 showStudentActivityApplyMessage.setShowPublishEdit(false);
             }
-            if((getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid() && entity.getIdentityStatus() == StudentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED)
-                    || (getCurrentUser().getAuth().getOpGroupCode() != -1 && entity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED)){
+            if((getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid() && entity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_CONFIRMED)
+                    || getCurrentUser().getAuth().getOpGroupCode() != -1){
                 showStudentActivityApplyMessage.setShowCancel(true);
+                if(getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()){
+                    if(showStudentActivityApplyMessage.getApplyEntity().getGroupStatus() != StudentActivityApplyEntity.GROUP_STATUS_AWAIT
+                            && showStudentActivityApplyMessage.getApplyEntity().getGroupStatus() != StudentActivityApplyEntity.GROUP_STATUS_TODO)
+                        showStudentActivityApplyMessage.setShowCancel(false);
+                }
             }else{
                 showStudentActivityApplyMessage.setShowCancel(false);
             }

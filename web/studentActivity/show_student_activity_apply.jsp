@@ -386,9 +386,10 @@
 		    <p>申请状态：<%=entity.getApplyStatusText()%></p>
 		    <p>院系学生组（团委）审批状态：<%=entity.getIdentityStatusText()%></p>
 		    <p>校团委审批状态：<%=entity.getGroupStatusText()%></p>
-                    <p>其他（前）审批状态：<%=entity.getResourceStatusText()%></p>
-		    <p>其他（后）审批状态：<%=entity.getAllocateStatusText()%></p>
-                    <p>成才中心审批状态：<%=entity.getPublishStatusText()%></p>
+                    <p><%=message.getOtherApproveString()%></p>
+                    <%if(entity.getPublishStatus() != StudentActivityApplyEntity.PUBLISH_STATUS_AWAIT){%>
+                        <p>成才中心审批状态：<%=entity.getPublishStatusText()%></p>
+                    <%}%>
 		</td></tr>
         </table>
     </div>
