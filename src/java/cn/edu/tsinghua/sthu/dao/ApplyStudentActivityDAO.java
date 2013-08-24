@@ -265,4 +265,21 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                    .setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
        }
+       
+       public List<StudentActivityApplyEntity> getDigestActivityList(int begin, int number){
+           List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                 Restrictions.eq("a.digestFlag", StudentApplyOptionsEntity.DIGEST_ACTIVITY))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
+            return list;
+       }
+       public int getDigestActivityCount(){
+           Object r = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), 
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                 Restrictions.eq("a.digestFlag", StudentApplyOptionsEntity.DIGEST_ACTIVITY))).setProjection(Projections.rowCount()).uniqueResult();
+            return ((Long) r).intValue();
+       }
 }

@@ -22,6 +22,7 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private boolean showCancel;
     private boolean showModify; //校团委修改申请
     private String otherApproveString; //校团委选择的其他部门的审批状态
+    private int digestButtonStatus; //是否显示加精按钮或者显示取消按钮
     private int approveType;
     private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
@@ -30,6 +31,9 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     public static final int APPROVE_TYPE_GROUP = 4;
     public static final int APPROVE_TYPE_PUBLISH = 5;
     public static final int IDENTITY_SHETUANBU = 1;
+    public static final int DIGEST_BUTTON_HIDE = 0;
+    public static final int DIGEST_BUTTON_SHOW = 1;
+    public static final int CANCEL_DIGEST_BUTTON_SHOW = 2;
 
     /**
      * @return the applyEntity
@@ -183,5 +187,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setOtherApproveString(String otherApproveString) {
         this.otherApproveString = otherApproveString;
+    }
+
+    /**
+     * @return the digestButtonStatus
+     */
+    public int getDigestButtonStatus() {
+        return digestButtonStatus;
+    }
+
+    /**
+     * @param digestButtonStatus the digestButtonStatus to set
+     */
+    public void setDigestButtonStatus(int digestButtonStatus) {
+        this.digestButtonStatus = digestButtonStatus;
     }
 }

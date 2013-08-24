@@ -7,6 +7,8 @@ import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.SearchActivitiesPageMessage;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class SearchActivityPageAction extends BaseAction{
 
 
    
-    
+    @XSSProtect(XSSProtectLevel.Strict)
     private String searchKeywords ;  //
     private SearchActivitiesPageMessage searchActivitiesPageMessage;
     private ApplyStudentActivityService applyStudentActivityService;

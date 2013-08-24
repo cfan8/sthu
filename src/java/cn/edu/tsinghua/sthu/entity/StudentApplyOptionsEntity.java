@@ -44,6 +44,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int PUBLICITYFLAG_APPLY = 1;
     public static final int TICKETFLAG_NOTAPPLY = 0;
     public static final int TICKETFLAG_APPLY = 1;
+    public static final int ORDINARY_ACTIVITY = 0;
+    public static final int DIGEST_ACTIVITY = 1;
     
       
     @Index(name="applyUseridIndex")
@@ -107,6 +109,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     //学生清华发布申请
     @Column(length = 4000)
     private String publicityMaterials; //宣传材料
+    private int digestFlag; //标记是否是精华活动
     
     private int ticketFlag; //标记是否申请门票抽签
     //门票抽签申请
@@ -671,6 +674,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setCroomLocation(String croomLocation) {
         this.croomLocation = croomLocation;
+    }
+
+    /**
+     * @return the digestFlag
+     */
+    public int getDigestFlag() {
+        return digestFlag;
+    }
+
+    /**
+     * @param digestFlag the digestFlag to set
+     */
+    public void setDigestFlag(int digestFlag) {
+        this.digestFlag = digestFlag;
     }
 
 }

@@ -205,6 +205,13 @@
 	    <div class="content"><iframe id="frame2" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED%>"></iframe></div>
 	</div>
         <%}%>
+        
+        <% if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH){%>
+        <div id="approvedapply">
+	    <div class="title">精华活动</div>
+	    <div class="content"><iframe id="frame2" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST%>"></iframe></div>
+	</div>
+        <%}%>
 	<div style="clear: both"></div>
     </div>
 

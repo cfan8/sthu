@@ -104,6 +104,16 @@ public class ShowStudentActivityApplyAction extends BaseAction{
 	    } else {
 		showStudentActivityApplyMessage.setShowApprove(false);
 	    }
+            showStudentActivityApplyMessage.setDigestButtonStatus(ShowStudentActivityApplyMessage.DIGEST_BUTTON_HIDE);
+            if(getCurrentUser().getAuth().getOpPublishCode() != -1 && entity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED
+                    && entity.getPublishStatus() == StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED && entity.getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY){
+                if(entity.getOption().getDigestFlag() == StudentApplyOptionsEntity.DIGEST_ACTIVITY){
+                    showStudentActivityApplyMessage.setDigestButtonStatus(ShowStudentActivityApplyMessage.CANCEL_DIGEST_BUTTON_SHOW);
+                }
+                else{
+                    showStudentActivityApplyMessage.setDigestButtonStatus(ShowStudentActivityApplyMessage.DIGEST_BUTTON_SHOW);
+                }
+            }
 	    return SUCCESS;
 	}
     }

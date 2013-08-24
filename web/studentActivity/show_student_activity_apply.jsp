@@ -69,14 +69,14 @@
             }
 
 
-            #confirmDiv,#cancelDiv
+            #confirmDiv,#cancelDiv, #digestDiv
             {
                 width: 780px;
                 margin: 20px auto 0px auto;
                 text-align: center;
             }
 
-            #confirmDiv a, #cancelDiv a
+            #confirmDiv a, #cancelDiv a, #digestDiv a
             {
                 display: inline-block;
                 width: 180px;
@@ -85,7 +85,7 @@
                 text-align: center;
             }
 
-            #confirmDiv a:link, #confirmDiv a:visited, #cancelDiv a:link, #cancelDiv a:visited
+            #confirmDiv a:link, #confirmDiv a:visited, #cancelDiv a:link, #cancelDiv a:visited, #digestDiv a:link, #digestDiv a:visited
             {
                 text-decoration: none;
                 color: white;
@@ -456,6 +456,17 @@
     </div>
     <%}%>
     
+    <%if(message.getDigestButtonStatus() != ShowStudentActivityApplyMessage.DIGEST_BUTTON_HIDE){%>
+        <div id="digestDiv">
+            <%if(message.getDigestButtonStatus() == ShowStudentActivityApplyMessage.DIGEST_BUTTON_SHOW){%>
+                <a href="digestActivity.do?type=1&activityId=<%=entity.getID()%>">加精</a>
+            <%}else if(message.getDigestButtonStatus() == ShowStudentActivityApplyMessage.CANCEL_DIGEST_BUTTON_SHOW){%>
+                <a href="digestActivity.do?type=0&activityId=<%=entity.getID()%>">取消加精</a>
+            <%}%>
+        </div>
+    <%}%>
+    
+    
     <% if (message.isShowApprove()) {%>
     <div id="approveDiv" class="noprint">
         <form action="approveStudentActivityApply.do?applyId=<%=entity.getID()%>&type=<%=message.getApproveType()%>" id="approveForm" method="post">
@@ -514,6 +525,7 @@
         </script>
     </div>
     <% }}%>
+    
     
     <%@include file="/templates/general_footer.jsp" %>
     <script type="text/javascript">

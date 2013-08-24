@@ -9,6 +9,8 @@ import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
 /**
@@ -22,11 +24,13 @@ public class SaveStudentActivityCommentAction extends BaseAction{
     
     private Integer applyId;
     private Integer isApprove;
+    @XSSProtect(XSSProtectLevel.Strict)
     private String comment;
     private Integer type;
     private Integer[] allocates;
     private Integer[] resources;
     private Integer identityAccount;
+    @XSSProtect(XSSProtectLevel.Strict)
     private String croomLocation;
     
     @Override

@@ -100,7 +100,9 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     //室外场地申请
     private int outsideFlag; //标记是否申请室外场地，1：申请，0：不申请
     private int activityLocation; //活动地点
+    @XSSProtect(XSSProtectLevel.Strict)
     private String outsideBorrowDate;	//借用日期
+    @XSSProtect(XSSProtectLevel.Strict)
     private String outsideTimePeriod;	//借用时间段
     
     //展板申请

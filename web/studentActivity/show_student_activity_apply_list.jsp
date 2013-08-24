@@ -43,7 +43,8 @@
     <body>
         
         <div>
-            <%if(message.getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED){%>
+            <%if(message.getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED 
+            && message.getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST){%>
             <p><select id="chooseApproveType">
                     <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO ? "selected=\"selected\"" : ""%>>未处理的申请</option>
                     <option value="<%=ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST%>" <%=message.getViewType() == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST ? "selected=\"selected\"" : ""%>>已处理的申请</option>

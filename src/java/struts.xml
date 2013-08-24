@@ -194,6 +194,8 @@ and open the template in the editor.
          </action>
         <action name="followActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.FollowActivityAction">
         </action>
+        <action name="digestActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.AddToDigestActivityAction">
+        </action>
     </package>
     <package name="activityActionPackage" extends="defaultAction" namespace="/activity">
 	<action name="applyClassroom" class="cn.edu.tsinghua.sthu.action.ShowApplyClassroomPageAction">

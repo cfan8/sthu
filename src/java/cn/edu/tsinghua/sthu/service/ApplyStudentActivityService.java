@@ -462,11 +462,10 @@ public class ApplyStudentActivityService extends BaseService{
              
          }
          else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
-             List<StudentActivityApplyEntity> approveEntities = applyStudentActivityDAO.getApprovedApplyList(begin, number);
-             list = new ArrayList<StudentActivityApplyEntity>();
-             for(StudentActivityApplyEntity e: approveEntities){
-                 list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getID()));
-             }
+             list = applyStudentActivityDAO.getApprovedApplyList(begin, number);
+         }
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST && auth.getOpPublishCode() != -1){
+             list = applyStudentActivityDAO.getDigestActivityList(begin, number);
          }
 	return list;
     }
@@ -529,6 +528,9 @@ public class ApplyStudentActivityService extends BaseService{
         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
             resultCount = applyStudentActivityDAO.getApprovedApplyCount();
         }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST && auth.getOpPublishCode() != -1){
+             resultCount = applyStudentActivityDAO.getDigestActivityCount();
+         }
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
     
@@ -625,6 +627,18 @@ public class ApplyStudentActivityService extends BaseService{
             }
         }
         return str;
+    }
+    
+    @Transactional
+    public void addToDigest(StudentActivityApplyEntity entity){
+        entity.getOption().setDigestFlag(StudentApplyOptionsEntity.DIGEST_ACTIVITY);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+    }
+    
+    @Transactional
+    public void cancelDigest(StudentActivityApplyEntity entity){
+        entity.getOption().setDigestFlag(StudentApplyOptionsEntity.ORDINARY_ACTIVITY);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
     }
       
     /**
