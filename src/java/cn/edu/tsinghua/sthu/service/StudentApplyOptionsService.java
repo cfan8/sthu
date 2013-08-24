@@ -25,17 +25,18 @@ public class StudentApplyOptionsService {
 //    }
     
     @Transactional
-    public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
-    String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
+    public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int externalFlag, String externalIntro, String externalOrganizationIntro,
+    String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
-    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
+    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
     int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
         entity.setApplyUserid(userid);
-        entity.setActivityArea(activityArea);
+        entity.setExternalFlag(externalFlag);
         entity.setExternalIntro(externalIntro);
         entity.setExternalOrganizationIntro(externalOrganizationIntro);
         entity.setSecurityPreparedness(securityPreparedness);
+        entity.setOverseasFlag(overseasFlag);
         entity.setOverseasIntro(overseasIntro);
         entity.setOverseasOrganizationIntro(overseasOrganizationIntro);
         entity.setOverseasMaterial(overseasMaterial);
@@ -56,6 +57,7 @@ public class StudentApplyOptionsService {
         entity.setBoardFlag(boardFlag);
         entity.setBoardMaterial(boardMaterial);
         entity.setBoardSize(boardSize);
+        entity.setBoardNum(boardNum);
         entity.setBoardStartTime(BoardStartTime);
         entity.setBoardEndTime(BoardEndTime);
         entity.setPublicityFlag(publicityFlag);
@@ -69,17 +71,18 @@ public class StudentApplyOptionsService {
     }
     
     @Transactional
-    public StudentApplyOptionsEntity modifyStudentApplyOptions(int userid, int activityArea, String externalIntro, String externalOrganizationIntro,
-    String securityPreparedness, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
+    public StudentApplyOptionsEntity modifyStudentApplyOptions(int userid, int externalFlag, String externalIntro, String externalOrganizationIntro,
+    String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
-    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, String BoardStartTime, String BoardEndTime,
+    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
     int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation, int optionId){
         StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getStudentApplyOptionsById(optionId);
         entity.setApplyUserid(userid);
-        entity.setActivityArea(activityArea);
+        entity.setExternalFlag(externalFlag);
         entity.setExternalIntro(externalIntro);
         entity.setExternalOrganizationIntro(externalOrganizationIntro);
         entity.setSecurityPreparedness(securityPreparedness);
+        entity.setOverseasFlag(overseasFlag);
         entity.setOverseasIntro(overseasIntro);
         entity.setOverseasOrganizationIntro(overseasOrganizationIntro);
         entity.setOverseasMaterial(overseasMaterial);
@@ -100,6 +103,7 @@ public class StudentApplyOptionsService {
         entity.setBoardFlag(boardFlag);
         entity.setBoardMaterial(boardMaterial);
         entity.setBoardSize(boardSize);
+        entity.setBoardNum(boardNum);
         entity.setBoardStartTime(BoardStartTime);
         entity.setBoardEndTime(BoardEndTime);
         entity.setPublicityFlag(publicityFlag);

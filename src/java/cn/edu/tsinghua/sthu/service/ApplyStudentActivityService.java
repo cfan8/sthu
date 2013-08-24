@@ -112,7 +112,7 @@ public class ApplyStudentActivityService extends BaseService{
                         studentActivityApplyEntity.setIdentityStatus(studentActivityApplyEntity.IDENTITY_STATUS_ACCEPTED);
                         if(studentActivityApplyEntity.getActivityRange() == StudentActivityApplyEntity.RANGE_DEPART){
                             StudentApplyOptionsEntity studentApplyOptionsEntity = studentActivityApplyEntity.getOption();
-                            if(studentApplyOptionsEntity.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
+                            if(studentApplyOptionsEntity.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_NOTAPPLY && studentApplyOptionsEntity.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
                                     && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
                                     && studentApplyOptionsEntity.getOutsideFlag() == studentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY
                                     && studentApplyOptionsEntity.getPublicityFlag() == studentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY && studentApplyOptionsEntity.getTicketFlag() == studentApplyOptionsEntity.TICKETFLAG_NOTAPPLY){
@@ -335,6 +335,13 @@ public class ApplyStudentActivityService extends BaseService{
 	//entity.setIdentityType(applyType);
 	applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
 	return entity;
+    }
+    
+    @Transactional
+    public StudentActivityApplyEntity saveCroomLocation(StudentActivityApplyEntity entity, String croomLocation){
+        entity.getOption().setCroomLocation(croomLocation);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+        return entity;
     }
     
     @Transactional

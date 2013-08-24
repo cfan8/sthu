@@ -329,17 +329,14 @@
             <tr><td class="tag">活动时间：</td><td class="value"><%=entity.getTimePeriod()%></td></tr>
             <tr><td class="blocktag" colspan="2">活动具体内容和相关材料：</td></tr>
             <tr><td class="blockvalue" colspan="2"><%=entity.getActivityContent()%></td></tr>
-            <%if(options.getActivityArea() == 1) {%>
-            <tr><td class="tag">活动范围:</td><td class="value">仅校内</td></tr>
-            <% }%>
-            <%if(options.getActivityArea() == 2) {%>
-            <tr><td class="tag">活动范围:</td><td class="value">涉校外</td></tr>
+            <%if(options.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_APPLY) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">涉校外:</td></tr>
             <tr><td class="tag">校外人员情况:</td><td class="value"><%=options.getExternalIntro()%></td></tr>
             <tr><td class="tag">校外合作单位:</td><td class="value"><%=options.getExternalOrganizationIntro()%></td></tr>
             <tr><td class="tag">出校活动安全预案:</td><td class="value"><%=options.getSecurityPreparedness()%></td></tr>
             <% }%>
-            <%if(options.getActivityArea() == 3) {%>
-            <tr><td class="tag">活动范围:</td><td class="value">涉境外</td></tr>
+            <%if(options.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_APPLY)  {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">涉境外:</td></tr>
             <tr><td class="tag">境外人员情况:</td><td class="value"><%=options.getOverseasIntro()%></td></tr>
             <tr><td class="tag">境外合作单位:</td><td class="value"><%=options.getOverseasOrganizationIntro()%></td></tr>
             <tr><td class="tag">相关材料:</td><td class="value"><%=options.getOverseasMaterial()%></td></tr>
@@ -368,6 +365,7 @@
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">展板申请:</td></tr>
             <tr><td class="tag">活动材料（附件）:</td><td class="value"><%=options.getBoardMaterial()%></td></tr>
             <tr><td class="tag">规格:</td><td class="value"><%=options.getBoardSizeText()%></td></tr>
+            <tr><td class="tag">块数:</td><td class="value"><%=options.getBoardNum()%></td></tr>
             <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getBoardStartTime()%></td></tr>
             <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getBoardEndTime()%></td></tr>
             <%}%>
@@ -490,7 +488,7 @@
                 <% }%>
             </p>
             <%if(message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE){%>
-            <p><label>地点</label><input type="text" id="croomLocation"/></p>
+            <p><label>地点</label><input type="text" id="croomLocation" name="croomLocation"/></p>
             <%}%>
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
@@ -498,15 +496,11 @@
         <script type="text/javascript">
             ue = UE.getEditor('editor');
             $("#submitApprove").click(function() {
-                if($("input[name='isApprove']")[0].checked && !!$("#croomLocation")[0]){
-                    if($('#croomLocation').val() == ""){
-                        alert("请输入教室位置");
-                    }else{
-                        if (confirm("是否确认提交？一旦提交无法修改！") == true)
-                        {
-                            $("#comment").val("教室位置："+$('#croomLocation').val()+"<br/>"+ue.getContent());
-                            $("#approveForm").submit();
-                        }
+                if($("input[name='isApprove']")[0].checked && !!$("#croomLocation")[0] && $('#croomLocation').val() != ""){
+                    if (confirm("是否确认提交？一旦提交无法修改！") == true)
+                    {
+                        $("#comment").val("教室位置："+$('#croomLocation').val()+"<br/>"+ue.getContent());
+                        $("#approveForm").submit();
                     }
                 }else{
                     if (confirm("是否确认提交？一旦提交无法修改！") == true)

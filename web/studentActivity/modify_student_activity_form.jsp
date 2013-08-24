@@ -87,23 +87,27 @@
             <div><span class="tag">活动日期：</span><span class="value"><input type="text" id="activityDate" name="activityDate" value="<%=entity.getActivityDate()%>"/></span></div>
 	    <div><span class="tag">活动时间：</span><span class="value"><input type="text" name="timePeriod"  placeholder="请用24小时制，例：11:00-13:00" value="<%=entity.getTimePeriod()%>"/></span></div>
             </div>
-            <div><span class="tag">活动范围：</span><span class="value_select">
-		    <select name="activityArea" id="activityArea">
-			<option value="<%=StudentApplyOptionsEntity.AREA_INSCHOOL%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_INSCHOOL ? "selected = \"selected\"" : ""%>>仅校内</option>
-			<option value="<%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_OUTSCHOOL ? "selected = \"selected\"" : ""%>>涉校外</option>
-			<option value="<%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>" <%=options.getActivityArea() == StudentApplyOptionsEntity.AREA_OUTCOUNTRY ? "selected = \"selected\"" : ""%>>涉境外</option>
-		    </select>  
-		</span></div>
-            
-            <div id="outSchoolInfo" <%if(options.getActivityArea() != 2) {%>style="display:none"<% }%>>
+            <hr />
+            <div><span class="tag">涉校外：</span><span class="value">
+                    <input type="radio" name="externalFlag" value="<%=StudentApplyOptionsEntity.EXTERNAL_APPLY%>" onclick="changeExternalState(1)" <%=options.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="externalFlag" value="<%=StudentApplyOptionsEntity.EXTERNAL_NOTAPPLY%>" onclick="changeExternalState(2)" <%=options.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_NOTAPPLY ? "checked = \"true\"" : ""%>>否
+                </span>
+            </div> 
+            <div id="outSchoolInfo" <%if(options.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_NOTAPPLY) {%>style="display:none"<% }%>>
                 <div><span class="tag">校外人员情况：</span><span class="value"><textarea name="externalIntro" rows="5"><%=options.getExternalIntro()%></textarea></span></div>
                 <div><span class="tag">校外合作单位：</span><span class="value"><textarea name="externalOrganizationIntro" rows="5"><%=options.getExternalOrganizationIntro()%></textarea></span></div>
-                <div><span class="tag">出校活动安全预案：</span><div class="ueditorBlock"><script id="securityEditor" type="text/plain" style="width: 400px;"><%=options.getSecurityPreparedness()%></script><input type="hidden" name="securityPreparedness" id="securityPreparedness"/></div></div>
-            </div>    
-            <div id="outCountryInfo" <%if(options.getActivityArea() != 3) {%>style="display:none"<% }%>>
+                <div><span class="tag">出校活动安全预案：</span><div class="ueditorBlock"><script id="securityEditor" type="text/plain" style="width: 400px;"><%=options.getSecurityPreparedness().equals("") ? "如内容较多请使用上传附件功能上传说明文档。": options.getSecurityPreparedness()%></script><input type="hidden" name="securityPreparedness" id="securityPreparedness"/></div></div>
+            </div>
+            <hr />
+            <div><span class="tag">涉境外：</span><span class="value">
+                    <input type="radio" name="overseasFlag" value="<%=StudentApplyOptionsEntity.OVERSEAS_APPLY%>" onclick="changeOverseasState(1)" <%=options.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_APPLY ? "checked = \"true\"" : ""%>/>是
+                    <input type="radio" name="overseasFlag" value="<%=StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY%>" onclick="changeOverseasState(2)" <%=options.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY ? "checked = \"true\"" : ""%>>否
+                </span>
+            </div> 
+            <div id="outCountryInfo" <%if(options.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY) {%>style="display:none"<% }%>>
                 <div><span class="tag">境外人员情况：</span><span class="value"><textarea name="overseasIntro" rows="5"><%=options.getOverseasIntro()%></textarea></span></div>
                 <div><span class="tag">境外合作单位：</span><span class="value"><textarea name="overseasOrganizationIntro" rows="5"><%=options.getOverseasOrganizationIntro()%></textarea></span></div>
-                <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;"><%=options.getOverseasMaterial()%></script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
+                <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;"><%=options.getOverseasMaterial().equals("") ? "如内容较多请使用上传附件功能上传说明文档。": options.getOverseasMaterial()%></script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
             </div>
             <hr />
             <div><span class="tag">教室申请：</span><span class="value">
@@ -167,15 +171,15 @@
             <div id="boardInfo" <%if(options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
                 <div><span class="tag">规格:</span><span class="value_select">
                         <select name="boardSize">
-                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_LARGE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_LARGE ? "selected = \"selected\"" : ""%>>2x3(1块)</option>
-                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE ? "selected = \"selected\"" : ""%>>2x1.5(1块)</option>
-                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMTWO%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_MEDIUMTWO ? "selected = \"selected\"" : ""%>>2x1.5(2块)</option>
-                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_SMALL%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_SMALL ? "selected = \"selected\"" : ""%>>0.9x1.2(1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_LARGE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_LARGE ? "selected = \"selected\"" : ""%>>2x3(限1块)</option>
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_MEDIUMONE ? "selected = \"selected\"" : ""%>>2x1.5(限2块)</option> 
+                            <option value="<%=StudentApplyOptionsEntity.BOARDSIZE_SMALL%>" <%=options.getBoardSize() == StudentApplyOptionsEntity.BOARDSIZE_SMALL ? "selected = \"selected\"" : ""%>>0.9x1.2</option>
                         </select>
                     </span></div>
+                <div><span class="tag">块数:</span><span class="value"><input type="text" name="BoardStartTime" value="<%=options.getBoardNum()%>"/></span></div>
                 <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="BoardStartTime" value="<%=options.getBoardStartTime()%>"/></span></div>
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="BoardEndTime" value="<%=options.getBoardEndTime()%>"/></span></div>
-                <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
+                <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial().equals("") ? "必须上传附件。" : options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
             <div><span class="tag">学生清华发布申请：</span><span class="value">
@@ -184,7 +188,7 @@
                 </span>
             </div>
             <div id="publicityInfo" <%if(options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
-                <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;"><%=options.getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
+                <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;"><%=options.getPublicityMaterials().equals("") ? "如内容较多请使用上传附件功能上传说明文档。":options.getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
             <div><span class="tag">门票抽签申请：</span><span class="value">
@@ -211,6 +215,23 @@
         var oe = UE.getEditor('overseasEditor');
         var be = UE.getEditor('boardEditor');
         var pe = UE.getEditor('publicityEditor');
+    
+        function changeExternalState(state){
+            if(state == 1){
+                $("#outSchoolInfo").show();
+            }else{
+                $("#outSchoolInfo").hide();
+            }
+        }
+        
+        function changeOverseasState(state){
+            if(state == 1){
+                $("#outCountryInfo").show();
+            }else{
+                $("#outCountryInfo").hide();
+            }
+        }
+        
         function changeCroomState(state){
             if(state == 1){
                 $("#croomInfo").show();
@@ -274,18 +295,7 @@
 		$("#usageComment").hide();
 	    }
 	});
-        $("#activityArea").change(function(){
-            if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_INSCHOOL%>){
-                $("#outSchoolInfo").hide();
-                $("#outCountryInfo").hide();
-            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTSCHOOL%>){
-                $("#outSchoolInfo").show();
-                $("#outCountryInfo").hide();
-            }else if($("#activityArea").val() == <%=StudentApplyOptionsEntity.AREA_OUTCOUNTRY%>){
-                $("#outSchoolInfo").hide();
-                $("#outCountryInfo").show();
-            } 
-        });
+         
 	var picker = new Pikaday({
 	    field: document.getElementById('activityDate'),
 	    format: 'YYYY-MM-DD',
@@ -296,7 +306,6 @@
 	$("#activityDate").change(function(){
 	
 	});
-	
 	$("form input[name='participantsNumber']").blur(function(){
 	    var str = $(this).val().replace(/[^\d]+/g, "");
 	    $(this).val(str);
@@ -312,18 +321,33 @@
 		    return false;
 		}
 	    });
-            if($("#activityArea").val()=="2"){
+            if($("input[name='externalFlag']")[0].checked){
                 $("#securityPreparedness").val(se.getContent());
-                $("form #outSchoolInfo textarea").each(function(){
+                $("#outSchoolInfo input").each(function(){
+                    if($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+                $("#outSchoolInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;
                         return false;
                     }
                 });
-            }else if($("#activityArea").val()=="3"){
+            }
+            if($("input[name='overseasFlag']")[0].checked){
                 $("#overseasMaterial").val(oe.getContent());
-                $("form #outCountryInfo textarea").each(function(){
+                $("#outCountryInfo input").each(function(){
+                    if($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+                $("#outCountryInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;

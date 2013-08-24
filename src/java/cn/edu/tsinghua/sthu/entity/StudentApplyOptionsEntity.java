@@ -15,9 +15,10 @@ import org.hibernate.annotations.Index;
 @Entity
 @Table(name="t_student_apply_options")
 public class StudentApplyOptionsEntity extends BaseEntity{
-    public static final int AREA_INSCHOOL = 1;
-    public static final int AREA_OUTSCHOOL = 2;
-    public static final int AREA_OUTCOUNTRY = 3;
+    public static final int EXTERNAL_NOTAPPLY = 0;
+    public static final int EXTERNAL_APPLY = 1;
+    public static final int OVERSEAS_NOTAPPLY = 0;
+    public static final int OVERSEAS_APPLY = 1;
     public static final int ROOMTYPE_ORDINARY = 1;
     public static final int ROOMTYPE_MEDIA = 2;
     public static final int ROOMTYPE_CBUILDING_NORMAL = 3;
@@ -38,8 +39,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int BOARDFLAG_APPLY = 1;
     public static final int BOARDSIZE_LARGE = 1;
     public static final int BOARDSIZE_MEDIUMONE = 2;
-    public static final int BOARDSIZE_MEDIUMTWO = 3;
-    public static final int BOARDSIZE_SMALL = 4;
+    public static final int BOARDSIZE_SMALL = 3;
     public static final int PUBLICITYFLAG_NOTAPPLY = 0;
     public static final int PUBLICITYFLAG_APPLY = 1;
     public static final int TICKETFLAG_NOTAPPLY = 0;
@@ -49,8 +49,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Index(name="applyUseridIndex")
     private int applyUserid;	//申请人userid
     
-    private int activityArea; //活动范围，1：仅校内，2：涉校外，3：涉境外
     //涉校外
+    private int externalFlag; //标记是否涉校外
     @Column(length = 1024)
     private String externalIntro; //校外人员情况简介
     @Column(length = 1024)
@@ -58,6 +58,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Column(length = 1024)
     private String securityPreparedness; //出校活动的安全预案
     //涉境外
+    private int overseasFlag; //标记是否涉境外
     @Column(length = 1024)
     private String overseasIntro; //境外人员情况简介
     @Column(length = 1024)
@@ -73,6 +74,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     private String croomStartTime; //开始日期和时间
   //  @Temporal(javax.persistence.TemporalType.DATE)
     private String croomEndTime; //结束日期和时间
+    private String croomLocation; //教室位置
     
     private int LEDFlag; //标记是否申请电子屏
     //电子屏申请
@@ -95,6 +97,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Column(length = 4000)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
+    private int boardNum; //块数
  //   @Temporal(javax.persistence.TemporalType.DATE)
     private String BoardStartTime; //开始日期和时间
   //  @Temporal(javax.persistence.TemporalType.DATE)
@@ -436,13 +439,11 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public String getBoardSizeText(){
         switch(this.boardSize){
             case BOARDSIZE_LARGE:
-                return "2x3(1块)";
+                return "2x3";
             case BOARDSIZE_MEDIUMONE:
-                return "2x1.5(1块)";
-            case BOARDSIZE_MEDIUMTWO:
-                return "2x1.5(2块)";
+                return "2x1.5";
             case BOARDSIZE_SMALL:
-                return "0.9x1.2(1块)";
+                return "0.9x1.2";
             default:
                 return "";
         }
@@ -533,20 +534,6 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     }
 
     /**
-     * @return the activityArea
-     */
-    public int getActivityArea() {
-        return activityArea;
-    }
-
-    /**
-     * @param activityArea the activityArea to set
-     */
-    public void setActivityArea(int activityArea) {
-        this.activityArea = activityArea;
-    }
-
-    /**
      * @return the croomFlag
      */
     public int getCroomFlag() {
@@ -628,6 +615,62 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setTicketFlag(int ticketFlag) {
         this.ticketFlag = ticketFlag;
+    }
+
+    /**
+     * @return the externalFlag
+     */
+    public int getExternalFlag() {
+        return externalFlag;
+    }
+
+    /**
+     * @param externalFlag the externalFlag to set
+     */
+    public void setExternalFlag(int externalFlag) {
+        this.externalFlag = externalFlag;
+    }
+
+    /**
+     * @return the overseasFlag
+     */
+    public int getOverseasFlag() {
+        return overseasFlag;
+    }
+
+    /**
+     * @param overseasFlag the overseasFlag to set
+     */
+    public void setOverseasFlag(int overseasFlag) {
+        this.overseasFlag = overseasFlag;
+    }
+
+    /**
+     * @return the boardNum
+     */
+    public int getBoardNum() {
+        return boardNum;
+    }
+
+    /**
+     * @param boardNum the boardNum to set
+     */
+    public void setBoardNum(int boardNum) {
+        this.boardNum = boardNum;
+    }
+
+    /**
+     * @return the croomLocation
+     */
+    public String getCroomLocation() {
+        return croomLocation;
+    }
+
+    /**
+     * @param croomLocation the croomLocation to set
+     */
+    public void setCroomLocation(String croomLocation) {
+        this.croomLocation = croomLocation;
     }
 
 }

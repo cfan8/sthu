@@ -1,3 +1,5 @@
+﻿CREATE DATABASE  IF NOT EXISTS `sthu` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sthu`;
 -- MySQL dump 10.13  Distrib 5.6.10, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sthu
@@ -453,7 +455,6 @@ CREATE TABLE `t_student_apply_options` (
   `LEDEndTime` varchar(255) DEFAULT NULL,
   `LEDFlag` int(11) NOT NULL,
   `LEDStartTime` varchar(255) DEFAULT NULL,
-  `activityArea` int(11) NOT NULL,
   `activityLocation` int(11) NOT NULL,
   `allowAdjust` int(11) NOT NULL,
   `applyUserid` int(11) NOT NULL,

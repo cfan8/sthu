@@ -27,7 +27,8 @@ public class SaveStudentActivityCommentAction extends BaseAction{
     private Integer[] allocates;
     private Integer[] resources;
     private Integer identityAccount;
-
+    private String croomLocation;
+    
     @Override
     public String onExecute() throws Exception {
         int identityInt;
@@ -35,6 +36,9 @@ public class SaveStudentActivityCommentAction extends BaseAction{
             identityInt = -1;
         }else{
             identityInt = identityAccount;
+        }
+        if(getCroomLocation() != null){
+            applyStudentActivityService.saveCroomLocation(getEntity(), getCroomLocation());
         }
          getApplyStudentActivityService().processComment(getEntity(), isApprove, comment, type, allocates, resources, getCurrentUser().getNickname(), getCurrentUser().getID(), getCurrentUser().getAuth().getOpIdentityCode(), identityInt);
         if (getIsApprove() == 1)
@@ -244,6 +248,20 @@ public class SaveStudentActivityCommentAction extends BaseAction{
      */
     public void setIdentityAccount(Integer identityAccount) {
         this.identityAccount = identityAccount;
+    }
+
+    /**
+     * @return the croomLocation
+     */
+    public String getCroomLocation() {
+        return croomLocation;
+    }
+
+    /**
+     * @param croomLocation the croomLocation to set
+     */
+    public void setCroomLocation(String croomLocation) {
+        this.croomLocation = croomLocation;
     }
     
 }

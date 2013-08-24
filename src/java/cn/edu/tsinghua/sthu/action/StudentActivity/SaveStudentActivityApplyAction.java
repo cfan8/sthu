@@ -60,7 +60,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private Integer activityRange;  //活动对象
     private Integer applyType;  //一级审批部门
 
-    private Integer activityArea; //活动范围
+    //涉校外
+    private int externalFlag;
     @XSSProtect(XSSProtectLevel.Strict)
     private String externalIntro;   //校外人员情况简介
     @XSSProtect(XSSProtectLevel.Strict)
@@ -68,6 +69,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     @XSSProtect(XSSProtectLevel.RichText)
     private String securityPreparedness;    //出校活动安全预案
     
+    //涉境外
+    private int overseasFlag; 
     @XSSProtect(XSSProtectLevel.Strict)
     private String overseasIntro;   //境外人员情况简介
     @XSSProtect(XSSProtectLevel.Strict)
@@ -76,7 +79,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String overseasMaterial;    //相关材料
     
     //教室申请
-    private int croomFlag; //标记是否申请教室，1：申请，2：不申请
+    private int croomFlag; //标记是否申请教室，1：申请，0：不申请
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
     private int croomCapacity; //教室容量
@@ -86,7 +89,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String croomEndTime; //结束日期和时间
     
     //电子屏申请
-    private int LEDFlag; //标记是否申请电子屏，1：申请，2：不申请
+    private int LEDFlag; //标记是否申请电子屏，1：申请，0：不申请
     @XSSProtect(XSSProtectLevel.Strict)
     private String LEDContent; //电子屏显示内容
     @XSSProtect(XSSProtectLevel.Strict)
@@ -95,28 +98,29 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private String LEDEndTime; //结束日期和时间
     
     //室外场地申请
-    private int outsideFlag; //标记是否申请室外场地，1：申请，2：不申请
+    private int outsideFlag; //标记是否申请室外场地，1：申请，0：不申请
     private int activityLocation; //活动地点
     private String outsideBorrowDate;	//借用日期
     private String outsideTimePeriod;	//借用时间段
     
     //展板申请
-    private int boardFlag; //标记是否申请展板，1：申请，2：不申请
+    private int boardFlag; //标记是否申请展板，1：申请，0：不申请
     @XSSProtect(XSSProtectLevel.RichText)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
+    private int boardNum; //块数
     @XSSProtect(XSSProtectLevel.Strict)
     private String BoardStartTime; //开始日期和时间
     @XSSProtect(XSSProtectLevel.Strict)
     private String BoardEndTime; //结束日期和时间
     
     //学生清华发布申请
-    private int publicityFlag; //标记是否申请发布学生清华，1：申请，2：不申请
+    private int publicityFlag; //标记是否申请发布学生清华，1：申请，0：不申请
     @XSSProtect(XSSProtectLevel.RichText)
     private String publicityMaterials; //宣传材料
     
     //门票抽签申请
-    private int ticketFlag; //标记是否申请门票抽签，1：申请，2：不申请
+    private int ticketFlag; //标记是否申请门票抽签，1：申请，0：不申请
     private int ticketNum; //门票数目
     @XSSProtect(XSSProtectLevel.Strict)
     private String ticketTime; //发票时间
@@ -131,9 +135,9 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	StudentActivityApplyEntity entity;
         StudentApplyOptionsEntity option;
 	if (applyId == null || applyId == -1) {
-            option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
+            option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
                     getTicketNum(), getTicketTime(), getTicketLocation());
 	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option);
@@ -142,9 +146,9 @@ public class SaveStudentActivityApplyAction extends BaseAction{
             
 	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
-            option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getActivityArea(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
+            option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
                     getTicketNum(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的活动申请！");
@@ -546,20 +550,6 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     }
 
     /**
-     * @return the activityArea
-     */
-    public Integer getActivityArea() {
-        return activityArea;
-    }
-
-    /**
-     * @param activityArea the activityArea to set
-     */
-    public void setActivityArea(Integer activityArea) {
-        this.activityArea = activityArea;
-    }
-
-    /**
      * @return the croomFlag
      */
     public int getCroomFlag() {
@@ -907,6 +897,48 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setTicketLocation(String ticketLocation) {
         this.ticketLocation = ticketLocation;
+    }
+
+    /**
+     * @return the externalFlag
+     */
+    public int getExternalFlag() {
+        return externalFlag;
+    }
+
+    /**
+     * @param externalFlag the externalFlag to set
+     */
+    public void setExternalFlag(int externalFlag) {
+        this.externalFlag = externalFlag;
+    }
+
+    /**
+     * @return the overseasFlag
+     */
+    public int getOverseasFlag() {
+        return overseasFlag;
+    }
+
+    /**
+     * @param overseasFlag the overseasFlag to set
+     */
+    public void setOverseasFlag(int overseasFlag) {
+        this.overseasFlag = overseasFlag;
+    }
+
+    /**
+     * @return the boardNum
+     */
+    public int getBoardNum() {
+        return boardNum;
+    }
+
+    /**
+     * @param boardNum the boardNum to set
+     */
+    public void setBoardNum(int boardNum) {
+        this.boardNum = boardNum;
     }
     
 }
