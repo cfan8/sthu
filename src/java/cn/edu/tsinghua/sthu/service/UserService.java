@@ -104,6 +104,20 @@ public class UserService extends BaseService {
     }
     
     @Transactional
+    public boolean addUser(String username, String password, String nickname, int userrole) {
+	password = Util.getMD5(password);
+	UserEntity entity = userDAO.getUserByUsername(username);
+	if (entity == null) {
+            AuthEntity auth = new AuthEntity();
+            auth.setRole(userrole);
+	    userDAO.addUser(username, password, nickname, auth);
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
+    @Transactional
     public UserEntity addUserOrUpdatePassword(String username, String password, String nickname) {
 	password = Util.getMD5(password);
 	UserEntity entity = userDAO.getUserByUsername(username);

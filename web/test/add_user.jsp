@@ -19,6 +19,7 @@
 	    <input type="submit" value="提交">
 	</form>
         <form action="batchAddUser.do" method="post">
+            用户列表：<input type="text" name="userlist"/><br/>
 	    <input type="submit" value="提交">
 	</form>
         

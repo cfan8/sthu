@@ -26,36 +26,16 @@ public class BatchAddUserAction extends BaseAction{
     private String username;
     private String password;
     private String nickname;
+    private String userlist;
     private UserService userService;
     
     @Override
     public String onExecute() throws Exception {
-        String encoding = "UTF-8";
-        File file = new File("C://Users//user//Desktop//社团.txt");
-        BufferedReader reader = null;
-        List<String> list = new ArrayList<String>();
-        try{
-            InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
-            reader = new BufferedReader(read);
-            String tempString = null;
-            while((tempString = reader.readLine()) != null){
-                list.add(tempString);
-            }
-            reader.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }finally{
-            if(reader != null){
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        for(int i = 0; i < list.size(); i ++){
+        String[] list = userlist.split(",");
+
+        for(int i = 0; i < list.length; i ++){
             
-            if (getUserService().addUser("group" + String.valueOf(i + 1), "group" + String.valueOf(i + 1), list.get(i)))
+            if (getUserService().addUser("group" + String.valueOf(i + 1), "group" + String.valueOf(i + 1), list[i], 3))
             {
                 
             }
@@ -138,6 +118,20 @@ public class BatchAddUserAction extends BaseAction{
      */
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    /**
+     * @return the userlist
+     */
+    public String getUserlist() {
+        return userlist;
+    }
+
+    /**
+     * @param userlist the userlist to set
+     */
+    public void setUserlist(String userlist) {
+        this.userlist = userlist;
     }
     
 }
