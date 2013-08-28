@@ -469,7 +469,103 @@ public class ApplyStudentActivityService extends BaseService{
          }
 	return list;
     }
-     
+        @Transactional
+    public List<StudentActivityApplyEntity> getPagedApply(int viewType, int page, int number, AuthEntity auth, int approveType,int[] searchStatus, String keywords) {
+	List<StudentActivityApplyEntity> list = null;
+	int begin = (page - 1) * number;
+	if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		list = applyStudentActivityDAO.getPastApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		list = applyStudentActivityDAO.getTodoApplyListByIdentityType(begin, number, auth.getOpIdentityCode());
+	    }
+	}
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && auth.getOpGroupCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                list = applyStudentActivityDAO.getPastApplyListByGroupType(begin, number, auth.getOpGroupCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                list = applyStudentActivityDAO.getTodoApplyListByGroupType(begin, number, auth.getOpGroupCode());
+            }
+        }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH && auth.getOpPublishCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                list = applyStudentActivityDAO.getPastApplyListByPublishType(begin, number, auth.getOpPublishCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                list = applyStudentActivityDAO.getTodoApplyListByPublishType(begin, number, auth.getOpPublishCode());
+            }
+        }
+        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    }
+	} 
+         else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    }
+	}
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+            if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities1) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+                for (StudentActivityApproveEntity e : approveEntities2) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                
+                list = new ArrayList<StudentActivityApplyEntity>();
+                for (StudentActivityApproveEntity e : approveEntities1) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+                for (StudentActivityApproveEntity e : approveEntities2) {
+                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
+                }
+	    }
+             
+         }
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
+            // list = applyStudentActivityDAO.getApprovedApplyList(begin, number);
+              list = applyStudentActivityDAO.getPastPublicApplyByContent(begin, number, keywords, searchStatus);
+         }
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST && auth.getOpPublishCode() != -1){
+             list = applyStudentActivityDAO.getDigestActivityList(begin, number);
+         }
+	return list;
+    }
       @Transactional
     public int getTotalPageNumber(int viewType, int numberPerPage, AuthEntity auth, int approveType) {
 	int resultCount = 0;
@@ -533,7 +629,70 @@ public class ApplyStudentActivityService extends BaseService{
          }
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
-    
+        @Transactional
+    public int getTotalPageNumber(int viewType, int numberPerPage, AuthEntity auth, int approveType,int[] searchStatus, String keywords) {
+	int resultCount = 0;
+	if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && auth.getOpIdentityCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		resultCount = applyStudentActivityDAO.getPastApplyCountByIdentityType(auth.getOpIdentityCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		resultCount = applyStudentActivityDAO.getTodoApplyCountByIdentityType(auth.getOpIdentityCode());
+	    }
+	}
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && auth.getOpGroupCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                resultCount = applyStudentActivityDAO.getPastApplyCountByGroupType(auth.getOpGroupCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                resultCount = applyStudentActivityDAO.getTodoApplyCountByGroupType(auth.getOpGroupCode());
+            }
+        }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH && auth.getOpPublishCode() != -1){
+            if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST){
+                resultCount = applyStudentActivityDAO.getPastApplyCountByPublishType(auth.getOpPublishCode());
+            }
+            else if(viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO){
+                resultCount = applyStudentActivityDAO.getTodoApplyCountByPublishType(auth.getOpPublishCode());
+            }
+        }
+        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+	}
+        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
+	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
+	    }
+	}
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+            if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
+		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
+                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
+		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
+                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+	    }
+        }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
+          //  resultCount = applyStudentActivityDAO.getApprovedApplyCount();
+              resultCount = applyStudentActivityDAO.getPastPublicApplyCountByContent(keywords, searchStatus);
+        }
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST && auth.getOpPublishCode() != -1){
+             resultCount = applyStudentActivityDAO.getDigestActivityCount();
+         }
+	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
+    }
     @Transactional
     public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage, int activityType)
     {
@@ -586,8 +745,27 @@ public class ApplyStudentActivityService extends BaseService{
         }
        
     }
+     
+    @Transactional
+     public List<StudentActivityApplyEntity> getAcceptedGroupActivitiesBySearch( int page,int numberPerPage,AuthEntity auth, String keywords,int[] searchStatus,int approveType) {
+       List<StudentActivityApplyEntity> list = null;
+	int begin = (page - 1) * numberPerPage;
+         if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED &&auth.getOpGroupCode() != -1 ) {
+             list = applyStudentActivityDAO.getPastPublicApplyByContent(begin, page, keywords, searchStatus);
+         }
+            
+       return list;
+    }
     
-    
+    @Transactional
+     public int getAcceptedGroupTotalnumberBySearch(int numberPerPage,AuthEntity auth, String keywords,int[] searchStatus,int approveType) {
+        int resultCount = 0;
+         if( approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED&&auth.getOpGroupCode() != -1 ){
+             resultCount = applyStudentActivityDAO.getPastPublicApplyCountByContent(keywords, searchStatus);
+            }
+        return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
+        
+    }
     @Transactional
     public UserEntity followActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(checkActivityFollowedByUser(user, activity))

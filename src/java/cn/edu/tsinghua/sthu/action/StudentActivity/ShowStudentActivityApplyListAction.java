@@ -7,6 +7,8 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyListMessage;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
 /**
@@ -15,17 +17,38 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
  */
 public class ShowStudentActivityApplyListAction extends BaseAction{
     
-    private Integer viewType;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String searchKeywords ;  //
+    private Integer viewType ;
     private Integer approveType;
     private ShowStudentActivityApplyListMessage showStudentActivityApplyListMessage;
     private ApplyStudentActivityService applyStudentActivityService;
+    private int[] searchStatus;
     
     @Override
     public String onExecute() throws Exception {
        	showStudentActivityApplyListMessage.setViewType(viewType);
 	showStudentActivityApplyListMessage.setApproveType(approveType);
-	showStudentActivityApplyListMessage.setTotalPageNumber(applyStudentActivityService.getTotalPageNumber(viewType, 10, getCurrentUser().getAuth(), approveType));
-	return SUCCESS;
+        if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED){
+            if(this.searchKeywords == null) {
+                this.setSearchKeywords();
+            }
+            if(this.searchStatus == null) {
+                this.setSearchStatus();
+            }
+            showStudentActivityApplyListMessage.setSearchStatus(searchStatus);
+            showStudentActivityApplyListMessage.setSearchKeywords(searchKeywords);
+       }
+        else{
+            this.setSearchStatus();
+            this.setSearchKeywords();
+             showStudentActivityApplyListMessage.setSearchStatus(searchStatus);
+            showStudentActivityApplyListMessage.setSearchKeywords(searchKeywords);
+        }
+  
+	showStudentActivityApplyListMessage.setTotalPageNumber(applyStudentActivityService.getTotalPageNumber(viewType, 10, getCurrentUser().getAuth(), approveType,searchStatus, searchKeywords)); 
+    
+        return SUCCESS;
     }
 
      @Override
@@ -56,8 +79,8 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
     
     @Override
     public boolean valid() {
-        if (getViewType() == null || (getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST && getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO)
-		|| getApproveType() == null || (getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE  
+        if (getViewType() == null || (getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST && getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO)||
+	 getApproveType() == null || (getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE  
                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH
                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED
                  && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE
@@ -128,5 +151,78 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
     public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
         this.applyStudentActivityService = applyStudentActivityService;
     }
+
+    /**
+     * @return the searchStatus
+     */
+    public int[] getSearchStatus() {
+        return searchStatus;
+    }
+
+    /**
+     * @param searchStatus the searchStatus to set
+     */
+    public void setSearchStatus(int[] searchStatus) {
+        this.searchStatus =searchStatus;
+    }
+ 
+   /**
+     * @param searchStatus the searchStatus to set
+     */
+    public void setSearchStatus(String searchStatus) {
+        if(searchStatus == null){
+           this.searchStatus = new int[8];
+        for(int i=0;i<this.searchStatus.length;i++){
+            this.searchStatus[i] = 0;
+        } 
+       }
+        else{
+        String[] obj = searchStatus.split(",");
+        this.searchStatus = new int[obj.length];
+        for(int i=0;i<obj.length;i++){
+            this.searchStatus[i] = Integer.parseInt(obj[i]);
+        }
+        }
+       
+    }
+ /**
+     * @param searchStatus the searchStatus to set
+     */
+    public void setSearchStatus() {
+       
+           this.searchStatus = new int[8];
+        for(int i=0;i<this.searchStatus.length;i++){
+            this.searchStatus[i] = 0;
+        } 
+     
+    }
+    /**
+     * @return the searchKeywords
+     */
+    public String getSearchKeywords() {
+        return searchKeywords;
+    }
+
+    /**
+     * @param searchKeywords the searchKeywords to set
+     */
+    public void setSearchKeywords(String searchKeywords) {
+        if(searchKeywords == null){
+            this.searchKeywords = "";
+        }
+        
+        this.searchKeywords = searchKeywords;
+    }
+   /**
+     * @param searchKeywords the searchKeywords to set
+     */
+    public void setSearchKeywords() {
+       
+            this.searchKeywords = "";
+    
+    }
+   
+  
+
     
 }

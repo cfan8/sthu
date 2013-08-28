@@ -15,6 +15,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 
 /**
  *
@@ -218,6 +219,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 	
     }
      public int getAcceptedActivitiesCountByContent( String keywords){
+         
          Object r = select().createAlias("option", "a").add(Restrictions.and( 
                   Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                    Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
@@ -227,6 +229,71 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  .setProjection(Projections.rowCount()).uniqueResult();
          return ((Long)r).intValue();
      }
+        public List<StudentActivityApplyEntity> getPastPublicApplyByContent(int begin, int number, String searchKeywords, int[] searchStatus) {
+ 
+        Criteria temp = select().createAlias("option", "a").add(Restrictions.and(
+        Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE))));
+        if(searchStatus[0] == 1) {
+            temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));   
+        }
+        if(searchStatus[1] == 1) {
+            temp = temp.add(Restrictions.eq("a.overseasFlag",StudentApplyOptionsEntity.OVERSEAS_APPLY ));   
+        }
+        if(searchStatus[2] == 1) {
+            temp = temp.add(Restrictions.eq("a.croomFlag",StudentApplyOptionsEntity.CROOMFLAG_APPLY ));   
+        }
+        if(searchStatus[3] == 1) {
+            temp = temp.add(Restrictions.eq("a.LEDFlag",StudentApplyOptionsEntity.LEDFLAG_APPLY ));   
+        }
+        if(searchStatus[4] == 1) {
+            temp = temp.add(Restrictions.eq("a.outsideFlag",StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY));   
+        }
+        if(searchStatus[5] == 1) {
+            temp = temp.add(Restrictions.eq("a.boardFlag",StudentApplyOptionsEntity.BOARDFLAG_APPLY ));   
+        }
+        if(searchStatus[6] == 1) {
+            temp = temp.add(Restrictions.eq("a.publicityFlag",StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY ));   
+        }
+         if(searchStatus[7] == 1) {
+            temp = temp.add(Restrictions.eq("a.ticketFlag",StudentApplyOptionsEntity.TICKETFLAG_APPLY ));   
+        }
+       
+        return temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
+    }
+
+    public int getPastPublicApplyCountByContent(String searchKeywords, int[] searchStatus) {
+        Criteria temp = select().createAlias("option", "a").add(Restrictions.and(
+        Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE))));
+        if(searchStatus[0] == 1) {
+            temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));
+        }
+         if(searchStatus[1] == 1) {
+            temp = temp.add(Restrictions.eq("a.overseasFlag",StudentApplyOptionsEntity.OVERSEAS_APPLY ));   
+        }
+        if(searchStatus[2] == 1) {
+            temp = temp.add(Restrictions.eq("a.croomFlag",StudentApplyOptionsEntity.CROOMFLAG_APPLY ));   
+        }
+        if(searchStatus[3] == 1) {
+            temp = temp.add(Restrictions.eq("a.LEDFlag",StudentApplyOptionsEntity.LEDFLAG_APPLY ));   
+        }
+        if(searchStatus[4] == 1) {
+            temp = temp.add(Restrictions.eq("a.outsideFlag",StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY));   
+        }
+        if(searchStatus[5] == 1) {
+            temp = temp.add(Restrictions.eq("a.boardFlag",StudentApplyOptionsEntity.BOARDFLAG_APPLY ));   
+        }
+        if(searchStatus[6] == 1) {
+            temp = temp.add(Restrictions.eq("a.publicityFlag",StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY ));   
+        }
+         if(searchStatus[7] == 1) {
+            temp = temp.add(Restrictions.eq("a.ticketFlag",StudentApplyOptionsEntity.TICKETFLAG_APPLY ));   
+        }
+        Object r  = temp.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+     
        public List<StudentActivityApplyEntity> getAcceptedActivitiesByContentAndType(int begin, int number, String keywords, int activityType){
         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(Restrictions.and( 
                 Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),

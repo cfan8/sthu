@@ -51,13 +51,30 @@
                 </select>
             </p>
             <%}%>
-            <div id="pageview"></div>
+           
         </div>
-        
+         <div>
+            <%if(message.getApproveType() == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED 
+            ){%>
+            <p>
+                <input id ="keywordInput" class ="text"/>
+                <input id="searchSubmit" type="button" value="Search"/>
+                <input id ="check_in" value ="0" onclick ="f1()"type="checkbox"  >涉校外</input>
+                <input id ="check_out" type="checkbox"  value ="0" onclick ="f1()"   >涉境外</input>
+                <input id ="check_classroom" type="checkbox" value ="0" onclick ="f1()">教室申请</input>
+                <input id ="check_LED" type="checkbox"  value ="0" onclick ="f1()" >电子屏申请</input>
+                <input id ="check_outdoor" type="checkbox"  value ="0" onclick ="f1()" >室外场地申请</input>
+                <input id ="check_broad" type="checkbox"  value ="0" onclick ="f1()" >展板申请</input>
+                <input id ="check_sthu" type="checkbox" value ="0" onclick ="f1()" >学生清华发布申请</input>
+                <input id ="check_ticket" type="checkbox" value ="0" onclick ="f1()" >门票抽签申请</input>
+            </p>
+            <%}%>
+            <div id="pageview" ></div>
+        </div>
 	<script type="text/javascript">
 	    var pageConfig = {
 		root:$("#pageview"),
-		url:"showStudentActivityApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>",
+		url:"showStudentActivityApplyPage.do?viewType=<%=message.getViewType()%>&approveType=<%=message.getApproveType()%>&searchKeywords=<%=message.getSearchKeywords()%>&searchStatus=<%=message.getSearchStatus()%>",
 		total:<%=message.getTotalPageNumber()%>,
 		current:1,
 		arguName:"page",
@@ -68,6 +85,20 @@
 		var type = $("#chooseApproveType").val();
 		self.location.href = "showStudentActivityApplyList.do?viewType=" + type + "&approveType=<%=message.getApproveType()%>";
 	    });
+           
+            $("#searchSubmit").click(function(){
+                
+               var searchKeywords = $("#keywordInput").val(); 
+            var searchStatus = $("#check_in").attr("value")+","+$("#check_out").attr("value")+","+$("#check_classroom").attr("value")
+                               +","+$("#check_LED").attr("value")+","+$("#check_outdoor").attr("value")+","+$("#check_broad").attr("value")
+                               +","+$("#check_sthu").attr("value")+","+$("#check_ticket").attr("value");
+             //  alert(searchStatus);
+               self.location.href = "showStudentActivityApplyList.do?viewType="+1+"&approveType=<%=ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED%>"+"&searchStatus="+searchStatus+"&searchKeywords="+searchKeywords;
+            });
+        function f1(){
+           $(event.target).attr("value", 1-$(event.target).attr("value"))
+         
+        }
 	</script>
     </body>
 </html>

@@ -8,6 +8,8 @@ import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyListPageMessage;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import java.util.List;
 
@@ -29,25 +31,29 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
     public static final int APPROVE_TYPE_ALLOCATE_RESOURCE = 7;
     public static final int APPROVE_TYPE_DIGEST = 8;
     
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String searchKeywords ;  //
     private Integer viewType;
     private Integer approveType;
     private Integer page;
-    
+    private int[] searchStatus;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowStudentActivityApplyListPageMessage showStudentActivityApplyListPageMessage;
     
     
     @Override
     public String onExecute() throws Exception {
-       List<StudentActivityApplyEntity> list = applyStudentActivityService.getPagedApply(viewType, page, 10, getCurrentUser().getAuth(), approveType);
-	showStudentActivityApplyListPageMessage.setList(list);
+       List<StudentActivityApplyEntity> list = null;
+       list= applyStudentActivityService.getPagedApply( viewType,page, 10, getCurrentUser().getAuth(), approveType,getSearchStatus(),getSearchKeywords());
+       showStudentActivityApplyListPageMessage.setList(list);
+        
 	return SUCCESS;
     }
 
     @Override
     public boolean valid() {
-       if (getViewType() == null || (getViewType() != VIEW_TYPE_TODO && getViewType() != VIEW_TYPE_PAST) 
-		|| getApproveType() == null ||( getApproveType() != APPROVE_TYPE_IDENTITY 
+       if (getViewType() == null || (getViewType() != VIEW_TYPE_TODO && getViewType() != VIEW_TYPE_PAST)|| 
+	       getApproveType() == null ||( getApproveType() != APPROVE_TYPE_IDENTITY 
                && getApproveType() != APPROVE_TYPE_RESOURCE  && getApproveType() != APPROVE_TYPE_ALLOCATE 
                && getApproveType() != APPROVE_TYPE_GROUP && getApproveType() != APPROVE_TYPE_PUBLISH 
                && getApproveType() != APPROVE_TYPE_APPROVED && getApproveType() != APPROVE_TYPE_ALLOCATE_RESOURCE
@@ -172,6 +178,48 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
      */
     public void setShowStudentActivityApplyListPageMessage(ShowStudentActivityApplyListPageMessage showStudentActivityApplyListPageMessage) {
         this.showStudentActivityApplyListPageMessage = showStudentActivityApplyListPageMessage;
+    }
+
+ 
+
+
+    /**
+     * @return the searchStatus
+     */
+    public int[] getSearchStatus() {
+        return searchStatus;
+    }
+
+    /**
+     * @param searchStatus the searchStatus to set
+     */
+    public void setSearchStatus(int[] searchStatus) {
+        this.searchStatus = searchStatus;
+    }
+
+      /**
+     * @param searchStatus the searchStatus to set
+     */
+    public void setSearchStatus(String searchStatus) {
+        String[] obj = searchStatus.split(",");
+        this.searchStatus = new int[obj.length];
+        for(int i=0;i<obj.length;i++){
+            this.searchStatus[i] = Integer.parseInt(obj[i]);
+        }
+       /// this.setSearchStatus(searchStatus);
+    }
+    /**
+     * @return the searchKeywords
+     */
+    public String getSearchKeywords() {
+        return searchKeywords;
+    }
+
+    /**
+     * @param searchKeywords the searchKeywords to set
+     */
+    public void setSearchKeywords(String searchKeywords) {
+        this.searchKeywords = searchKeywords;
     }
     
 }

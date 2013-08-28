@@ -14,7 +14,7 @@
 <%
     ShowStudentActivityApplyListPageMessage message = Util.getMessage(ShowStudentActivityApplyListPageAction.class);
     List<StudentActivityApplyEntity> list = message.getList();
-    if (list.size() == 0) {
+    if (list==null||list.size() == 0) {
 %>
 <div style="width: 100%; text-align: center;">没有申请！</div>
 <%} else {
