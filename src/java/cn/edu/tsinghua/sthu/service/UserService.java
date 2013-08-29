@@ -181,6 +181,15 @@ public class UserService extends BaseService {
         return false;
     }
     
+    @Transactional
+    public UserEntity modifyGroupInfo(int groupId, String introduction, String mainImg, String logoImg){
+        UserEntity entity = userDAO.getUserById(groupId);
+        entity.setIntroduction(introduction);
+        entity.setMainImg(mainImg);
+        entity.setLogoImg(logoImg);
+        userDAO.updateUserEntity(entity);
+        return entity;
+    }
 
     public UserDAO getUserDAO() {
 	return userDAO;

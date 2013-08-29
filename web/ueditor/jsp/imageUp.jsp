@@ -9,7 +9,7 @@
     up.setSavePath("upload");
     String[] fileType = {".gif", ".png", ".jpg", ".jpeg", ".bmp"};
     up.setAllowFiles(fileType);
-    up.setMaxSize(1000); //单位KB
+    up.setMaxSize(10000); //单位KB
     up.upload();
     response.getWriter().print("{'original':'" + up.getOriginalName() + "','url':'" + up.getUrl() + "','title':'" + up.getTitle() + "','state':'" + up.getState() + "'}");
 %>

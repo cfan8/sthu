@@ -17,6 +17,10 @@ public class ShowGroupHomeMessage extends BaseMessage{
     private int groupId;
     private int isGroupFollowed;
     private String OrganizeName;
+    private boolean showManage;
+    private String introduction;
+    private String mainImg;
+    private String logoImg;
     /**
      * @return the showFollow
      */
@@ -85,6 +89,62 @@ public class ShowGroupHomeMessage extends BaseMessage{
      */
     public void setOrganizeName(String OrganizeName) {
         this.OrganizeName = OrganizeName;
+    }
+
+    /**
+     * @return the showManage
+     */
+    public boolean isShowManage() {
+        return showManage;
+    }
+
+    /**
+     * @param showManage the showManage to set
+     */
+    public void setShowManage(boolean showManage) {
+        this.showManage = showManage;
+    }
+
+    /**
+     * @return the introduction
+     */
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    /**
+     * @param introduction the introduction to set
+     */
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    /**
+     * @return the mainImg
+     */
+    public String getMainImg() {
+        return mainImg;
+    }
+
+    /**
+     * @param mainImg the mainImg to set
+     */
+    public void setMainImg(String mainImg) {
+        this.mainImg = mainImg;
+    }
+
+    /**
+     * @return the logoImg
+     */
+    public String getLogoImg() {
+        return logoImg;
+    }
+
+    /**
+     * @param logoImg the logoImg to set
+     */
+    public void setLogoImg(String logoImg) {
+        this.logoImg = logoImg;
     }
 
 }

@@ -36,10 +36,18 @@ public class ShowGroupHomeAction extends BaseAction{
                 getShowGroupHomeMessage().setIsGroupFollowed(0);
             }
         }
+        if(getCurrentUser() != null && getCurrentUser().getID() == groupId){
+            getShowGroupHomeMessage().setShowManage(true);
+        }else{
+            getShowGroupHomeMessage().setShowManage(false);
+        }
         organizeName = userService.getUserEntityById(groupId).getNickname();
         showGroupHomeMessage.setGroupId(groupId);
         showGroupHomeMessage.setOrganizeName(organizeName);
         showGroupHomeMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumberByUserId(5, groupId));
+        showGroupHomeMessage.setIntroduction(userService.getUserEntityById(groupId).getIntroduction());
+        showGroupHomeMessage.setMainImg(userService.getUserEntityById(groupId).getMainImg());
+        showGroupHomeMessage.setLogoImg(userService.getUserEntityById(groupId).getLogoImg());
         return SUCCESS;
     }
 

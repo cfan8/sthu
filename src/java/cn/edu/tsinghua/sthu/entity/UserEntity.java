@@ -41,6 +41,12 @@ public class UserEntity extends BaseEntity
     @Column(name="lastloginip", length=20)
     private String lastLoginIP;
     
+    @Column(name="introduction", length=4000)
+    private String introduction;
+    
+    private String mainImg;
+    private String logoImg;
+    
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
 
@@ -173,6 +179,48 @@ public class UserEntity extends BaseEntity
      */
     public void setInterestedGroupsOf(Set<UserEntity> interestedGroupsOf) {
         this.interestedGroupsOf = interestedGroupsOf;
+    }
+
+    /**
+     * @return the introduction
+     */
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    /**
+     * @param introduction the introduction to set
+     */
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    /**
+     * @return the mainimg
+     */
+    public String getMainImg() {
+        return mainImg;
+    }
+
+    /**
+     * @param mainimg the mainimg to set
+     */
+    public void setMainImg(String mainImg) {
+        this.mainImg = mainImg;
+    }
+
+    /**
+     * @return the logoimg
+     */
+    public String getLogoImg() {
+        return logoImg;
+    }
+
+    /**
+     * @param logoimg the logoimg to set
+     */
+    public void setLogoImg(String logoImg) {
+        this.logoImg = logoImg;
     }
 
     

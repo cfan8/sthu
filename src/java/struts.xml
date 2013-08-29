@@ -61,6 +61,11 @@ and open the template in the editor.
         <action name="showGroupPageHome" class="cn.edu.tsinghua.sthu.action.ShowGroupHomePageAction">
             <result name="success">grouphome_page.jsp</result>
         </action>
+        <action name="showGroupHomeManage" class="cn.edu.tsinghua.sthu.action.ShowGroupHomeManageAction">
+            <result name="success">grouphome_manage.jsp</result>
+        </action>
+        <action name="saveGroupHomeManage" class="cn.edu.tsinghua.sthu.action.SaveGroupHomeManageAction">
+        </action>
         <action name="followGroup" class="cn.edu.tsinghua.sthu.action.FollowGroupAction">
         </action>
     </package>

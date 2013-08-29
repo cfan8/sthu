@@ -26,12 +26,33 @@
         <link href="/css/activity/organizationPage.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/flexagon.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/effects.css" type="text/css" rel="stylesheet" />
+        <style type="text/css">
+            .manage_btn a{
+                display: inline-block;
+                width: 140px;
+                height: 20px;
+                background-color:#4A708B;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                padding: 10px;
+                font-size: 16px;
+                font-family: Microsoft Yahei;
+                letter-spacing: 4px;
+                cursor: pointer;
+            }  
+        </style>
     </head>
     <%@include file="/templates/new_general_header.jsp" %> 
     
     
     <div id="main_part" class="main-style">
         <div id="main_content_part" class="main-content-style">
+            <%if(message.isShowManage()){%>
+            <div style="padding-left:30px" class="manage_btn">
+                <a href="/showGroupHomeManage.do?groupId=<%=message.getGroupId()%>">管&nbsp;&nbsp;理</a>
+            </div>
+            <%}%>
             <div id="title_part" class="title-part-style">
                 <!-- 画折角效果 -->
                 <div id="content_flexagon1" class="flexagon-style">
@@ -70,7 +91,7 @@
                 <div id="title_background" class="title-background-style">
                     <div id="right_logo" class="xsh-logo-part">
                         <div id="xsh_logo" class="xsh-logo">
-                            <img src="/css/activity/xsh_logo.jpg" class="img-shadow" />
+                            <img src="<%=message.getLogoImg()%>" class="img-shadow logo-img" />
                         </div>
                         <div id="follow" class="follow-style" style="text-shadow: 2px 2px 5px #222;">
                             <a style="color: #fff;"><b>已有</b></a>
@@ -80,7 +101,7 @@
                     </div>
                 </div>
                 <div id="lantern_slide" class="slide-style">
-                    <img src="/css/activity/org_main.jpg" class="slide-img" />
+                    <img src="<%=message.getMainImg()%>" class="slide-img" />
                 </div>
                 <div id="xsh_intro" class="xsh_intro-style">
                     <div id="intro_right" class="intro-right-part">
@@ -106,7 +127,7 @@
                                 
                         </div>
                         <div id="txt_intro" style="font-size: large; float: right; width: 220px; word-wrap: break-word; overflow: hidden;">
-                            <p>清华美院学生会是属于清华大学美术学院学生自己的组织，她来自广大同学，在美院党委和团委的领导下，为活跃本院学习气氛，丰富广大同学的课余生活.....<a class="blue-border"><b>&ensp;+&ensp;</b></a></p>
+                            <p><%=message.getIntroduction()%><a class="blue-border"><b>&ensp;+&ensp;</b></a></p>
                         </div>
                         <div style="padding-left: 30px;">
                             <hr />
