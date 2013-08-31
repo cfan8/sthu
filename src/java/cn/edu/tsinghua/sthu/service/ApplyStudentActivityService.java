@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.service;
 import cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction;
 import cn.edu.tsinghua.sthu.constant.AllocateMapping;
 import cn.edu.tsinghua.sthu.constant.GroupMapping;
+import cn.edu.tsinghua.sthu.constant.OtherMapping;
 import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
@@ -400,45 +401,11 @@ public class ApplyStudentActivityService extends BaseService{
                 list = applyStudentActivityDAO.getTodoApplyListByPublishType(begin, number, auth.getOpPublishCode());
             }
         }
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    }
-	} 
-         else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    }
-	}
-         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER && auth.getOpOtherCode() != -1){
             if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
 		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpOtherCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpOtherCode());
                 list = new ArrayList<StudentActivityApplyEntity>();
                 for (StudentActivityApproveEntity e : approveEntities1) {
                     list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
@@ -496,45 +463,12 @@ public class ApplyStudentActivityService extends BaseService{
                 list = applyStudentActivityDAO.getTodoApplyListByPublishType(begin, number, auth.getOpPublishCode());
             }
         }
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    }
-	} 
-         else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                list = new ArrayList<StudentActivityApplyEntity>();
-                for (StudentActivityApproveEntity e : approveEntities) {
-                    list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
-                }
-	    }
-	}
-         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+        
+         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER && auth.getOpOtherCode() != -1){
             if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
 		//list = applyStudentActivityDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getPastApplyListByAllocateType(begin, number, auth.getOpOtherCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getPastApplyListByResourceType(begin, number, auth.getOpOtherCode());
                 list = new ArrayList<StudentActivityApplyEntity>();
                 for (StudentActivityApproveEntity e : approveEntities1) {
                     list.add(applyStudentActivityDAO.getStudentActivityApplyEntityById(e.getApplyId()));
@@ -592,33 +526,15 @@ public class ApplyStudentActivityService extends BaseService{
                 resultCount = applyStudentActivityDAO.getTodoApplyCountByPublishType(auth.getOpPublishCode());
             }
         }
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-	    }
-	}
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
-	    }
-	}
-        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER && auth.getOpOtherCode() != -1){
             if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
 		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
-                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpOtherCode());
+                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpOtherCode());
 	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
 		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
-                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpOtherCode());
+                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpOtherCode());
 	    }
         }
         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
@@ -655,33 +571,15 @@ public class ApplyStudentActivityService extends BaseService{
                 resultCount = applyStudentActivityDAO.getTodoApplyCountByPublishType(auth.getOpPublishCode());
             }
         }
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && auth.getOpResourceCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-	    }
-	}
-        else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && auth.getOpAllocateCode() != -1) {
-	    if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
-		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
-	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
-		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
-	    }
-	}
-        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && auth.getOpAllocateCode() != -1 && auth.getOpResourceCode() != -1){
+        else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER && auth.getOpOtherCode() != -1){
             if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST) {
 		//resultCount = applyStudentActivityDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpAllocateCode());
-                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getPastApplyCountByAllocateType(auth.getOpOtherCode());
+                resultCount += studentActivityApproveDAO.getPastApplyCountByResourceType(auth.getOpOtherCode());
 	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
 		//resultCount = applyStudentActivityDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
-                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpAllocateCode());
-                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpResourceCode());
+                resultCount = studentActivityApproveDAO.getTodoApplyCountByAllocateType(auth.getOpOtherCode());
+                resultCount += studentActivityApproveDAO.getTodoApplyCountByResourceType(auth.getOpOtherCode());
 	    }
         }
         else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && auth.getOpGroupCode() != -1){
@@ -801,7 +699,7 @@ public class ApplyStudentActivityService extends BaseService{
         String str = "";
         for(StudentActivityApproveEntity e : entity.getApproveEntities()){
             if(e.getApproveStatus() != StudentActivityApplyEntity.ALLOCATE_STATUS_AWAIT){
-                str += AllocateMapping.names[e.getApproveType()] + " 审批状态: " + e.getApproveStatusText() + "<br />";
+                str += OtherMapping.names[e.getApproveType()] + " 审批状态: " + e.getApproveStatusText() + "<br />";
             }
         }
         return str;

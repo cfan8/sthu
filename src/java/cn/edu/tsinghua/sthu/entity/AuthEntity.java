@@ -38,6 +38,9 @@ public class AuthEntity extends BaseEntity{
     
     @Index(name="opPublishCodeIndex")
     private int opPublishCode = -1; //成才中心审批权限（确认发布合理性）
+    
+    @Index(name="opOtherCodeIndex")
+    private int opOtherCode = -1;   //校团委交给其他部门审批
 
     public int getRole() {
 	return role;
@@ -105,6 +108,20 @@ public class AuthEntity extends BaseEntity{
      */
     public void setOpPublishCode(int opPublishCode) {
         this.opPublishCode = opPublishCode;
+    }
+
+    /**
+     * @return the opOtherCode
+     */
+    public int getOpOtherCode() {
+        return opOtherCode;
+    }
+
+    /**
+     * @param opOtherCode the opOtherCode to set
+     */
+    public void setOpOtherCode(int opOtherCode) {
+        this.opOtherCode = opOtherCode;
     }
   
 }

@@ -30,14 +30,10 @@
     int approveType = -1;
     if (entity.getOpIdentityCode() != -1) {
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
-    }else if(entity.getOpAllocateCode() != -1 && entity.getOpResourceCode() != -1){
-        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE;
-    }else if (entity.getOpResourceCode() != -1) {
-	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
+    }else if(entity.getOpOtherCode() != -1){
+        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER;
     }else if(entity.getOpGroupCode() != -1) {
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP;
-    }else if(entity.getOpAllocateCode() != -1){
-        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE;
     }else if(entity.getOpPublishCode() != -1){
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH;
     }
@@ -195,7 +191,6 @@
 	    <div class="content"><iframe id="frame1" src="/outdoor/showActivityApplyList.do?viewType=1&approveType=<%=actType%>"></iframe></div>
 	</div>
 	<% }%>
-  
         <% if (approveType != -1) {%>
 	<div id="actapply">
 	    <div class="title">学生活动申请审批</div>

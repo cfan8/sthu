@@ -58,17 +58,13 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
 	}
 	if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && getCurrentUser().getAuth().getOpIdentityCode() != -1) {
 	    return true;
-	} else if (approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE && getCurrentUser().getAuth().getOpResourceCode() != -1) {
-	    return true;
 	} else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && getCurrentUser().getAuth().getOpGroupCode() != -1){
-            return true;
-        }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && getCurrentUser().getAuth().getOpAllocateCode() != -1){
             return true;
         }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH && getCurrentUser().getAuth().getOpPublishCode() != -1){
             return true;
         }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED && getCurrentUser().getAuth().getOpGroupCode() != -1){
             return true;
-        }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE && getCurrentUser().getAuth().getOpAllocateCode() != -1 && getCurrentUser().getAuth().getOpResourceCode() != -1){
+        }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER && getCurrentUser().getAuth().getOpOtherCode() != -1){
             return true;
         }else if(approveType == ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST && getCurrentUser().getAuth().getOpPublishCode() != -1){
             return true;
@@ -80,10 +76,10 @@ public class ShowStudentActivityApplyListAction extends BaseAction{
     @Override
     public boolean valid() {
         if (getViewType() == null || (getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_PAST && getViewType() != ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO)||
-	 getApproveType() == null || (getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_RESOURCE  
-                && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH
+	 getApproveType() == null || (getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY
+                && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH
                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED
-                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_ALLOCATE_RESOURCE
+                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER
                 && getApproveType() != ShowStudentActivityApplyListPageAction.APPROVE_TYPE_DIGEST)) {
 	    return false;
 	} else {

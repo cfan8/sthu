@@ -23,12 +23,10 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
     public static final int VIEW_TYPE_PAST = 2;
     
     public static final int APPROVE_TYPE_IDENTITY = 1;
-    public static final int APPROVE_TYPE_RESOURCE = 2;
-    public static final int APPROVE_TYPE_ALLOCATE = 3;
     public static final int APPROVE_TYPE_GROUP = 4;
     public static final int APPROVE_TYPE_PUBLISH = 5;
     public static final int APPROVE_TYPE_APPROVED = 6;
-    public static final int APPROVE_TYPE_ALLOCATE_RESOURCE = 7;
+    public static final int APPROVE_TYPE_OTHER = 7;
     public static final int APPROVE_TYPE_DIGEST = 8;
     
     @XSSProtect(XSSProtectLevel.Strict)
@@ -54,9 +52,8 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
     public boolean valid() {
        if (getViewType() == null || (getViewType() != VIEW_TYPE_TODO && getViewType() != VIEW_TYPE_PAST)|| 
 	       getApproveType() == null ||( getApproveType() != APPROVE_TYPE_IDENTITY 
-               && getApproveType() != APPROVE_TYPE_RESOURCE  && getApproveType() != APPROVE_TYPE_ALLOCATE 
                && getApproveType() != APPROVE_TYPE_GROUP && getApproveType() != APPROVE_TYPE_PUBLISH 
-               && getApproveType() != APPROVE_TYPE_APPROVED && getApproveType() != APPROVE_TYPE_ALLOCATE_RESOURCE
+               && getApproveType() != APPROVE_TYPE_APPROVED && getApproveType() != APPROVE_TYPE_OTHER
                && getApproveType() != APPROVE_TYPE_DIGEST)
 		|| getPage() == null || getPage() < 1)
 	{
@@ -80,12 +77,6 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
 	    if (getApproveType() == APPROVE_TYPE_IDENTITY && getCurrentUser().getAuth().getOpIdentityCode() != -1) {
 		return true;
 	    }
-	    else if (getApproveType() == APPROVE_TYPE_RESOURCE && getCurrentUser().getAuth().getOpResourceCode() != -1) {
-		return true;
-	    }
-            else if (getApproveType() == APPROVE_TYPE_ALLOCATE && getCurrentUser().getAuth().getOpAllocateCode() != -1) {
-		return true;
-	    }
             else if (getApproveType() == APPROVE_TYPE_GROUP && getCurrentUser().getAuth().getOpGroupCode() != -1) {
 		return true;
 	    }
@@ -95,7 +86,7 @@ public class ShowStudentActivityApplyListPageAction extends BaseAction{
             else if(getApproveType() == APPROVE_TYPE_APPROVED && getCurrentUser().getAuth().getOpGroupCode() != -1){
                 return true;
             }
-            else if(getApproveType() == APPROVE_TYPE_ALLOCATE_RESOURCE && getCurrentUser().getAuth().getOpAllocateCode() != -1 && getCurrentUser().getAuth().getOpResourceCode() != -1){
+            else if(getApproveType() == APPROVE_TYPE_OTHER && getCurrentUser().getAuth().getOpOtherCode() != -1){
                 return true;
             }
             else if (getApproveType() == APPROVE_TYPE_DIGEST && getCurrentUser().getAuth().getOpPublishCode() != -1) {

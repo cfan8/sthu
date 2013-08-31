@@ -3,6 +3,7 @@
     Created on : 2013-7-23, 13:20:51
     Author     : Wang Silun
 --%>
+<%@page import="cn.edu.tsinghua.sthu.constant.OtherMapping"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.ResourceMapping"%>
 <%@page import="cn.edu.tsinghua.sthu.constant.AllocateMapping"%>
 <%@page import="java.util.List"%>
@@ -486,15 +487,15 @@
             </p>
             <p><% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
                 <label>接下来需要审批的部门（可留空）：</label>
-                <% for(int i = 1; i < AllocateMapping.names.length; i ++){ %>
-                <input type="checkbox" name="allocates" value="<%=i%>"/><%=AllocateMapping.names[i] %>
+                <% for(int i = 1; i < OtherMapping.names.length; i ++){ %>
+                <input type="checkbox" name="allocates" value="<%=i%>"/><%=OtherMapping.names[i] %>
                 <% } %>
             <% }%></p>
             <p>
                 <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP) {%>
                 <label>之前需要审批的部门（可留空）：</label>
-                <% for(int i = 1; i < ResourceMapping.names.length; i ++){ %>
-                <input type="checkbox" name="resources" value="<%=i %>"/>  <%=ResourceMapping.names[i]%>      
+                <% for(int i = 1; i < OtherMapping.names.length; i ++){ %>
+                <input type="checkbox" name="resources" value="<%=i %>"/>  <%=OtherMapping.names[i]%>      
                 <% } %>
                 <% }%>
             </p>
