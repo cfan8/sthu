@@ -4,18 +4,29 @@
     Author     : linangran
 --%>
 
-<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction"%>
-<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListAction"%>
-<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.AuthEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowHomeAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.message.HomeMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowApplyListPageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.action.outdoor.ShowActivityApplyListPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListPageAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyListAction"%>
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityApplyAction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% HomeMessage message = Util.getMessage(ShowHomeAction.class);
     AuthEntity entity = message.getAuth();
+    int classType = -1;
+    int actType = -1;
+    if (entity.getOpIdentityCode() != -1) {
+	classType = ShowApplyListPageAction.APPROVE_TYPE_IDENTITY;
+	actType = ShowActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
+    } else if (entity.getOpResourceCode() != -1) {
+	classType = ShowApplyListPageAction.APPROVE_TYPE_RESOURCE;
+	actType = ShowActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
+    } else if (entity.getOpAllocateCode() != -1) {
+	classType = ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE;
+    }
     int approveType = -1;
     if (entity.getOpIdentityCode() != -1) {
 	approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
@@ -31,20 +42,6 @@
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH;
     }
 %>
-<!--% HomeMessage message = Util.getMessage(ShowHomeAction.class);
-    AuthEntity entity = message.getAuth();
-    int classType = -1;
-    int actType = -1;
-    if (entity.getOpIdentityCode() != -1) {
-	classType = ShowApplyListPageAction.APPROVE_TYPE_IDENTITY;
-	actType = ShowActivityApplyListPageAction.APPROVE_TYPE_IDENTITY;
-    } else if (entity.getOpResourceCode() != -1) {
-	classType = ShowApplyListPageAction.APPROVE_TYPE_RESOURCE;
-	actType = ShowActivityApplyListPageAction.APPROVE_TYPE_RESOURCE;
-    } else if (entity.getOpAllocateCode() != -1) {
-	classType = ShowApplyListPageAction.APPROVE_TYPE_ALLOCATE;
-    }
-%-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +55,7 @@
 	    
 	    #classapply, #actapply, #approvedapply
 	    {
-		width: 670px;
+		width: 430px;
 		border: #cccccc;
 		border-style: solid;
 		border-width: 1px;
@@ -74,11 +71,6 @@
 		 margin-left: 30px;
 	     }
 	    
-             #approvedapply
-	     {
-		 margin-left: 30px;
-	     }
-             
 	    iframe
 	    {
 		border: none;
@@ -110,7 +102,7 @@
 	    
 	    #main .title
 	    {
-		width: 662px;
+		width: 422px;
 		height: 26px;
 		padding: 6px 0px 6px 8px;
 		font-size: 18px;
@@ -191,10 +183,22 @@
         <% } %>
     </div>
     <div id="approveDiv">
-        
-        <% if (approveType != -1) {%>
+	<% if (classType != -1) {%>
+	<div id="classapply">
+	    <div class="title">教室申请审批</div>
+	    <div class="content"><iframe id="frame0" src="/activity/showApplyList.do?viewType=1&approveType=<%=classType%>"></iframe></div>
+	</div>
+	<% }%>
+	<% if (actType != -1) {%>
 	<div id="actapply">
 	    <div class="title">活动申请审批</div>
+	    <div class="content"><iframe id="frame1" src="/outdoor/showActivityApplyList.do?viewType=1&approveType=<%=actType%>"></iframe></div>
+	</div>
+	<% }%>
+  
+        <% if (approveType != -1) {%>
+	<div id="actapply">
+	    <div class="title">学生活动申请审批</div>
 	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=approveType%>"></iframe></div>
 	</div>
 	<% }%>
