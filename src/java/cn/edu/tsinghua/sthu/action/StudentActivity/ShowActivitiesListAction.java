@@ -50,29 +50,20 @@ public class ShowActivitiesListAction extends BaseAction{
     @Override
     public boolean valid() {
         if(activityClass != null){
-            if(activityClass != ShowActivitiesPageAction.ACTIVITY_ALL || activityClass != ShowActivitiesPageAction.ACTIVITY_GROUP || activityClass != ShowActivitiesPageAction.ACTIVITY_SPORTS ||
-                activityClass != ShowActivitiesPageAction.ACTIVITY_LECTURE || activityClass != ShowActivitiesPageAction.ACTIVITY_CULTURE || activityClass != ShowActivitiesPageAction.ACTIVITY_AMUSE ||
+            if(activityClass != ShowActivitiesPageAction.ACTIVITY_ALL && activityClass != ShowActivitiesPageAction.ACTIVITY_GROUP && activityClass != ShowActivitiesPageAction.ACTIVITY_SPORTS &&
+                activityClass != ShowActivitiesPageAction.ACTIVITY_LECTURE && activityClass != ShowActivitiesPageAction.ACTIVITY_CULTURE && activityClass != ShowActivitiesPageAction.ACTIVITY_AMUSE &&
                 activityClass != ShowActivitiesPageAction.ACTIVITY_OTHER){
                 alertMessage.setSimpleAlert("参数错误！");
                 return false;
             }
         }
         if(digest != null){
-            if(digest != ShowActivitiesPageAction.COMMON_ACTIVITY || digest != ShowActivitiesPageAction.DIGEST_ACTIVITY){
+            if(digest != ShowActivitiesPageAction.COMMON_ACTIVITY && digest != ShowActivitiesPageAction.DIGEST_ACTIVITY){
                alertMessage.setSimpleAlert("参数错误！");
                 return false;
             }
         }
-        if(selectedDate != null){
-            String str = selectedDate.toString();
-            try{ 
-                Date date = (Date)formatter.parse(str); 
-                return str.equals(formatter.format(date)); 
-            }catch(Exception e){ 
-                alertMessage.setSimpleAlert("参数错误！");
-                return false; 
-            } 
-        }
+
         return true;
     }
 
