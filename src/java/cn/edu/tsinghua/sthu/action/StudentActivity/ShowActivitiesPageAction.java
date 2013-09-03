@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesPageMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,9 +25,12 @@ public class ShowActivitiesPageAction extends BaseAction{
     public static final int ACTIVITY_CULTURE = 4;
     public static final int ACTIVITY_AMUSE = 5;
     public static final int ACTIVITY_OTHER = 6;
-    
+    public static final int DIGEST_ACTIVITY = 1;
+    public static final int COMMON_ACTIVITY = 0;
     
     private Integer activityClass;
+    private Integer digest;
+    private Date selectedDate;
     private Integer page;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowActivitiesPageMessage showActivitiesPageMessage;
@@ -40,7 +44,12 @@ public class ShowActivitiesPageAction extends BaseAction{
             getShowActivitiesPageMessage().setShowFollow(1);
         if(activityClass == null)
             activityClass = ACTIVITY_ALL;
-        getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesList(getPage(), 10, activityClass));
+        if(digest == null)
+            digest = COMMON_ACTIVITY;
+        if(selectedDate == null)
+            getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesList(getPage(), 10, activityClass, digest));
+        else
+            getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesListByDate(getPage(), 10, activityClass, digest, selectedDate));
         List<Boolean> isFollowedList = new ArrayList<Boolean>();
         if(getShowActivitiesPageMessage().getShowFollow() == 1){
             for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
@@ -131,6 +140,34 @@ public class ShowActivitiesPageAction extends BaseAction{
      */
     public void setActivityClass(Integer activityClass) {
         this.activityClass = activityClass;
+    }
+
+    /**
+     * @return the digest
+     */
+    public Integer getDigest() {
+        return digest;
+    }
+
+    /**
+     * @param digest the digest to set
+     */
+    public void setDigest(Integer digest) {
+        this.digest = digest;
+    }
+
+    /**
+     * @return the selectedDate
+     */
+    public Date getSelectedDate() {
+        return selectedDate;
+    }
+
+    /**
+     * @param selectedDate the selectedDate to set
+     */
+    public void setSelectedDate(Date selectedDate) {
+        this.selectedDate = selectedDate;
     }
     
 }

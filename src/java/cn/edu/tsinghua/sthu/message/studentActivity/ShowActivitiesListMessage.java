@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.message.studentActivity;
 
 import cn.edu.tsinghua.sthu.message.BaseMessage;
+import java.util.Date;
 
 /**
  *
@@ -12,6 +13,8 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
  */
 public class ShowActivitiesListMessage extends BaseMessage{
     private int activityClass;
+    private int digest;
+    private Date selectedDate;
     private int totalPageNumber;
 
     /**
@@ -40,6 +43,34 @@ public class ShowActivitiesListMessage extends BaseMessage{
      */
     public void setTotalPageNumber(int totalPageNumber) {
         this.totalPageNumber = totalPageNumber;
+    }
+
+    /**
+     * @return the digest
+     */
+    public int getDigest() {
+        return digest;
+    }
+
+    /**
+     * @param digest the digest to set
+     */
+    public void setDigest(int digest) {
+        this.digest = digest;
+    }
+
+    /**
+     * @return the selectedDate
+     */
+    public Date getSelectedDate() {
+        return selectedDate;
+    }
+
+    /**
+     * @param selectedDate the selectedDate to set
+     */
+    public void setSelectedDate(Date selectedDate) {
+        this.selectedDate = selectedDate;
     }
 
     

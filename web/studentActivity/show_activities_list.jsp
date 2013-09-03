@@ -4,6 +4,7 @@
     Author     : xiaobo
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesPageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesListAction"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesListMessage"%>
@@ -20,9 +21,13 @@
         <title>学生活动</title>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
+	<script type="text/javascript" src="/js/datepicker.js"></script>
+        <script type="text/javascript" src="/js/eye.js"></script>
+        <script type="text/javascript" src="/js/utils.js"></script>
         <link href="/css/activity/indexPage_sheet.css" type="text/css" rel="stylesheet"/>
         <link href="/css/activity/flexagon.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/effects.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/datepicker.css" type="text/css" />
     </head>
     <%@include file="/templates/new_general_header.jsp" %>
     
@@ -42,6 +47,12 @@
 		</select>
        	    
             </div>
+            <div>
+                <select id="chooseDigest">
+                    <option value="<%=ShowActivitiesPageAction.COMMON_ACTIVITY%>" <%=message.getDigest() == ShowActivitiesPageAction.COMMON_ACTIVITY ? "selected=\"selected\"" : ""%>>全部</option>
+		    <option value="<%=ShowActivitiesPageAction.DIGEST_ACTIVITY%>" <%=message.getDigest() == ShowActivitiesPageAction.DIGEST_ACTIVITY ? "selected=\"selected\"" : ""%>>精选</option>
+                </select>
+            </div>
             <div class="input-text">
                 <div id="btn_activity" class="selected-border">
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>活动</b></a></div>
@@ -50,6 +61,10 @@
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>搜索</b></a></div>
                 </div>
             </div>
+        </div>
+        <div>
+            <p id="date"></p>
+            <button id="clearCalendarButton">全部（日历）</button>
         </div>
     </div>
     <div style="height:10px;"></div>
@@ -176,11 +191,19 @@
             </div>
         </div>
     </div>
-	
+    <input id="dateInput" style="display: none" <%if(message.getSelectedDate()!=null){String df = new SimpleDateFormat("yyyy-MM-dd").format(message.getSelectedDate());%> value="<%=df%>"<%}else{%>value=""<%}%>/>
 	<script type="text/javascript">
+            $.noConflict();
+            var day = $("#dateInput").val();
+            var datestr = "";
+            if(day != ""){
+                datestr="&selectedDate="+day;
+            }else{
+                day = new Date();
+            }
 	    var pageConfig = {
 		root:$("#text_content"),
-		url:"showActivitiesPage.do?activityClass=<%=message.getActivityClass()%>",
+		url:"showActivitiesPage.do?activityClass=<%=message.getActivityClass()%>&digest=<%=message.getDigest()%>"+datestr,
 		total:<%=message.getTotalPageNumber()%>,
 		current:1,
 		arguName:"page",
@@ -188,12 +211,38 @@
 	    };
 	    init(pageConfig);
              $("#chooseActivityClass").change(function(){
+                var digest = $("#chooseDigest").val();
 		var type = $("#chooseActivityClass").val();
-		self.location.href = "showActivitiesList.do?activityClass=" + type;
+		self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest + datestr;
 	    });
+            $("#chooseDigest").change(function(){
+               var digest = $("#chooseDigest").val();
+               var type = $("#chooseActivityClass").val();
+               self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest + datestr;
+            });
             $("#btn_search").click(function(){
                 var searchKeyword = $("#input_box").val();   
                 self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword;
+            });
+            $('#clearCalendarButton').click(function(){
+                var digest = $("#chooseDigest").val();
+               var type = $("#chooseActivityClass").val();
+               self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest;
+            });
+            //var day = new Date();
+            
+            $('#date').DatePicker({
+                flat: true,
+                date: day,
+                current: day,
+                calendars: 1,
+                starts: 1,
+                format: 'Y-m-d',
+                onChange:function(date){
+                    var digest = $("#chooseDigest").val();
+                    var type = $("#chooseActivityClass").val();
+                    self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest+"&selectedDate="+date;
+                }
             });
 	</script>
     <%@include file="/templates/new_general_footer.jsp" %>

@@ -7,6 +7,8 @@ package cn.edu.tsinghua.sthu.dao;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -16,6 +18,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
+import org.w3c.dom.ls.LSException;
 
 /**
  *
@@ -148,22 +151,101 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
 	return ((Long) r).intValue();
     }
     
-    public List<StudentActivityApplyEntity> getAcceptedPublicActivities(int begin, int number){
-         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
-                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivities(int begin, int number, int activityType, int digest){
+        Criteria temp =  select().createAlias("option", "a").add(Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
-                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
-	return list;
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED)));
+        if(activityType != 0){
+            temp.add(Restrictions.eq("activityType", activityType));
+        }
+        if(digest != 0){
+            temp.add(Restrictions.eq("a.digestFlag", digest));
+        }
+        List<StudentActivityApplyEntity> list = temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
+        return list;
+        
+//        List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+//                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+//                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+//                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();       
+//	return list;
     }
-    public int getAcceptedPublicActivitiesCount(){
-        Object r = select().createAlias("option", "a").add(
+    public int getAcceptedPublicActivitiesCount(int activityType, int digest){
+        Criteria temp = select().createAlias("option", "a").add(
                  Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), 
-                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED)));
+        if(activityType != 0){
+            temp.add(Restrictions.eq("activityType", activityType));
+        }
+        if(digest != 0){
+            temp.add(Restrictions.eq("a.digestFlag", digest));
+        }
+        Object r = temp.setProjection(Projections.rowCount()).uniqueResult();
+//        Object r = select().createAlias("option", "a").add(
+//                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+//                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), 
+//                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
-    
-        public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByApplyUserid(int begin, int number, int userID){
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByDate(int begin, int number, int activityType, int digest, Date date){
+        Criteria temp =  select().createAlias("option", "a").add(Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED)));
+        if(activityType != 0){
+            temp.add(Restrictions.eq("activityType", activityType));
+        }
+        if(digest != 0){
+            temp.add(Restrictions.eq("a.digestFlag", digest));
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date fromDate = calendar.getTime();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date toDate = calendar.getTime();
+        
+        temp.add(Restrictions.between("activityDate", fromDate, toDate));
+        List<StudentActivityApplyEntity> list = temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
+        return list;
+    }
+    public int getAcceptedPublicActivitiesCountByDate(int activityType, int digest, Date date){
+        Criteria temp = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), 
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED)));
+        if(activityType != 0){
+            temp.add(Restrictions.eq("activityType", activityType));
+        }
+        if(digest != 0){
+            temp.add(Restrictions.eq("a.digestFlag", digest));
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date fromDate = calendar.getTime();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date toDate = calendar.getTime();
+        
+        temp.add(Restrictions.between("activityDate", fromDate, toDate));
+        Object r = temp.setProjection(Projections.rowCount()).uniqueResult();
+//        Object r = select().createAlias("option", "a").add(
+//                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+//                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED), 
+//                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED))).setProjection(Projections.rowCount()).uniqueResult();
+        return ((Long) r).intValue();
+    }
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByApplyUserid(int begin, int number, int userID){
          List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
                  Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),

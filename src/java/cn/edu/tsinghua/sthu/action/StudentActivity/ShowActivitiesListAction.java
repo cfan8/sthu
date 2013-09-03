@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesListMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import java.util.Date;
 
 /**
  *
@@ -14,6 +15,8 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
  */
 public class ShowActivitiesListAction extends BaseAction{
     private Integer activityClass;
+    private Integer digest;
+    private Date selectedDate;
     private ShowActivitiesListMessage showActivitiesListMessage;
     private ApplyStudentActivityService applyStudentActivityService;
 
@@ -21,8 +24,18 @@ public class ShowActivitiesListAction extends BaseAction{
     public String onExecute() throws Exception {
         if(activityClass == null)
             activityClass = ShowActivitiesPageAction.ACTIVITY_ALL;
+        if(digest == null)
+            digest = ShowActivitiesPageAction.COMMON_ACTIVITY;
         showActivitiesListMessage.setActivityClass(activityClass);
-        showActivitiesListMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumber(10, activityClass));
+        showActivitiesListMessage.setDigest(digest);
+        if(selectedDate == null){
+            showActivitiesListMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumber(10, activityClass, digest));
+            showActivitiesListMessage.setSelectedDate(null);
+        }
+        else{
+            showActivitiesListMessage.setSelectedDate(selectedDate);
+            showActivitiesListMessage.setTotalPageNumber(applyStudentActivityService.getAcceptedPublicActivitiesTotalPageNumberByDate(10, activityClass, digest, selectedDate));
+        }
         return SUCCESS;
     }
     
@@ -81,5 +94,33 @@ public class ShowActivitiesListAction extends BaseAction{
      */
     public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
         this.applyStudentActivityService = applyStudentActivityService;
+    }
+
+    /**
+     * @return the digest
+     */
+    public Integer getDigest() {
+        return digest;
+    }
+
+    /**
+     * @param digest the digest to set
+     */
+    public void setDigest(Integer digest) {
+        this.digest = digest;
+    }
+
+    /**
+     * @return the selectedDate
+     */
+    public Date getSelectedDate() {
+        return selectedDate;
+    }
+
+    /**
+     * @param selectedDate the selectedDate to set
+     */
+    public void setSelectedDate(Date selectedDate) {
+        this.selectedDate = selectedDate;
     }
 }

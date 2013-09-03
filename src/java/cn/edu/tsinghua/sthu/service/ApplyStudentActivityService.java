@@ -592,23 +592,30 @@ public class ApplyStudentActivityService extends BaseService{
 	return resultCount / numberPerPage + (resultCount % numberPerPage == 0 ? 0 : 1);
     }
     @Transactional
-    public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage, int activityType)
+    public int getAcceptedPublicActivitiesTotalPageNumber( int numberPerPage, int activityType, int digest)
     {
-        int r;
-        if(activityType == 0)
-            r = applyStudentActivityDAO.getAcceptedPublicActivitiesCount();
-        else
-            r = applyStudentActivityDAO.getAcceptedPublicActivitiesCountByActivityType(activityType);
+        int r = applyStudentActivityDAO.getAcceptedPublicActivitiesCount(activityType, digest);
 	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
     }
      
     @Transactional
-    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesList(int page, int numberPerPage, int activityType)
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesList(int page, int numberPerPage, int activityType, int digest)
     {
-        if(activityType == 0)
-            return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage);
-        else 
-            return applyStudentActivityDAO.getAcceptedPublicActivitiesByActivityType((page - 1)*numberPerPage, numberPerPage, activityType);
+        return applyStudentActivityDAO.getAcceptedPublicActivities((page - 1)*numberPerPage, numberPerPage, activityType, digest);
+        
+    }
+    @Transactional
+    public int getAcceptedPublicActivitiesTotalPageNumberByDate( int numberPerPage, int activityType, int digest, Date date)
+    {
+        int r = applyStudentActivityDAO.getAcceptedPublicActivitiesCountByDate(activityType, digest, date);
+	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
+    }
+     
+    @Transactional
+    public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesListByDate(int page, int numberPerPage, int activityType, int digest, Date date)
+    {
+        return applyStudentActivityDAO.getAcceptedPublicActivitiesByDate((page - 1)*numberPerPage, numberPerPage, activityType, digest, date);
+        
     }
     
     @Transactional 
