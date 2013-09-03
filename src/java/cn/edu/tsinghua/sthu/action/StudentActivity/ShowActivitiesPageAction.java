@@ -9,6 +9,8 @@ import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesPageMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,7 @@ public class ShowActivitiesPageAction extends BaseAction{
     public static final int ACTIVITY_OTHER = 6;
     public static final int DIGEST_ACTIVITY = 1;
     public static final int COMMON_ACTIVITY = 0;
+    public static final DateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd "); 
     
     private Integer activityClass;
     private Integer digest;
@@ -67,13 +70,36 @@ public class ShowActivitiesPageAction extends BaseAction{
 
     @Override
     public boolean valid() {
-         if (getPage() != null && getPage() > 0) {
-	    return true;
-	}
-	else {
-	    alertMessage.setSimpleAlert("参数错误！");
+        if (getPage() == null || getPage() <= 0) {
+            alertMessage.setSimpleAlert("参数错误！");
 	    return false;
 	}
+        if(activityClass != null){
+            if(activityClass != ShowActivitiesPageAction.ACTIVITY_ALL || activityClass != ShowActivitiesPageAction.ACTIVITY_GROUP || activityClass != ShowActivitiesPageAction.ACTIVITY_SPORTS ||
+                activityClass != ShowActivitiesPageAction.ACTIVITY_LECTURE || activityClass != ShowActivitiesPageAction.ACTIVITY_CULTURE || activityClass != ShowActivitiesPageAction.ACTIVITY_AMUSE ||
+                activityClass != ShowActivitiesPageAction.ACTIVITY_OTHER){
+                alertMessage.setSimpleAlert("参数错误！");
+                return false;
+            }
+        }
+        if(digest != null){
+            if(digest != ShowActivitiesPageAction.COMMON_ACTIVITY || digest != ShowActivitiesPageAction.DIGEST_ACTIVITY)
+            {
+                alertMessage.setSimpleAlert("参数错误！");
+                return false;
+            }
+        }
+        if(selectedDate != null){
+            String str = selectedDate.toString();
+            try{ 
+                Date date = (Date)formatter.parse(str); 
+                return str.equals(formatter.format(date)); 
+            }catch(Exception e){ 
+                alertMessage.setSimpleAlert("参数错误！");
+                return false; 
+            } 
+        }
+        return true;
     }
 
         @Override
