@@ -34,37 +34,76 @@
     <div id="input_div" class="input-bar">
         <div id="input_main" class="input-main-style">
             <div><input id="input_box" class="input-border"/></div>
-            <div>
-            
-                <select id="chooseActivityClass">
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_ALL%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_ALL ? "selected=\"selected\"" : ""%>>全部</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_GROUP%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_GROUP ? "selected=\"selected\"" : ""%>>党团活动</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_SPORTS%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_SPORTS ? "selected=\"selected\"" : ""%>>体育赛事</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_LECTURE%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_LECTURE ? "selected=\"selected\"" : ""%>>学术讲座</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_CULTURE%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_CULTURE ? "selected=\"selected\"" : ""%>>文化活动</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_AMUSE%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_AMUSE ? "selected=\"selected\"" : ""%>>文艺活动</option>
-		    <option value="<%=ShowActivitiesPageAction.ACTIVITY_OTHER%>" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_OTHER ? "selected=\"selected\"" : ""%>>其他活动</option>
-		</select>
-       	    
-            </div>
-            <div>
-                <select id="chooseDigest">
-                    <option value="<%=ShowActivitiesPageAction.COMMON_ACTIVITY%>" <%=message.getDigest() == ShowActivitiesPageAction.COMMON_ACTIVITY ? "selected=\"selected\"" : ""%>>全部</option>
-		    <option value="<%=ShowActivitiesPageAction.DIGEST_ACTIVITY%>" <%=message.getDigest() == ShowActivitiesPageAction.DIGEST_ACTIVITY ? "selected=\"selected\"" : ""%>>精选</option>
-                </select>
-            </div>
-            <div class="input-text">
+             <div class="input-text">
                 <div id="btn_activity" class="selected-border">
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>活动</b></a></div>
                 </div>
                 <div id="btn_search" class="unselected-border">
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>搜索</b></a></div>
                 </div>
-            </div>
+             </div>
         </div>
-        <div>
-            <p id="date"></p>
-            <button id="clearCalendarButton">全部（日历）</button>
+        
+        <div class="choosediv">
+            <div class="chooseActivity">
+                <span class="ActivityTitle">活动</span>
+                <div class="chooseActivityClass">
+                    <span class="ActivityClassTitle">分类</span>
+                    <div class="ActivityClass">                       
+                        <div class="class-bar-text">
+                            <div id="btn_group" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_GROUP ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">党团活动  </a>
+                            </div>
+                        </div>
+                        <div class="class-bar-text">
+                            <div id="btn_sport" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_SPORTS ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">体育赛事  </a>
+                            </div>
+                        </div>
+                        <div   class="class-bar-text">
+                            <div id="btn_lecture" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_LECTURE ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">学术讲座  </a>
+                            </div>
+                        </div>
+                        <div  class="class-bar-text">
+                            <div id="btn_culture" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_CULTURE ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">文化活动  </a>
+                            </div>
+                        </div>
+                        <div  class="class-bar-text">
+                            <div id="btn_amuse" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_AMUSE ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">文艺活动  </a>
+                            </div>
+                        </div>
+                        <div  class="class-bar-text">
+                            <div id="btn_other" <%=message.getActivityClass() == ShowActivitiesPageAction.ACTIVITY_OTHER ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">其他活动  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chooseDigest">
+                    <span class="ActivityClassTitle">筛选</span>
+                    <div class="ActivityDigest">
+                        <div class="class-bar-text">
+                            <div id="btn_digest" <%=message.getDigest() == ShowActivitiesPageAction.DIGEST_ACTIVITY ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">精选  </a>
+                            </div>
+                        </div>
+                        <div class="class-bar-text">
+                            <div id="btn_all" <%=message.getDigest() == ShowActivitiesPageAction.COMMON_ACTIVITY ? "class=\"selected-border\"" : "class=\"unselected-border\""%>>
+                                <a style="cursor: pointer;">全部  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+           
+        
+            <div class="choosedate">
+                <p id="date"></p>
+                <button id="btn_clear" class="class-bar-text">全部</button>
+            </div>
         </div>
     </div>
     <div style="height:10px;"></div>
@@ -210,24 +249,44 @@
 		css:false
 	    };
 	    init(pageConfig);
-             $("#chooseActivityClass").change(function(){
-                var digest = $("#chooseDigest").val();
-		var type = $("#chooseActivityClass").val();
-		self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest + datestr;
-	    });
-            $("#chooseDigest").change(function(){
-               var digest = $("#chooseDigest").val();
-               var type = $("#chooseActivityClass").val();
-               self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest + datestr;
+            
+            $("#btn_group").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_GROUP%>" +"&digest=<%=message.getDigest()%>"+ datestr;
             });
+            $("#btn_sport").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_SPORTS %>" +"&digest=<%=message.getDigest()%>"+ datestr;
+            });
+            $("#btn_lecture").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_LECTURE%>" +"&digest=<%=message.getDigest()%>"+ datestr;
+            });
+            $("#btn_culture").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_CULTURE%>" +"&digest=<%=message.getDigest()%>"+ datestr;
+            });
+            $("#btn_amuse").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_AMUSE%>" +"&digest=<%=message.getDigest()%>"+ datestr;
+            });
+            $("#btn_other").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_OTHER%>" +"&digest=<%=message.getDigest()%>"+ datestr;
+            });
+            $("#btn_digest").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=message.getActivityClass()%>" +"&digest=<%=ShowActivitiesPageAction.DIGEST_ACTIVITY%>"+ datestr;
+            });
+            $("#btn_all").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=message.getActivityClass()%>" +"&digest=<%=ShowActivitiesPageAction.COMMON_ACTIVITY%>"+ datestr;
+            });
+            $("#btn_clear").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=" +"&digest=";
+            });
+            
+            
+            
+            
+            
+           
+            
             $("#btn_search").click(function(){
                 var searchKeyword = $("#input_box").val();   
                 self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword;
-            });
-            $('#clearCalendarButton').click(function(){
-                var digest = $("#chooseDigest").val();
-               var type = $("#chooseActivityClass").val();
-               self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest;
             });
             //var day = new Date();
             
@@ -239,9 +298,7 @@
                 starts: 1,
                 format: 'Y-m-d',
                 onChange:function(date){
-                    var digest = $("#chooseDigest").val();
-                    var type = $("#chooseActivityClass").val();
-                    self.location.href = "showActivitiesList.do?activityClass=" + type +"&digest=" + digest+"&selectedDate="+date;
+                    self.location.href = "showActivitiesList.do?activityClass=<%=message.getActivityClass()%>&digest=<%=message.getDigest()%>"+"&selectedDate="+date;
                 }
             });
 	</script>

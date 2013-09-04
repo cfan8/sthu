@@ -26,15 +26,14 @@ li {
 .input-bar {
     margin-top:40px;
     margin-bottom:20px;
-    margin-left:100px;
 }
 .input-main-style {
     margin:0 auto;
-    width:50%;
+    width:630px;
     height:22px;
 }
 .input-text {
-    float:left;
+    float:right;
     margin-left:20px;
 }
 .unselected-border {
@@ -104,4 +103,59 @@ li {
     width:380px;
     height:160px;
     float:right;
+}
+.choosediv{
+    margin: 0 auto;
+    width: 1000px;
+    height: 250px;
+    margin-top: 30px;
+}
+.chooseActivity{
+    float:left;
+    width: 600px;
+    height: 250px;
+    background-color:white;
+}
+.ActivityTitle{
+    position: relative;
+    top: 10px;
+    left:50px;
+    color:#888;
+    font-size: 30px;
+}
+.chooseActivityClass{
+    width: 430px;
+    height: 100px;
+    position: relative;
+    top: 40px;
+    left:30px;
+}
+.ActivityClassTitle{
+    float: left;
+    color:#888;
+    font-size: 20px;
+}
+.ActivityClass{
+    float:  right;
+    width: 350px;   
+}
+.class-bar-text{
+    float: left;
+    width: 100px;
+    height: 25px;
+    color:#888;
+    font-size: 15px;
+}
+.chooseDigest{
+    width: 300px;
+    height:80px;
+    position: relative;
+    top: 30px;
+    left:30px;
+}
+.ActivityDigest{
+    float: right;
+}
+.choosedate{
+    float: right;
 }
