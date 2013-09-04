@@ -150,9 +150,6 @@ public class StudentActivityApplyEntity extends BaseEntity{
     @OneToOne(cascade={CascadeType.ALL})
     private StudentApplyOptionsEntity option;
 
-    @ManyToMany(mappedBy="interestedActivities")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<UserEntity> interestedUsers = new HashSet<UserEntity>();
     
     //重写hash
     public boolean equals(Object o){
@@ -760,19 +757,6 @@ public class StudentActivityApplyEntity extends BaseEntity{
         this.option = option;
     }
 
-    /**
-     * @return the interestedUsers
-     */
-    public Set<UserEntity> getInterestedUsers() {
-        return interestedUsers;
-    }
-
-    /**
-     * @param interestedUsers the interestedUsers to set
-     */
-    public void setInterestedUsers(Set<UserEntity> interestedUsers) {
-        this.interestedUsers = interestedUsers;
-    }
 
     /**
      * @return the publishType

@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.service;
 
 import cn.edu.tsinghua.sthu.Util;
+import cn.edu.tsinghua.sthu.dao.FollowDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
@@ -36,6 +37,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService extends BaseService {
 
     private UserDAO userDAO;
+    private FollowDAO followDAO;
 
     @Transactional
     public UserEntity userLogin(String username, String password) throws Exception{
@@ -158,8 +160,9 @@ public class UserService extends BaseService {
     public UserEntity followGroup(UserEntity user, UserEntity group){
         if(checkGroupFollowedByUser(user, group))
             return null;
-        user.getInterestedGroups().add(group);
-        userDAO.updateUserEntity(user);
+//        user.getInterestedGroups().add(group);
+//        userDAO.updateUserEntity(user);
+        followDAO.addFollowGroup(user.getID(), group.getID());
         return user;
     }
     
@@ -167,18 +170,20 @@ public class UserService extends BaseService {
     public UserEntity unfollowGroup(UserEntity user, UserEntity group){
         if(!checkGroupFollowedByUser(user, group))
             return null;
-        user.getInterestedGroups().remove(group);
-        userDAO.updateUserEntity(user);
+//        user.getInterestedGroups().remove(group);
+//        userDAO.updateUserEntity(user);
+        followDAO.cancelFollowGroup(user.getID(), group.getID());
         return user;
     }
     
     @Transactional
     public boolean checkGroupFollowedByUser(UserEntity user, UserEntity group){
-        if(user.getInterestedGroups() == null)
-            return false;
-        if(user.getInterestedGroups().contains(group))
-            return true;
-        return false;
+//        if(user.getInterestedGroups() == null)
+//            return false;
+//        if(user.getInterestedGroups().contains(group))
+//            return true;
+//        return false;
+        return getFollowDAO().isGroupFollowedByUser(user.getID(), group.getID());
     }
     
     @Transactional
@@ -197,6 +202,20 @@ public class UserService extends BaseService {
 
     public void setUserDAO(UserDAO userDAO) {
 	this.userDAO = userDAO;
+    }
+
+    /**
+     * @return the followDAO
+     */
+    public FollowDAO getFollowDAO() {
+        return followDAO;
+    }
+
+    /**
+     * @param followDAO the followDAO to set
+     */
+    public void setFollowDAO(FollowDAO followDAO) {
+        this.followDAO = followDAO;
     }
 
 }

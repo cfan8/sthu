@@ -13,6 +13,7 @@ import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
 import cn.edu.tsinghua.sthu.dao.CommentDAO;
+import cn.edu.tsinghua.sthu.dao.FollowDAO;
 import cn.edu.tsinghua.sthu.dao.StudentActivityApproveDAO;
 import cn.edu.tsinghua.sthu.dao.StudentApplyOptionsDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
@@ -41,7 +42,7 @@ public class ApplyStudentActivityService extends BaseService{
     private UserDAO userDAO;
     private StudentApplyOptionsDAO studentApplyOptionsDAO;
     private StudentActivityApproveDAO studentActivityApproveDAO;
-
+    private FollowDAO followDAO;
     @Transactional
     public StudentActivityApplyEntity getStudentActivityApplyEntityById(int applyId) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
@@ -675,8 +676,9 @@ public class ApplyStudentActivityService extends BaseService{
     public UserEntity followActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(checkActivityFollowedByUser(user, activity))
             return null;
-        user.getInterestedActivities().add(activity);
-        userDAO.updateUserEntity(user);
+//        user.getInterestedActivities().add(activity);
+//        userDAO.updateUserEntity(user);
+        followDAO.addFollowActivity(user.getID(), activity.getID());
         
         return user;
     }
@@ -685,18 +687,20 @@ public class ApplyStudentActivityService extends BaseService{
     public UserEntity unFollowActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(!checkActivityFollowedByUser(user, activity))
             return null;
-        user.getInterestedActivities().remove(activity);
-        userDAO.updateUserEntity(user);
+//        user.getInterestedActivities().remove(activity);
+//        userDAO.updateUserEntity(user);
+        followDAO.cancelFollowActivity(user.getID(), activity.getID());
         return user;
     }
     
     @Transactional 
     public boolean checkActivityFollowedByUser(UserEntity user, StudentActivityApplyEntity activity){
-        if(user.getInterestedActivities() == null)
-            return false;
-        if(user.getInterestedActivities().contains(activity))
-            return true;
-        return false;
+//        if(user.getInterestedActivities() == null)
+//            return false;
+//        if(user.getInterestedActivities().contains(activity))
+//            return true;
+//        return false;
+        return followDAO.isActivityFollowedByUser(user.getID(), activity.getID());
     }
 
     @Transactional
@@ -806,6 +810,20 @@ public class ApplyStudentActivityService extends BaseService{
      */
     public void setStudentActivityApproveDAO(StudentActivityApproveDAO studentActivityApproveDAO) {
         this.studentActivityApproveDAO = studentActivityApproveDAO;
+    }
+
+    /**
+     * @return the followDAO
+     */
+    public FollowDAO getFollowDAO() {
+        return followDAO;
+    }
+
+    /**
+     * @param followDAO the followDAO to set
+     */
+    public void setFollowDAO(FollowDAO followDAO) {
+        this.followDAO = followDAO;
     }
 
   

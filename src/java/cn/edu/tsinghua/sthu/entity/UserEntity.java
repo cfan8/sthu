@@ -50,21 +50,6 @@ public class UserEntity extends BaseEntity
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
 
-    @ManyToMany(cascade={CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name="user_activity", joinColumns={@JoinColumn(name="user_id")}, inverseJoinColumns={@JoinColumn(name="activity_id")})
-    private Set<StudentActivityApplyEntity> interestedActivities = new HashSet<StudentActivityApplyEntity>();
-
-    @ManyToMany(cascade={CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name="user_group", joinColumns={@JoinColumn(name="user_id")}, inverseJoinColumns={@JoinColumn(name="group_id")})
-    private Set<UserEntity> interestedGroups = new HashSet<UserEntity>();
-    
-    @ManyToMany(cascade={CascadeType.ALL})
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(name="user_group", joinColumns={@JoinColumn(name="group_id")}, inverseJoinColumns={@JoinColumn(name="user_id")})
-    private Set<UserEntity> interestedGroupsOf = new HashSet<UserEntity>();
-    
      //重写hash
     public boolean equals(Object o){
         if(this == o){
@@ -139,47 +124,6 @@ public class UserEntity extends BaseEntity
 	this.auth = auth;
     }
 
-    /**
-     * @return the interestedActivities
-     */
-    public Set<StudentActivityApplyEntity> getInterestedActivities() {
-        return interestedActivities;
-    }
-
-    /**
-     * @param interestedActivities the interestedActivities to set
-     */
-    public void setInterestedActivities(Set<StudentActivityApplyEntity> interestedActivities) {
-        this.interestedActivities = interestedActivities;
-    }
-
-    /**
-     * @return the interestedGroups
-     */
-    public Set<UserEntity> getInterestedGroups() {
-        return interestedGroups;
-    }
-
-    /**
-     * @param interestedGroups the interestedGroups to set
-     */
-    public void setInterestedGroups(Set<UserEntity> interestedGroups) {
-        this.interestedGroups = interestedGroups;
-    }
-
-    /**
-     * @return the interestedGroupsOf
-     */
-    public Set<UserEntity> getInterestedGroupsOf() {
-        return interestedGroupsOf;
-    }
-
-    /**
-     * @param interestedGroupsOf the interestedGroupsOf to set
-     */
-    public void setInterestedGroupsOf(Set<UserEntity> interestedGroupsOf) {
-        this.interestedGroupsOf = interestedGroupsOf;
-    }
 
     /**
      * @return the introduction
