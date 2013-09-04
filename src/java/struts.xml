@@ -197,6 +197,9 @@ and open the template in the editor.
         <action name="searchStudentActivityPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityPageAction">
             <result name="success">search_student_activities_page.jsp</result>
          </action>
+         <action name="showStudentActivityDetail" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowStudentActivityDetailAction">
+	    <result name="success">show_student_activity_detail.jsp</result>
+	</action>
         <action name="followActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.FollowActivityAction">
         </action>
         <action name="digestActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.AddToDigestActivityAction">

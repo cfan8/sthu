@@ -287,6 +287,7 @@
     <div id="publishDiv">学生清华发布申请：
         <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
         <div style="margin-top:10px"><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;margin-top:10px"><%=entity.getOption().getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
+        <a href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" class="button">预览</a>
         <a href="#" class="button" id="submitPublishEdit">确认/修改</a>
         </form>
         <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
