@@ -7,6 +7,7 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
@@ -49,16 +50,20 @@ public class FollowActivityAction extends BaseAction{
 	    return false;
 	}
 	setEntity(applyStudentActivityService.getStudentActivityApplyEntityById(getActivityId()));
-	if (getEntity() == null)
+	if (getEntity() == null || getEntity().getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY)
 	{
 	    alertMessage.setSimpleAlert("参数错误！");
 	    return false;
 	}
 	if (getEntity().getApplyStatus() != StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED)
 	{
-	    alertMessage.setSimpleAlert("参数错误！");
+	    alertMessage.setSimpleAlert("活动尚未批准！");
 	    return false;
 	}
+        if(getEntity().getPublishStatus() != StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED){
+            alertMessage.setSimpleAlert("活动尚未发布！");
+	    return false;
+        }
         if(getType() != 0){
             if(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), entity)){
                 alertMessage.setSimpleAlert("您已经关注了该活动！");

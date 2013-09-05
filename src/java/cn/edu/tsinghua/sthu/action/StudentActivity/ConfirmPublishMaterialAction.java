@@ -16,13 +16,12 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 public class ConfirmPublishMaterialAction extends BaseAction{
 
     private Integer applyId;
-    private String publicityMaterials;
     private ApplyStudentActivityService applyStudentActivityService;
     private StudentActivityApplyEntity entity;
     
     @Override
     public String onExecute() throws Exception {
-        applyStudentActivityService.confirmPublishMaterial(publicityMaterials, entity);
+        applyStudentActivityService.confirmPublishMaterial(entity);
         alertMessage.setSimpleAlert("已确认学生清华发布材料，请耐心等待审批。", "showStudentActivityApply.do?applyId=" + getApplyId());
         return ALERT;
     }
@@ -111,18 +110,5 @@ public class ConfirmPublishMaterialAction extends BaseAction{
         this.entity = entity;
     }
 
-    /**
-     * @return the publicityMaterials
-     */
-    public String getPublicityMaterials() {
-        return publicityMaterials;
-    }
-
-    /**
-     * @param publicityMaterials the publicityMaterials to set
-     */
-    public void setPublicityMaterials(String publicityMaterials) {
-        this.publicityMaterials = publicityMaterials;
-    }
     
 }

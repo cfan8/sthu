@@ -94,4 +94,11 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
         else
             return true;
     }
+    public int getFollowedNumberByActivityId(int activityID){
+        Object r = select().add(Restrictions.and(
+                Restrictions.eq("activityID", activityID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_ACTIVITY)))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
 }

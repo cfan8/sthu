@@ -36,8 +36,8 @@
                 </div>
             <div style="float:left;width:600px;">
                 <div style="font-size:x-large;"> 
-                    <a  style="color:#000; text-decoration:none;"
-                        href="showStudentActivityApply.do?applyId=<%=entity.getID()%>">
+                    <a  style="color:#000; text-decoration:none;" target="_blank"
+                        href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>">
                         <b><%=entity.getActivityTheme()%></b>
                     </a>
                 </div>

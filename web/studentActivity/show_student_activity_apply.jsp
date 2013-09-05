@@ -77,7 +77,7 @@
                 text-align: center;
             }
 
-            #confirmDiv a, #cancelDiv a, #digestDiv a
+            #confirmDiv a, #cancelDiv a, #digestDiv a, #tableDiv a
             {
                 display: inline-block;
                 width: 180px;
@@ -86,7 +86,7 @@
                 text-align: center;
             }
 
-            #confirmDiv a:link, #confirmDiv a:visited, #cancelDiv a:link, #cancelDiv a:visited, #digestDiv a:link, #digestDiv a:visited
+            #confirmDiv a:link, #confirmDiv a:visited, #cancelDiv a:link, #cancelDiv a:visited, #digestDiv a:link, #digestDiv a:visited, #tableDiv a:link, #tableDiv a:visited
             {
                 text-decoration: none;
                 color: white;
@@ -249,7 +249,7 @@
                 margin-top:10px;
             }
 
-            #publishDiv a:link, #confirmDiv a:visited
+            #publishDiv a:link, #confirmDiv a:visited, #publishDiv a:visited
             {
                 text-decoration: none;
                 color: white;
@@ -278,6 +278,7 @@
                 color:#3A5FCD;
                 text-decoration:none;
             }
+            
         </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
@@ -285,19 +286,25 @@
     <%if(entity.isValid()){%><div class="processtype noprint" id="processtype<%=entity.getApplyStatus()%>"></div>
     <%if(message.isShowPublishEdit()){%>
     <div id="publishDiv">学生清华发布申请：
-        <form method="post" action="confirmPublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
+        <form method="post" action="savePublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
         <div style="margin-top:10px"><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;margin-top:10px"><%=entity.getOption().getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
-        <a href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" class="button">预览</a>
-        <a href="#" class="button" id="submitPublishEdit">确认/修改</a>
+        <a href="#" class="button" id="savePublish">保存</a>
+        <a href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" target="_blank" class="button">预览</a>
+        <a href="#" class="button" id="submitPublishEdit">提交</a>
         </form>
         <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
         <script type="text/javascript">
             var pe = UE.getEditor('publicityEditor');
+             $("#savePublish").click(function() {
+                $("#publicityMaterials").val(pe.getContent());
+                $("#publishForm").submit();
+                return false;
+            });
             $("#submitPublishEdit").click(function() {
                 $("#publicityMaterials").val(pe.getContent());
                 if (confirm("是否确认提交？") == true)
                 {
-                    $("#publishForm").submit();
+                    self.location.href = "confirmPublishMaterial.do?applyId=<%=entity.getID()%>";
                 }
                 return false;
             });
@@ -374,6 +381,7 @@
             <%if(options.getPublicityFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">学生清华发布申请:</td></tr>
             <tr><td class="tag">宣传材料:</td><td class="value"><%=options.getPublicityMaterials()%></td></tr>
+            <tr><td class="tag"></td><td><a class="button" href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" target="_blank">预览</a></td></tr>
             <%}%>
             <%if(options.getTicketFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">门票抽签申请:</td></tr>

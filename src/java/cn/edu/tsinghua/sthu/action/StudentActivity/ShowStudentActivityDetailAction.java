@@ -5,6 +5,7 @@
 package cn.edu.tsinghua.sthu.action.StudentActivity;
 
 import cn.edu.tsinghua.sthu.action.BaseAction;
+import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityDetailMessage;
@@ -22,6 +23,7 @@ public class ShowStudentActivityDetailAction extends BaseAction{
     
     @Override
     public String onExecute() throws Exception {
+        getShowStudentActivityDetailMessage().setFollowNumber(applyStudentActivityService.getFollowedNumberByActivityId(activityID));
         getShowStudentActivityDetailMessage().setActivity(activity);
         return SUCCESS;
     }
@@ -48,6 +50,11 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                 if(getCurrentUser().getID() == activity.getApplyUserid() || getCurrentUser().getAuth().getOpPublishCode() != -1){
                     return true;
                 } 
+            }
+            if(activity.getApplyStatus() != StudentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED && activity.getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY){
+                if(getCurrentUser().getID() == activity.getApplyUserid() || getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE){
+                    return true;
+                }
             }
         }
         return false;

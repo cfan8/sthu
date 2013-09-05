@@ -87,7 +87,7 @@
                             <a style="font-size:large;"><b>搜索结果</b></a>
                         </div>                       
                     </div>
-                    <div id="text_content" style="height:850px;"> 
+                    <div id="text_content" style="min-height:850px; height: auto; padding-bottom: 20px;"> 
                     </div>
                 </div>
            </div>

@@ -251,10 +251,15 @@ public class ApplyStudentActivityService extends BaseService{
             }
         }
     }
+    @Transactional
+    public void savePublishMaterial(String publishMaterial, StudentActivityApplyEntity entity){
+        entity.getOption().setPublicityMaterials(publishMaterial);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+    }
     
     @Transactional
-    public void confirmPublishMaterial(String publishMaterial, StudentActivityApplyEntity entity){
-        entity.getOption().setPublicityMaterials(publishMaterial);
+    public void confirmPublishMaterial(StudentActivityApplyEntity entity){
+        //entity.getOption().setPublicityMaterials(publishMaterial);
         entity.setPublishStatus(StudentActivityApplyEntity.PUBLISH_STATUS_TODO);
         entity.setPublishType(1); //成才中心 
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
@@ -701,6 +706,11 @@ public class ApplyStudentActivityService extends BaseService{
 //            return true;
 //        return false;
         return followDAO.isActivityFollowedByUser(user.getID(), activity.getID());
+    }
+    
+    @Transactional
+    public int getFollowedNumberByActivityId(int activityId){
+        return followDAO.getFollowedNumberByActivityId(activityId);
     }
 
     @Transactional
