@@ -23,6 +23,12 @@ public class ShowStudentActivityDetailAction extends BaseAction{
     
     @Override
     public String onExecute() throws Exception {
+        if(activity.getApplyStatus() == StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED
+                && activity.getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY
+                && activity.getPublishStatus() == StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED
+                && (getCurrentUser() == null ||activity.getApplyUserid() != getCurrentUser().getID())){
+            applyStudentActivityService.addClickCount(activityID);
+        }
         getShowStudentActivityDetailMessage().setFollowNumber(applyStudentActivityService.getFollowedNumberByActivityId(activityID));
         getShowStudentActivityDetailMessage().setActivity(activity);
         return SUCCESS;

@@ -12,6 +12,7 @@ import cn.edu.tsinghua.sthu.constant.ResourceMapping;
 import cn.edu.tsinghua.sthu.dao.ApplyCommentDAO;
 import cn.edu.tsinghua.sthu.dao.ApplyStudentActivityDAO;
 import cn.edu.tsinghua.sthu.dao.AuthDAO;
+import cn.edu.tsinghua.sthu.dao.ClickCountDAO;
 import cn.edu.tsinghua.sthu.dao.CommentDAO;
 import cn.edu.tsinghua.sthu.dao.FollowDAO;
 import cn.edu.tsinghua.sthu.dao.StudentActivityApproveDAO;
@@ -19,6 +20,7 @@ import cn.edu.tsinghua.sthu.dao.StudentApplyOptionsDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.ClickCountEntity;
 import cn.edu.tsinghua.sthu.entity.CommentEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApproveEntity;
@@ -43,6 +45,7 @@ public class ApplyStudentActivityService extends BaseService{
     private StudentApplyOptionsDAO studentApplyOptionsDAO;
     private StudentActivityApproveDAO studentActivityApproveDAO;
     private FollowDAO followDAO;
+    private ClickCountDAO clickCountDAO;
     @Transactional
     public StudentActivityApplyEntity getStudentActivityApplyEntityById(int applyId) {
 	StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(applyId);
@@ -737,6 +740,15 @@ public class ApplyStudentActivityService extends BaseService{
         entity.getOption().setDigestFlag(StudentApplyOptionsEntity.ORDINARY_ACTIVITY);
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
     }
+    
+    @Transactional
+    public void addClickCount(int activityID){
+        ClickCountEntity entity = new ClickCountEntity();
+        entity.setAccessDate(new Date());
+        entity.setActivityID(activityID);
+        clickCountDAO.addClickCount(entity);
+        
+    }
       
     /**
      * @return the applyStudentActivityDAO
@@ -834,6 +846,20 @@ public class ApplyStudentActivityService extends BaseService{
      */
     public void setFollowDAO(FollowDAO followDAO) {
         this.followDAO = followDAO;
+    }
+
+    /**
+     * @return the clickCountDAO
+     */
+    public ClickCountDAO getClickCountDAO() {
+        return clickCountDAO;
+    }
+
+    /**
+     * @param clickCountDAO the clickCountDAO to set
+     */
+    public void setClickCountDAO(ClickCountDAO clickCountDAO) {
+        this.clickCountDAO = clickCountDAO;
     }
 
   
