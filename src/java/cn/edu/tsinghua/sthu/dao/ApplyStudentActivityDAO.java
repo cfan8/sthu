@@ -294,7 +294,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                   Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
                   Restrictions.like("a.publicityMaterials", keywords,MatchMode.ANYWHERE),
-                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("organizerName", keywords, MatchMode.ANYWHERE)))))
                  .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate"))
                 .setFirstResult(begin).setMaxResults(number).list();  
          return list;
@@ -307,7 +308,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                    Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
                  Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),(Restrictions.or(
                   Restrictions.like("a.publicityMaterials", keywords,MatchMode.ANYWHERE),
-                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("organizerName", keywords,MatchMode.ANYWHERE)))))
                  .setProjection(Projections.rowCount()).uniqueResult();
          return ((Long)r).intValue();
      }
@@ -315,7 +317,9 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
  
         Criteria temp = select().createAlias("option", "a").add(Restrictions.and(
         Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
-        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE))));
+        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),
+                Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE),
+                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE))));
         if(searchStatus[0] == 1) {
             temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));   
         }
@@ -347,7 +351,9 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
     public int getPastPublicApplyCountByContent(String searchKeywords, int[] searchStatus) {
         Criteria temp = select().createAlias("option", "a").add(Restrictions.and(
         Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
-        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE))));
+        Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),
+                Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE),
+                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE))));
         if(searchStatus[0] == 1) {
             temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));
         }
@@ -384,7 +390,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(
                   Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
-                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("organizerName", keywords, MatchMode.ANYWHERE)))))
                  .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate"))
                 .setFirstResult(begin).setMaxResults(number).list();  
          return list;
@@ -399,7 +406,8 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("activityType", activityType),
                  (Restrictions.or(
                   Restrictions.like("activityContent", keywords,MatchMode.ANYWHERE),
-                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE)))))
+                 Restrictions.like("activityTheme", keywords,MatchMode.ANYWHERE),
+                 Restrictions.like("organizerName", keywords, MatchMode.ANYWHERE)))))
                  .setProjection(Projections.rowCount()).uniqueResult();
          return ((Long)r).intValue();
      }

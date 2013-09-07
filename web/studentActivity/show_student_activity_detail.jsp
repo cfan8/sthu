@@ -78,9 +78,15 @@
                         <div id="participant_div" style="float:right; margin:20px;">
                             <span style="font-size:large;">已有<a style="color:red;"><b><%=message.getFollowNumber()%></b></a>人参与</span>
                             &nbsp;&nbsp;&nbsp;   
+                            <%if(message.getShowFollow() == 1){%>
                             <a href="followActivity.do?activityId=<%=entity.getID()%>&type=1">
-                                <img src="/css/activity/partin.png" />
+                                <img src="/css/activity/interest.png" />
                             </a>
+                            <%}else{%>
+                            <a href="followActivity.do?activityId=<%=entity.getID()%>&type=0">
+                                <img src="/css/activity/notinterest.png" />
+                            </a>
+                            <%}%>
                         </div>
                     <div id="text_content" style="height:auto; min-height: 850px; padding:30px;"> 
                          <%=entity.getOption().getPublicityMaterials()%>

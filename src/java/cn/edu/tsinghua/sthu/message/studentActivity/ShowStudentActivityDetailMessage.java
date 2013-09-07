@@ -14,6 +14,7 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
 public class ShowStudentActivityDetailMessage extends BaseMessage{
     private StudentActivityApplyEntity activity;
     private int followNumber = 0;
+    private int showFollow;
 
     /**
      * @return the activity
@@ -41,6 +42,20 @@ public class ShowStudentActivityDetailMessage extends BaseMessage{
      */
     public void setFollowNumber(int followNumber) {
         this.followNumber = followNumber;
+    }
+
+    /**
+     * @return the showFollow
+     */
+    public int getShowFollow() {
+        return showFollow;
+    }
+
+    /**
+     * @param showFollow the showFollow to set
+     */
+    public void setShowFollow(int showFollow) {
+        this.showFollow = showFollow;
     }
     
 }

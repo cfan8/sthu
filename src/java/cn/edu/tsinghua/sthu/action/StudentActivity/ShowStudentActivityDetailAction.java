@@ -29,6 +29,13 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                 && (getCurrentUser() == null ||activity.getApplyUserid() != getCurrentUser().getID())){
             applyStudentActivityService.addClickCount(activityID);
         }
+        getShowStudentActivityDetailMessage().setShowFollow(1);
+        if(getCurrentUser() != null){
+            if(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), activity))
+                getShowStudentActivityDetailMessage().setShowFollow(0);
+            else
+                getShowStudentActivityDetailMessage().setShowFollow(1);
+        }
         getShowStudentActivityDetailMessage().setFollowNumber(applyStudentActivityService.getFollowedNumberByActivityId(activityID));
         getShowStudentActivityDetailMessage().setActivity(activity);
         return SUCCESS;
