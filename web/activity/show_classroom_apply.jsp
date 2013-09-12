@@ -315,9 +315,9 @@
 	    <% if ((message.isShowApprove())&&(message.getApproveType() == ShowApplyMessage.APPROVE_TYPE_RESOURCE)) {%>
 	    <select id="moduleSelect" style="margin: 5px 0px 0px 0px;max-width: 600px;">
 		<option value="0">使用审批模板</option>
-		<option value="1">[C楼教室]同意，借用C楼XXX教室，请将此单放到C楼306门口文件袋内。</option>
-		<option value="2">[多媒体教室]同意，请持此单到老12号楼416注册中心办理，望贵处大力支持。</option>
-		<option value="3">[普通教室]同意，请持此单到四教二层物业中心办理，望贵处大力支持。</option>
+		<option value="1">[C楼教室]同意，借用C楼XXX教室，请到校团委门厅【已批文件夹】领取此单，放到C楼306门口文件袋内。</option>
+		<option value="2">[多媒体教室]同意，请到校团委门厅【已批文件夹】领取此单，持单到老12号楼416注册中心办理，望贵处大力支持。</option>
+		<option value="3">[普通教室]同意，请到校团委门厅【已批文件夹】领取此单，持单到四教二层物业中心办理，望贵处大力支持。</option>
 	    </select>
 	    <% }%>
 	    <div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>

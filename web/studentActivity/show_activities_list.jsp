@@ -102,12 +102,14 @@
         
             <div class="choosedate">
                 <p id="date"></p>
-                <button id="btn_clear" class="class-bar-text">全部</button>
+                <div class="class-bar-text">
+                    <a id="btn_clear" style="cursor: pointer" class="selected-border">全部</a>
+                </div>
             </div>
         </div>
     </div>
     <div style="height:10px;"></div>
-    <div id="main_content" class="main-style">
+    <div id="main_content" class="main-style" style="margin-top: 0px;">
         <div id="content_div" class="content-div-style">
             <!-- 画折角效果 -->
             <div id="content_flexagon1" class="flexagon-style">
