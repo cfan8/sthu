@@ -22,6 +22,7 @@ import cn.edu.tsinghua.sthu.entity.ApplyCommentEntity;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.ClickCountEntity;
 import cn.edu.tsinghua.sthu.entity.CommentEntity;
+import cn.edu.tsinghua.sthu.entity.FollowEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApproveEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
@@ -376,6 +377,12 @@ public class ApplyStudentActivityService extends BaseService{
 	int r = applyStudentActivityDAO.getMyApplyCountByUserID(userID);
 	return (r / numberPerPage) + (r % numberPerPage == 0? 0: 1);
     }
+     @Transactional
+     public int getMyApplyTotalPageNumber(int userID)
+    {
+	int r = applyStudentActivityDAO.getMyApplyCountByUserID(userID);
+	return r;
+    }
      
     @Transactional
     public List<StudentActivityApplyEntity> getMyApplyList(int userid, int page, int numberPerPage)
@@ -712,6 +719,11 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
+    public int getFollowedActivityNumberByUser(UserEntity user){
+        return followDAO.getFollowActivityNumberByUserId(user.getID());
+    }
+    
+    @Transactional
     public int getFollowedNumberByActivityId(int activityId){
         return followDAO.getFollowedNumberByActivityId(activityId);
     }
@@ -748,6 +760,46 @@ public class ApplyStudentActivityService extends BaseService{
         entity.setActivityID(activityID);
         clickCountDAO.addClickCount(entity);
         
+    }
+    
+    @Transactional
+    public List<StudentActivityApplyEntity> getFollowActivitiesByUser(UserEntity user){
+        List<StudentActivityApplyEntity> list = new ArrayList<StudentActivityApplyEntity>();
+        List<FollowEntity> followlist = followDAO.getFollowActivityByUserId(user.getID());
+        for (FollowEntity followEntity : followlist) {
+            list.add(getStudentActivityApplyEntityById(followEntity.getActivityID()));
+        }
+        return list;
+    }
+    
+    //关注的活动和 关注的组织的活动
+    @Transactional
+    public List<StudentActivityApplyEntity> getFollowAndGroupActivitiesByUser(UserEntity user, List<StudentActivityApplyEntity> followedActivities, List<UserEntity> groups){
+        for (UserEntity g : groups) {
+            for (StudentActivityApplyEntity e : applyStudentActivityDAO.getAllAcceptedPublicActivitiesByApplyGroupid(g.getID())) {
+                if(!followedActivities.contains(e)){
+                    followedActivities.add(e);
+                }
+            }
+        }
+        return followedActivities;
+    }
+    
+    public String getFollowActivityString(List<StudentActivityApplyEntity> list){
+        if(list == null)
+            return "";
+        String str = "calendar.addData({";
+        for (StudentActivityApplyEntity e : list) {
+            str += "\"" + e.getActivityDate().toString() + "\" : [{";
+            str += "\"title\" : \"" + e.getActivityTheme() + "\",";
+            str += "\"time\" : \"" + e.getTimePeriod() + "\",";
+            if(e.getOption().getCroomLocation() != null && e.getOption().getCroomLocation().compareTo("") != 0)
+                str += "\"place\" : \"" + e.getOption().getCroomLocation() + "\",";
+            str += "\"href\" : \"/studentActvity/showStudentActivityDetail.do?activityID=" + e.getID() + "\"";
+            str += "}],";
+        }
+        str += "});";
+        return str;
     }
       
     /**

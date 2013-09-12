@@ -261,6 +261,14 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("applyUserid", userID))).setProjection(Projections.rowCount()).uniqueResult();
         return ((Long) r).intValue();
     }
+    public List<StudentActivityApplyEntity> getAllAcceptedPublicActivitiesByApplyGroupid(int userID){
+         List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                 Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                 Restrictions.eq("applyUserid",userID))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).list();       
+	return list;
+    }
     
     public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByActivityType(int begin, int number, int activityType){
          List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(

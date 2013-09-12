@@ -508,9 +508,9 @@
                 <% } %>
                 <% }%>
             </p>
-            <%if(message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE){%>
+            
             <p><label>地点</label><input type="text" id="croomLocation" name="croomLocation"/></p>
-            <%}%>
+
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
         </form>

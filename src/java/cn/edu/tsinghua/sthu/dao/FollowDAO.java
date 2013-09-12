@@ -67,12 +67,27 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
                 Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_GROUP))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
         return list;
     }
+    public List<FollowEntity> getFollowGroupByUserId(int userID, int maxNum){
+        List<FollowEntity> list = select().add(
+                Restrictions.and(
+                Restrictions.eq("userID", userID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_GROUP))).add(
+                Restrictions.sqlRestriction("1=1 order by rand()")).setMaxResults(maxNum).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
+        return list;
+    }
     public List<FollowEntity> getFollowActivityByUserId(int userID){
         List<FollowEntity> list = select().add(
                 Restrictions.and(
                 Restrictions.eq("userID", userID),
                 Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_ACTIVITY))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
         return list;
+    }
+    public int getFollowActivityNumberByUserId(int userID){
+        Object r = select().add(Restrictions.and(
+                Restrictions.eq("userID", userID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_ACTIVITY)))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
     }
     public boolean isGroupFollowedByUser(int userID, int groupID){
         List<FollowEntity> list = select().add(
@@ -98,6 +113,13 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
         Object r = select().add(Restrictions.and(
                 Restrictions.eq("activityID", activityID),
                 Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_ACTIVITY)))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+    public int getFollowedNumberByGroupId(int groupID){
+        Object r = select().add(Restrictions.and(
+                Restrictions.eq("groupID", groupID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_GROUP)))
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }

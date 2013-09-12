@@ -1,0 +1,198 @@
+/**
+ * 日历样式
+ */
+section.calendar {
+	flex: none !important;
+}
+
+section.calendar table {
+	border-collapse: collapse;
+}
+
+section.calendar td {
+	border: 1px solid;
+}
+
+section.calendar td a {
+	display: block;
+	vertical-align: middle;
+	text-align: center;
+}
+
+section.calendar.small {
+	display: table!important;
+	background: #009bd3;
+}
+
+section.calendar.small,section.calendar.small a {
+	color: #fefefe;
+}
+
+section.calendar.small>* {
+	display: table-cell;
+}
+
+section.calendar.small>div {
+	font-size: 20px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+section.calendar.small>div a {
+	width: 45px;
+	display: block;
+	line-height: 56px;
+}
+
+section.calendar.small td {
+	border-color: #99d7ed
+}
+
+section.calendar.small td:first-child {
+	font-size: 13px;
+	font-weight: bold;
+	width: 16px;
+	color: #ffaa6c;
+}
+
+section.calendar.small td:first-child span {
+	display: block;
+	width: 16px;
+	position: relative;
+	top: 6px;
+	text-align: center;
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+section.calendar.small td:nth-child(n+7)>a {
+	color: #ffec6c;
+}
+
+section.calendar.small a.lighter {
+	color: #CCC;
+}
+
+section.calendar.small a.today {
+	color: #009bd3;
+	background: #abdef1;
+}
+
+section.calendar.small a.event {
+	background: #4CF;
+}
+section.calendar.small td a {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+}
+
+section.calendar.large {
+	height: 524px;
+	display: flex;
+	flex-direction: column;
+	display: table\0;
+}
+
+section.calendar.large table {
+	position: relative;
+	background: #61e5e0;
+	font-size: 36px;
+	font-family: SimHei;
+	line-height: 66px;
+	text-align: center;
+}
+
+section.calendar.large td,section.calendar.large th {
+	border: 1px solid #FFF;
+	width: 66px;
+	padding: 0;
+}
+
+section.calendar.large td:first-child {
+	font-size: 22px;
+	line-height: 46px;
+	vertical-align: top;
+	text-align: left;
+	padding-left: 0.5em;
+	width: 55px;
+	color: #FFF;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+	color: rgba(0, 0, 0, 0.4) \0; /* ie9 */
+	font-family: consolas, "comic sans", monospace;
+	color: #FFF;
+}
+
+section.calendar.large td a.lighter,section.calendar.large td:first-child,section.calendar.large th
+	{
+	background: #a7f0ee;
+}
+
+section.calendar.large th.fields {
+	background: white;
+}
+
+section.calendar.large th,section.calendar.large td a {
+	color: white;
+	font-weight: normal;
+}
+
+section.calendar.large th:nth-child(n+7),section.calendar.large td:nth-child(n+7) a
+	{
+	color: #008cc7;
+}
+
+section.calendar.large th.fields::before,section.calendar.large th.fields::after
+	{
+	content: '';
+	display: block;
+	position: absolute;
+	border: 32px solid;
+}
+
+section.calendar.large th.fields span {
+	position: absolute;
+	font-size: 14px;
+	line-height: 22px;
+	z-index: 1;
+}
+
+section.calendar.large th.fields span.week {
+	left: 10px;
+	top: 36px;
+}
+
+section.calendar.large th.fields span.day {
+	left: 32px;
+	top: 6px;
+}
+
+section.calendar.large th.fields::before {
+	border-color: transparent transparent #a7f0ee #a7f0ee;
+	top: 2px;
+	left: 1px;
+}
+
+section.calendar.large th.fields::after {
+	border-color: #a7f0ee #a7f0ee transparent transparent;
+	left: 2px;
+	top: 1px;
+}
+
+section.calendar.large .event {
+	background: url('/images/attach.png') no-repeat 2px 34px;
+}
+
+section.calendar.large .curr {
+	background-color: #eec91b;
+}
+
+section.calendar.large>div {
+	flex: 1;
+	padding: 12px;
+	overflow-y: scroll;
+	background: #8cdbd8;
+	color: white;
+}

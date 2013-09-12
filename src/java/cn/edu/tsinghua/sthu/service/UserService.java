@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.entity.EmailEntity;
+import cn.edu.tsinghua.sthu.entity.FollowEntity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -194,6 +195,35 @@ public class UserService extends BaseService {
         entity.setLogoImg(logoImg);
         userDAO.updateUserEntity(entity);
         return entity;
+    }
+    
+    @Transactional
+    public List<UserEntity> getFollowGroupsByUserId(int userID){
+        List<UserEntity> list = new ArrayList<UserEntity>();
+        List<FollowEntity> followList = followDAO.getFollowGroupByUserId(userID);
+        for (FollowEntity followEntity : followList) {
+            list.add(getUserEntityById(followEntity.getGroupID()));
+        }
+        return list;
+    }
+    
+    @Transactional
+    public List<UserEntity> getFollowGroupsByUserId(int userID, int maxNum){
+        List<UserEntity> list = new ArrayList<UserEntity>();
+        List<FollowEntity> followList = followDAO.getFollowGroupByUserId(userID, maxNum);
+        for (FollowEntity followEntity : followList) {
+            list.add(getUserEntityById(followEntity.getGroupID()));
+        }
+        return list;
+    }
+    
+    @Transactional
+    public List<Integer> getFollowedGroupsFollowNumbers(List<UserEntity> groups){
+        List<Integer> list = new ArrayList<Integer>();
+        for (UserEntity e : groups) {
+            list.add(followDAO.getFollowedNumberByGroupId(e.getID()));
+        }
+        return list;
     }
 
     public UserDAO getUserDAO() {

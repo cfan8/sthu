@@ -1,0 +1,124 @@
+/**
+ * 默认主题样式
+ */
+body {
+	background-color: #e4e6e5;
+}
+
+header .buttons {
+	background: #000; /* failsafe for ie9 */
+	background: -webkit-linear-gradient(top, #000, #363636);
+	background: -moz-linear-gradient(top, #000, #363636);
+	background: linear-gradient(top, #000, #363636);
+}
+
+header a {
+	color: #a9a9a9;
+}
+
+header .i-username>a {
+	color: #FFF;
+}
+
+header menu>.active {
+	background: #444;
+}
+
+header menu>.active>a {
+	color: #FFF;
+}
+
+section.search input[type="text"] {
+	border-color: #a2a099;
+}
+
+section.search input[type="submit"] {
+	color: #858585;
+}
+
+section.search input[type="submit"]:hover {
+	background: #EEE;
+	cursor: pointer;
+}
+
+section.search input[type="submit"].active {
+	background: #009bd3;
+	color: #FFF;
+}
+
+section.block {
+	background-color: #FFF;
+}
+
+section.filter,section.filter a {
+	background: #FFF;
+	color: #6e6e6e;
+}
+
+section.filter .active a {
+	background: #5f5f5f;
+	color: #fefefe;
+}
+
+section.filter a:hover {
+	background: #EFEFEF;
+}
+
+section.page-num {
+	background: #FFF;
+	color: #cdcdcd;
+}
+
+section.page-num a {
+	color: #cdcdcd;
+}
+
+section.page-num a:hover {
+	background: #EEE;
+}
+
+section.page-num a.active {
+	color: #676767;
+}
+
+ul.list {
+	background: #FFF;
+}
+
+ul.list li:hover {
+	background: #f0efef;
+}
+
+ul.list a {
+	color: #676767;
+}
+
+ul.list h2,ul.list a>label.date {
+	color: #b6b6b6;
+}
+
+.triangle-handle::before,.triangle-handle::after {
+	border-color: #18453b;
+}
+
+footer {
+	background: #c1d7e0;
+}
+
+footer a {
+	color: #1b7684;
+}
+
+footer hr {
+	border-color: #FFF transparent #bacfd8;
+}
+
+footer label {
+	color: #FFF;
+	background: #adc2cc;
+}
+
+footer .end {
+	background: #e5e5e5;
+	color: #484848;
+}
