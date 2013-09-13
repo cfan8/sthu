@@ -96,15 +96,18 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>  
+                <div class="chooseAll">
+                    <div class="class-bar-text" >
+                        <a id="btn_clear" style="cursor: pointer" class="selected-border">全部活动</a>
+                    </div>
+                </div>
             </div>
            
         
-            <div class="choosedate">
-                <p id="date"></p>
-                <div class="class-bar-text">
-                    <a id="btn_clear" style="cursor: pointer" class="selected-border">全部</a>
-                </div>
+            <div class="choosedate" style="bottom:0;">
+                <span id="date"></span>
+                
             </div>
         </div>
     </div>
