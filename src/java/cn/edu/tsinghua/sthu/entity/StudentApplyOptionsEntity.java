@@ -114,6 +114,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     private int ticketFlag; //标记是否申请门票抽签
     //门票抽签申请
     private int ticketNum; //门票数目
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date ticketRandomDate; //抽票日期
  //   @Temporal(javax.persistence.TemporalType.DATE)
     private String ticketTime; //发票时间
     @Column(length = 256)
@@ -688,6 +690,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setDigestFlag(int digestFlag) {
         this.digestFlag = digestFlag;
+    }
+
+    /**
+     * @return the ticketRandomDate
+     */
+    public Date getTicketRandomDate() {
+        return ticketRandomDate;
+    }
+
+    /**
+     * @param ticketRandomDate the ticketRandomDate to set
+     */
+    public void setTicketRandomDate(Date ticketRandomDate) {
+        this.ticketRandomDate = ticketRandomDate;
     }
 
 }

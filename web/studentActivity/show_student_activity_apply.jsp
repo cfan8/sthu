@@ -386,6 +386,7 @@
             <%if(options.getTicketFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">门票抽签申请:</td></tr>
             <tr><td class="tag">门票数目:</td><td class="value"><%=options.getTicketNum()%></td></tr>
+            <tr><td class="tag">抽票日期:</td><td class="value"><%=options.getTicketRandomDate()%></td></tr>
             <tr><td class="tag">发票时间:</td><td class="value"><%=options.getTicketTime()%></td></tr>
             <tr><td class="tag">发票地点:</td><td class="value"><%=options.getTicketLocation()%></td></tr>
             <%}%>

@@ -15,6 +15,7 @@ public class ShowStudentActivityDetailMessage extends BaseMessage{
     private StudentActivityApplyEntity activity;
     private int followNumber = 0;
     private int showFollow;
+    private int showTicket;
 
     /**
      * @return the activity
@@ -56,6 +57,20 @@ public class ShowStudentActivityDetailMessage extends BaseMessage{
      */
     public void setShowFollow(int showFollow) {
         this.showFollow = showFollow;
+    }
+
+    /**
+     * @return the showTicket
+     */
+    public int getShowTicket() {
+        return showTicket;
+    }
+
+    /**
+     * @param showTicket the showTicket to set
+     */
+    public void setShowTicket(int showTicket) {
+        this.showTicket = showTicket;
     }
     
 }

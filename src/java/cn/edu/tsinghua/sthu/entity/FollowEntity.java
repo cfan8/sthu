@@ -20,6 +20,10 @@ import org.hibernate.annotations.Index;
 public class FollowEntity extends BaseEntity{
     public static final int FOLLOW_TYPE_GROUP = 1;
     public static final int FOLLOW_TYPE_ACTIVITY = 2;
+    public static final int FOLLOW_TYPE_TICKET = 3;
+    public static final int TICKET_STATUS_WAIT = 1;
+    public static final int TICKET_STATUS_SUCCESS = 2;
+    public static final int TICKET_STATUS_FAIL = 3;
     @Index(name="userIDIndex") 
     private int userID;
     @Index(name="groupIDIndex")
@@ -27,7 +31,7 @@ public class FollowEntity extends BaseEntity{
     @Index(name="activityIDIndex")
     private int activityID;
     private int followType;
-    
+    private int ticketStatus;
     /**
      * @return the userID
      */
@@ -83,6 +87,20 @@ public class FollowEntity extends BaseEntity{
      */
     public void setActivityID(int activityID) {
         this.activityID = activityID;
+    }
+
+    /**
+     * @return the ticketStatus
+     */
+    public int getTicketStatus() {
+        return ticketStatus;
+    }
+
+    /**
+     * @param ticketStatus the ticketStatus to set
+     */
+    public void setTicketStatus(int ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 
     

@@ -9,6 +9,7 @@ import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.message.UserHomeMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import cn.edu.tsinghua.sthu.service.UserService;
+import cn.edu.tsinghua.sthu.entity.FollowEntity;
 import java.util.List;
 
 /**
@@ -30,7 +31,10 @@ public class UserHomeAction extends BaseAction{
         List<StudentActivityApplyEntity> followActivities = applyStudentActivityService.getFollowActivitiesByUser(getCurrentUser());
         List<StudentActivityApplyEntity> followAndGroupActivities = applyStudentActivityService.getFollowAndGroupActivitiesByUser(getCurrentUser(), followActivities, userHomeMessage.getInterestGroups());
         getUserHomeMessage().setActivityInfo(applyStudentActivityService.getFollowActivityString(followAndGroupActivities));
-        
+        List<FollowEntity> followTicketList = applyStudentActivityService.getFollowTicketsByUser(getCurrentUser());
+        getUserHomeMessage().setTicketList(followTicketList);
+        List<StudentActivityApplyEntity> ticketApplyList = applyStudentActivityService.getTicketFollowActivitiesByUser(getCurrentUser());
+        getUserHomeMessage().setTicketApplyList(ticketApplyList);
         return SUCCESS;
     }
 

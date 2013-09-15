@@ -39,6 +39,10 @@ public class ShowGroupHomeManageAction extends BaseAction{
             alertMessage.setSimpleAlert("非社团账户不开放浏览！");
             return false;
         }
+        if(getCurrentUser().getID() != groupId){
+            alertMessage.setSimpleAlert("权限错误！");
+            return false;
+        }
         return true;
     }
 

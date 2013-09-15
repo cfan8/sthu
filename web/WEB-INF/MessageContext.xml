@@ -48,6 +48,6 @@
     <bean id="showGroupHomeManageMessage" class="cn.edu.tsinghua.sthu.message.ShowGroupHomeManageMessage" scope="prototype" autowire="byName"/>
     <bean id="showStudentActivityDetailMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityDetailMessage" scope="prototype" autowire="byName"/>
     <bean id="userHomeMessage" class="cn.edu.tsinghua.sthu.message.UserHomeMessage" scope="prototype" autowire="byName" />
-    
+    <bean id="showTicketRandomResultMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowTicketRandomResultMessage" scope="prototype" autowire="byName" />
 </beans>
 

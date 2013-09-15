@@ -196,6 +196,7 @@
             </div>
             <div id="ticketInfo" style="display: none">
                 <div><span class="tag">门票数目:</span><span class="value"><input type="text" name="ticketNum"/></span></div>
+                <div><span class="tag">抽票日期:</span><span class="value"><input type="text" id="ticketRandomDate" name="ticketRandomDate"/></span></div>
                 <div><span class="tag">发票时间:</span><span class="value"><input type="text" name="ticketTime"/></span></div>
                 <div><span class="tag">发票地点:</span><span class="value"><input type="text" name="ticketLocation"/></span></div>
             </div>
@@ -297,6 +298,11 @@
 	    maxDate: moment(moment().format("YYYY-MM-DD")).add("days", 10).toDate()
 	});
     
+        var ticketPicker = new Pikaday({
+            field: document.getElementById('ticketRandomDate'),
+            format:'YYYY-MM-DD'
+        });
+        
 	$("#activityDate").change(function(){
 	
 	});

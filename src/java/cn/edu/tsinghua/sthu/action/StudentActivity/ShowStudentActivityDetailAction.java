@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action.StudentActivity;
 
+import java.util.*;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
@@ -35,6 +36,19 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                 getShowStudentActivityDetailMessage().setShowFollow(0);
             else
                 getShowStudentActivityDetailMessage().setShowFollow(1);
+            if(activity.getOption().getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_APPLY){
+                if((new Date()).before(activity.getOption().getTicketRandomDate())){
+                    if(applyStudentActivityService.checkActivityTicketFollowedByUser(getCurrentUser(), activity)){
+                        getShowStudentActivityDetailMessage().setShowTicket(2);
+                    }else{
+                        getShowStudentActivityDetailMessage().setShowTicket(1);
+                    }
+                }else{
+                    getShowStudentActivityDetailMessage().setShowTicket(3);//抽票结束
+                }
+            }else{
+                getShowStudentActivityDetailMessage().setShowTicket(0);//不抽票
+            }
         }
         getShowStudentActivityDetailMessage().setFollowNumber(applyStudentActivityService.getFollowedNumberByActivityId(activityID));
         getShowStudentActivityDetailMessage().setActivity(activity);

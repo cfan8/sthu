@@ -8,11 +8,15 @@
 <%@page import="cn.edu.tsinghua.sthu.action.UserHomeAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.message.UserHomeMessage"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.FollowEntity"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     UserHomeMessage message = Util.getMessage(UserHomeAction.class);
     List<UserEntity> groups = message.getInterestGroups();
     List<Integer> groupsFollowNumbers = message.getGroupsFollowNum();
+    List<FollowEntity> ticketList = message.getTicketList();
+    List<StudentActivityApplyEntity> ticketApplyList = message.getTicketApplyList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,7 +88,21 @@
 			<!--[if IE]></td><td class="vert-padding"></td><td><![endif]-->
 			<section class="block auto-width">
 				<h2>我的订票</h2>
-                                
+                                <%for(int i = 0; i < ticketList.size(); i ++){
+                                    FollowEntity ticket = ticketList.get(i);
+                                    StudentActivityApplyEntity ticketApply = ticketApplyList.get(i);
+                                %>
+                                    <li>
+                                        <a href="studentActivity/showStudentActivityDetail.do?activityID=<%=ticket.getActivityID()%>"><%=ticketApply.getActivityTheme()%></a>&nbsp;
+                                        <%if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_WAIT){%>
+                                        等待抽签
+                                        <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_SUCCESS){%>
+                                        抽签成功
+                                        <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_FAIL){%>
+                                        抽签失败
+                                        <%}%>
+                                    </li>
+                                <%}%>
 			</section>
 			<!--[if IE]></td></tr></table><![endif]-->
 			<!--[if !IE]> -->

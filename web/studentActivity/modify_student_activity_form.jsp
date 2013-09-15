@@ -198,6 +198,7 @@
             </div>
             <div id="ticketInfo" <%if(options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
                 <div><span class="tag">门票数目:</span><span class="value"><input type="text" name="ticketNum" value="<%=options.getTicketNum()%>"/></span></div>
+                <div><span class="tag">抽票日期:</span><span class="value"><input type="text" name="ticketRandomDate" id='ticketRandomDate' value="<%=options.getTicketRandomDate()%>"/></span></div>
                 <div><span class="tag">发票时间:</span><span class="value"><input type="text" name="ticketTime" value="<%=options.getTicketTime()%>"/></span></div>
                 <div><span class="tag">发票地点:</span><span class="value"><input type="text" name="ticketLocation" value="<%=options.getTicketLocation()%>"/></span></div>
             </div>
@@ -303,6 +304,11 @@
 	    maxDate: moment(moment().format("YYYY-MM-DD")).add("days", 10).toDate()
 	});
     
+        var ticketPicker = new Pikaday({
+            field: document.getElementById('ticketRandomDate'),
+            format:'YYYY-MM-DD'
+        });
+        
 	$("#activityDate").change(function(){
 	
 	});

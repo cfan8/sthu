@@ -5,6 +5,8 @@
 package cn.edu.tsinghua.sthu.message;
 
 import cn.edu.tsinghua.sthu.entity.UserEntity;
+import cn.edu.tsinghua.sthu.entity.FollowEntity;
+import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import java.util.List;
 
 /**
@@ -19,7 +21,9 @@ public class UserHomeMessage extends BaseMessage{
     private String activityInfo;
     private List<UserEntity> interestGroups;
     private List<Integer> groupsFollowNum;
-
+    private List<FollowEntity> ticketList;
+    private List<StudentActivityApplyEntity> ticketApplyList;
+    
     /**
      * @return the username
      */
@@ -117,4 +121,33 @@ public class UserHomeMessage extends BaseMessage{
     public void setFollowActivityNumber(int followActivityNumber) {
         this.followActivityNumber = followActivityNumber;
     }
+
+    /**
+     * @return the ticketList
+     */
+    public List<FollowEntity> getTicketList() {
+        return ticketList;
+    }
+
+    /**
+     * @param ticketList the ticketList to set
+     */
+    public void setTicketList(List<FollowEntity> ticketList) {
+        this.ticketList = ticketList;
+    }
+
+    /**
+     * @return the ticketApplyList
+     */
+    public List<StudentActivityApplyEntity> getTicketApplyList() {
+        return ticketApplyList;
+    }
+
+    /**
+     * @param ticketApplyList the ticketApplyList to set
+     */
+    public void setTicketApplyList(List<StudentActivityApplyEntity> ticketApplyList) {
+        this.ticketApplyList = ticketApplyList;
+    }
+
 }

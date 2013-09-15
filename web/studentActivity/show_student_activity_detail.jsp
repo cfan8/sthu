@@ -88,6 +88,17 @@
                             </a>
                             <%}%>
                         </div>
+                        <div id="ticket_div" style='float:left; margin:20px'>
+                            <%if(message.getShowTicket() == 1){%>
+                            <a href="followTicket.do?activityId=<%=entity.getID()%>">
+                               我要抽门票
+                            </a>
+                            <%}else if(message.getShowTicket() == 2){%>
+                                已参与抽门票,<%=message.getActivity().getOption().getTicketRandomDate()%>之后查看结果
+                            <%}else if(message.getShowTicket() == 3){%>
+                                抽票已结束,<a href="showTicketRandomResult.do?activityID=<%=entity.getID()%>">查看结果</a>
+                            <%}%>
+                        </div>
                     <div id="text_content" style="height:auto; min-height: 850px; padding:30px;"> 
                          <%=entity.getOption().getPublicityMaterials()%>
                     </div>

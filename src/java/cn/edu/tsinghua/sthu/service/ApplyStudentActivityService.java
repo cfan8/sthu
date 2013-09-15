@@ -31,6 +31,7 @@ import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMess
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -699,6 +700,14 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
+    public UserEntity followTicketByUser(UserEntity user, StudentActivityApplyEntity activity){
+        if(checkActivityTicketFollowedByUser(user, activity))
+            return null;
+        followDAO.addFollowTicket(user.getID(), activity.getID());
+        return user;
+    }
+    
+    @Transactional
     public UserEntity unFollowActivityByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(!checkActivityFollowedByUser(user, activity))
             return null;
@@ -718,6 +727,11 @@ public class ApplyStudentActivityService extends BaseService{
         return followDAO.isActivityFollowedByUser(user.getID(), activity.getID());
     }
     
+    @Transactional 
+    public boolean checkActivityTicketFollowedByUser(UserEntity user, StudentActivityApplyEntity activity){
+        return followDAO.isActivityTicketFollowedByUser(user.getID(), activity.getID());
+    }
+    
     @Transactional
     public int getFollowedActivityNumberByUser(UserEntity user){
         return followDAO.getFollowActivityNumberByUserId(user.getID());
@@ -728,6 +742,43 @@ public class ApplyStudentActivityService extends BaseService{
         return followDAO.getFollowedNumberByActivityId(activityId);
     }
 
+    @Transactional
+    public int getTicketFollowedNumberByActivityId(int activityId){
+        return followDAO.getTicketFollowedNumberByActivityId(activityId);
+    }
+    
+    @Transactional
+    public void randomTickets(int activityId){
+        List<FollowEntity> followlist = followDAO.getFollowTicketByActivityId(activityId);
+        int ticketFollowNum = followlist.size();
+        int ticketNum = getStudentActivityApplyEntityById(activityId).getOption().getTicketNum();
+        if(ticketFollowNum <= ticketNum){
+            for(FollowEntity followEntity : followlist){
+                followEntity.setTicketStatus(FollowEntity.TICKET_STATUS_SUCCESS);
+                followDAO.updateFollowEntity(followEntity);
+            }
+        }else{
+            Random rand = new Random();
+            List<Integer> resultList = new ArrayList<Integer>();
+            for(int i = 0; i < ticketNum;){
+                Integer tempInt = new Integer(rand.nextInt(ticketFollowNum));
+                if(!resultList.contains(tempInt)){
+                    resultList.add(tempInt);
+                    i ++;
+                }
+            }
+            for(int j = 0; j < ticketFollowNum; j++){
+                FollowEntity followEntity = followlist.get(j);
+                if(resultList.contains(j)){
+                    followEntity.setTicketStatus(FollowEntity.TICKET_STATUS_SUCCESS);
+                }else{
+                    followEntity.setTicketStatus(FollowEntity.TICKET_STATUS_FAIL);
+                }
+                followDAO.updateFollowEntity(followEntity);
+            }
+        }
+    }
+    
     @Transactional
     public String getOtherApproveStatusString(StudentActivityApplyEntity entity){
         if(entity.getApproveEntities() == null)
@@ -768,6 +819,34 @@ public class ApplyStudentActivityService extends BaseService{
         List<FollowEntity> followlist = followDAO.getFollowActivityByUserId(user.getID());
         for (FollowEntity followEntity : followlist) {
             list.add(getStudentActivityApplyEntityById(followEntity.getActivityID()));
+        }
+        return list;
+    }
+    
+    @Transactional
+    public List<FollowEntity> getFollowTicketsByUser(UserEntity user){
+        List<FollowEntity> followlist = followDAO.getFollowTicketsByUserId(user.getID());
+        return followlist;
+    }
+    
+    @Transactional
+    public List<StudentActivityApplyEntity> getTicketFollowActivitiesByUser(UserEntity user){
+        List<StudentActivityApplyEntity> list = new ArrayList<StudentActivityApplyEntity>();
+        List<FollowEntity> followlist = followDAO.getFollowTicketsByUserId(user.getID());
+        for (FollowEntity followEntity : followlist) {
+            list.add(getStudentActivityApplyEntityById(followEntity.getActivityID()));
+        }
+        return list;
+    }
+    
+    @Transactional
+    public List<UserEntity> getTicketRandomResult(int activityId){
+        List<UserEntity> list = new ArrayList<UserEntity>();
+        List<FollowEntity> followlist = followDAO.getFollowTicketsByActivityId(activityId);
+        for (FollowEntity followEntity : followlist) {
+            if(followEntity.getTicketStatus() == FollowEntity.TICKET_STATUS_SUCCESS){
+                list.add(userDAO.getUserById(followEntity.getUserID()));
+            }
         }
         return list;
     }

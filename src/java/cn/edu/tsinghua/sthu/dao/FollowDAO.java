@@ -50,6 +50,16 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
         follow.setFollowType(FollowEntity.FOLLOW_TYPE_ACTIVITY);
         insert(follow); 
     }
+    
+    public void addFollowTicket(int userID, int activityID){
+        FollowEntity follow = new FollowEntity();
+        follow.setUserID(userID);
+        follow.setActivityID(activityID);
+        follow.setFollowType(FollowEntity.FOLLOW_TYPE_TICKET);
+        follow.setTicketStatus(FollowEntity.TICKET_STATUS_WAIT);
+        insert(follow); 
+    }
+    
     public void cancelFollowActivity(int userID, int activityID){
         List<FollowEntity> list = select().add(
                 Restrictions.and(
@@ -82,6 +92,7 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
                 Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_ACTIVITY))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
         return list;
     }
+    
     public int getFollowActivityNumberByUserId(int userID){
         Object r = select().add(Restrictions.and(
                 Restrictions.eq("userID", userID),
@@ -109,6 +120,18 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
         else
             return true;
     }
+    
+    public boolean isActivityTicketFollowedByUser(int userID, int activityID){
+        List<FollowEntity> list = select().add(
+                Restrictions.and(Restrictions.eq("userID", userID),
+                Restrictions.eq("activityID", activityID), Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_TICKET))
+                ).list();
+        if(list.size() == 0)
+            return false;
+        else
+            return true;
+    }
+    
     public int getFollowedNumberByActivityId(int activityID){
         Object r = select().add(Restrictions.and(
                 Restrictions.eq("activityID", activityID),
@@ -116,11 +139,49 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
     }
+    
+    public int getTicketFollowedNumberByActivityId(int activityID){
+        Object r = select().add(Restrictions.and(
+                Restrictions.eq("activityID", activityID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_TICKET)))
+		.setProjection(Projections.rowCount()).uniqueResult();
+	return ((Long) r).intValue();
+    }
+    
     public int getFollowedNumberByGroupId(int groupID){
         Object r = select().add(Restrictions.and(
                 Restrictions.eq("groupID", groupID),
                 Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_GROUP)))
 		.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();
+    }
+    
+    public List<FollowEntity> getFollowTicketByActivityId(int activityID){
+        List<FollowEntity> list = select().add(
+                Restrictions.and(
+                Restrictions.eq("activityID", activityID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_TICKET))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
+        return list;
+    }
+    
+    public List<FollowEntity> getFollowTicketsByUserId(int userID){
+        List<FollowEntity> list = select().add(
+                Restrictions.and(
+                Restrictions.eq("userID", userID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_TICKET))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
+        return list;
+    }
+    
+    public List<FollowEntity> getFollowTicketsByActivityId(int activityID){
+        List<FollowEntity> list = select().add(
+                Restrictions.and(
+                Restrictions.eq("activityID", activityID),
+                Restrictions.eq("followType", FollowEntity.FOLLOW_TYPE_TICKET))).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();;
+        return list;
+    }
+    
+    public FollowEntity updateFollowEntity(FollowEntity entity){
+        update(entity);
+        return entity;
     }
 }

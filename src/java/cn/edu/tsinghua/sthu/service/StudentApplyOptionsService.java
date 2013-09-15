@@ -29,7 +29,7 @@ public class StudentApplyOptionsService {
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
-    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation){
+    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
         entity.setApplyUserid(userid);
         entity.setExternalFlag(externalFlag);
@@ -64,6 +64,7 @@ public class StudentApplyOptionsService {
         entity.setPublicityMaterials(publicityMaterials);
         entity.setTicketFlag(ticketFlag);
         entity.setTicketNum(ticketNum);
+        entity.setTicketRandomDate(ticketRandomDate);
         entity.setTicketTime(ticketTime);
         entity.setTicketLocation(ticketLocation);
         //getStudentApplyOptionsDAO().saveStudentApplyOptionsEntity(entity);
@@ -75,7 +76,7 @@ public class StudentApplyOptionsService {
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
-    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, String ticketTime, String ticketLocation, int optionId){
+    int publicityFlag, String publicityMaterials, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation, int optionId){
         StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getStudentApplyOptionsById(optionId);
         entity.setApplyUserid(userid);
         entity.setExternalFlag(externalFlag);
@@ -110,6 +111,7 @@ public class StudentApplyOptionsService {
         entity.setPublicityMaterials(publicityMaterials);
         entity.setTicketFlag(ticketFlag);
         entity.setTicketNum(ticketNum);
+        entity.setTicketRandomDate(ticketRandomDate);
         entity.setTicketTime(ticketTime);
         entity.setTicketLocation(ticketLocation);
         //studentApplyOptionsDAO.updateStudentApplyOptionsEntity(entity);
