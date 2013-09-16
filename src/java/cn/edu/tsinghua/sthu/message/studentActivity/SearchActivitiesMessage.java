@@ -17,6 +17,7 @@ public class SearchActivitiesMessage extends BaseMessage{
    // private List<StudentActivityApplyEntity> list;
     private int totalPageNumber;
      private Integer page;
+     private String param;
     public String getSearchKeyword() {
         return searchKeyword;
     }
@@ -54,6 +55,20 @@ public class SearchActivitiesMessage extends BaseMessage{
      */
     public void setPage(Integer page) {
         this.page = page;
+    }
+
+    /**
+     * @return the param
+     */
+    public String getParam() {
+        return param;
+    }
+
+    /**
+     * @param param the param to set
+     */
+    public void setParam(String param) {
+        this.param = param;
     }
 
 

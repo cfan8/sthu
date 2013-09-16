@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.action.StudentActivity;
 
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
@@ -31,7 +32,7 @@ public class SearchActivityAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
    
-    
+   getSearchActivitiesMessage().setParam(request.getQueryString()); 
     getSearchActivitiesMessage().setTotalPageNumber(getApplyStudentActivityService().getAcceptedActivitiesByContent(10, getSearchKeywords()));
    getSearchActivitiesMessage().setSearchKeyword(getSearchKeywords());
         return SUCCESS;
@@ -55,7 +56,7 @@ public class SearchActivityAction extends BaseAction{
     }
 
     public void setSearchKeywords(String searchKeywords) {
-        this.searchKeywords = searchKeywords;
+        this.searchKeywords = Util.decodeURL(searchKeywords);
     }
     
         

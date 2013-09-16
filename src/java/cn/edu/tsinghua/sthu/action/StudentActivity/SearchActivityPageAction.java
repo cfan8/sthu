@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package cn.edu.tsinghua.sthu.action.StudentActivity;
+import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
@@ -81,7 +82,7 @@ public class SearchActivityPageAction extends BaseAction{
      * @param searchKeywords the searchKeywords to set
      */
     public void setSearchKeywords(String searchKeywords) {
-        this.searchKeywords = searchKeywords;
+        this.searchKeywords = Util.decodeURL(searchKeywords);
     }
 
   

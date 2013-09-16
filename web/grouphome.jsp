@@ -91,7 +91,11 @@
                 <div id="title_background" class="title-background-style">
                     <div id="right_logo" class="xsh-logo-part">
                         <div id="xsh_logo" class="xsh-logo">
+                            <%if(message.getLogoImg() != null){%>
                             <img src="<%=message.getLogoImg()%>" class="img-shadow logo-img" />
+                            <%}else{%>
+                            <img src="/images/logo.jpg" class="img-shadow logo-img" />
+                            <%}%>
                         </div>
                         <div id="follow" class="follow-style" style="text-shadow: 2px 2px 5px #222;">
                             <a style="color: #fff;"><b>已有</b></a>
@@ -101,7 +105,11 @@
                     </div>
                 </div>
                 <div id="lantern_slide" class="slide-style">
+                    <%if(message.getMainImg() != null){%>
                     <img src="<%=message.getMainImg()%>" class="slide-img" />
+                    <%}else{%>
+                    <img src="/images/banner.jpg" class="slide-img" />
+                    <%}%>
                 </div>
                 <div id="xsh_intro" class="xsh_intro-style">
                     <div id="intro_right" class="intro-right-part">

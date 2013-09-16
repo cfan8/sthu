@@ -84,12 +84,21 @@
             <div class="manage-style">
                 <div class="manage_item">
                     上传大图：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
+                    <%if(message.getMainImg() != null){%>
                     <img src="<%=message.getMainImg()%>" id="main_img"/>
+                    <%}else{%>
+                    
+                    <img src="/images/banner.jpg" id="main_img"/>
+                    <%}%>
                     <input type="hidden" name="mainImg" id="mainImg" value="<%=message.getMainImg()%>"/>
                 </div>
                 <div class="manage_item" style="width:300px;float: left">
                     上传logo：<div class="upbtn"><input type="button" id="upbtn_logo" class="upbtn"/></div>
+                    <%if(message.getLogoImg() != null){%>
                     <img src="<%=message.getLogoImg()%>" id="logo_img" />
+                    <%}else{%>
+                    <img src="/images/logo.jpg" id="logo_img" />
+                    <%}%>
                     <input type="hidden" name="logoImg" id="logoImg" value="<%=message.getLogoImg()%>"/>
                 </div>
                 <div class="manage_item" style="width:480px;float:right">文字介绍：<br/><textarea name="introduction"><%=message.getIntroduction()%></textarea></div>

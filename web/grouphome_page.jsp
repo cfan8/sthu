@@ -41,7 +41,7 @@
             <div class="activity-content-div">
                 <div style="font-size: x-large;">
                     <a style="font-weight: bold; color: #888; text-decoration:none;"
-                       href="/studentActivity/showStudentActivityApply.do?applyId=<%=entity.getID()%>" 
+                       href="/studentActivity/showStudentActivityDetail.do?activityID=<%=entity.getID()%>" 
                        >
                         <%=entity.getActivityTheme()%>
                     </a>

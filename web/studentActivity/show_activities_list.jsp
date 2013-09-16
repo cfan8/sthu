@@ -33,7 +33,9 @@
     
     <div id="input_div" class="input-bar">
         <div id="input_main" class="input-main-style">
-            <div><input id="input_box" class="input-border"/></div>
+            <form id="search_form" name="search_form" action="/studentActivity/searchStudentActivity.do" method="get">
+            <div><input id="input_box" class="input-border" name="searchKeywords"/></div>
+            </form>
              <div class="input-text">
                 <div id="btn_activity" class="selected-border">
                     <div class="search-bar-text"><a style="cursor: pointer;"><b>活动</b></a></div>
@@ -290,8 +292,10 @@
            
             
             $("#btn_search").click(function(){
-                var searchKeyword = $("#input_box").val();   
-                self.location.href = "searchStudentActivity.do?searchKeywords="+searchKeyword;
+                document.getElementById("input_box").value = encodeURIComponent(document.getElementById("input_box").value);
+            
+                $('#search_form').submit();
+                return false;
             });
             //var day = new Date();
             
