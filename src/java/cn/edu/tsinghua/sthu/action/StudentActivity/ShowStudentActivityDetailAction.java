@@ -37,14 +37,30 @@ public class ShowStudentActivityDetailAction extends BaseAction{
             else
                 getShowStudentActivityDetailMessage().setShowFollow(1);
             if(activity.getOption().getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_APPLY){
-                if((new Date()).before(activity.getOption().getTicketRandomDate())){
-                    if(applyStudentActivityService.checkActivityTicketFollowedByUser(getCurrentUser(), activity)){
-                        getShowStudentActivityDetailMessage().setShowTicket(2);
+                if(activity.getApplyUserid() == getCurrentUser().getID()){
+                    if((new Date()).before(activity.getOption().getTicketRandomDate())){
+                        getShowStudentActivityDetailMessage().setShowTicket(-1);//申请者不抽票
                     }else{
-                        getShowStudentActivityDetailMessage().setShowTicket(1);
+                        if(activity.getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_UNSELECTED){
+                            getShowStudentActivityDetailMessage().setShowTicket(-2);//申请者抽票
+                        }else{
+                            getShowStudentActivityDetailMessage().setShowTicket(-3);//抽票结束
+                        }     
                     }
                 }else{
-                    getShowStudentActivityDetailMessage().setShowTicket(3);//抽票结束
+                    if((new Date()).before(activity.getOption().getTicketRandomDate())){
+                        if(applyStudentActivityService.checkActivityTicketFollowedByUser(getCurrentUser(), activity)){
+                            getShowStudentActivityDetailMessage().setShowTicket(2);
+                        }else{
+                            getShowStudentActivityDetailMessage().setShowTicket(1);
+                        }
+                    }else{
+                        if(activity.getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_SELECTED){
+                            getShowStudentActivityDetailMessage().setShowTicket(3);//抽票结束
+                        }else{
+                            getShowStudentActivityDetailMessage().setShowTicket(4);//门票预订停止，等待抽票结果
+                        }
+                    }
                 }
             }else{
                 getShowStudentActivityDetailMessage().setShowTicket(0);//不抽票

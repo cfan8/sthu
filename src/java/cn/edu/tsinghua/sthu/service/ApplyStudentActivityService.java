@@ -777,6 +777,9 @@ public class ApplyStudentActivityService extends BaseService{
                 followDAO.updateFollowEntity(followEntity);
             }
         }
+        StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(activityId);
+        entity.getOption().setTicketStatus(StudentApplyOptionsEntity.TICKET_SELECTED);
+        applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
     }
     
     @Transactional

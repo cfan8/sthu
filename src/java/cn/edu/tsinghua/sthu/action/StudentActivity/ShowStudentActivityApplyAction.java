@@ -11,6 +11,7 @@ import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityApplyMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import cn.edu.tsinghua.sthu.service.StudentApplyOptionsService;
+import java.util.Date;
 
 /**
  *
@@ -113,6 +114,17 @@ public class ShowStudentActivityApplyAction extends BaseAction{
                 else{
                     showStudentActivityApplyMessage.setDigestButtonStatus(ShowStudentActivityApplyMessage.DIGEST_BUTTON_SHOW);
                 }
+            }
+            if(getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()){
+                if((new Date()).before(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketRandomDate())){
+                        showStudentActivityApplyMessage.setShowTicket(0);//申请者不抽票
+                    }else{
+                        if(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_UNSELECTED){
+                            showStudentActivityApplyMessage.setShowTicket(1);//申请者抽票
+                        }else{
+                            showStudentActivityApplyMessage.setShowTicket(2);//抽票结束
+                        }     
+                    }
             }
 	    return SUCCESS;
 	}

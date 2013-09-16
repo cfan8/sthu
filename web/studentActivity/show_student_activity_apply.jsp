@@ -389,6 +389,11 @@
             <tr><td class="tag">抽票日期:</td><td class="value"><%=options.getTicketRandomDate()%></td></tr>
             <tr><td class="tag">发票时间:</td><td class="value"><%=options.getTicketTime()%></td></tr>
             <tr><td class="tag">发票地点:</td><td class="value"><%=options.getTicketLocation()%></td></tr>
+            <%if(message.getShowTicket() == 1){%>
+                <tr><td class="tag"></td><td><a class="button" href="randomTickets.do?activityId=<%=entity.getID()%>">随机抽票</a></td></tr>
+            <%}else if(message.getShowTicket() == 2){%>
+                <tr><td class="tag"></td><td><a class="button" href="showTicketRandomResult.do?activityID=<%=entity.getID()%>" target="_blank">查看抽票结果</a></td></tr>
+            <%}%>
             <%}%>
             <tr><td colspan="2"><hr/></td></tr>
             <tr><td class="tag applyStatus">当前申请状态：</td><td class="value">

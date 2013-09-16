@@ -44,6 +44,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int PUBLICITYFLAG_APPLY = 1;
     public static final int TICKETFLAG_NOTAPPLY = 0;
     public static final int TICKETFLAG_APPLY = 1;
+    public static final int TICKET_UNSELECTED = 0;
+    public static final int TICKET_SELECTED = 1;
     public static final int ORDINARY_ACTIVITY = 0;
     public static final int DIGEST_ACTIVITY = 1;
     
@@ -117,6 +119,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date ticketRandomDate; //抽票日期
  //   @Temporal(javax.persistence.TemporalType.DATE)
+    private int ticketStatus;
     private String ticketTime; //发票时间
     @Column(length = 256)
     private String ticketLocation; //发票地点
@@ -704,6 +707,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setTicketRandomDate(Date ticketRandomDate) {
         this.ticketRandomDate = ticketRandomDate;
+    }
+
+    /**
+     * @return the ticketStatus
+     */
+    public int getTicketStatus() {
+        return ticketStatus;
+    }
+
+    /**
+     * @param ticketStatus the ticketStatus to set
+     */
+    public void setTicketStatus(int ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 
 }

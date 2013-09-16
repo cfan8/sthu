@@ -97,6 +97,14 @@
                                 已参与抽门票,<%=message.getActivity().getOption().getTicketRandomDate()%>之后查看结果
                             <%}else if(message.getShowTicket() == 3){%>
                                 抽票已结束,<a href="showTicketRandomResult.do?activityID=<%=entity.getID()%>">查看结果</a>
+                            <%}else if(message.getShowTicket() == 4) {%>
+                                门票预订停止，等待抽票结果
+                            <%}else if(message.getShowTicket() == -1) {%>
+                                <%=message.getActivity().getOption().getTicketRandomDate()%>后抽票
+                            <%}else if(message.getShowTicket() == -2) {%>
+                                报名截止,<a href="randomTickets.do?activityId=<%=entity.getID()%>">开始抽票</a>
+                            <%}else if(message.getShowTicket() == -3) {%>
+                                抽票结束,<a href="showTicketRandomResult.do?activityID=<%=entity.getID()%>">查看结果</a>
                             <%}%>
                         </div>
                     <div id="text_content" style="height:auto; min-height: 850px; padding:30px;"> 

@@ -24,6 +24,7 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
     private String otherApproveString; //校团委选择的其他部门的审批状态
     private int digestButtonStatus; //是否显示加精按钮或者显示取消按钮
     private int approveType;
+    private int showTicket;//抽票按钮
     private CommentEntity commentEntity;
     public static final int APPROVE_TYPE_IDENTITY = 1;
     public static final int APPROVE_TYPE_RESOURCE = 2;
@@ -201,5 +202,19 @@ public class ShowStudentActivityApplyMessage extends BaseMessage{
      */
     public void setDigestButtonStatus(int digestButtonStatus) {
         this.digestButtonStatus = digestButtonStatus;
+    }
+
+    /**
+     * @return the showTicket
+     */
+    public int getShowTicket() {
+        return showTicket;
+    }
+
+    /**
+     * @param showTicket the showTicket to set
+     */
+    public void setShowTicket(int showTicket) {
+        this.showTicket = showTicket;
     }
 }
