@@ -116,7 +116,7 @@ public class ShowStudentActivityApplyAction extends BaseAction{
                 }
             }
             if(getCurrentUser().getID() == showStudentActivityApplyMessage.getApplyEntity().getApplyUserid()){
-                if((new Date()).before(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketRandomDate())){
+                if(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketRandomDate() == null ||(new Date()).before(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketRandomDate())){
                         showStudentActivityApplyMessage.setShowTicket(0);//申请者不抽票
                     }else{
                         if(showStudentActivityApplyMessage.getApplyEntity().getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_UNSELECTED){
