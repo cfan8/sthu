@@ -6,11 +6,15 @@ body {
     min-width:1240px;
     background-color:#eee;
     width:100%;
+    font-family: SimHei;
 }
 li {
     list-style-type:none;
 }
-.input-border {
+img{
+    border: none;
+}
+.input-border, .input-navi-border {
     float:left;
     transition: all 0.30s ease-in-out;
     -webkit-transition: all 0.30s ease-in-out;
@@ -24,13 +28,23 @@ li {
     background-color:#eee;
 }
 .input-bar {
-    margin-top:40px;
-    margin-bottom:20px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 .input-main-style {
     margin:0 auto;
     width:630px;
     height:22px;
+}
+.input-navi-style{
+    margin: 20px;
+    margin-right: 200px;
+    float: right;
+    width: 400px;
+    height: 22px;
+}
+.input-navi-border{
+    min-width: 280px;
 }
 .input-text {
     float:right;
@@ -53,8 +67,8 @@ li {
     color:#fff;
     background-color:#0ad;
     float:left;
-    padding-right:12px;
-    padding-left:12px;
+    padding-right:15px;
+    padding-left:15px;
     
     padding-top:2px;
     padding-bottom:2px;
@@ -74,13 +88,15 @@ li {
     margin-left:10px;
 }
 .main-style {
-    margin-top:40px;
+    margin-top:0px;
 }
 .content-div-style {
     margin:0 auto; 
     width:1000px;
 }
 .content-style {
+    margin: 0 auto;
+    width: 900px;
 }
 .content-main-style {
     background-color:#fff;
@@ -106,29 +122,54 @@ li {
 }
 .choosediv{
     margin: 0 auto;
-    width: 1000px;
+    width: 900px;
     height: 250px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .chooseActivity{
     float:left;
-    width: 600px;
+    width: 250px;
     height: 250px;
     background-color:white;
 }
+.hotActivity{
+    float:left;
+    width: 280px;
+    height: 250px;
+    background-color:#FDB53B;
+    margin-left: 20px;
+    color: white;
+}
+.hotTitle{
+    position: relative;
+    top: 15px;
+    left:30px;
+    font-size: 30px; 
+}
 .ActivityTitle{
     position: relative;
-    top: 10px;
-    left:50px;
+    top: 15px;
+    left:40px;
     color:#888;
     font-size: 30px;
 }
-.chooseActivityClass{
-    width: 430px;
+.hotClass{
+    width: 250px;
     height: 100px;
     position: relative;
-    top: 40px;
-    left:30px;
+    top: 30px;
+    left:15px;
+    border-top: 3px solid #fff;
+    padding-top: 5px;
+}
+.chooseActivityClass{
+    width: 220px;
+    height: 100px;
+    position: relative;
+    top: 30px;
+    left:15px;
+    border-top: 3px solid #ccc;
+    padding-top: 5px;
 }
 .ActivityClassTitle{
     float: left;
@@ -137,14 +178,17 @@ li {
 }
 .ActivityClass{
     float:  right;
-    width: 350px;   
+    width: 230px;   
 }
 .class-bar-text{
     float: left;
-    width: 100px;
+    width: 90px;
     height: 25px;
     color:#888;
     font-size: 15px;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 .chooseDigest{
     width: 300px;
@@ -165,3 +209,13 @@ li {
 .choosedate{
     float: right;
 }
+#ticket_div{
+    float:right; 
+    margin:20px;
+    margin-right: 65px;
+}
+#ticket_div a, #ticket_div a:link, #ticket_div a:visited{
+    text-decoration: none;
+    color:red;
+}
+

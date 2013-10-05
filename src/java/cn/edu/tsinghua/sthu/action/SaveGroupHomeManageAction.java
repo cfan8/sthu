@@ -8,8 +8,10 @@ import cn.edu.tsinghua.sthu.security.XSSProtect;
 import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.security.XSSProtectedClass;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.GroupImgEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.service.UserService;
+import java.util.List;
 
 /**
  *
@@ -25,10 +27,29 @@ public class SaveGroupHomeManageAction extends BaseAction{
     private String mainImg;
     @XSSProtect(XSSProtectLevel.Strict)
     private String logoImg;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String image;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String title;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String enable;
+    
     
     @Override
     public String onExecute() throws Exception {
         getUserService().modifyGroupInfo(groupId, introduction, mainImg, logoImg);
+        List<GroupImgEntity> list = userService.getImagesByGroupId(groupId);
+	String[] images = getImage().split("\\|\\|", -1);
+	String[] titles = getTitle().split("\\|\\|", -1);
+	String[] enables = getEnable().split("\\|\\|", -1);
+	for (int i = 0; i < list.size(); i++)
+	{
+	    GroupImgEntity entity = list.get(i);
+	    entity.setImg(images[i]);
+	    entity.setTitle(titles[i]);
+	    entity.setEnabled("true".equals(enables[i]) ? true:false);
+	}
+	userService.updateImgs(list);
         alertMessage.setSimpleAlert("已保存！", "showGroupHome.do?groupId=" + groupId);
         return ALERT;
     }
@@ -50,6 +71,13 @@ public class SaveGroupHomeManageAction extends BaseAction{
         return true;
     }
 
+    @Override
+    public boolean hasAuth(){
+        if(getCurrentUser().getID() != groupId){
+            return false;
+        }
+        return true;
+    }
     @Override
     public boolean needLogin() {
         return false;
@@ -123,5 +151,47 @@ public class SaveGroupHomeManageAction extends BaseAction{
      */
     public void setLogoImg(String logoImg) {
         this.logoImg = logoImg;
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the enable
+     */
+    public String getEnable() {
+        return enable;
+    }
+
+    /**
+     * @param enable the enable to set
+     */
+    public void setEnable(String enable) {
+        this.enable = enable;
     }
 }

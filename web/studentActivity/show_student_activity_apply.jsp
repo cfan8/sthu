@@ -34,6 +34,8 @@
         <title>显示活动申请</title>
         <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_tiny.js"></script>
         <script type="text/javascript" charset="utf-8" src="/ueditor/editor_all_min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/uploadify/uploadify.css"/>
         <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
         <style>
             #tablediv{
@@ -239,7 +241,7 @@
                 margin-top:20px;
             }
             
-            #publishDiv a
+            #publishButton a
             {
                 display: inline-block;
                 width: 180px;
@@ -249,7 +251,7 @@
                 margin-top:10px;
             }
 
-            #publishDiv a:link, #confirmDiv a:visited, #publishDiv a:visited
+            #publishButton a:link, #confirmDiv a:visited, #publishDiv a:visited
             {
                 text-decoration: none;
                 color: white;
@@ -287,13 +289,40 @@
     <%if(message.isShowPublishEdit()){%>
     <div id="publishDiv">学生清华发布申请：
         <form method="post" action="savePublishMaterial.do?applyId=<%=entity.getID()%>" id="publishForm">
-        <div style="margin-top:10px"><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;margin-top:10px"><%=entity.getOption().getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
+        <div style="margin-top:10px"><span class="tag">宣传图片：</span>
+                
+                    <img src="<%=options.getPublicityImg()%>" width="80px" height="60px" id="main_img"/>
+                    <br/>
+                    上传图片（300*400）：<div class="upbtn" style="width:500px;"><input type="button" id="upbtn_main"/></div>
+                    <input type="hidden" name="mainImg" id="mainImg" value="<%=options.getPublicityImg()%>"/>
+                
+        </div>
+        <div style="margin-top:10px"><span class="tag">宣传材料(审批同意后请提交以交给成才中心审批发布，修改后请务必先保存后提交):</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;margin-top:10px"><%=entity.getOption().getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
+        <div id="publishButton">
         <a href="#" class="button" id="savePublish">保存</a>
         <a href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" target="_blank" class="button">预览</a>
         <a href="#" class="button" id="submitPublishEdit">提交</a>
+        </div>
         </form>
+        <script type="text/javascript" charset="utf-8" src="/uploadify/jquery.uploadify.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="/ueditor/editor_config_user.js"></script>
         <script type="text/javascript">
+            $("#upbtn_main").uploadify({
+                'multi'    : false,
+                'height':'35px',
+                'width':'500px',
+                'buttonText' : '上传图片',
+                'fileSizeLimit' : '4000KB',
+                'fileTypeDesc' : '图片文件',
+                'fileTypeExts' : '*.gif; *.jpg; *.png',
+                'swf'      : '/uploadify/uploadify.swf',
+                'uploader' : '/ueditor/jsp/imageUp.jsp',
+                'onUploadSuccess' : function(file, data, response) {
+                    json=eval('('+data+')');
+                    $("#main_img").attr("src",json.url);
+                    $("#mainImg").val(json.url);
+                }
+            });
             var pe = UE.getEditor('publicityEditor');
              $("#savePublish").click(function() {
                 $("#publicityMaterials").val(pe.getContent());
@@ -380,6 +409,7 @@
             <%}%>
             <%if(options.getPublicityFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">学生清华发布申请:</td></tr>
+            <tr><td class="tag">宣传图片:</td><td class="value"><img src="<%=options.getPublicityImg()%>" width="80px" height="60px"></td></tr>
             <tr><td class="tag">宣传材料:</td><td class="value"><%=options.getPublicityMaterials()%></td></tr>
             <tr><td class="tag"></td><td><a class="button" href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>" target="_blank">预览</a></td></tr>
             <%}%>

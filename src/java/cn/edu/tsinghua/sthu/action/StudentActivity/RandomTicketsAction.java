@@ -64,8 +64,6 @@ public class RandomTicketsAction extends BaseAction{
 
     @Override
     public boolean hasAuth(){
-        if(getCurrentUser().getAuth().getRole() != AuthEntity.GROUP_ROLE)
-            return false;
         return true;
     }
     

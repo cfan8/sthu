@@ -120,6 +120,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private int publicityFlag; //标记是否申请发布学生清华，1：申请，0：不申请
     @XSSProtect(XSSProtectLevel.RichText)
     private String publicityMaterials; //宣传材料
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String mainImg;
     
     //门票抽签申请
     private int ticketFlag; //标记是否申请门票抽签，1：申请，0：不申请
@@ -140,7 +142,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	if (applyId == null || applyId == -1) {
             option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation());
 	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option);
@@ -151,7 +153,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 		    getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的活动申请！");
@@ -956,6 +958,20 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setTicketRandomDate(Date ticketRandomDate) {
         this.ticketRandomDate = ticketRandomDate;
+    }
+
+    /**
+     * @return the mainImg
+     */
+    public String getMainImg() {
+        return mainImg;
+    }
+
+    /**
+     * @param mainImg the mainImg to set
+     */
+    public void setMainImg(String mainImg) {
+        this.mainImg = mainImg;
     }
     
 }

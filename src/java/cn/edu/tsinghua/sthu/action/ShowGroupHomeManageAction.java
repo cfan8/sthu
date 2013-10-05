@@ -25,6 +25,7 @@ public class ShowGroupHomeManageAction extends BaseAction{
         showGroupHomeManageMessage.setGroupId(getGroupId());
         showGroupHomeManageMessage.setMainImg(userService.getUserEntityById(groupId).getMainImg());
         showGroupHomeManageMessage.setLogoImg(userService.getUserEntityById(groupId).getLogoImg());
+        showGroupHomeManageMessage.setImages(userService.getImagesByGroupId(groupId));
         return SUCCESS;
     }
     

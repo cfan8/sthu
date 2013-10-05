@@ -15,10 +15,12 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
  */
 public class ShowMyStudentActivityApplyAction extends BaseAction{
 
+    private int type = 0;
     private ShowMyStudentActivityApplyMessage showMyStudentActivityApplyMessage;
     private ApplyStudentActivityService applyStudentActivityService;
     @Override
     public String onExecute() throws Exception {
+        getShowMyStudentActivityApplyMessage().setType(type);
         getShowMyStudentActivityApplyMessage().setTotalPageNumber(getApplyStudentActivityService().getMyApplyTotalPageNumber(getCurrentUser().getID(), 5));
         return SUCCESS;
     }
@@ -35,6 +37,8 @@ public class ShowMyStudentActivityApplyAction extends BaseAction{
     
     @Override
     public boolean valid() {
+        if(getType() != 0 && getType() != 1)
+            return false;
         return true;
     }
 
@@ -69,6 +73,20 @@ public class ShowMyStudentActivityApplyAction extends BaseAction{
      */
     public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
         this.applyStudentActivityService = applyStudentActivityService;
+    }
+
+    /**
+     * @return the type
+     */
+    public int getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(int type) {
+        this.type = type;
     }
     
 }

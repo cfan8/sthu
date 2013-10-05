@@ -4,8 +4,10 @@
  */
 package cn.edu.tsinghua.sthu.entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -19,6 +21,7 @@ public class IndexSettingEntity extends BaseEntity{
     private String title;
     private String image;
     private boolean enabled;
+    
 
     public IndexSettingEntity()
     {
@@ -59,5 +62,6 @@ public class IndexSettingEntity extends BaseEntity{
     public void setEnabled(boolean enabled) {
 	this.enabled = enabled;
     }
+
     
 }

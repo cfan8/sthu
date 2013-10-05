@@ -16,11 +16,13 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 public class ShowMyStudentActivityApplyPageAction extends BaseAction{
 
     private Integer page;
+    private Integer type;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowMyStudentActivityApplyPageMessage showMyStudentActivityApplyPageMessage;
     
     @Override
     public String onExecute() throws Exception {
+        getShowMyStudentActivityApplyPageMessage().setType(type);
         getShowMyStudentActivityApplyPageMessage().setList(getApplyStudentActivityService().getMyApplyList(getCurrentUser().getID(), getPage(), 5));
 	return SUCCESS;
     }
@@ -93,6 +95,20 @@ public class ShowMyStudentActivityApplyPageAction extends BaseAction{
      */
     public void setShowMyStudentActivityApplyPageMessage(ShowMyStudentActivityApplyPageMessage showMyStudentActivityApplyPageMessage) {
         this.showMyStudentActivityApplyPageMessage = showMyStudentActivityApplyPageMessage;
+    }
+
+    /**
+     * @return the type
+     */
+    public Integer getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(Integer type) {
+        this.type = type;
     }
     
 }

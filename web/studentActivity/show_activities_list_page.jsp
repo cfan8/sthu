@@ -24,24 +24,29 @@
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
         Boolean isFollowed = isFollowedList.get(i);
+        String theme = entity.getActivityTheme();
+            if(theme.length() > 20){
+                theme = theme.substring(0, 18);
+                theme = theme + "..";
+            }
     %>
-    <li style="height:55px;">
+    <li style="height:50px;">
         <div style="padding:5px 80px 5px 0px">
-            <div style="float:left;width:140px;text-align:center;margin:15px 20px 0px 0px;">  
+            <div style="float:left;width:140px;text-align:center;margin:8px 20px 0px 0px;">  
                 <a style="color:#000;  text-decoration:none;"
                    href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"
                      target="_blank">
                     <b><%=entity.getOrganizerName()%></b>
                 </a>
                 </div>
-            <div style="float:left;width:600px;">
+            <div style="float:left;width:500px;">
                 <div style="font-size:x-large;"> 
                     <a  style="color:#000; text-decoration:none;" target="_blank"
                         href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>">
-                        <b><%=entity.getActivityTheme()%></b>
+                        <b><%=theme%></b>
                     </a>
                 </div>
-                <div style="font-size:smaller;margin:5px 0px 0px 0px;color:#888;"> 
+                <div style="font-size:smaller;margin:10px 0px 0px 0px;color:#888;"> 
                     <%=entity.getTimePeriod() %>
                 </div>
             </div>
@@ -63,7 +68,7 @@
             </div>
         </div>
     </li>
-    <li style="height:40px;padding:15px 80px 5px 20px;"><hr/></li>
+    <li style="height:25px;padding:15px 80px 5px 20px;"><hr/></li>
     <%
 	    }
     %></ul><%

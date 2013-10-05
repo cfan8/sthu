@@ -112,6 +112,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     @Column(length = 4000)
     private String publicityMaterials; //宣传材料
     private int digestFlag; //标记是否是精华活动
+    private String publicityImg; //宣传材料单独的照片
     
     private int ticketFlag; //标记是否申请门票抽签
     //门票抽签申请
@@ -721,6 +722,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setTicketStatus(int ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    /**
+     * @return the publicityImg
+     */
+    public String getPublicityImg() {
+        return publicityImg;
+    }
+
+    /**
+     * @param publicityImg the publicityImg to set
+     */
+    public void setPublicityImg(String publicityImg) {
+        this.publicityImg = publicityImg;
     }
 
 }

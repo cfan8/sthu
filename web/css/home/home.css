@@ -6,7 +6,7 @@ header .logo-banner,section.body {
 }
 
 section.my {
-	background: #009bd3;
+	background: rgb(112, 194, 206);
 	color: #FFF;
 	padding: 16px 0 16px 18px;
 	font-family: SimHei;
@@ -50,13 +50,14 @@ section.my p label {
 }
 
 section.hots {
-	background: #ff5954;
+	background-color: #FDB53B;
 	color: white;
+	height: 180px;
 }
 
 .follows {
 	width: 282px\0;
-	height: 352px;
+	height: 277px;
 }
 
 .follows li a {

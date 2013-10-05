@@ -17,5 +17,7 @@
     <bean id="studentActivityApproveDAO" class="cn.edu.tsinghua.sthu.dao.StudentActivityApproveDAO" scope="prototype" autowire="byName" />
     <bean id="followDAO" class="cn.edu.tsinghua.sthu.dao.FollowDAO" scope="prototype" autowire="byName" />
     <bean id="clickCountDAO" class="cn.edu.tsinghua.sthu.dao.ClickCountDAO" scope="prototype" autowire="byName" />
+    <bean id="groupImgDAO" class="cn.edu.tsinghua.sthu.dao.GroupImgDAO" scope="prototype" autowire="byName" />
+
 </beans>
 

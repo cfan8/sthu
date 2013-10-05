@@ -27,6 +27,8 @@
 	    <link rel='stylesheet' type='text/css' href='/css/pikaday.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/status.css' />
 	    <link rel='stylesheet' type='text/css' href='/css/classroom/apply.css' />
+            <link rel="stylesheet" type="text/css" href="/uploadify/uploadify.css"/>
+            
             <style type="text/css">
                 textarea{
                     vertical-align: top;
@@ -186,6 +188,13 @@
                 </span>
             </div>
             <div id="publicityInfo" style="display: none">
+                <div><span class="tag">宣传图片：</span>
+                <div class="manage_item">
+                    <img src="/images/logo.jpg" width="80px" height="60px" id="main_img"/>
+                    上传图片（300*400）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
+                    <input type="hidden" name="mainImg" id="mainImg" value="/images/logo.jpg"/>
+                </div>
+                </div>
                 <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
@@ -208,6 +217,8 @@
 	</form>
     </div>
     <%@include file="/templates/general_footer.jsp" %>
+    
+    <script type="text/javascript" charset="utf-8" src="/uploadify/jquery.uploadify.min.js"></script>
     <script type="text/javascript">
 	var ce = UE.getEditor('contentEditor');
         var se = UE.getEditor('securityEditor');
@@ -270,6 +281,23 @@
                 $("#publicityInfo").hide();
             }
         }
+        
+        $("#upbtn_main").uploadify({
+            'multi'    : false,
+            'height':'35px',
+            'width':'710px',
+            'buttonText' : '上传图片',
+            'fileSizeLimit' : '4000KB',
+            'fileTypeDesc' : '图片文件',
+            'fileTypeExts' : '*.gif; *.jpg; *.png',
+            'swf'      : '/uploadify/uploadify.swf',
+            'uploader' : '/ueditor/jsp/imageUp.jsp',
+            'onUploadSuccess' : function(file, data, response) {
+		json=eval('('+data+')');
+		$("#main_img").attr("src",json.url);
+                $("#mainImg").val(json.url);
+	    }
+        });
         
         function changeTicketState(state){
             if(state == 1){
@@ -433,5 +461,9 @@
 	    }
 	    return false;
 	});
+        
+        
+        
+        
     </script>
 </html>

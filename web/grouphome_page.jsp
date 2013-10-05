@@ -23,11 +23,16 @@
 <%
     if (list.size() == 0) {
 %>
-<div style="width: 100%; text-align: center;">没有申请！</div>
+<div style="width: 100%; text-align: center;">没有活动！</div>
 <%} else {
 %><ul style="list-style-type: none;"><%
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
+        String theme = entity.getActivityTheme();
+            if(theme.length() > 22){
+                theme = theme.substring(0, 20);
+                theme = theme + "..";
+            }
     %>
     <li style="height: 55px;">
         <div style="padding: 5px 10px 5px 0px">
@@ -43,7 +48,7 @@
                     <a style="font-weight: bold; color: #888; text-decoration:none;"
                        href="/studentActivity/showStudentActivityDetail.do?activityID=<%=entity.getID()%>" 
                        >
-                        <%=entity.getActivityTheme()%>
+                        <%=theme%>
                     </a>
                 </div>
                 <div style="font-size: smaller; margin: 5px 0px 0px 0px; color: #888;">

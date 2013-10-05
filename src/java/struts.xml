@@ -199,6 +199,9 @@ and open the template in the editor.
 	<action name="showActivitiesPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesPageAction">
 	    <result name="success">show_activities_list_page.jsp</result>
 	</action>
+        <action name="showHotActivities" class="cn.edu.tsinghua.sthu.action.StudentActivity.ShowRandomHotActivitiesAction">
+	    <result name="success">show_random_hot_activities.jsp</result>
+	</action>
         <action name="searchStudentActivityPage" class="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityPageAction">
             <result name="success">search_student_activities_page.jsp</result>
          </action>

@@ -5,7 +5,15 @@
     float:left;
     height:8px;
 }
+#flexagon1{
+	margin-left: -8px;
+	margin-top: 0px;
+}
 #flexagon2,#flexagon4{
     float:right;
     height:8px;
+}
+#flexagon2{
+	margin-right: -8px;
+	margin-top: 0px;
 }

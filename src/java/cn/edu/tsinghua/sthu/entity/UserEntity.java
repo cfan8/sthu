@@ -49,6 +49,9 @@ public class UserEntity extends BaseEntity
     
     @OneToOne(cascade={CascadeType.ALL})
     private AuthEntity auth;
+    
+    @Transient
+    private List<GroupImgEntity> images;
 
      //重写hash
     public boolean equals(Object o){
@@ -165,6 +168,20 @@ public class UserEntity extends BaseEntity
      */
     public void setLogoImg(String logoImg) {
         this.logoImg = logoImg;
+    }
+
+    /**
+     * @return the images
+     */
+    public List<GroupImgEntity> getImages() {
+        return images;
+    }
+
+    /**
+     * @param images the images to set
+     */
+    public void setImages(List<GroupImgEntity> images) {
+        this.images = images;
     }
 
     

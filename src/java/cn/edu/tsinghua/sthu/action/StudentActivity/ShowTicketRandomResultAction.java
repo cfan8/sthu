@@ -65,12 +65,15 @@ public class ShowTicketRandomResultAction extends BaseAction{
 
     @Override
     public boolean needLogin() {
-        return false;
+        return true;
     }
     
     @Override 
     public boolean hasAuth(){
-        return true;
+        if(getCurrentUser().getID() == getActivity().getApplyUserid())
+            return true;
+           
+        return false;
     }
 
     /**

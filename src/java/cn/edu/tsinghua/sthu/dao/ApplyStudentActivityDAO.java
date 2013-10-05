@@ -447,4 +447,13 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                  Restrictions.eq("a.digestFlag", StudentApplyOptionsEntity.DIGEST_ACTIVITY))).setProjection(Projections.rowCount()).uniqueResult();
             return ((Long) r).intValue();
        }
+       public List<StudentActivityApplyEntity> getRandomHotActivities(int maxNum){
+           List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                   Restrictions.and(
+                        Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                        Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                        Restrictions.eq("a.digestFlag", StudentApplyOptionsEntity.DIGEST_ACTIVITY)
+                   )).add(Restrictions.sqlRestriction("1=1 order by rand()")).setMaxResults(maxNum).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+           return list;
+       }
 }

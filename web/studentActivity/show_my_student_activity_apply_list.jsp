@@ -44,7 +44,7 @@
 	<script type="text/javascript">
 	    var pageConfig = {
 		root:$("#pageview"),
-		url:"showMyStudentActivityApplyPage.do",
+		url:"showMyStudentActivityApplyPage.do?type=<%=message.getType()%>",
 		total:<%=message.getTotalPageNumber() %>,
 		current:1,
 		arguName:"page",

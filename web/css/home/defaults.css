@@ -3,30 +3,10 @@
  */
 body {
 	background-color: #e4e6e5;
+	font-family: SimHei;
 }
 
-header .buttons {
-	background: #000; /* failsafe for ie9 */
-	background: -webkit-linear-gradient(top, #000, #363636);
-	background: -moz-linear-gradient(top, #000, #363636);
-	background: linear-gradient(top, #000, #363636);
-}
 
-header a {
-	color: #a9a9a9;
-}
-
-header .i-username>a {
-	color: #FFF;
-}
-
-header menu>.active {
-	background: #444;
-}
-
-header menu>.active>a {
-	color: #FFF;
-}
 
 section.search input[type="text"] {
 	border-color: #a2a099;
@@ -101,24 +81,3 @@ ul.list h2,ul.list a>label.date {
 	border-color: #18453b;
 }
 
-footer {
-	background: #c1d7e0;
-}
-
-footer a {
-	color: #1b7684;
-}
-
-footer hr {
-	border-color: #FFF transparent #bacfd8;
-}
-
-footer label {
-	color: #FFF;
-	background: #adc2cc;
-}
-
-footer .end {
-	background: #e5e5e5;
-	color: #484848;
-}

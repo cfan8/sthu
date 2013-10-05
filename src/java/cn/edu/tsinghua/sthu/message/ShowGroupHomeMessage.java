@@ -4,6 +4,7 @@
  */
 package cn.edu.tsinghua.sthu.message;
 
+import cn.edu.tsinghua.sthu.entity.GroupImgEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class ShowGroupHomeMessage extends BaseMessage{
     private String introduction;
     private String mainImg;
     private String logoImg;
+    private List<GroupImgEntity> images;
+    private int followNum;
     /**
      * @return the showFollow
      */
@@ -145,6 +148,34 @@ public class ShowGroupHomeMessage extends BaseMessage{
      */
     public void setLogoImg(String logoImg) {
         this.logoImg = logoImg;
+    }
+
+    /**
+     * @return the images
+     */
+    public List<GroupImgEntity> getImages() {
+        return images;
+    }
+
+    /**
+     * @param images the images to set
+     */
+    public void setImages(List<GroupImgEntity> images) {
+        this.images = images;
+    }
+
+    /**
+     * @return the followNum
+     */
+    public int getFollowNum() {
+        return followNum;
+    }
+
+    /**
+     * @param followNum the followNum to set
+     */
+    public void setFollowNum(int followNum) {
+        this.followNum = followNum;
     }
 
 }

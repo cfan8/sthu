@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+</div>
 <div id="footercontainer" class="noprint">
     <div id="footer">
 	<div class="title"></div>

@@ -48,6 +48,8 @@ public class ShowGroupHomeAction extends BaseAction{
         showGroupHomeMessage.setIntroduction(userService.getUserEntityById(groupId).getIntroduction());
         showGroupHomeMessage.setMainImg(userService.getUserEntityById(groupId).getMainImg());
         showGroupHomeMessage.setLogoImg(userService.getUserEntityById(groupId).getLogoImg());
+        showGroupHomeMessage.setImages(userService.getValidImagesByGroupId(groupId));
+        showGroupHomeMessage.setFollowNum(userService.getFollowNumByGroupId(groupId));
         return SUCCESS;
     }
 

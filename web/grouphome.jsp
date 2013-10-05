@@ -4,6 +4,8 @@
     Author     : xiaobo
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.GroupImgEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowGroupHomeAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.message.ShowGroupHomeMessage"%>
@@ -14,17 +16,20 @@
     Integer isGroupFollowed = message.getIsGroupFollowed();
     String organizeName= message.getOrganizeName();
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>社团主页</title>
         <script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
+        <script type="text/javascript" src="/js/browser.js" ></script>
+        
+	
 	<link href="/css/activity/NaviBar_sheet.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/FooterBar_sheet.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/organizationPage.css" type="text/css" rel="stylesheet" />
-        <link href="/css/activity/flexagon.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/effects.css" type="text/css" rel="stylesheet" />
         <style type="text/css">
             .manage_btn a{
@@ -44,8 +49,6 @@
         </style>
     </head>
     <%@include file="/templates/new_general_header.jsp" %> 
-    
-    
     <div id="main_part" class="main-style">
         <div id="main_content_part" class="main-content-style">
             <%if(message.isShowManage()){%>
@@ -53,71 +56,35 @@
                 <a href="/showGroupHomeManage.do?groupId=<%=message.getGroupId()%>">管&nbsp;&nbsp;理</a>
             </div>
             <%}%>
-            <div id="title_part" class="title-part-style">
-                <!-- 画折角效果 -->
-                <div id="content_flexagon1" class="flexagon-style">
-                    <!-- 左折角 -->
-                    <div id="flexagon1">
-                        <canvas id="c1" width="8" height="8"></canvas>
-                        <script>
-                            var myCanvas = document.getElementById("c1");
-                            var context = myCanvas.getContext("2d");
-                            context.lineWidth = 1;
-                            context.beginPath();
-                            context.fillStyle = "black";
-                            context.moveTo(8, 8);
-                            context.lineTo(8, 0);
-                            context.lineTo(0, 8);
-                            context.fill();
-                        </script>
-                    </div>
-                    <!-- 右折角 -->
-                    <div id="flexagon2">
-                        <canvas id="c2" width="8" height="8"></canvas>
-                        <script>
-                            var myCanvas = document.getElementById("c2");
-                            var context = myCanvas.getContext("2d");
-                            context.lineWidth = 1;
-                            context.beginPath();
-                            context.fillStyle = "black";
-                            context.moveTo(0, 0);
-                            context.lineTo(0, 8);
-                            context.lineTo(8, 8);
-                            context.fill();
-                        </script>
-                    </div>
-                </div>
-                <div style="height: 7px;"></div>
-                <div id="title_background" class="title-background-style">
-                    <div id="right_logo" class="xsh-logo-part">
+            <div style="height: 7px;"></div>
+            <div id="content_board" class="content-style">
+                <div id="content_main_board" class="content-main-style">
+                    <div id="text_index" style="min-height:200px;height:auto;padding:30px 40px 10px 40px;background-color: rgb(127,199,210);color:white;">
+                        <div style="float:left; margin-right: 20px;">
+                            <div id="slide">
+                                <div id="imagebox"></div>
+                                <div id="tipbox"><div id="tiptextarea"><div id="tiptext"></div></div><div id="tipbtn"></div></div>
+                            </div>
+                        </div>
                         <div id="xsh_logo" class="xsh-logo">
-                            <%if(message.getLogoImg() != null){%>
+                            <%if(message.getLogoImg() != null && message.getLogoImg().compareTo("null") != 0){%>
                             <img src="<%=message.getLogoImg()%>" class="img-shadow logo-img" />
                             <%}else{%>
                             <img src="/images/logo.jpg" class="img-shadow logo-img" />
                             <%}%>
                         </div>
-                        <div id="follow" class="follow-style" style="text-shadow: 2px 2px 5px #222;">
-                            <a style="color: #fff;"><b>已有</b></a>
-                            <a id="follow_num" style="color: #d55;"><b>2460</b></a>
-                            <a style="color: #fff;"><b>人关注</b></a>
+                        <div style="font-family: Microsoft YaHei, LiHei Pro Medium; margin-top:20px;">
+                        <a style="font-size:36px;"><b><%=organizeName%> </b></a> 
+                        
                         </div>
                     </div>
-                </div>
-                <div id="lantern_slide" class="slide-style">
-                    <%if(message.getMainImg() != null){%>
-                    <img src="<%=message.getMainImg()%>" class="slide-img" />
-                    <%}else{%>
-                    <img src="/images/banner.jpg" class="slide-img" />
-                    <%}%>
-                </div>
-                <div id="xsh_intro" class="xsh_intro-style">
-                    <div id="intro_right" class="intro-right-part">
-                        <div id="xsh_name" style="text-align: right">
-                            <a style="font-size: 20px">
-                                <%=organizeName %>
-                            </a>
-                        </div>
+                        
+                        <div id="follow" class="follow-style">
+                            <a><b>已有</b></a>
+                            <a id="follow_num" style="color: #d55;font-size: 18px; font-family: Impact"><b><%=message.getFollowNum()%></b></a>
+                            <a><b>人关注</b></a>
+                        
+                        
                         <div id="follow_part">                                                             
                             <%if(showFollow == 1){%>
                                 <div class="btn-border">
@@ -134,55 +101,19 @@
                             <%}%>        
                                 
                         </div>
-                        <div id="txt_intro" style="font-size: large; float: right; width: 220px; word-wrap: break-word; overflow: hidden;">
-                            <p><%=message.getIntroduction()%><a class="blue-border"><b>&ensp;+&ensp;</b></a></p>
+                            </div>
+                        <div id="introduction_part">
+                            <p>
+                            <%=message.getIntroduction()%>
+                            </p>
+                            
                         </div>
-                        <div style="padding-left: 30px;">
-                            <hr />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="content_part" class="content-style">
-                <div id="left_content" style="float: left; width: 750px;">
-                    <div id="content_flexagon2" class="flexagon-style">
-                        <!-- 左折角 -->
-                        <div id="flexagon3">
-                            <canvas id="c3" width="8" height="8"></canvas>
-                            <script>
-                                var myCanvas = document.getElementById("c3");
-                                var context = myCanvas.getContext("2d");
-                                context.lineWidth = 1;
-                                context.beginPath();
-                                context.fillStyle = "black";
-                                context.moveTo(8, 8);
-                                context.lineTo(8, 0);
-                                context.lineTo(0, 8);
-                                context.fill();
-                            </script>
-                        </div>
-                        <!-- 右折角 -->
-                        <div id="flexagon4">
-                            <canvas id="c4" width="8" height="8"></canvas>
-                            <script>
-                                var myCanvas = document.getElementById("c4");
-                                var context = myCanvas.getContext("2d");
-                                context.lineWidth = 1;
-                                context.beginPath();
-                                context.fillStyle = "black";
-                                context.moveTo(0, 0);
-                                context.lineTo(0, 8);
-                                context.lineTo(8, 8);
-                                context.fill();
-                            </script>
-                        </div>
-                    </div>
-                    <div style="height: 7px;"></div>
-                    
-                    <div id="activity_content" class="activity-style">
-                        <div id="text_content" style="height: 500px;">   
-                        </div>
+                            <div style="padding:10px 50px 20px 50px;">
+                            <hr/>
+                            </div>
+                        <div id="text_content" style="height:auto; min-height: 400px; padding:10px 40px 10px 30px;"> 
+                         
+                         </div>
                         <script type="text/javascript">
                             var pageConfig = {
                                 root:$("#text_content"),
@@ -193,43 +124,17 @@
                                 css:false
                             };
                             init(pageConfig);
-                       </script>                      
-                    </div>
-                </div>        
+                       </script>    
+                        
+                </div>
                 
-                <div id="right_content" style="float: right; width: 250px;">
-                    <div style="height:8px;"></div>
-                    <div id="join_us_part" style="height:60px;margin-top:8px;margin-left:30px">
-                        <img src="/css/activity/join-us.png" class="img-shadow"/>
-                    </div>
-                    <div style="height:30px;">
-                        <div id="Decoration1">
-                        <canvas id="cd1" width="30" height="30"></canvas>
-                        <script>
-                            var myCanvas = document.getElementById("cd1");
-                            var context = myCanvas.getContext("2d");
-                            context.lineWidth = 1;
-                            context.beginPath();
-                            context.fillStyle = "#bbb";
-                            context.moveTo(0, 0);
-                            context.lineTo(0, 30);
-                            context.lineTo(30, 30);
-                            context.fill();
-                        </script>
-                        </div>
-                    </div>
-                    <div id="function_part" class="function-style">
-                        <div id="good_btn" style="float:left;height:40px;margin-right:40px;">
-                            <img src="/css/activity/good.png" style="cursor:pointer;"/>
-                        </div>
-                        <div id="file_btn" style="float:left;height:40px;margin-right:40px;">
-                            <img src="/css/activity/collect.png" style="cursor:pointer;"/>
-                        </div>
-                        <div id="mail_btn" style="float:left;height:40px;">
-                            <img src="/css/activity/mail.png" style="cursor:pointer;"/>
-                        </div>
-                    </div>
+                     
+            </div>
 
+               
+                <!--
+                <div id="right_content" style="float: right; width: 250px;">
+                    
                     <div id="other_organization" style="height:300px;margin-top:20px;">
                         <div style="float:right;width:230px;background-color:#fff;height:340px;">
                             <div style="padding-top:10px;padding-left:10px;">
@@ -261,10 +166,112 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                -->
         </div>
     </div>
         
                 
     <%@include file="/templates/new_general_footer.jsp" %>
+    <%
+        List<GroupImgEntity> list = message.getImages();
+    %>
+    <script>
+	
+	var imgs = new Array(
+	<% for (int i = 0; i < list.size(); i++) {
+		GroupImgEntity entity = list.get(i);
+	%>
+	    '<%=entity.getImg()%>'<%=i == list.size() - 1 ? "" : ","%>
+	<% }%>
+	);
+	    var titles = new Array(
+	<% for (int i = 0; i < list.size(); i++) {
+		GroupImgEntity entity = list.get(i);
+	%>
+	    '<%=entity.getTitle()%>'<%=i == list.size() - 1 ? "" : ","%>
+	<% }%>
+	);
+	    
+	    init();
+	    enableBrowserDetect();
+	    
+	    var timer;
+	
+	    var current = 0;
+	    function init(){
+		var imghtml = "";
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    imghtml += '<a href="#" target="_blank"><img src="' + imgs[i] + '" id="slideimg' + i + '"></img>';  
+		}
+		$("#imagebox").html(imghtml);
+	
+		imghtml="";
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    imghtml += '<a href="#" id="imgbtn' + (imgs.length - 1 - i) + '"><img src="/css/index/tipbtn.png"></img></a>';
+		}
+		$("#tipbtn").html(imghtml);
+	    
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    titles[i] = '<a href="#">' + titles[i] + '</a>';
+		}
+	    
+		for (var i = 0; i < imgs.length; i++)
+		{
+		    $("#imgbtn" + i).bind("click", {param1: i}, clickRecall);
+		}
+	    
+		$("#slideimg0").show();
+		$("#imgbtn0 img").css("opacity", "1");
+		$("#tiptext").html(titles[0]);
+                if(imgs.length > 1)
+		timer = setInterval(triggerRecall, 5000);
+	    }
+	
+	    function triggerRecall()
+	    {
+		if (current == imgs.length - 1)
+		{
+		    showThis(0);
+		}
+		else 
+		{
+		    showThis(current + 1);
+		}
+	    }
+	
+	    function clickRecall(event)
+	    {
+		var t = event.data.param1;
+		clearInterval(timer);
+		timer = setInterval(triggerRecall, 5000);
+		if (t == current)
+		{
+		    return false;
+		}
+		else 
+		{
+		    showThis(t);
+		}
+		return false;
+	    }
+	
+	    function showThis(t)
+	    {
+		$("#slideimg" + current).css("z-index", "2");
+		$("#slideimg" + t).css("z-index", "1");
+		$("#slideimg" + t).show();
+		$("#slideimg" + current).fadeOut(1000);
+		$("#tiptextarea").fadeOut(500, function(){
+		    $("#tiptext").html(titles[t]);
+		    $("#tiptextarea").fadeIn(500);
+		});
+		$("#imgbtn" + current + " img").css("opacity", "0.5");
+		$("#imgbtn" + t + " img").css("opacity", "1");
+		current = t;
+	    }
+    </script>
 </html>
+

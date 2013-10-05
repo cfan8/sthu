@@ -12,6 +12,7 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
  */
 public class ShowMyStudentActivityApplyMessage extends BaseMessage{
     private int totalPageNumber;
+    private int type;
 
     /**
      * @return the totalPageNumber
@@ -25,6 +26,20 @@ public class ShowMyStudentActivityApplyMessage extends BaseMessage{
      */
     public void setTotalPageNumber(int totalPageNumber) {
         this.totalPageNumber = totalPageNumber;
+    }
+
+    /**
+     * @return the type
+     */
+    public int getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(int type) {
+        this.type = type;
     }
     
 }

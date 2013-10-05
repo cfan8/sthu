@@ -6,12 +6,16 @@ body {
     min-width:1240px;
     background-color:#eee;
     width:100%;
+    font-family: SimHei;
 }
 li {
     list-style-type:none;
 }
+img{
+    border: none;
+}
 .main-style {
-    margin-top:40px;
+    margin-top:0px;
 }
 .main-content-style {
     margin: 0 auto;
@@ -46,9 +50,12 @@ li {
 }
 
 .follow-style {
-    margin-top:30px;
+    margin-top:20px;
     font-size:large;
-    text-align:center;
+    text-align:left;
+    width: 200px;
+    float: right;
+    margin-right: 150px;
 }
 .xsh-intro-style {
     height:230px;
@@ -77,8 +84,8 @@ li {
 }
 
 .content-style {
-    height:500px;
-    margin-top:50px;
+    min-height:500px;
+    margin-top:0px;
     margin-bottom:30px;
 }
 .activity-style {
@@ -112,4 +119,88 @@ li {
 .org-logo {
     width:40px;
     height:40px;
+}
+
+
+#slide
+{
+    width: 487px;
+    height: 332px;
+    position: relative;
+}
+
+#imagebox
+{
+    width: 471px;
+    height: 310px;
+    border-color: white;
+    border-width: 5px 4px 5px 5px;
+    border-style: solid;
+    position: absolute;
+}
+
+#imagebox img
+{
+    width: 471px;
+    height: 310px;
+    position: absolute;
+    display: none;
+}
+
+#tipbox
+{
+    position: absolute;
+    width: 419px;
+    height: 67px;
+    background-image: url("/css/index/tip_bg.png");
+    bottom: 0px;
+    right: 1px;
+    z-index: 999;
+}
+
+#tiptextarea
+{
+    display: table;
+    position: absolute;
+    width: 302px;
+    height: 100%;
+    margin-left: 21px;
+}
+
+#tiptext
+{
+    line-height: 24px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#tiptext a:link, #tiptext a:visited
+{
+    font-size: 13.34px;
+    font-family: 黑体;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+#tipbtn img{
+    width: 9px;
+    height: 9px;
+    margin-right: 5px;
+    float: right;
+    opacity: 0.5;
+}
+
+#tipbtn
+{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+#introduction_part{
+    margin-top: 110px;
+    margin-left: 60px;
+    margin-right: 50px;
 }

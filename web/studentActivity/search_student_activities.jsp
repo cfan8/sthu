@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowActivitiesPageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity"%>
 <%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.SearchActivityPageAction"%>
@@ -16,159 +17,47 @@
     SearchActivitiesMessage message = Util.getMessage(SearchActivityAction.class);
     
 %>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>搜索学生活动</title>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/pageview.js"></script>
+        
+	<script type="text/javascript" src="/js/datepicker.js"></script>
         <link href="/css/activity/indexPage_sheet.css" type="text/css" rel="stylesheet"/>
         <link href="/css/activity/flexagon.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/effects.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="/css/datepicker.css" type="text/css" />
     </head>
+        
     
     <%@include file="/templates/new_general_header.jsp" %>
-    
-    <div id="input_div" class="input-bar">
-        <div id="input_main" class="input-main-style">
-           <form id="search_form" name="search_form" action="/studentActivity/searchStudentActivity.do" method="get">
-            <div><input id="input_box" class="input-border" name="searchKeywords"/></div>
-        </form>
-            <div class="input-text">
-                <div id="btn_activity" class="unselected-border">
-                    <div class="search-bar-text"><a style="cursor: pointer;"><b>活动</b></a></div>
-                </div>
-                <div id="btn_search" class="selected-border">
-                    <div class="search-bar-text"><a style="cursor: pointer;"><b>搜索</b></a></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@include file="/templates/general_classify.jsp" %>
     <div style="height:10px;"></div>
     <div id="main_content" class="main-style">
         <div id="content_div" class="content-div-style">
-            <!-- 画折角效果 -->
-            <div id="content_flexagon1" class="flexagon-style">
-                <!-- 左折角 -->
-                <div id="flexagon1">
-                    <canvas id="c1" width="8" height="8"></canvas>
-                    <script>
-                        var myCanvas = document.getElementById("c1");
-                        var context = myCanvas.getContext("2d");
-                        context.lineWidth = 1;
-                        context.beginPath();
-                        context.fillStyle = "black";
-                        context.moveTo(8, 8);
-                        context.lineTo(8, 0);
-                        context.lineTo(0, 8);
-                        context.fill();
-                    </script>
-                </div>
-                <!-- 右折角 -->
-                <div id="flexagon2">
-                    <canvas id="c2" width="8" height="8"></canvas>
-                    <script>
-                        var myCanvas = document.getElementById("c2");
-                        var context = myCanvas.getContext("2d");
-                        context.lineWidth = 1;
-                        context.beginPath();
-                        context.fillStyle = "black";
-                        context.moveTo(0, 0);
-                        context.lineTo(0, 8);
-                        context.lineTo(8, 8);
-                        context.fill();
-                    </script>
-                </div>
-            </div>
-            <div style="height:7px;"></div>
+            
             <div id="content_board" class="content-style">
                 <div id="content_main_board" class="content-main-style">
+                    <!--
                     <div id="text_index" style="height:70px;padding:30px 40px 10px 40px">
                         <div style="position:absolute;">
-                            <a style="font-size:large;"><b>搜索结果</b></a>
+                            <a style="font-size:xx-large;"><b>搜索结果</b></a>
                         </div>                       
                     </div>
-                    <div id="text_content" style="min-height:850px; height: auto; padding-bottom: 20px;"> 
+                    -->
+                    <div id="text_content" style="min-height:400px;padding-top: 20px; height: auto; padding-bottom: 20px;"> 
                     </div>
                 </div>
            </div>
        </div>
      </div>    
     
-    
-     <div id="other_content" class="other-style">
-        <div id="other_main_content" class="content-div-style">
-            <div id="content_flexagon2" class="flexagon-style">
-                <!-- 左折角 -->
-                <div id="flexagon3">
-                    <canvas id="c3" width="8" height="8"></canvas>
-                    <script>
-                        var myCanvas = document.getElementById("c3");
-                        var context = myCanvas.getContext("2d");
-                        context.lineWidth = 1;
-                        context.beginPath();
-                        context.fillStyle = "black";
-                        context.moveTo(8, 8);
-                        context.lineTo(8, 0);
-                        context.lineTo(0, 8);
-                        context.fill();
-                    </script>
-                </div>
-                <!-- 右折角 -->
-                <div id="flexagon4">
-                    <canvas id="c4" width="8" height="8"></canvas>
-                    <script>
-                        var myCanvas = document.getElementById("c4");
-                        var context = myCanvas.getContext("2d");
-                        context.lineWidth = 1;
-                        context.beginPath();
-                        context.fillStyle = "black";
-                        context.moveTo(0, 0);
-                        context.lineTo(0, 8);
-                        context.lineTo(8, 8);
-                        context.fill();
-                    </script>
-                </div>
-            </div>
-            <div style="height:7px;"></div>
-            <div id="bottom-content" class="bottom-content-style" >
-                <!-- 专题-->
-                <div id="left_content" class="left-content-style" style="height:160px;">
-                    <div style="height:35px;padding:10px 0px 5px 40px">
-                        <a style="font-size:xx-large;color:#888;"><b>专题</b></a>
-                    </div>
-                    <div style="padding:0px 30px 5px 30px;" >
-                        <div style="float:left;">
-                            <img src="/css/activity/zt1.jpg" width="255" />
-                        </div>
-                        <div style="float:right;">
-                            <img src="/css/activity/zt2.jpg" width="255" />
-                        </div>
-                    </div>
-                </div>
-                <!-- 热点推荐-->
-                <div id="right_content" class="right-content-style" style="height:160px;">
-                    <div style="color:#fff;font-size:xx-large;padding:10px 0px 0px 20px">
-                        <a><b>热点推荐</b></a>
-                    </div>
-                    <div style="color:#fff;font-size:x-large;">
-                        <ul style="list-style-type:none;padding:0px 10px 0px 10px;margin:5px 0px 0px 0px;">
-                            <li style="margin-top:3px;">
-                                <a>【视频直播】巅峰论坛第三场</a>
-                            </li>
-                            <li style="margin-top:3px;">
-                                <a>【视频直播】巅峰论坛第二场</a>
-                            </li>
-                            <li style="margin-top:3px;">
-                                <a>【视频直播】巅峰论坛第一场</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@include file="/templates/general_subject.jsp" %>
+     
     
 	        
         
@@ -177,6 +66,7 @@
         
         
     <script type="text/javascript">
+        $.noConflict();
         var pageConfig = {
         root:$("#text_content"),
 	url:"searchStudentActivityPage.do?<%=message.getParam()%>",
@@ -186,16 +76,48 @@
 	css:false
 	};
 	init(pageConfig);
-        $("#btn_search").click(function(){
-	document.getElementById("input_box").value = encodeURIComponent(document.getElementById("input_box").value);
-            
-                $('#search_form').submit();
-                return false;
-            });
         
-        $("#btn_activity").click(function(){
-            self.location.href ="/studentActivity/showActivitiesList.do";
-        });
+        var datestr = "";
+        document.getElementById("btn_group").className="unselected-border";
+    document.getElementById("btn_sport").className="unselected-border";
+    document.getElementById("btn_lecture").className="unselected-border";
+    document.getElementById("btn_culture").className="unselected-border";
+    document.getElementById("btn_amuse").className="unselected-border";
+    document.getElementById("btn_other").className="unselected-border";
+    
+        $("#btn_group").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_GROUP%>" +"&digest="+ datestr;
+            });
+            $("#btn_sport").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_SPORTS %>" +"&digest="+ datestr;
+            });
+            $("#btn_lecture").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_LECTURE%>" +"&digest="+ datestr;
+            });
+            $("#btn_culture").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_CULTURE%>" +"&digest="+ datestr;
+            });
+            $("#btn_amuse").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_AMUSE%>" +"&digest="+ datestr;
+            });
+            $("#btn_other").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=<%=ShowActivitiesPageAction.ACTIVITY_OTHER%>" +"&digest="+ datestr;
+            });
+            $("#btn_clear").click(function(){
+                self.location.href = "showActivitiesList.do?activityClass=" +"&digest=";
+            });
+            var day = new Date();
+            $('#date').DatePicker({
+                flat: true,
+                date: day,
+                current: day,
+                calendars: 1,
+                starts: 1,
+                format: 'Y-m-d',
+                onChange:function(date){
+                    self.location.href = "showActivitiesList.do?activityClass=&digest="+"&selectedDate="+date;
+                }
+            });
     </script>
     <%@include file="/templates/new_general_footer.jsp" %>
 

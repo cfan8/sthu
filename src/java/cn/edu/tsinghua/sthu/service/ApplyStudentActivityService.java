@@ -257,8 +257,10 @@ public class ApplyStudentActivityService extends BaseService{
         }
     }
     @Transactional
-    public void savePublishMaterial(String publishMaterial, StudentActivityApplyEntity entity){
+    public void savePublishMaterial(String publishMaterial, String mainImg, StudentActivityApplyEntity entity){
         entity.getOption().setPublicityMaterials(publishMaterial);
+        entity.getOption().setPublicityImg(mainImg);
+        entity.setPublishStatus(StudentActivityApplyEntity.PUBLISH_STATUS_AWAIT);
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
     }
     
@@ -882,6 +884,11 @@ public class ApplyStudentActivityService extends BaseService{
         }
         str += "});";
         return str;
+    }
+    
+    @Transactional
+    public List<StudentActivityApplyEntity> getRandomHotActivities(int maxNum){
+        return applyStudentActivityDAO.getRandomHotActivities(maxNum);
     }
       
     /**

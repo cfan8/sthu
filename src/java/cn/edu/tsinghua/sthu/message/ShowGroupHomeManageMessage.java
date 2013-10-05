@@ -4,6 +4,9 @@
  */
 package cn.edu.tsinghua.sthu.message;
 
+import cn.edu.tsinghua.sthu.entity.GroupImgEntity;
+import java.util.List;
+
 /**
  *
  * @author xiaoyou
@@ -13,6 +16,7 @@ public class ShowGroupHomeManageMessage extends BaseMessage{
     private String mainImg;
     private String logoImg;
     private int groupId;
+    private List<GroupImgEntity> images;
     /**
      * @return the introduction
      */
@@ -67,5 +71,19 @@ public class ShowGroupHomeManageMessage extends BaseMessage{
      */
     public void setLogoImg(String logoImg) {
         this.logoImg = logoImg;
+    }
+
+    /**
+     * @return the images
+     */
+    public List<GroupImgEntity> getImages() {
+        return images;
+    }
+
+    /**
+     * @param images the images to set
+     */
+    public void setImages(List<GroupImgEntity> images) {
+        this.images = images;
     }
 }

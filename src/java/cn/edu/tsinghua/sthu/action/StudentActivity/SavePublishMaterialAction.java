@@ -7,6 +7,8 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
+import cn.edu.tsinghua.sthu.security.XSSProtect;
+import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 
 /**
@@ -16,12 +18,15 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 public class SavePublishMaterialAction extends BaseAction{
 
     private Integer applyId;
+    @XSSProtect(XSSProtectLevel.Strict)
     private String publicityMaterials;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String mainImg;
     private ApplyStudentActivityService applyStudentActivityService;
     private StudentActivityApplyEntity entity;
     @Override
     public String onExecute() throws Exception {
-        applyStudentActivityService.savePublishMaterial(publicityMaterials,entity);
+        applyStudentActivityService.savePublishMaterial(publicityMaterials, getMainImg(),entity);
         alertMessage.setSimpleAlert("已保存", "showStudentActivityApply.do?applyId=" + getApplyId());
         return ALERT;
     }
@@ -122,6 +127,20 @@ public class SavePublishMaterialAction extends BaseAction{
      */
     public void setEntity(StudentActivityApplyEntity entity) {
         this.entity = entity;
+    }
+
+    /**
+     * @return the mainImg
+     */
+    public String getMainImg() {
+        return mainImg;
+    }
+
+    /**
+     * @param mainImg the mainImg to set
+     */
+    public void setMainImg(String mainImg) {
+        this.mainImg = mainImg;
     }
     
 }

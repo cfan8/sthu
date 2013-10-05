@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ShowMyStudentActivityApplyPageMessage extends BaseMessage{
     private List<StudentActivityApplyEntity> list;
-
+    private int type;
     /**
      * @return the list
      */
@@ -27,6 +27,20 @@ public class ShowMyStudentActivityApplyPageMessage extends BaseMessage{
      */
     public void setList(List<StudentActivityApplyEntity> list) {
         this.list = list;
+    }
+
+    /**
+     * @return the type
+     */
+    public int getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(int type) {
+        this.type = type;
     }
     
 }

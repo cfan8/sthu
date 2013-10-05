@@ -8,7 +8,7 @@ var calendar = function(document) {
 	var MSPerDay = 86400000, Data_Month = 'data-month';
 	var events = {};
 	// 每个学期的第一天（星期一），用来计算周次
-	var FirstMondayOfSemesters = [ '2013-09-02' ];
+	var FirstMondayOfSemesters = [ '2013-09-16' ];
 	var weeks = {};
 	FirstMondayOfSemesters.forEach(function(str) {
 		var t = dateToDays(str);

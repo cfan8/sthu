@@ -6,11 +6,13 @@ package cn.edu.tsinghua.sthu.service;
 
 import cn.edu.tsinghua.sthu.Util;
 import cn.edu.tsinghua.sthu.dao.FollowDAO;
+import cn.edu.tsinghua.sthu.dao.GroupImgDAO;
 import cn.edu.tsinghua.sthu.dao.UserDAO;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.entity.EmailEntity;
 import cn.edu.tsinghua.sthu.entity.FollowEntity;
+import cn.edu.tsinghua.sthu.entity.GroupImgEntity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -39,7 +41,9 @@ public class UserService extends BaseService {
 
     private UserDAO userDAO;
     private FollowDAO followDAO;
-
+    private GroupImgDAO groupImgDAO;
+    public static final int MAX_IMG_NUMBER = 5;
+    
     @Transactional
     public UserEntity userLogin(String username, String password) throws Exception{
 	String md5 = Util.getMD5(password);
@@ -198,6 +202,56 @@ public class UserService extends BaseService {
     }
     
     @Transactional
+    public UserEntity modifyGroupImages(int groupId, List<GroupImgEntity> images){
+        UserEntity group = userDAO.getUserById(groupId);
+        group.setImages(images);
+        userDAO.updateUserEntity(group);
+        return group;
+        
+    }
+    @Transactional
+    public List<GroupImgEntity> getImagesByGroupId(int groupId) {
+	List<GroupImgEntity> list = groupImgDAO.getImagesByGroupId(groupId);
+	if (list.size() < MAX_IMG_NUMBER) {
+	    int t = MAX_IMG_NUMBER - list.size();
+	    List<GroupImgEntity> saveList = new ArrayList<GroupImgEntity>();
+	    for (int i = 0; i < t; i++) {
+                GroupImgEntity entity = new GroupImgEntity();
+                entity.setGroupId(groupId);
+                entity.setEnabled(false);
+                entity.setImg("");
+                entity.setTitle("");
+		saveList.add(entity);
+	    }
+	    groupImgDAO.addImgs(saveList);
+	    list = groupImgDAO.getImagesByGroupId(groupId);
+	}
+	return list;
+    }
+    @Transactional
+    public List<GroupImgEntity> getValidImagesByGroupId(int groupId){
+        List<GroupImgEntity> list = groupImgDAO.getValidImagesByGroupId(groupId);
+        if(list == null || list.size() == 0){
+            GroupImgEntity groupImg = new GroupImgEntity();
+            groupImg.setGroupId(groupId);
+            groupImg.setImg("/images/banner.jpg");
+            groupImg.setTitle("默认图片");
+            groupImg.setEnabled(true);
+            list.add(groupImg);
+        }
+        return list;
+
+    }
+    
+    @Transactional
+    public void updateImgs(List<GroupImgEntity> list){
+        if (list.size() == MAX_IMG_NUMBER)
+	{
+	    groupImgDAO.updateImgs(list);
+	}
+    }
+    
+    @Transactional
     public List<UserEntity> getFollowGroupsByUserId(int userID){
         List<UserEntity> list = new ArrayList<UserEntity>();
         List<FollowEntity> followList = followDAO.getFollowGroupByUserId(userID);
@@ -225,6 +279,11 @@ public class UserService extends BaseService {
         }
         return list;
     }
+    
+    @Transactional
+    public int getFollowNumByGroupId(int groupId){
+        return followDAO.getFollowedNumberByGroupId(groupId);
+    }
 
     public UserDAO getUserDAO() {
 	return userDAO;
@@ -246,6 +305,20 @@ public class UserService extends BaseService {
      */
     public void setFollowDAO(FollowDAO followDAO) {
         this.followDAO = followDAO;
+    }
+
+    /**
+     * @return the groupImgDAO
+     */
+    public GroupImgDAO getGroupImgDAO() {
+        return groupImgDAO;
+    }
+
+    /**
+     * @param groupImgDAO the groupImgDAO to set
+     */
+    public void setGroupImgDAO(GroupImgDAO groupImgDAO) {
+        this.groupImgDAO = groupImgDAO;
     }
 
 }

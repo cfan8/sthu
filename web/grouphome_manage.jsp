@@ -4,6 +4,8 @@
     Author     : xiaoyou
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="cn.edu.tsinghua.sthu.entity.GroupImgEntity"%>
 <%@page import="cn.edu.tsinghua.sthu.action.ShowGroupHomeManageAction"%>
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%@page import="cn.edu.tsinghua.sthu.message.ShowGroupHomeManageMessage"%>
@@ -11,13 +13,14 @@
 <%
     ShowGroupHomeManageMessage message = Util.getMessage(ShowGroupHomeManageAction.class);
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>社团管理页</title>
         <script type="text/javascript" src="/js/jquery.js"></script>
-        <link rel="stylesheet" type="text/css" href="/uploadify/uploadify.css">
+        <link rel="stylesheet" type="text/css" href="/uploadify/uploadify.css"/>
         <link href="/css/activity/organizationPage.css" type="text/css" rel="stylesheet" />
         <style type="text/css">
             textarea{
@@ -82,26 +85,35 @@
             <form action="saveGroupHomeManage.do" method="post" id="submitf">
                 <input type="hidden" name="groupId" value="<%=message.getGroupId()%>"/>    
             <div class="manage-style">
-                <div class="manage_item">
-                    上传大图：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
-                    <%if(message.getMainImg() != null){%>
-                    <img src="<%=message.getMainImg()%>" id="main_img"/>
-                    <%}else{%>
-                    
-                    <img src="/images/banner.jpg" id="main_img"/>
-                    <%}%>
-                    <input type="hidden" name="mainImg" id="mainImg" value="<%=message.getMainImg()%>"/>
-                </div>
-                <div class="manage_item" style="width:300px;float: left">
+                <div class="manage_item" style="width:300px;">
                     上传logo：<div class="upbtn"><input type="button" id="upbtn_logo" class="upbtn"/></div>
-                    <%if(message.getLogoImg() != null){%>
+                    <%if(message.getLogoImg() != null  && message.getLogoImg().compareTo("null") != 0){%>
                     <img src="<%=message.getLogoImg()%>" id="logo_img" />
                     <%}else{%>
                     <img src="/images/logo.jpg" id="logo_img" />
                     <%}%>
                     <input type="hidden" name="logoImg" id="logoImg" value="<%=message.getLogoImg()%>"/>
                 </div>
-                <div class="manage_item" style="width:480px;float:right">文字介绍：<br/><textarea name="introduction"><%=message.getIntroduction()%></textarea></div>
+                <br/>
+                <div class="manage_item">
+                    上传组图：
+                    <table>
+                        <tr><td>序号</td><td>图片地址</td><td style="width: 210px;">上传</td><td>标题</td><td>启用</td></tr>
+                        <%
+                        List<GroupImgEntity> list = message.getImages();
+                        for (int i = 0; i < list.size(); i++) {
+                                GroupImgEntity entity = list.get(i);
+                        %>
+
+                    <tr><td><%=i + 1%></td><td><input type="text" id="image<%=i%>" value="<%=entity.getImg()%>" /></td><td><input type="button" id="upbtn<%=i%>" value="上传文件" /></td><td><input type="text" id="title<%=i%>" value="<%=entity.getTitle()%>"></td><td><input type="checkbox" id="enable<%=i%>" <%=entity.isEnabled() ? "checked=\"checked\"" : ""%>></td></tr>
+                        <% }%>
+                    </table>
+                </div>
+                    <input type="hidden" name="image" id="image">
+                    <input type="hidden" name="title" id="title">
+                    <input type="hidden" name="enable" id="enable">
+                    <br/>
+                <div class="manage_item" style="width:480px;">文字介绍：<br/><textarea name="introduction"><%=message.getIntroduction()%></textarea></div>
             </div>
             <div id="confirmDiv" style="clear:both; padding-top: 20px">
                 <a id="save">保存修改</a>
@@ -146,7 +158,38 @@
 	    }
         });
 
+        for(var i = 0 ; i < 5; i++)
+        {
+            $("#upbtn" + i).uploadify({
+                'multi'    : false,
+                'height':'25px',
+                'width':'210px',
+                'buttonText' : '上传图片',
+                'fileSizeLimit' : '2000KB',
+                'fileTypeDesc' : '图片文件',
+                'fileTypeExts' : '*.gif; *.jpg; *.png',
+                'swf'      : '/uploadify/uploadify.swf',
+                'uploader' : '/ueditor/jsp/indexUp.jsp?id=' + i,
+                'onUploadSuccess' : function(file, data, response) {
+                    json=eval('('+data+')');
+                    $("#image" + json.id).val(json.url);
+                }
+            });
+        }
+
         $("#save").click(function() {
+            var image = "";
+            var title = "";
+            var enable ="";
+            for (var i = 0; i < 5; i++)
+            {
+                image += $("#image" + i).val() + "||";
+                title += $("#title" + i).val() + "||";
+                enable += $("#enable" + i).is(':checked') + "||";
+            }
+            $("#image").val(image.substring(0, image.length-2));
+            $("#title").val(title.substring(0, title.length-2));
+            $("#enable").val(enable.substring(0, enable.length-2));
             $("#submitf").submit();
         });
     </script>
