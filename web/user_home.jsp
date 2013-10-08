@@ -41,7 +41,7 @@
 			<h2>你好！<%=message.getUsername()%></h2>
                         
                         <p>
-				<label>学生活动申请：<%=message.getApplyNum()%></label><label>订票：0</label><label>关注：<%=message.getFollowActivityNumber()%></label>
+				<label>活动申请：<%=message.getApplyNum()%></label><label>订票：0</label><label>关注：<%=message.getFollowActivityNumber()%></label>
 			</p>
    
 		</section>

@@ -26,7 +26,7 @@ public class UserHomeAction extends BaseAction{
         getUserHomeMessage().setUsername(getCurrentUser().getNickname());
         getUserHomeMessage().setFollowActivityNumber(applyStudentActivityService.getFollowedActivityNumberByUser(getCurrentUser()));
         getUserHomeMessage().setApplyNum(applyStudentActivityService.getMyApplyTotalPageNumber(getCurrentUser().getID()));
-        getUserHomeMessage().setInterestGroups(userService.getFollowGroupsByUserId(getCurrentUser().getID(), 5));
+        getUserHomeMessage().setInterestGroups(userService.getFollowGroupsByUserId(getCurrentUser().getID(), 3));
         getUserHomeMessage().setGroupsFollowNum(userService.getFollowedGroupsFollowNumbers(getUserHomeMessage().getInterestGroups()));
         List<StudentActivityApplyEntity> followActivities = applyStudentActivityService.getFollowActivitiesByUser(getCurrentUser());
         List<StudentActivityApplyEntity> followAndGroupActivities = applyStudentActivityService.getFollowAndGroupActivitiesByUser(getCurrentUser(), followActivities, userHomeMessage.getInterestGroups());
