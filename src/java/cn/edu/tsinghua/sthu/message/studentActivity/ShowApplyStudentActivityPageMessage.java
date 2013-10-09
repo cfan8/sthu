@@ -16,8 +16,8 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
 public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     public static final int USER_APPLY = 1;
     public static final int GROUP_APPLY = 2;
-    public static final int GROUP_TYPE_SHETUAN = 1;
-    public static final int GROUP_TYPE_STUDENTUNION = 2;
+    public static final int GROUP_TYPE_SHETUAN = 0;
+    public static final int GROUP_TYPE_STUDENTUNION = 1;
     private StudentActivityApplyEntity studentActivityApplyEntity;
     private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
