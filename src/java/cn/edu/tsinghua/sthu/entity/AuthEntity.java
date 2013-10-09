@@ -18,9 +18,13 @@ public class AuthEntity extends BaseEntity{
     public static final int USER_ROLE = 1;
     public static final int ADMIN_ROLE = 2;
     public static final int GROUP_ROLE = 3;
+    public static final int GROUP_TYPE_SHETUAN = 1;
+    public static final int GROUP_TYPE_STUDENTUNION = 2;
     
     @Column(name="userrole")
     private int role = USER_ROLE;
+    
+    private int groupType;
     
     private int opArticle = -1;  //审批文章权限
     
@@ -122,6 +126,20 @@ public class AuthEntity extends BaseEntity{
      */
     public void setOpOtherCode(int opOtherCode) {
         this.opOtherCode = opOtherCode;
+    }
+
+    /**
+     * @return the groupType
+     */
+    public int getGroupType() {
+        return groupType;
+    }
+
+    /**
+     * @param groupType the groupType to set
+     */
+    public void setGroupType(int groupType) {
+        this.groupType = groupType;
     }
   
 }

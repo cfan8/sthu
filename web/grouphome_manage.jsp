@@ -76,6 +76,17 @@
                 width:170px;
                 height:166px;
             }
+            .tag
+            {
+                width:150px !important;
+                text-align: right;
+                display: inline;
+            }
+            .value
+            {
+                width:150px;
+                display: inline;
+            }
         </style>
     </head>
     <%@include file="/templates/new_general_header.jsp" %> 
@@ -85,6 +96,17 @@
             <form action="saveGroupHomeManage.do" method="post" id="submitf">
                 <input type="hidden" name="groupId" value="<%=message.getGroupId()%>"/>    
             <div class="manage-style">
+                <div class="manage_item" style="width:300px;">
+                    <span class="tag">修改密码：</span><span class="value">
+                        <input type="radio" name="passwordFlag" value="true" onclick="changePasswordState(1)"/>是
+                        <input type="radio" name="passwordFlag" value="false" checked="true" onclick="changePasswordState(2)"/>否
+                    </span>
+                    <div id="PasswordInfo" style="display:none">
+                        <div><div class="tag">&nbsp;&nbsp;原密码：</div><div class="value"><input type="password" id="originPassword" name="originPassword"/></div></div>
+                        <div><div class="tag">&nbsp;&nbsp;新密码：</div><div class="value"><input type="password" id="newPassword" name="newPassword"/></div></div>
+                        <div><div class="tag">重复密码：</div><div class="value"><input type="password" id="rePassword"/></div></div>
+                    </div>
+                </div>
                 <div class="manage_item" style="width:300px;">
                     上传logo：<div class="upbtn"><input type="button" id="upbtn_logo" class="upbtn"/></div>
                     <%if(message.getLogoImg() != null  && message.getLogoImg().compareTo("null") != 0){%>
@@ -176,8 +198,31 @@
                 }
             });
         }
+        
+        function changePasswordState(state){
+            if(state == 1){
+                $("#PasswordInfo").show();
+            }else{
+                $("#PasswordInfo").hide();
+            }
+        }
 
         $("#save").click(function() {
+            var pwd_alert1 = false;
+            var pwd_alert2 = false;
+            if($("input[name='passwordFlag']")[0].checked){
+                $("#PasswordInfo input").each(function(){
+                    if($(this).val() == "")
+                    {
+                        pwd_alert1 = true;
+                        return false;
+                    }
+                    if($("#newPassword").val() != $("#rePassword").val()){
+                        pwd_alert2 = true;                    
+                        return false;
+                    }
+                });
+            }
             var image = "";
             var title = "";
             var enable ="";
@@ -190,7 +235,18 @@
             $("#image").val(image.substring(0, image.length-2));
             $("#title").val(title.substring(0, title.length-2));
             $("#enable").val(enable.substring(0, enable.length-2));
-            $("#submitf").submit();
+            if (pwd_alert1)
+	    {
+		alert("请填写完整密码信息！");
+	    }
+            else if(pwd_alert2)
+            {
+                alert("两次输入的新密码不相同，请重新输入！");
+            }
+	    else
+	    {
+                $("#submitf").submit();
+            }   
         });
     </script>
     <%@include file="/templates/new_general_footer.jsp" %>

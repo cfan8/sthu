@@ -64,6 +64,11 @@ public class GroupUserValidationAction extends BaseAction{
             getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getNickname());
             getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
             getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
+            if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_SHETUAN){
+                getShowApplyStudentActivityPageMessage().setGroupType(ShowApplyStudentActivityPageMessage.GROUP_TYPE_SHETUAN);
+            }else if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_STUDENTUNION){
+                getShowApplyStudentActivityPageMessage().setGroupType(ShowApplyStudentActivityPageMessage.GROUP_TYPE_STUDENTUNION);
+            }
 	    return RETURN_CREATE;   
         }
     }

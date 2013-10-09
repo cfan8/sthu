@@ -52,6 +52,11 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
                     getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
                     getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getApplicantName());
+                    if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_SHETUAN){
+                        getShowApplyStudentActivityPageMessage().setGroupType(ShowApplyStudentActivityPageMessage.GROUP_TYPE_SHETUAN);
+                    }else if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_STUDENTUNION){
+                        getShowApplyStudentActivityPageMessage().setGroupType(ShowApplyStudentActivityPageMessage.GROUP_TYPE_STUDENTUNION);
+                    }
                 }else if(getCurrentUser().getAuth().getOpGroupCode() != -1){
                     getShowApplyStudentActivityPageMessage().setShowProcess(false);
                 }

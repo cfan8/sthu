@@ -33,7 +33,11 @@ public class SaveGroupHomeManageAction extends BaseAction{
     private String title;
     @XSSProtect(XSSProtectLevel.Strict)
     private String enable;
-    
+    private boolean passwordFlag;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String originPassword;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String newPassword;
     
     @Override
     public String onExecute() throws Exception {
@@ -51,6 +55,11 @@ public class SaveGroupHomeManageAction extends BaseAction{
 	}
 	userService.updateImgs(list);
         alertMessage.setSimpleAlert("已保存！", "showGroupHome.do?groupId=" + groupId);
+        if(passwordFlag){
+            if(!userService.updateUserPassword(originPassword, newPassword, getCurrentUser())){
+                alertMessage.setSimpleAlert("原密码输入错误！", "showGroupHome.do?groupId=" + groupId);
+            }
+        }
         return ALERT;
     }
     @Override
@@ -193,5 +202,47 @@ public class SaveGroupHomeManageAction extends BaseAction{
      */
     public void setEnable(String enable) {
         this.enable = enable;
+    }
+
+    /**
+     * @return the originPassword
+     */
+    public String getOriginPassword() {
+        return originPassword;
+    }
+
+    /**
+     * @param originPassword the originPassword to set
+     */
+    public void setOriginPassword(String originPassword) {
+        this.originPassword = originPassword;
+    }
+
+    /**
+     * @return the newPassword
+     */
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    /**
+     * @param newPassword the newPassword to set
+     */
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    /**
+     * @return the passwordFlag
+     */
+    public boolean isPasswordFlag() {
+        return passwordFlag;
+    }
+
+    /**
+     * @param passwordFlag the passwordFlag to set
+     */
+    public void setPasswordFlag(boolean passwordFlag) {
+        this.passwordFlag = passwordFlag;
     }
 }

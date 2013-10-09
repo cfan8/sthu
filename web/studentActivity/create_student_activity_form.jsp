@@ -44,11 +44,11 @@
 	<form action="submitStudentActivityApply.do" method="post" id="submitf">
             <div id="requiredinfo">
                 <%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%>
-                <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" name="organizerName"/></span></div>
+                <div><span class="tag">主办方（者）名称：</span><span><input type="text" name="organizerName"/></span></div>
                 <%}else{%>
-                <div><span class="tag">主办方（者）名称：</span><span class="value"><input type="text" disabled="disabled" name="organizerName" value="<%=message.getOrganizerName()%>"/></span></div>
+                <div><span class="tag">主办方（者）名称：</span><span><input type="text" disabled="disabled" name="organizerName" value="<%=message.getOrganizerName()%>"/></span></div>
                 <%}%>
-                <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName"/></span></div>
+                <div><span class="tag">协办方（者）名称：</span><span><input type="text" name="associateOrganizerName"/></span></div>
 
                 <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
                 <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell"/></span></div>
@@ -69,14 +69,14 @@
                         <option value="<%=StudentActivityApplyEntity.RANGE_SCHOOL%>">全校</option>
                     </select>
                     </span></div>   
-                <div><span class="tag">一级审批部门：</span><%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY){%><span class="value_select">
+                <div><span class="tag">一级审批部门：</span><%if(message.getApplyType() == ShowApplyStudentActivityPageMessage.USER_APPLY || (message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY && message.getGroupType() == ShowApplyStudentActivityPageMessage.GROUP_TYPE_STUDENTUNION)){%><span class="value_select">
                         <select name="applyType" id="applyType">
                             <% for (int i = 0; i < IdentityMapping.names.length; i++) {%>
                             <option value="<%=i%>" <%=i == 0 ? "selected=\"selected\"" : ""%> ><%=IdentityMapping.names[i]%></option>
                             <% }%>
                         </select>
                     </span>
-                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY){%><span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
+                    <%}else if(message.getApplyType() == ShowApplyStudentActivityPageMessage.GROUP_APPLY && message.getGroupType() == ShowApplyStudentActivityPageMessage.GROUP_TYPE_SHETUAN){%><span class="value"><input disabled="disabled" type="text" value="<%=IdentityMapping.names[1]%>" /><input type="hidden" name="applyType" value="1"/></span>
                     <%}%>
                 </div>
                 <div><span class="tag">负责人：</span><span class="value"><input type="text" name="managerName"/></span></div>

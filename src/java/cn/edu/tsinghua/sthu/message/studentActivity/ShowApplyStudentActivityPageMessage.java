@@ -16,11 +16,14 @@ import cn.edu.tsinghua.sthu.message.BaseMessage;
 public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     public static final int USER_APPLY = 1;
     public static final int GROUP_APPLY = 2;
+    public static final int GROUP_TYPE_SHETUAN = 1;
+    public static final int GROUP_TYPE_STUDENTUNION = 2;
     private StudentActivityApplyEntity studentActivityApplyEntity;
     private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
     private String organizerName;
     private int applyType = USER_APPLY;
+    private int groupType;
     private CommentEntity commentEntity;
     private boolean showConfirm;
     private boolean showApprove; 
@@ -167,5 +170,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setShowProcess(boolean showProcess) {
         this.showProcess = showProcess;
+    }
+
+    /**
+     * @return the groupType
+     */
+    public int getGroupType() {
+        return groupType;
+    }
+
+    /**
+     * @param groupType the groupType to set
+     */
+    public void setGroupType(int groupType) {
+        this.groupType = groupType;
     }
 }
