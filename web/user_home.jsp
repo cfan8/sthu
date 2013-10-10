@@ -30,6 +30,11 @@
           <link rel="stylesheet" href="/css/home/defaults.css" />
           <link rel="stylesheet" href="/css/home/font-awesome.min.css" />
         <script src="/js/calendar.js"></script>
+        <style>
+            a:link, a:visited{
+                color:black;
+            }    
+        </style>
     </head>
     
     <%@include file="/templates/new_general_header.jsp" %> 

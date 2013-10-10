@@ -91,7 +91,9 @@ section.calendar.small td a {
 
 section.calendar.large {
 	height: 524px;
+	display: -webkit-box; /* safari */
 	display: flex;
+	-webkit-box-orient: vertical; /* safari */
 	flex-direction: column;
 	display: table\0;
 }
@@ -190,6 +192,7 @@ section.calendar.large .curr {
 }
 
 section.calendar.large>div {
+	-webkit-box-flex: 1; /* safari */
 	flex: 1;
 	padding: 12px;
 	overflow-y: scroll;

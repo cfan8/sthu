@@ -17,6 +17,7 @@
         <style>
             .homeActivityDiv{
                 text-align: left;
+                font-family: SimHei;
             }
             .homeActivityDiv ul, .homeActivityDiv li{
                 list-style-type:none;
@@ -26,7 +27,7 @@
             }
             .homeActivityDiv a, .homeActivityDiv a:visited, .homeActivityDiv a:link{
                 text-decoration: none;
-                font-size:large;
+                font-size:16px;
                 color: black;
             }
             .homeActivityDiv a:hover{
@@ -68,8 +69,8 @@
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
         String theme = entity.getActivityTheme();
-        if(theme.length() > 20){
-                theme = theme.substring(0, 18);
+        if(theme.length() > 18){
+                theme = theme.substring(0, 16);
                 theme = theme + "..";
             }
     %>
