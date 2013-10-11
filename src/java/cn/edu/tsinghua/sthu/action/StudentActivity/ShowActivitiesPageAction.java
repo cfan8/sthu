@@ -61,12 +61,6 @@ public class ShowActivitiesPageAction extends BaseAction{
         if(getShowActivitiesPageMessage().getShowFollow() == 1){
             for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
                 isFollowedList.add(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), entity));
-                if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
-                    isGroupList.add(Boolean.TRUE);
-                }
-                else{
-                    isGroupList.add(Boolean.FALSE);
-                }
             }
         }
         else{
