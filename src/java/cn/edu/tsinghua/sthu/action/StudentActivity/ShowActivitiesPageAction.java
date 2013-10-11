@@ -69,7 +69,7 @@ public class ShowActivitiesPageAction extends BaseAction{
             }
         }
         for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
-            if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+            if(userService.getUserEntityById(entity.getApplyUserid())!=null && userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
                  isGroupList.add(Boolean.TRUE);
              }
              else{
