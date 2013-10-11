@@ -56,7 +56,7 @@
                     </div>
                         <div id="participant_div" style="margin-top: 20px;">
                         
-                            <span style="font-size:large;">已有 <a style="color:red;font-family: Impact"><b><%=message.getFollowNumber()%></b></a> 人参与</span>
+                            <span style="font-size:large;">已有 <a style="color:red;font-family: Impact"><b><%=message.getFollowNumber()%></b></a> 人感兴趣</span>
                             &nbsp;&nbsp;&nbsp;   
                             <%if(message.getShowFollow() == 1){%>
                             <a href="followActivity.do?activityId=<%=entity.getID()%>&type=1">

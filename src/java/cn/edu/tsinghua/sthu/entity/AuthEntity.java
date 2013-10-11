@@ -46,6 +46,9 @@ public class AuthEntity extends BaseEntity{
     @Index(name="opOtherCodeIndex")
     private int opOtherCode = -1;   //校团委交给其他部门审批
 
+    @Index(name="opUserCodeIndex")
+    private int opUserCode = -1;    //添加用户权限
+    
     public int getRole() {
 	return role;
     }
@@ -140,6 +143,20 @@ public class AuthEntity extends BaseEntity{
      */
     public void setGroupType(int groupType) {
         this.groupType = groupType;
+    }
+
+    /**
+     * @return the opUserCode
+     */
+    public int getOpUserCode() {
+        return opUserCode;
+    }
+
+    /**
+     * @param opUserCode the opUserCode to set
+     */
+    public void setOpUserCode(int opUserCode) {
+        this.opUserCode = opUserCode;
     }
   
 }

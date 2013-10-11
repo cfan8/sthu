@@ -15,6 +15,7 @@
     List<StudentActivityApplyEntity> list = message.getList();
     List<Boolean> isFollowedList = message.getIsFollowedList();
     Integer showFollow = message.getShowFollow();
+    List<Boolean> isGroupList = message.getIsGroupList();
     if (list.size() == 0) {
 %>
 <div style="width: 100%; text-align: center;">没有申请！</div>
@@ -23,6 +24,7 @@
     for (int i = 0; i < list.size(); i++) {
 	StudentActivityApplyEntity entity = list.get(i);
         Boolean isFollowed = isFollowedList.get(i);
+        Boolean isGroup = isGroupList.get(i);
         String theme = entity.getActivityTheme();
             if(theme.length() > 20){
                 theme = theme.substring(0, 18);
@@ -32,9 +34,13 @@
     <li style="height:50px;">
         <div style="padding:5px 80px 5px 0px">
             <div style="float:left;width:140px;text-align:center;margin:8px 20px 0px 0px;">
+                <%if(isGroup){%>
                 <a style="color:#000;  text-decoration:none;"
                    href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"
                      target="_blank">
+                    <%}else{%>
+                    <a style="color:#000;  text-decoration:none;">
+                    <%}%>
                     <b><%=entity.getOrganizerName()%></b>
                 </a>
             </div>

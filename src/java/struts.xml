@@ -71,6 +71,13 @@ and open the template in the editor.
         </action>
         <action name="followGroup" class="cn.edu.tsinghua.sthu.action.FollowGroupAction">
         </action>
+        <action name="showInsertUserPage" class="cn.edu.tsinghua.sthu.action.ShowInserUserAction">
+            <result name="success">insert_user.jsp</result>
+        </action>
+        <action name="insertUser" class="cn.edu.tsinghua.sthu.action.InsertUserAction">
+        </action>
+        <action name="changeUserPassword" class="cn.edu.tsinghua.sthu.action.ChangePasswordAction">
+        </action>
     </package>
     <package name="testActionPackage" extends="defaultAction" namespace="/test">
 	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">

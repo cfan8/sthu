@@ -10,6 +10,7 @@ import cn.edu.tsinghua.sthu.message.UserHomeMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import cn.edu.tsinghua.sthu.service.UserService;
 import cn.edu.tsinghua.sthu.entity.FollowEntity;
+import cn.edu.tsinghua.sthu.message.AlertMessage;
 import java.util.List;
 
 /**
@@ -23,6 +24,20 @@ public class UserHomeAction extends BaseAction{
     private UserService userService;
     @Override
     public String onExecute() throws Exception {
+        if(getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE){
+            alertMessage.setAlertTitle("新版学生清华");
+            alertMessage.setAlertContent("点此进入社团主页");
+            alertMessage.setAlertType(AlertMessage.BOX_TYPE);
+            alertMessage.setRedirectURL("showGroupHome.do?groupId="+getCurrentUser().getID());
+            return ALERT;
+        }
+        else if(getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE){
+            alertMessage.setAlertTitle("管理员个人主页仍为旧版");
+            alertMessage.setAlertContent("点此进入学清管理页面");
+            alertMessage.setAlertType(AlertMessage.BOX_TYPE);
+            alertMessage.setRedirectURL("mysthu.do");
+            return ALERT;
+        }
         getUserHomeMessage().setUsername(getCurrentUser().getNickname());
         getUserHomeMessage().setFollowActivityNumber(applyStudentActivityService.getFollowedActivityNumberByUser(getCurrentUser()));
         getUserHomeMessage().setApplyNum(applyStudentActivityService.getMyApplyTotalPageNumber(getCurrentUser().getID()));
@@ -50,10 +65,7 @@ public class UserHomeAction extends BaseAction{
     
     @Override
     public boolean hasAuth(){
-        if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**

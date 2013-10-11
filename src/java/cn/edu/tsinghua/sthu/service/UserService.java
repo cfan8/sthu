@@ -125,6 +125,31 @@ public class UserService extends BaseService {
     }
     
     @Transactional
+    public boolean addUser(String username, String password, String nickname, int userrole, int opAllocateCode,
+    int opArticleCode, int opIdentityCode, int opResourceCode, int opGroupCode, int opPublishCode, int opOtherCode,
+    int opUserCode, int groupType) {
+	password = Util.getMD5(password);
+	UserEntity entity = userDAO.getUserByUsername(username);
+	if (entity == null) {
+            AuthEntity auth = new AuthEntity();
+            auth.setRole(userrole);
+            auth.setOpAllocateCode(opAllocateCode);
+            auth.setOpArticle(opArticleCode);
+            auth.setOpGroupCode(opGroupCode);
+            auth.setOpIdentityCode(opIdentityCode);
+            auth.setOpOtherCode(opOtherCode);
+            auth.setOpPublishCode(opPublishCode);
+            auth.setOpResourceCode(opResourceCode);
+            auth.setOpUserCode(opUserCode);
+            auth.setGroupType(groupType);
+	    userDAO.addUser(username, password, nickname, auth);
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+    
+    @Transactional
     public UserEntity addUserOrUpdatePassword(String username, String password, String nickname) {
 	password = Util.getMD5(password);
 	UserEntity entity = userDAO.getUserByUsername(username);
@@ -138,6 +163,11 @@ public class UserService extends BaseService {
 	    //userDAO.updateUserEntity(entity);
 	    return entity;
 	}
+    }
+    
+    @Transactional
+    public UserEntity getUserEntityByUsername(String username){
+        return userDAO.getUserByUsername(username);
     }
 
     @Transactional
@@ -154,6 +184,14 @@ public class UserService extends BaseService {
 	} else {
 	    return false;
 	}
+    }
+    
+    @Transactional
+    public boolean updateUserPassword(String newPassword, UserEntity entity) {
+	
+	    entity.setPassword(Util.getMD5(newPassword));
+	    userDAO.updateUserEntity(entity);
+	    return true;
     }
 
     @Transactional

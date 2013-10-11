@@ -11,6 +11,7 @@ import cn.edu.tsinghua.sthu.message.studentActivity.SearchActivitiesPageMessage;
 import cn.edu.tsinghua.sthu.security.XSSProtect;
 import cn.edu.tsinghua.sthu.security.XSSProtectLevel;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import cn.edu.tsinghua.sthu.service.UserService;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -27,20 +28,20 @@ public class SearchActivityPageAction extends BaseAction{
     private ApplyStudentActivityService applyStudentActivityService;
     private Integer activityClass;
     private Integer page;
+    private UserService userService;
     @Override
     public String onExecute() throws Exception {
-         List<StudentActivityApplyEntity> entityList;
-     
-       entityList = getApplyStudentActivityService().getAcceptedActivitiesByContent(getPage(),10,getSearchKeywords());
+        List<StudentActivityApplyEntity> entityList;
+        entityList = getApplyStudentActivityService().getAcceptedActivitiesByContent(getPage(),10,getSearchKeywords());
         getSearchActivitiesPageMessage().setList(entityList);
        // getSearchActivitiesMessage().setTotalPageNumber(getApplyStudentActivityService().getAcceptedActivitiesByContentAndType(10, getSearchKeywords(),getActivityClass()));
           
-       if(getCurrentUser() == null || getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE){
+        if(getCurrentUser() == null || getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE){
             getSearchActivitiesPageMessage().setShowFollow(0);
         }else {
             getSearchActivitiesPageMessage().setShowFollow(1);
         }
-       List<Boolean> isFollowedList = new ArrayList<Boolean>();
+        List<Boolean> isFollowedList = new ArrayList<Boolean>();
         if(getSearchActivitiesPageMessage().getShowFollow() == 1){
             for (StudentActivityApplyEntity entity : getSearchActivitiesPageMessage().getList()) {  
                 isFollowedList.add(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), entity));
@@ -51,7 +52,17 @@ public class SearchActivityPageAction extends BaseAction{
                 isFollowedList.add(Boolean.FALSE);
             }
         }
-       getSearchActivitiesPageMessage().setIsFollowedList(isFollowedList); 
+        List<Boolean> isGroupList = new ArrayList<Boolean>();
+        for (StudentActivityApplyEntity entity : getSearchActivitiesPageMessage().getList()) {  
+            if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+                 isGroupList.add(Boolean.TRUE);
+             }
+             else{
+                 isGroupList.add(Boolean.FALSE);
+             }
+         }
+        getSearchActivitiesPageMessage().setIsGroupList(isGroupList);
+        getSearchActivitiesPageMessage().setIsFollowedList(isFollowedList); 
         return SUCCESS;
     }
 

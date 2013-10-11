@@ -293,7 +293,7 @@
                 
                     <img src="<%=options.getPublicityImg()%>" width="80px" height="60px" id="main_img"/>
                     <br/>
-                    上传图片（300*400）：<div class="upbtn" style="width:500px;"><input type="button" id="upbtn_main"/></div>
+                    上传图片（400*300）：<div class="upbtn" style="width:500px;"><input type="button" id="upbtn_main"/></div>
                     <input type="hidden" name="mainImg" id="mainImg" value="<%=options.getPublicityImg()%>"/>
                 
         </div>

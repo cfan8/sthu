@@ -40,8 +40,8 @@
         <%for(int i = 0; i < list.size(); i ++){
             StudentActivityApplyEntity entity = list.get(i);
             String theme = entity.getActivityTheme();
-            if(theme.length() > 11){
-                theme = theme.substring(0, 9);
+            if(theme.length() > 10){
+                theme = theme.substring(0, 8);
                 theme = theme + "...";
             }
         %>

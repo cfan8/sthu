@@ -191,7 +191,7 @@
                 <div><span class="tag">宣传图片：</span>
                 <div class="manage_item">
                     <img src="/images/logo.jpg" width="80px" height="60px" id="main_img"/>
-                    上传图片（300*400）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
+                    上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
                     <input type="hidden" name="mainImg" id="mainImg" value="/images/logo.jpg"/>
                 </div>
                 </div>

@@ -7,8 +7,10 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
+import cn.edu.tsinghua.sthu.entity.UserEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowActivitiesPageMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import cn.edu.tsinghua.sthu.service.UserService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class ShowActivitiesPageAction extends BaseAction{
     private Date selectedDate;
     private Integer page;
     private ApplyStudentActivityService applyStudentActivityService;
+    private UserService userService;
     private ShowActivitiesPageMessage showActivitiesPageMessage;
     
     @Override
@@ -54,9 +57,16 @@ public class ShowActivitiesPageAction extends BaseAction{
         else
             getShowActivitiesPageMessage().setList(applyStudentActivityService.getAcceptedPublicActivitiesListByDate(getPage(), 10, activityClass, digest, selectedDate));
         List<Boolean> isFollowedList = new ArrayList<Boolean>();
+        List<Boolean> isGroupList = new ArrayList<Boolean>();
         if(getShowActivitiesPageMessage().getShowFollow() == 1){
             for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
                 isFollowedList.add(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), entity));
+                if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+                    isGroupList.add(Boolean.TRUE);
+                }
+                else{
+                    isGroupList.add(Boolean.FALSE);
+                }
             }
         }
         else{
@@ -64,6 +74,15 @@ public class ShowActivitiesPageAction extends BaseAction{
                 isFollowedList.add(Boolean.FALSE);
             }
         }
+        for (StudentActivityApplyEntity entity : getShowActivitiesPageMessage().getList()) {  
+            if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+                 isGroupList.add(Boolean.TRUE);
+             }
+             else{
+                 isGroupList.add(Boolean.FALSE);
+             }
+         }
+        getShowActivitiesPageMessage().setIsGroupList(isGroupList);
         getShowActivitiesPageMessage().setIsFollowedList(isFollowedList);
         return SUCCESS;
     }
@@ -184,6 +203,20 @@ public class ShowActivitiesPageAction extends BaseAction{
      */
     public void setSelectedDate(Date selectedDate) {
         this.selectedDate = selectedDate;
+    }
+
+    /**
+     * @return the userService
+     */
+    public UserService getUserService() {
+        return userService;
+    }
+
+    /**
+     * @param userService the userService to set
+     */
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
     
 }

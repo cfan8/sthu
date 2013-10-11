@@ -51,9 +51,12 @@
                         <%}else if(type == AuthEntity.GROUP_ROLE){%>
                             <a id="individual_link" href="/login.do?redirectURL=%2FshowGroupHome.do?groupId=<%=id%>">
                         <%}%>
-                    <b>个人主页</b></a></div>
+                    <b>我的学清</b></a></div>
                 </div>
                 <div id="navi_text_right" class="navi-side">
+                    <%if(isLogin != null){%>
+                    <div class="navi-main"><a href="/mysthu.do"><b>回到旧版</b></a></div>
+                    <%}%>
                     <div class="navi-main"><a id="login_out_link" href="/logout.do"><b><%=logout%></b></a></div>
                 </div>
             </div>
@@ -130,6 +133,14 @@
                 $('#search_form').submit();
                 document.getElementById("input_box").value="";
                 return false;
+            });
+            $("#input_box").keydown(function(){
+                if(event.keyCode == 13){
+                    document.getElementById("input_box").value = encodeURIComponent(document.getElementById("input_box").value);
+                    $('#search_form').submit();
+                    document.getElementById("input_box").value="";
+                    return false;
+                }
             });
            
 	</script>

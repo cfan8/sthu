@@ -182,12 +182,12 @@ img{
 }
 .class-bar-text{
     float: left;
-    width: 90px;
+    width: 95px;
     height: 25px;
     color:#888;
     font-size: 15px;
     text-align: center;
-    margin-left: 20px;
+    margin-left: 18px;
     margin-top: 10px;
 }
 .chooseDigest{

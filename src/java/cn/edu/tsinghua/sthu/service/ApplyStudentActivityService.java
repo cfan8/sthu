@@ -879,7 +879,7 @@ public class ApplyStudentActivityService extends BaseService{
             str += "\"time\" : \"" + e.getTimePeriod() + "\",";
             if(e.getOption().getCroomLocation() != null && e.getOption().getCroomLocation().compareTo("") != 0)
                 str += "\"place\" : \"" + e.getOption().getCroomLocation() + "\",";
-            str += "\"href\" : \"/studentActvity/showStudentActivityDetail.do?activityID=" + e.getID() + "\"";
+            str += "\"href\" : \"/studentActivity/showStudentActivityDetail.do?activityID=" + e.getID() + "\"";
             str += "}],";
         }
         str += "});";

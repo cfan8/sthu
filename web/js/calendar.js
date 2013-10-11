@@ -142,7 +142,7 @@ var calendar = function(document) {
 	function redrawEvent(elem, day) {
 		var data = events[day];
 		elem.lastChild.innerHTML = data ? data.map(function(event) {
-			return event.time + ' ' + event.title;
+			return event.time + ' <a href=\''+ event.href +'\'>' + event.title + '</a>';
 		}).join('<br/>') : '';
 	}
 

@@ -104,7 +104,14 @@
                             </div>
                         <div id="introduction_part">
                             <p>
-                            <%=message.getIntroduction()%>
+                                
+                            <%String intro = message.getIntroduction();
+                                if(intro == null || intro.compareTo("null") == 0 ){
+                            %>
+                            这个组织很懒，还没有填写简介。
+                            <%}else{%>
+                            <%=intro%>
+                            <%}%>
                             </p>
                             
                         </div>

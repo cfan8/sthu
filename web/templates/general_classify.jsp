@@ -14,32 +14,32 @@
                     <div class="ActivityClass">                       
                         <div class="class-bar-text">
                             <div id="btn_group">
-                                <a style="cursor: pointer;">党团活动  </a>
+                                <a style="cursor: pointer;">党团活动</a>
                             </div>
                         </div>
                         <div class="class-bar-text">
                             <div id="btn_sport" >
-                                <a style="cursor: pointer;">体育赛事  </a>
+                                <a style="cursor: pointer;">体育赛事</a>
                             </div>
                         </div>
                         <div   class="class-bar-text">
                             <div id="btn_lecture" >
-                                <a style="cursor: pointer;">学术讲座  </a>
+                                <a style="cursor: pointer;">学术讲座</a>
                             </div>
                         </div>
                         <div  class="class-bar-text">
                             <div id="btn_culture" >
-                                <a style="cursor: pointer;">文化活动  </a>
+                                <a style="cursor: pointer;">文化活动</a>
                             </div>
                         </div>
                         <div  class="class-bar-text">
                             <div id="btn_amuse" >
-                                <a style="cursor: pointer;">文艺活动  </a>
+                                <a style="cursor: pointer;">文艺活动</a>
                             </div>
                         </div>
                         <div  class="class-bar-text">
                             <div id="btn_other" >
-                                <a style="cursor: pointer;">其他活动  </a>
+                                <a style="cursor: pointer;">其他活动</a>
                             </div>
                         </div>
                     </div>

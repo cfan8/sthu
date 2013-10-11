@@ -15,6 +15,7 @@ import java.util.List;
 public class ShowActivitiesPageMessage extends BaseMessage{
     private List<StudentActivityApplyEntity> list;
     private List<Boolean> isFollowedList;
+    private List<Boolean> isGroupList;
     private Integer showFollow;
 
     /**
@@ -57,6 +58,20 @@ public class ShowActivitiesPageMessage extends BaseMessage{
      */
     public void setShowFollow(Integer showFollow) {
         this.showFollow = showFollow;
+    }
+
+    /**
+     * @return the isGroupList
+     */
+    public List<Boolean> getIsGroupList() {
+        return isGroupList;
+    }
+
+    /**
+     * @param isGroupList the isGroupList to set
+     */
+    public void setIsGroupList(List<Boolean> isGroupList) {
+        this.isGroupList = isGroupList;
     }
     
 }

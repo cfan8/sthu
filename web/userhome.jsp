@@ -106,6 +106,14 @@
 		top: 14px; 
 		right: 0px
 	    }
+            
+            .trynew{
+                font-family: 微软雅黑;
+		color: #36424a;
+		position:absolute; 
+		top: 14px; 
+                right:40px;
+            }
 	    
 	    #welcome a:link, #welcome a:visited{
 		text-decoration: none;
@@ -118,7 +126,7 @@
 	    </style>
     </head>
     <%@include file="/templates/general_header.jsp" %>
-    <div id="welcome"><div id="welcometext">欢迎来到我的学清！</div><a class="logout" href="/logout.do">登出</a></div>
+    <div id="welcome"><div id="welcometext">欢迎来到我的学清！</div><a class="trynew" href="/showUserHome.do">体验新版</a><a class="logout" href="/logout.do">登出</a></div>
     <div id="classapply">
 	<div class="title">我的教室申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请借用教室</a></div>
 	<div class="content"><iframe id="frame0" src="/activity/showMyApply.do"></iframe></div>

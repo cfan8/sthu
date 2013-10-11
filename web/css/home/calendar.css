@@ -183,6 +183,18 @@ section.calendar.large th.fields::after {
 	top: 1px;
 }
 
+section.calendar.large a:link, section.calendar.large a:visited{
+	color: white;
+}
+
+section.calendar.large a:hover{
+	text-decoration: underline;
+}
+
+section.calendar.large td a:hover{
+	text-decoration: none;
+}
+
 section.calendar.large .event {
 	background: url('/images/attach.png') no-repeat 2px 34px;
 }
