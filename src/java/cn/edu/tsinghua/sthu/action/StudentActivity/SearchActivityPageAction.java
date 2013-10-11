@@ -54,7 +54,7 @@ public class SearchActivityPageAction extends BaseAction{
         }
         List<Boolean> isGroupList = new ArrayList<Boolean>();
         for (StudentActivityApplyEntity entity : getSearchActivitiesPageMessage().getList()) {  
-            if(userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+            if(userService.getUserEntityById(entity.getApplyUserid())!=null && userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
                  isGroupList.add(Boolean.TRUE);
              }
              else{
