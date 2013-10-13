@@ -13,6 +13,7 @@
 <%
     ShowStudentActivityDetailMessage message = Util.getMessage(ShowStudentActivityDetailAction.class);
     StudentActivityApplyEntity entity = message.getActivity();
+    boolean isGroup = message.isIsGroup();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 
@@ -29,10 +30,23 @@
         <link href="/css/activity/flexagon.css" type="text/css" rel="stylesheet" />
         <link href="/css/activity/effects.css" type="text/css" rel="stylesheet" />
         <link rel="stylesheet" href="/css/datepicker.css" type="text/css" />
+        <style>
+            .link,.link:link, .link:visited{
+                color:#555;
+                text-decoration: none;
+            }
+            .link:hover{
+                color:#555;
+                text-decoration: underline;
+            }
+            .grayfont{
+                color:#555;
+            }
+            </style>
     </head>
     <%@include file="/templates/new_general_header.jsp" %>
     <%@include file="/templates/general_classify.jsp" %>
-    <div id="main_content" class="main-style">
+    <div id="main_content" class="main-style grayfont">
         
             <div style="height:7px;"></div>
             <div id="content_board" class="content-style">
@@ -46,12 +60,18 @@
                                 <img src="/images/banner.jpg" width="400px" height="300px"/>
                                 <%}%>
                         </div>
-                        <div style="font-family: Microsoft YaHei, LiHei Pro Medium; margin-top:20px;">
+                        <div style="font-family: Microsoft YaHei, LiHei Pro Medium; margin-top:20px;color:#555">
                         <a style="font-size:36px;"><b><%=entity.getActivityTheme()%> </b></a> 
                         <br/>
-                        <p style="color:#00;"><%=entity.getActivityDate()%>&nbsp;&nbsp;<%=entity.getTimePeriod()%></p>
-                        <p style="color:#000;"><%if(entity.getOption().getCroomLocation() != null){%><%=entity.getOption().getCroomLocation()%><%}%></p>
-                        <p style="color:#000;"><%=entity.getOrganizerName()%></p>
+                        <p style="color:#555;"><%=entity.getActivityDate()%>&nbsp;&nbsp;<%=entity.getTimePeriod()%></p>
+                        <p style="color:#555;"><%if(entity.getOption().getCroomLocation() != null){%><%=entity.getOption().getCroomLocation()%><%}%></p>
+                        <p style="color:#555;">
+                            <%if(!isGroup){%>
+                            <%=entity.getOrganizerName()%>
+                            <%}else{%>
+                            <a class="link" href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"><%=entity.getOrganizerName()%></a>
+                            <%}%>
+                        </p>
                         </div>
                     </div>
                         <div id="participant_div" style="margin-top: 20px;">
@@ -87,7 +107,7 @@
                                 抽票结束,<a href="showTicketRandomResult.do?activityID=<%=entity.getID()%>">查看结果</a>
                             <%}%>
                         </div>
-                    <div id="text_content" style="height:auto; min-height: 400px; padding:20px 60px 20px 60px; margin-top: 60px;"> 
+                    <div id="text_content" style="height:auto; min-height: 400px; padding:20px 60px 20px 60px; margin-top: 60px;font-family:NSimSun,LiSong Pro Light, '宋体', SimSun,Arial;color:black"> 
                          <%=entity.getOption().getPublicityMaterials()%>
                     </div>
                 </div>

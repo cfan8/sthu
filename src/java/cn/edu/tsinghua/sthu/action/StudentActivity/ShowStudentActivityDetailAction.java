@@ -11,6 +11,7 @@ import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.message.studentActivity.ShowStudentActivityDetailMessage;
 import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
+import cn.edu.tsinghua.sthu.service.UserService;
 
 /**
  *
@@ -21,6 +22,7 @@ public class ShowStudentActivityDetailAction extends BaseAction{
     private StudentActivityApplyEntity activity;
     private ApplyStudentActivityService applyStudentActivityService;
     private ShowStudentActivityDetailMessage showStudentActivityDetailMessage;
+    private UserService userService;
     
     @Override
     public String onExecute() throws Exception {
@@ -66,8 +68,16 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                 getShowStudentActivityDetailMessage().setShowTicket(0);//不抽票
             }
         }
+        
         getShowStudentActivityDetailMessage().setFollowNumber(applyStudentActivityService.getFollowedNumberByActivityId(activityID));
         getShowStudentActivityDetailMessage().setActivity(activity);
+        int applyuserid = getShowStudentActivityDetailMessage().getActivity().getApplyUserid();
+        if(userService.getUserEntityById(applyuserid) != null && userService.getUserEntityById(applyuserid).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+            getShowStudentActivityDetailMessage().setIsGroup(true);
+        }
+        else{
+            getShowStudentActivityDetailMessage().setIsGroup(false);
+        }
         return SUCCESS;
     }
 
@@ -167,6 +177,20 @@ public class ShowStudentActivityDetailAction extends BaseAction{
      */
     public void setShowStudentActivityDetailMessage(ShowStudentActivityDetailMessage showStudentActivityDetailMessage) {
         this.showStudentActivityDetailMessage = showStudentActivityDetailMessage;
+    }
+
+    /**
+     * @return the userService
+     */
+    public UserService getUserService() {
+        return userService;
+    }
+
+    /**
+     * @param userService the userService to set
+     */
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
     
 }

@@ -26,6 +26,10 @@
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <span id="position">您当前的位置：申请人验证</span>
+    
+    <div style="text-align:center;margin-top:20px;margin-bottom: 20px;">
+    以学生组织身份申请学生活动，需要验证申请人权限，请输入学号和信息门户密码以验证身份。
+    </div>
     <div id="formdiv">
         <div id="main" >
             <form action="groupUserValidation.do" method="post" id="validationForm">

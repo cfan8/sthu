@@ -16,6 +16,7 @@ public class ShowStudentActivityDetailMessage extends BaseMessage{
     private int followNumber = 0;
     private int showFollow;
     private int showTicket;
+    private boolean isGroup;
 
     /**
      * @return the activity
@@ -71,6 +72,20 @@ public class ShowStudentActivityDetailMessage extends BaseMessage{
      */
     public void setShowTicket(int showTicket) {
         this.showTicket = showTicket;
+    }
+
+    /**
+     * @return the isGroup
+     */
+    public boolean isIsGroup() {
+        return isGroup;
+    }
+
+    /**
+     * @param isGroup the isGroup to set
+     */
+    public void setIsGroup(boolean isGroup) {
+        this.isGroup = isGroup;
     }
     
 }

@@ -327,7 +327,9 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
         Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
         Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),
                 Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE),
-                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE))));
+                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE),
+                Restrictions.like("activityContent", searchKeywords, MatchMode.ANYWHERE))));
+        if(searchStatus != null){
         if(searchStatus[0] == 1) {
             temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));   
         }
@@ -352,6 +354,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
          if(searchStatus[7] == 1) {
             temp = temp.add(Restrictions.eq("a.ticketFlag",StudentApplyOptionsEntity.TICKETFLAG_APPLY ));   
         }
+        }
        
         return temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
     }
@@ -361,7 +364,9 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
         Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
         Restrictions.or(Restrictions.like("a.publicityMaterials", searchKeywords,MatchMode.ANYWHERE),
                 Restrictions.like("activityTheme", searchKeywords,MatchMode.ANYWHERE),
-                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE))));
+                Restrictions.like("organizerName", searchKeywords, MatchMode.ANYWHERE),
+                Restrictions.like("activityContent", searchKeywords, MatchMode.ANYWHERE))));
+        if(searchStatus != null){
         if(searchStatus[0] == 1) {
             temp = temp.add(Restrictions.eq("a.externalFlag",StudentApplyOptionsEntity.EXTERNAL_APPLY ));
         }
@@ -385,6 +390,7 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
         }
          if(searchStatus[7] == 1) {
             temp = temp.add(Restrictions.eq("a.ticketFlag",StudentApplyOptionsEntity.TICKETFLAG_APPLY ));   
+        }
         }
         Object r  = temp.setProjection(Projections.rowCount()).uniqueResult();
 	return ((Long) r).intValue();

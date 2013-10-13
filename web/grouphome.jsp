@@ -45,15 +45,16 @@
                 font-family: Microsoft Yahei;
                 letter-spacing: 4px;
                 cursor: pointer;
-            }  
+            }
         </style>
     </head>
     <%@include file="/templates/new_general_header.jsp" %> 
     <div id="main_part" class="main-style">
         <div id="main_content_part" class="main-content-style">
             <%if(message.isShowManage()){%>
-            <div style="padding-left:30px" class="manage_btn">
+            <div style="padding-left:50px" class="manage_btn">
                 <a href="/showGroupHomeManage.do?groupId=<%=message.getGroupId()%>">管&nbsp;&nbsp;理</a>
+                <a href="/mysthu.do">查看申请</a>
             </div>
             <%}%>
             <div style="height: 7px;"></div>

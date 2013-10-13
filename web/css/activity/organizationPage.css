@@ -56,6 +56,7 @@ img{
     width: 200px;
     float: right;
     margin-right: 150px;
+    color:#555;
 }
 .xsh-intro-style {
     height:230px;
@@ -203,4 +204,5 @@ img{
     margin-top: 110px;
     margin-left: 60px;
     margin-right: 50px;
+    color:#555;
 }

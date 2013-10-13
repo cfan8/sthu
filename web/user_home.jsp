@@ -32,7 +32,7 @@
         <script src="/js/calendar.js"></script>
         <style>
             a:link, a:visited{
-                color:black;
+                color:#333;
             }    
         </style>
     </head>
@@ -41,13 +41,17 @@
     <section class="body">
 		<!-- 我的学清区块 -->
 		<section class="my">
+                    <br/>
 			<label id="datelabel" class="date"></label>
 			<h1>我的学清</h1>
 			<h2>你好！<%=message.getUsername()%></h2>
-                        
+                        <p></p>
+                        <br />
+                        <!--
                         <p>
 				<label>活动申请：<%=message.getApplyNum()%></label><label>订票：0</label><label>关注：<%=message.getFollowActivityNumber()%></label>
 			</p>
+                        -->
    
 		</section>
 		<br class="vertical-padding" />
@@ -96,12 +100,12 @@
 		<section class="horiz-layout">
 			<!-- <![endif]-->
 			<section class="block classroom-applicant">
-				<h2>我的学生活动申请<div style="float: right;font-size:14px;margin-right: 50px;"><a href="/studentActivity/applyStudentActivity.do">申请学生活动</a></div></h2>
+				<h2>我的学生活动申请<div style="float: right;font-size:14px;margin-right: 50px;"><a href="/activity/applyNotice.jsp">申请学生活动</a></div></h2>
                                 
                                 <iframe id="frame1" style="border: none; width: 500px;" src="/studentActivity/showMyStudentActivityApply.do?type=1"></iframe>
 			</section>
 			<!--[if IE]></td><td class="vert-padding"></td><td><![endif]-->
-			<section class="block auto-width" style="overflow: auto;">
+			<section class="block auto-width" style="overflow: auto;background-color: #ddd;">
 				<h2>我的订票</h2>
                                 <%for(int i = 0; i < ticketList.size(); i ++){
                                     FollowEntity ticket = ticketList.get(i);
@@ -112,7 +116,7 @@
                                         <%if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_WAIT){%>
                                         等待抽签
                                         <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_SUCCESS){%>
-                                        抽签成功
+                                        抽签成功 领票时间：<%=ticketApply.getOption().getTicketTime()%> 领票地点：<%=ticketApply.getOption().getTicketLocation()%>
                                         <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_FAIL){%>
                                         抽签失败
                                         <%}%>

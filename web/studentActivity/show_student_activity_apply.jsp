@@ -319,8 +319,8 @@
                 'uploader' : '/ueditor/jsp/imageUp.jsp',
                 'onUploadSuccess' : function(file, data, response) {
                     json=eval('('+data+')');
-                    $("#main_img").attr("src",json.url);
-                    $("#mainImg").val(json.url);
+                    $("#main_img").attr("src","/"+json.url);
+                    $("#mainImg").val("/"+json.url);
                 }
             });
             var pe = UE.getEditor('publicityEditor');

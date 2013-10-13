@@ -32,7 +32,7 @@
 		<div class="navibtn"><a href="/index.do"><img src="/css/general/navi0.png" /></a></div>
 		<div class="navibtn"><a href="/column/column.do?id=2" target="_blank"><img src="/css/general/navi1.png" /></a></div>
 		<div class="navibtn"><a href="/column/column.do?id=8" target="_blank"><img src="/css/general/navi2.png" /></a></div>
-		<div class="navibtn"><a href="/column/column.do?id=4" target="_blank"><img src="/css/general/navi3.png" /></a></div>
+		<div class="navibtn"><a href="/studentActivity/showActivitiesList.do" target="_blank"><img src="/css/general/navi3.png" /></a></div>
 		<div class="navibtn"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/general/navi4.png" /></a></div>
 		<div class="navibtn"><a href="/column/column.do?id=6" target="_blank"><img src="/css/general/navi5.png" /></a></div>
 		<div class="navibtn"><a href="/activity/applyNotice.jsp" target="_blank"><img src="/css/general/navi6.png" /></a></div>

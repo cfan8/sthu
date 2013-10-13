@@ -96,7 +96,7 @@ div.datepicker a {
 }
 div.datepicker table td {
 	text-align: right;
-	padding: 0;
+	padding: 0px;
 	margin: 0;
 }
 div.datepicker th {
@@ -105,7 +105,7 @@ div.datepicker th {
 	font-weight: normal;
 }
 div.datepicker tbody th {
-	/*text-align: left;*/
+	text-align: center;
 }
 div.datepicker tbody a {
 	display: block;
@@ -114,7 +114,8 @@ div.datepicker tbody a {
 	width: 30px;
 	line-height: 16px;
 	height: 16px;
-	padding-left: 0px;
+	text-align: center;
+	margin-left: 10px;
 }
 .datepickerYears a,
 .datepickerMonths a{

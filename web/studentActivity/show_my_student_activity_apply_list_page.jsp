@@ -28,7 +28,7 @@
             .homeActivityDiv a, .homeActivityDiv a:visited, .homeActivityDiv a:link{
                 text-decoration: none;
                 font-size:16px;
-                color: black;
+                color: #666;
             }
             .homeActivityDiv a:hover{
                 text-decoration: underline;
