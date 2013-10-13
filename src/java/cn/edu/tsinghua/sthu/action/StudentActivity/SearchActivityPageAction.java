@@ -54,7 +54,7 @@ public class SearchActivityPageAction extends BaseAction{
         }
         List<Boolean> isGroupList = new ArrayList<Boolean>();
         for (StudentActivityApplyEntity entity : getSearchActivitiesPageMessage().getList()) {  
-            if(userService.getUserEntityById(entity.getApplyUserid())!=null && userService.getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
+            if(getUserService().getUserEntityById(entity.getApplyUserid())!=null && getUserService().getUserEntityById(entity.getApplyUserid()).getAuth().getRole() == AuthEntity.GROUP_ROLE){
                  isGroupList.add(Boolean.TRUE);
              }
              else{
@@ -152,6 +152,20 @@ public class SearchActivityPageAction extends BaseAction{
      */
     public void setSearchActivitiesPageMessage(SearchActivitiesPageMessage searchActivitiesPageMessage) {
         this.searchActivitiesPageMessage = searchActivitiesPageMessage;
+    }
+
+    /**
+     * @return the userService
+     */
+    public UserService getUserService() {
+        return userService;
+    }
+
+    /**
+     * @param userService the userService to set
+     */
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
     
 }

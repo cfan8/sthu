@@ -109,7 +109,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     
     private int publicityFlag; //标记是否申请发布学生清华
     //学生清华发布申请
-    @Column(length = 4000)
+    @Column(length=80000)
     private String publicityMaterials; //宣传材料
     private int digestFlag; //标记是否是精华活动
     private String publicityImg; //宣传材料单独的照片

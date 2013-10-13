@@ -111,7 +111,7 @@
                 <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;"><%=options.getOverseasMaterial().equals("") ? "如内容较多请使用上传附件功能上传说明文档。": options.getOverseasMaterial()%></script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">教室申请：</span><span class="value">
+            <div><span class="tag">申请教室：</span><span class="value">
                     <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_APPLY%>" onclick="changeCroomState(1)" <%=options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY%>" onclick="changeCroomState(2)" <%=options.getCroomFlag() == StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>>否
                 </span>
@@ -134,7 +134,7 @@
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="croomEndTime" value="<%=options.getCroomEndTime()%>"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">电子屏申请：</span><span class="value">
+            <div><span class="tag">申请电子屏：</span><span class="value">
                     <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_APPLY%>" onclick="changeLEDState(1)" <%=options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY%>" onclick="changeLEDState(2)" <%=options.getLEDFlag() == StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
                 </span>
@@ -145,7 +145,7 @@
                 <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime" value="<%=options.getLEDEndTime()%>"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">室外场地申请：</span><span class="value">
+            <div><span class="tag">申请室外场地：</span><span class="value">
                     <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY%>" onclick="changeOutsideState(1)" <%=options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY%>" onclick="changeOutsideState(2)" <%=options.getOutsideFlag() == StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
                 </span>
@@ -164,7 +164,7 @@
                 <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod" value="<%=options.getOutsideTimePeriod()%>"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">展板申请：</span><span class="value">
+            <div><span class="tag">申请展板：</span><span class="value">
                     <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_APPLY%>" onclick="changeBoardState(1)" <%=options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY%>" onclick="changeBoardState(2)" <%=options.getBoardFlag() == StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
                 </span>
@@ -183,7 +183,7 @@
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial().equals("") ? "必须上传附件。" : options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">学生清华发布申请：</span><span class="value">
+            <div><span class="tag">申请发布到学生清华：</span><span class="value">
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" onclick="changePublicityState(2)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
                 </span>
@@ -199,7 +199,7 @@
                 <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;"><%=options.getPublicityMaterials().equals("") ? "如内容较多请使用上传附件功能上传说明文档。":options.getPublicityMaterials()%></script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">门票抽签申请：</span><span class="value">
+            <div><span class="tag">申请门票抽签：</span><span class="value">
                     <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_APPLY%>" onclick="changeTicketState(1)" <%=options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY%>" onclick="changeTicketState(2)" <%=options.getTicketFlag() == StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
                 </span>
@@ -294,8 +294,8 @@
             'uploader' : '/ueditor/jsp/imageUp.jsp',
             'onUploadSuccess' : function(file, data, response) {
 		json=eval('('+data+')');
-		$("#main_img").attr("src",json.url);
-                $("#mainImg").val(json.url);
+		$("#main_img").attr("src","/"+json.url);
+                $("#mainImg").val("/"+json.url);
 	    }
         });
         

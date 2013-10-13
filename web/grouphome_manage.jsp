@@ -158,8 +158,8 @@
             'uploader' : '/ueditor/jsp/imageUp.jsp',
             'onUploadSuccess' : function(file, data, response) {
 		json=eval('('+data+')');
-		$("#main_img").attr("src",json.url);
-                $("#mainImg").val(json.url);
+                $("#main_img").attr("src","/"+json.url);
+                $("#mainImg").val("/"+json.url);
 	    }
         });
         
@@ -175,8 +175,8 @@
             'uploader' : '/ueditor/jsp/imageUp.jsp',
             'onUploadSuccess' : function(file, data, response) {
 		json=eval('('+data+')');
-		$("#logo_img").attr("src",json.url);
-                $("#logoImg").val(json.url);
+		$("#logo_img").attr("src","/"+json.url);
+                $("#logoImg").val("/"+json.url);
 	    }
         });
 
@@ -194,7 +194,7 @@
                 'uploader' : '/ueditor/jsp/indexUp.jsp?id=' + i,
                 'onUploadSuccess' : function(file, data, response) {
                     json=eval('('+data+')');
-                    $("#image" + json.id).val(json.url);
+                    $("#image" + json.id).val("/"+json.url);
                 }
             });
         }

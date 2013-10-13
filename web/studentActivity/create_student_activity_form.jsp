@@ -111,7 +111,7 @@
                 <div><span class="tag">相关材料：</span><div class="ueditorBlock"><script id="overseasEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="overseasMaterial" id="overseasMaterial"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">教室申请：</span><span class="value">
+            <div><span class="tag">申请教室：</span><span class="value">
                     <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_APPLY%>" onclick="changeCroomState(1)"/>是
                     <input type="radio" name="croomFlag" value="<%=StudentApplyOptionsEntity.CROOMFLAG_NOTAPPLY%>" onclick="changeCroomState(2)" checked="true"/>否
                 </span>
@@ -134,7 +134,7 @@
                 <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="croomEndTime"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">电子屏申请：</span><span class="value">
+            <div><span class="tag">申请电子屏：</span><span class="value">
                     <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_APPLY%>" onclick="changeLEDState(1)"/>是
                     <input type="radio" name="LEDFlag" value="<%=StudentApplyOptionsEntity.LEDFLAG_NOTAPPLY%>" checked="true" onclick="changeLEDState(2)"/>否
                 </span>
@@ -145,7 +145,7 @@
                 <div><span class="tag">结束日期和时间：</span><span class="value"><input type="text" name="LEDEndTime"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">室外场地申请：</span><span class="value">
+            <div><span class="tag">申请室外场地：</span><span class="value">
                     <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_APPLY%>" onclick="changeOutsideState(1)"/>是
                     <input type="radio" name="outsideFlag" value="<%=StudentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY%>" checked="true" onclick="changeOutsideState(2)"/>否
                 </span>
@@ -163,7 +163,7 @@
                 <div><span class="tag">借用时间段:</span><span class="value"><input type="text" name="outsideTimePeriod"/></span></div>
             </div>
             <hr />
-            <div><span class="tag">展板申请：</span><span class="value">
+            <div><span class="tag">申请展板：</span><span class="value">
                     <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_APPLY%>" onclick="changeBoardState(1)"/>是
                     <input type="radio" name="boardFlag" value="<%=StudentApplyOptionsEntity.BOARDFLAG_NOTAPPLY%>" checked="true" onclick="changeBoardState(2)"/>否
                 </span>
@@ -182,7 +182,7 @@
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;">必须上传附件。</script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">学生清华发布申请：</span><span class="value">
+            <div><span class="tag">申请发布到学生清华：</span><span class="value">
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)"/>是
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" checked="true" onclick="changePublicityState(2)"/>否
                 </span>
@@ -190,15 +190,15 @@
             <div id="publicityInfo" style="display: none">
                 <div><span class="tag">宣传图片：</span>
                 <div class="manage_item">
-                    <img src="/images/logo.jpg" width="80px" height="60px" id="main_img"/>
+                    <img src="/images/banner.jpg" width="80px" height="60px" id="main_img"/>
                     上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
-                    <input type="hidden" name="mainImg" id="mainImg" value="/images/logo.jpg"/>
+                    <input type="hidden" name="mainImg" id="mainImg" value="/images/banner.jpg"/>
                 </div>
                 </div>
                 <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">门票抽签申请：</span><span class="value">
+            <div><span class="tag">申请门票抽签：</span><span class="value">
                     <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_APPLY%>" onclick="changeTicketState(1)"/>是
                     <input type="radio" name="ticketFlag" value="<%=StudentApplyOptionsEntity.TICKETFLAG_NOTAPPLY%>" checked="true" onclick="changeTicketState(2)"/>否
                 </span>
@@ -294,8 +294,8 @@
             'uploader' : '/ueditor/jsp/imageUp.jsp',
             'onUploadSuccess' : function(file, data, response) {
 		json=eval('('+data+')');
-		$("#main_img").attr("src",json.url);
-                $("#mainImg").val(json.url);
+		$("#main_img").attr("src","/"+json.url);
+                $("#mainImg").val("/"+json.url);
 	    }
         });
         

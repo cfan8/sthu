@@ -36,18 +36,18 @@
         <div style="padding:5px 80px 5px 0px">
             <div style="float:left;width:140px;text-align:center;margin:8px 20px 0px 0px;">
                 <%if(isGroup){%>
-                <a style="color:#000;  text-decoration:none;"
+                <a style="color:#888;  text-decoration:none;"
                    href="/showGroupHome.do?groupId=<%=entity.getApplyUserid()%>"
                      target="_blank">
                     <%}else{%>
-                    <a style="color:#000;  text-decoration:none;">
+                    <a style="color:#888;  text-decoration:none;">
                     <%}%>
                     <b><%=entity.getOrganizerName()%></b>
                 </a>
                 </div>
             <div style="float:left;width:500px;">
                 <div style="font-size:x-large;"> 
-                    <a  style="color:#000; text-decoration:none;" target="_blank"
+                    <a  style="color:#555; text-decoration:none;" target="_blank"
                         href="showStudentActivityDetail.do?activityID=<%=entity.getID()%>">
                         <b><%=theme%></b>
                     </a>

@@ -63,8 +63,10 @@ public class FollowTicketAction extends BaseAction {
 
     @Override
     public boolean hasAuth(){
-        if(getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE)
+        if(getCurrentUser().getAuth().getRole() != AuthEntity.USER_ROLE){
+            alertMessage.setSimpleAlert("非普通用户不能加抽票！");
             return false;
+        }
         return true;
     }
     

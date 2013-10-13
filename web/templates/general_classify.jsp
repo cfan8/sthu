@@ -9,7 +9,7 @@
 <div id="input_div" class="input-bar">
         <div class="choosediv">
             <div class="chooseActivity">
-                <span class="ActivityTitle"><a id="btn_clear" style="cursor: pointer">活动</a></span>
+                <span class="ActivityTitle"><a id="btn_clear" style="cursor: pointer">全部活动</a></span>
                 <div class="chooseActivityClass">
                     <div class="ActivityClass">                       
                         <div class="class-bar-text">
