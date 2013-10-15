@@ -101,7 +101,7 @@
                 </div>
             </div>
             <hr />
-            <div><span class="tag">涉镜外：</span><span class="value">
+            <div><span class="tag">涉境外：</span><span class="value">
                     <input type="radio" name="overseasFlag" value="<%=StudentApplyOptionsEntity.OVERSEAS_APPLY%>" onclick="changeOverseasState(1)"/>是
                     <input type="radio" name="overseasFlag" value="<%=StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY%>" onclick="changeOverseasState(2)" checked="true"/>否
                 </span></div>
