@@ -1,0 +1,153 @@
+.albumview {
+	background: -webkit-linear-gradient(top, #FFF, #FFF, #5d6f62);
+	background: -moz-linear-gradient(top, #FFF, #FFF, #5d6f62);
+	background: white url('bg.png') repeat-x 0 bottom\0;
+	background-size: auto 50%\0;
+	padding: 10px;
+}
+
+.albumview>form {
+	text-align: right;
+	border-bottom: 1px solid #CCC;
+	padding: 4px 10px 10px;
+	font-size: 0;
+	line-height: 18px;
+}
+
+.albumview>form>input {
+	margin: 0;
+	border: 1px solid #aaa;
+	font-size: 13px;
+	padding: 2px;
+}
+
+.albumview>form>button {
+	background: -webkit-linear-gradient(top, #FFF, #c2d1e0);
+	background: -moz-linear-gradient(top, #FFF, #c2d1e0);
+	border: 1px solid #aaa;
+	margin: 0;
+	border-left-style: none;
+	display: inline-block;
+	height: 22px;
+	vertical-align: top;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.albumview .img-holder {
+	margin: 12px 32px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.albumview .img-holder>img {
+	width: 100%;
+	display: block;
+}
+
+.albumview .buttons {
+	background: white;
+	float: right;
+	padding: 10px;
+	color: #507ea4;
+	font-size: 13px;
+}
+
+.albumview .buttons a {
+	color: #507ea4;
+	padding: 4px;
+}
+
+.albumview .buttons a i {
+	margin-right: 0.5em;
+}
+
+.albumview .desc {
+	clear: both;
+	color: #333;
+	font-size: 13px;
+	line-height: 32px;
+}
+
+.albumview .controls {
+	display: -webkit-box; /* safari */
+	display: flex;
+	display: table-row\0;
+}
+
+.albumview .list-wrapper {
+	-webkit-box-flex: 1; /* safari */
+	flex: 1;
+	overflow: hidden;
+	display: table-cell\0;
+	width: 662px\0;
+	position: relative\0;
+}
+
+.albumview .pageup,.albumview .pagedown {
+	font-size: 40px;
+	color: #585858;
+	line-height: 66px;
+	margin: 0 5px;
+	cursor: pointer;
+	display: table-cell\0;
+	vertical-align: middle;
+}
+
+.albumview .pageup.disabled,.albumview .pagedown.disabled {
+	cursor: default;
+}
+
+.albumview ul {
+	display: -webkit-box;
+	display: -moz-box;
+	position: relative;
+	width: 100%;
+	width: 9999px\0;
+	position: absolute\0;
+}
+
+.albumview ul>li {
+	margin-right: 12px;
+	float: left\0;
+}
+
+.albumview ul>li.active::before {
+	content: '';
+	display: block;
+	border: 1px solid #F00;
+	position: absolute;
+	width: 84px;
+	height: 100%;
+	display: block;
+}
+
+.albumview ul>li>img {
+	width: 84px;
+	height: 62px;
+	display: block;
+}
+
+.albumview albumview\:seekbar {
+	display: block;
+	padding: 2px;
+	border-radius: 4px;
+	background: -webkit-linear-gradient(top, #7e8580, #b2bab5);
+	background: -moz-linear-gradient(top, #7e8580, #b2bab5);
+	margin: 4px 0;
+	margin-top: 64px\0;
+}
+
+.albumview albumview\:seekbar seeker {
+	position: relative;
+	display: block;
+	background: #c9c9c9;
+	height: 16px;
+	border-radius: 8px;
+}
+
+.albumview albumview\:seekbar seeker i {
+	font-size: 13px;
+	line-height: 16px;
+	padding: 0 8px;
+	color: #626262;
+}
