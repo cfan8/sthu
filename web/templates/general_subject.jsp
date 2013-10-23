@@ -13,8 +13,8 @@
             <div class="topicimg"><img class="subjectimg" src="/css/index/topic0.png"></img></div>
             <div class="topictext">展现清华校园文化，弘扬当代大学生精神风貌，传递清华正能量：欢迎报名2013年清华大学“金紫荆”校园微电影大赛。</div></a>
         </div>
-        <div class="midtopic"><a href="/topic/djx/index.jsp" target="_blank">
-            <div class="topicimg"><img class="subjectimg" src="/css/index/topic1.png"></img></div>
+        <div class="midtopic"><a href="/topic/mlhk/mlhk/index.html" target="_blank">
+            <div class="topicimg"><img class="subjectimg" src="/css/index/topic3.png"></img></div>
             <div class="topictext">《马兰花开》是一部反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧。</div></a>
         </div>
         <div class="righttopic"><a href="/topic/photography_contest/index.html" target="_blank">

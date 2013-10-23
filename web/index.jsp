@@ -42,12 +42,15 @@
 		<div id="logo"><a href="/index.do">
 			<img src="/css/index/logo.png" />
 		    </a></div>
+                <div id="joinus" class="toptext"><span><a href="mailto:chengcai@mail.tsinghua.edu.cn">加入我们</a></span></div>
+                <div id="submitarticle" class="toptext"><span><a href="mailto:chengcai@mail.tsinghua.edu.cn">我要投稿</a></span></div>
+                <div id="appdownload"><span><a href="/app/STHUApp.apk">客户端下载</a></span></div>
 		<div id="logininfo"><span><a href="/login.do?redirectURL=%2Fmysthu.do"><%=nickName%></a></span></div>
                 
 		<div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">博学网</a><span class="splitspan">|</span><a href="http://old.student.tsinghua.edu.cn/" target="_blank">怀念老学清</a></div>
 	    </div>
 	    <div id="banner">
-		<div id="bannerimg"><img src="/css/index/banner3.png"></img></div>
+		<div id="bannerimg"><img src="/css/index/banner4.png"></img></div>
 		<div id="navibar">
 		    <div class="navibutton"><a href="/index.do"><img src="/css/index/navi0.png" /></a></div>
                     <div class="navibutton"><a href="/column/column.do?id=2" target="_blank"><img src="/css/index/navi1.png" /></a></div>
@@ -134,8 +137,8 @@
 			    <div class="topicimg"><img src="/css/index/topic0.png"></img></div>
 			    <div class="topictext">展现清华校园文化，弘扬当代大学生精神风貌，传递清华正能量：欢迎报名2013年清华大学“金紫荆”校园微电影大赛。</div></a>
 			</div>
-			<div class="midtopic"><a href="/topic/djx/index.jsp" target="_blank">
-			    <div class="topicimg"><img src="/css/index/topic1.png"></img></div>
+			<div class="midtopic"><a href="/topic/mlhk/mlhk/index.html" target="_blank">
+			    <div class="topicimg"><img src="/css/index/topic3.png"></img></div>
 			    <div class="topictext">《马兰花开》是一部反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧。</div></a>
 			</div>
 			<div class="righttopic"><a href="/topic/photography_contest/index.html" target="_blank">

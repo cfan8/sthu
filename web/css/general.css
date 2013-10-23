@@ -56,6 +56,21 @@ img
     left: 17px;
     top:17px;
 }
+.toptext{
+    position: absolute;
+    top:2px;
+    width: 100px;
+    height: 29px;
+    background-color: #deedf5;
+    text-align: center;
+    margin-right: 30px;
+}
+#joinus{
+    right: 322px;
+}
+#submitarticle{
+    right: 212px;
+}
 
 #logininfo
 {
@@ -67,14 +82,23 @@ img
     background-color: #deedf5;
     text-align: center;
 }
-
-#logininfo a:link, #logininfo a:visited
+#appdownload{
+    position: absolute;
+    top:2px;
+    right: 102px;
+    width: 100px;
+    height: 29px;
+    background-color: #deedf5;
+    text-align: center;
+    margin-right: 30px;
+}
+#logininfo a:link, #logininfo a:visited, #appdownload a:link, #appdownload a:visited, .toptext a:link, .toptext a:visited
 {
     color: #237e89;
     text-decoration: none;
 }
 
-#logininfo span{
+#logininfo span, #appdownload span, .toptext span{
     font-size: 12px;
     color: #237e89;
     display: inline-block;

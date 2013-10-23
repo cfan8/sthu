@@ -14,11 +14,11 @@
     <body>
         <form action="insertUser.do" method="post">
         用户名：
-        <input type="text" name="userlist"/>
+        <input type="text" name="userAccountlist"/>
         <br/>
         
         用户昵称：
-        <input type="text" name="userAccountList"/>
+        <input type="text" name="userlist"/>
         <br/>
         
         
