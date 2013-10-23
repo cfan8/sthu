@@ -1,0 +1,123 @@
+/**
+ * 个人主页样式
+ */
+header .logo-banner,section.body {
+	width: 936px;
+}
+
+section.my {
+	background: #009bd3;
+	color: #FFF;
+	padding: 16px 0 16px 18px;
+	font-family: SimHei;
+}
+
+section.my .date {
+	float: right;
+	font-size: 21px;
+	margin-right: 32px;
+}
+
+section.my h1 {
+	font-size: 34px;
+	line-height: 32px;
+	width: 200px;
+	float: left;
+}
+
+section.my h2 {
+	font-size: 22px;
+	line-height: 30px;
+	margin-top: 2px;
+	width: 200px;
+	float: left;
+	width: 200px;
+}
+
+section.my p {
+	clear: both;
+	margin-left: 82px;
+	display: -webkit-box; /* safari */
+	display: flex;
+	display: table\0; /* ie9 */
+	width: 762px\0;
+}
+
+section.my p label {
+	font-size: 24px;
+	line-height: 62px;
+	display: block;
+	-webkit-box-flex: 1; /* safari */
+	flex: 1;
+	display: table-cell\0; /* ie9 */
+}
+
+section.hots {
+	background: #ff5954;
+	color: white;
+}
+
+.follows {
+	width: 282px\0;
+	height: 352px;
+}
+
+.follows li a {
+	display: block;
+	padding: 6px 0;
+}
+
+.follows  li a>img {
+	float: left;
+	width: 64px;
+	height: 64px;
+	border: none;
+	margin-right: 12px;
+}
+
+.follows  li button {
+	float: right;
+	width: 68px;
+	height: 28px;
+	background: #c1de79;
+	border-radius: 13px;
+	border: none;
+	color: white;
+	margin-top: 20px;
+}
+
+.follows li a::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.follows li a>h1 {
+	font-size: 19px;
+	color: #636363;
+}
+
+.follows  li a>span {
+	font-size: 14px;
+	color: #bfbfbf;
+}
+
+.body>table>tbody>tr>td {
+	vertical-align: top;
+	padding: 0;
+	border: none;
+}
+
+.body>table>tbody>tr>td.hori-padding {
+	height: 30px;
+	vertical-align: bottom;
+}
+
+.body>table>tbody>tr>td.vert-padding {
+	width: 32px;
+}
+
+.classroom-applicant {
+	width: 538px;
+	width: auto\0;
+}
