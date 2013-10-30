@@ -9,9 +9,9 @@
 <div id="subject">
     <div class="title">专题<div class="morediv"><a href="/column/column.do?id=8" target="_blank">&gt;&gt;more</a></div></div>
     <div class="content">
-        <div class="lefttopic"><a href="/topic/wdy/index.html" target="_blank">
-            <div class="topicimg"><img class="subjectimg" src="/css/index/topic0.png"></img></div>
-            <div class="topictext">展现清华校园文化，弘扬当代大学生精神风貌，传递清华正能量：欢迎报名2013年清华大学“金紫荆”校园微电影大赛。</div></a>
+        <div class="lefttopic"><a href="/topic/tj2013/tj2013/index.html" target="_blank">
+            <div class="topicimg"><img class="subjectimg" src="/css/index/topic4.jpg"></img></div>
+            <div class="topictext">清华大学特等奖学金设立于1989年，旨在表彰德、智、体、美全面发展或是在某一方面具有突出特长或贡献的优秀学子，是清华学生的最高荣誉。</div></a>
         </div>
         <div class="midtopic"><a href="/topic/mlhk/mlhk/index.html" target="_blank">
             <div class="topicimg"><img class="subjectimg" src="/css/index/topic3.png"></img></div>
