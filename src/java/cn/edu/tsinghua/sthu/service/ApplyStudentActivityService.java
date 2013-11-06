@@ -71,7 +71,7 @@ public class ApplyStudentActivityService extends BaseService{
     public boolean isUserApproveResourceStatusToDo(int applyId, int userId){
         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(applyId, StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
         for (StudentActivityApproveEntity e : approveEntities) {
-            if(e.getApproveType() == userDAO.getUserById(userId).getAuth().getOpResourceCode() && e.getApproveStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO){
+            if(e.getApproveType() == userDAO.getUserById(userId).getAuth().getOpOtherCode() && e.getApproveStatus() == StudentActivityApplyEntity.RESOURCE_STATUS_TODO){
                 return true;
             }
         }
@@ -82,7 +82,7 @@ public class ApplyStudentActivityService extends BaseService{
     public boolean isUserApproveAllocateStatusToDo(int applyId, int userId){
         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(applyId, StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
         for (StudentActivityApproveEntity e : approveEntities) {
-            if(e.getApproveType() == userDAO.getUserById(userId).getAuth().getOpAllocateCode() && e.getApproveStatus() == StudentActivityApplyEntity.ALLOCATE_STATUS_TODO){
+            if(e.getApproveType() == userDAO.getUserById(userId).getAuth().getOpOtherCode() && e.getApproveStatus() == StudentActivityApplyEntity.ALLOCATE_STATUS_TODO){
                 return true;
             }
         }
@@ -174,7 +174,7 @@ public class ApplyStudentActivityService extends BaseService{
                         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
                         int approveNum = 0;
                         for (StudentActivityApproveEntity e : approveEntities) {
-                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpOtherCode()){
                                 e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_ACCEPTED);
                                 e.setApproveDate(new Date());
                             }
@@ -189,7 +189,7 @@ public class ApplyStudentActivityService extends BaseService{
                     } else if(isApprove == 2){
                         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_RESOURCE);
                         for (StudentActivityApproveEntity e : approveEntities) {
-                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpResourceCode()){
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpOtherCode()){
                                 e.setApproveStatus(studentActivityApplyEntity.RESOURCE_STATUS_REJECTED);
                                 e.setApproveDate(new Date());
                             }
@@ -203,7 +203,7 @@ public class ApplyStudentActivityService extends BaseService{
                          List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
                         int approveNum = 0;
                         for (StudentActivityApproveEntity e : approveEntities) {
-                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpOtherCode()){
                                 e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
                                 e.setApproveDate(new Date());
                             }
@@ -218,7 +218,7 @@ public class ApplyStudentActivityService extends BaseService{
                     } else if(isApprove == 2){
                         List<StudentActivityApproveEntity> approveEntities = studentActivityApproveDAO.getApproveEntitiesByApplyIdAndApproveStep(studentActivityApplyEntity.getID(), StudentActivityApproveEntity.APPROVE_STEP_ALLOCATE);
                         for (StudentActivityApproveEntity e : approveEntities) {
-                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpAllocateCode()){
+                            if(e.getApproveType() == userDAO.getUserById(userid).getAuth().getOpOtherCode()){
                                 e.setApproveStatus(studentActivityApplyEntity.ALLOCATE_STATUS_REJECTED);
                                 e.setApproveDate(new Date());
                             }
@@ -434,8 +434,8 @@ public class ApplyStudentActivityService extends BaseService{
                 }
 	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
 		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpOtherCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpOtherCode());
                 
                 list = new ArrayList<StudentActivityApplyEntity>();
                 for (StudentActivityApproveEntity e : approveEntities1) {
@@ -497,8 +497,8 @@ public class ApplyStudentActivityService extends BaseService{
                 }
 	    } else if (viewType == ShowStudentActivityApplyListPageAction.VIEW_TYPE_TODO) {
 		//list = applyStudentActivityDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
-                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpAllocateCode());
-                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpResourceCode());
+                List<StudentActivityApproveEntity> approveEntities1 = studentActivityApproveDAO.getTodoApplyListByAllocateType(begin, number, auth.getOpOtherCode());
+                List<StudentActivityApproveEntity> approveEntities2 = studentActivityApproveDAO.getTodoApplyListByResourceType(begin, number, auth.getOpOtherCode());
                 
                 list = new ArrayList<StudentActivityApplyEntity>();
                 for (StudentActivityApproveEntity e : approveEntities1) {

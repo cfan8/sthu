@@ -193,6 +193,14 @@ public class UserService extends BaseService {
 	    userDAO.updateUserEntity(entity);
 	    return true;
     }
+    
+    @Transactional
+    public boolean updateUserNickname(String newNickname, UserEntity entity) {
+	
+	    entity.setNickname(newNickname);
+	    userDAO.updateUserEntity(entity);
+	    return true;
+    }
 
     @Transactional
     public UserEntity getUserEntityById(int userId){

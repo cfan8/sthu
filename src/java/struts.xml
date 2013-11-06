@@ -78,6 +78,8 @@ and open the template in the editor.
         </action>
         <action name="changeUserPassword" class="cn.edu.tsinghua.sthu.action.ChangePasswordAction">
         </action>
+        <action name="changeUserNickname" class="cn.edu.tsinghua.sthu.action.ChangeNicknameAction">
+        </action>
     </package>
     <package name="testActionPackage" extends="defaultAction" namespace="/test">
 	<action name="login" class="cn.edu.tsinghua.sthu.action.LoginAction">
