@@ -14,7 +14,7 @@
     <body>
         <form action="insertUser.do" method="post">
         用户名：
-        <input type="text" name="userAccountlist"/>
+        <input type="text" name="userAccountList"/>
         <br/>
         
         用户昵称：
@@ -79,6 +79,15 @@
           
           <input type="submit"/>
           
-        </form>>
+        </form>
+        
+        修改用户昵称
+        <form action="changeUserNickname.do" method="post">
+            用户名：
+        <input type="text" name="nickUserAccount"/>
+            新用户昵称：
+            <input type="text" name="nickUserNickname"/>
+        <input type="submit"/>
+        </form>
     </body>
 </html>
