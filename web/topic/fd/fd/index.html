@@ -1,0 +1,72 @@
+<!doctype html>
+<html i:author="xiaobo" i:date="2013-10-27">
+<head>
+<meta charset="UTF-8" />
+<title>分享团分享会</title>
+
+<link rel="stylesheet" href="../css/reset.css" />
+<link rel="stylesheet" href="../css/layout.css" media="screen" />
+<link rel="stylesheet" href="../css/theme/defaults.css" />
+<link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body class="theme-light">
+	<div id="fd">
+		<div id="tv_live">
+			<script type="text/javascript" src="http://tv.tsinghua.edu.cn/playerv3/swfobject.js"></script>
+			<script type="text/javascript" src="http://tv.tsinghua.edu.cn/playerv3/tvieplayer.js"></script>
+			<center>
+			<div id="flashdiv"> <p> 正在加载播放器，请稍等...  </p> </div> 
+			<script type="text/javascript" id="script">
+				    var resourceRoot = 'http://tv.tsinghua.edu.cn/playerv3/';
+			            var tvie = new TViePlayer("flashdiv", resourceRoot+"CBNConfigurableLiveSkin.swf",
+							560, 448,
+							['epg',false,'controlBar',true,'progressBar',true,'userInteraction',true]);
+						tvie.loader = resourceRoot+"Loader.swf";
+						tvie.player = resourceRoot+"Player.swf";
+						
+			            tvie.setTVieLive("166.111.5.100", 126, "2.0");
+			            tvie.run();
+			</script>
+			</div>
+			<br/>
+		<br/>
+		<div id="logo">
+			<a href="#"><img height="100px" src="stv.png"/></a>
+			<br/>
+			<a href="http://student.tsinghua.edu.cn/index.do" target="_blank"><img src="logo.png"/></a>
+
+		</div>
+		<div id="list">
+			<h1>分享团名单</h1>
+<span class="name">张金松</span>	清华大学物理系2008级博士研究生，第八届中国青少年科技创新奖获得者<br/>
+<span class="name">郭鑫</span>	南开大学周恩来政府管理学院2011级本科生，第八届“挑战杯”全国大学生创业计划竞赛金奖获得者<br/>
+<span class="name">洪家光</span>	中航工业黎明工装制造厂高级技师，第七届“振兴杯”全国青年职业技能大赛车工组冠军，全国青年岗位能手<br/>
+<span class="name">张彦</span>	上海盛东国际集装箱码头有限公司桥吊司机<br/>
+<span class="name">石磊</span>	江苏省南京市栖霞区西花村社区党支部书记<br/>
+<span class="name">夏善朋</span>	吉林省德惠市腰窝堡村党总支部书记<br/>
+<span class="name">孙圣海</span>	黑龙江省富锦市田娘水稻专业合作社理事长<br/>
+<span class="name">刘路远</span>	福建网龙计算机网络信息技术有限公司执行董事、行政总裁，全国青联常委<br/>
+<span class="name">张福</span>	新江苏中科梦兰电子科技有限公司总经理，全国青联委员，第十四届中国青年五四奖章获得者<br/>
+<span class="name">张思永</span>	千年时间当代艺术馆馆长<br/>
+<span class="name">喜悦蜘蛛侠（喜悦、张海军）</span>	进城务工青年，2011年《中国达人秀》全国16强，《中华达人》总决赛季军<br/>
+<span class="name">张鹏</span>	北京同仁堂参茸有限责任公司办公室副主任，第八届中国青年志愿者优秀个人<br/>
+<span class="name">吕劲松	</span> 空军航空兵某团副团长<br/>
+<span class="name">曾昇铨	</span> 沈阳军区某部原班长，现解放军陆军军官学院学员，第十七届中国青年五四奖章获得者<br/>
+		</div>
+		
+
+	</div>
+	<!-- 底部区域 -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script src="../js/smart_ui.js"></script>
+
+	<script>
+		$(document).ready(function(){ 
+		  $(".awardlist tr:even").addClass("alt");
+		  });   
+	</script>
+
+</body>
+</html>
