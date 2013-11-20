@@ -161,6 +161,9 @@ public class ApplyStudentActivityService extends BaseService{
                         }
                         else{
                             studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+                            if(studentActivityApplyEntity.getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY){
+                                confirmPublishMaterial(studentActivityApplyEntity);
+                            }
                         }
                     }
                     else if(isApprove == 2){
@@ -213,6 +216,9 @@ public class ApplyStudentActivityService extends BaseService{
                         if(approveNum == approveEntities.size()){
                             studentActivityApplyEntity.setAllocateStatus(studentActivityApplyEntity.ALLOCATE_STATUS_ACCEPTED);
                             studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);
+                            if(studentActivityApplyEntity.getOption().getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY){
+                                confirmPublishMaterial(studentActivityApplyEntity);
+                            }
                         }
 
                     } else if(isApprove == 2){
