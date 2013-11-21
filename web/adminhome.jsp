@@ -34,9 +34,12 @@
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_OTHER;
     }else if(entity.getOpGroupCode() != -1) {
         approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_GROUP;
-    }else if(entity.getOpPublishCode() != -1){
-        approveType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH;
     }
+    int publishType = -1;
+    if(entity.getOpPublishCode() != -1){
+        publishType = ShowStudentActivityApplyListPageAction.APPROVE_TYPE_PUBLISH;
+    }
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -49,7 +52,7 @@
 		padding-bottom: 10px;
 	    }
 	    
-	    #classapply, #actapply, #approvedapply
+	    #classapply, #actapply, #approvedapply, #sactapply, #publishapply
 	    {
 		width: 430px;
 		border: #cccccc;
@@ -61,11 +64,8 @@
 		box-shadow: 3px 2px 3px #CCD2C5;
 		position: relative;
 		float: left;
+                margin-left: 10px;
 	    }
-	     #actapply
-	     {
-		 margin-left: 30px;
-	     }
 	    
 	    iframe
 	    {
@@ -192,9 +192,15 @@
 	</div>
 	<% }%>
         <% if (approveType != -1) {%>
-	<div id="actapply">
+	<div id="sactapply">
 	    <div class="title">学生活动申请审批</div>
 	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=approveType%>"></iframe></div>
+	</div>
+	<% }%>
+        <% if (publishType != -1) {%>
+	<div id="publishapply">
+	    <div class="title">学清发布申请审批</div>
+	    <div class="content"><iframe id="frame1" src="/studentActivity/showStudentActivityApplyList.do?viewType=1&approveType=<%=publishType%>"></iframe></div>
 	</div>
 	<% }%>
 	 

@@ -19,7 +19,7 @@
         
         logout = "注销";
     } else {
-	nickName = "登陆";
+	nickName = "登录";
         logout = "";
     }
 %>
