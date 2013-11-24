@@ -120,7 +120,9 @@ public class ApplyStudentActivityService extends BaseService{
                         if(studentActivityApplyEntity.getActivityRange() == StudentActivityApplyEntity.RANGE_DEPART){
                             StudentApplyOptionsEntity studentApplyOptionsEntity = studentActivityApplyEntity.getOption();
                             if(studentApplyOptionsEntity.getExternalFlag() == StudentApplyOptionsEntity.EXTERNAL_NOTAPPLY && studentApplyOptionsEntity.getOverseasFlag() == StudentApplyOptionsEntity.OVERSEAS_NOTAPPLY && studentApplyOptionsEntity.getCroomFlag() == studentApplyOptionsEntity.CROOMFLAG_NOTAPPLY
-                                    && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
+                                    && studentApplyOptionsEntity.getBoardFlag() == studentApplyOptionsEntity.BOARDFLAG_NOTAPPLY 
+                                    && studentApplyOptionsEntity.getBulletinFlag() == studentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY
+                                    && studentApplyOptionsEntity.getLEDFlag() == studentApplyOptionsEntity.LEDFLAG_NOTAPPLY
                                     && studentApplyOptionsEntity.getOutsideFlag() == studentApplyOptionsEntity.OUTSIDEFLAG_NOTAPPLY
                                     && studentApplyOptionsEntity.getPublicityFlag() == studentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY && studentApplyOptionsEntity.getTicketFlag() == studentApplyOptionsEntity.TICKETFLAG_NOTAPPLY){
                                 studentActivityApplyEntity.setApplyStatus(studentActivityApplyEntity.APPLY_STATUS_ACCEPTED);

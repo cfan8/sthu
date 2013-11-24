@@ -183,6 +183,31 @@
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial().equals("") ? "必须上传附件。" : options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
+            <div><span class="tag">申请宣传栏：</span><span class="value">
+                    <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_APPLY%>" onclick="changeBulletinState(1)" <%=options.getBulletinFlag() == StudentApplyOptionsEntity.BULLETINFLAG_APPLY ? "checked = \"true\"":""%>/>是
+                    <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY%>" onclick="changeBulletinState(2)" <%=options.getBulletinFlag() == StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY ? "checked = \"true\"":""%>/>否
+                </span>
+            </div>
+            <div id="bulletinInfo" <%if(options.getBulletinFlag() == StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY) {%>style="display:none"<%}else{%>style="display:block"<%}%>>
+                <div><span class="tag">申请区域：</span><span class="value_select">
+                        <select name="bulletinArea">
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_CBUILDING%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_CBUILDING ? "selected = \"selected\"" : ""%>>C楼区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_ZICAO%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_ZICAO ? "selected = \"selected\"" : ""%>>紫操区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_TAOLI%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_TAOLI ? "selected = \"selected\"" : ""%>>桃李园区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_ZIJING%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_ZIJING ? "selected = \"selected\"" : ""%>>紫荆园区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_DONGSUSHE%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_DONGSUSHE ? "selected = \"selected\"" : ""%>>东侧宿舍区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_XISUSHE%>" <%=options.getBulletinArea() == StudentApplyOptionsEntity.BULLETINAREA_XISUSHE ? "selected = \"selected\"" : ""%>>西侧宿舍区</option>
+                        </select>
+                    </span></div>
+                <div><span class="tag">展板编号：</span><span class="value"><input type="text" name="bulletinIndex" value="<%=options.getBulletinIndex()%>" placeholder="请使用连续数字字符，如1-5"/></span></div>
+                <div><span class="tag">使用原因：</span><span class="value"><textarea name="bulletinApplyReason" rows="3"><%=options.getBulletinApplyReason()%></textarea></span></div>
+                <div class="manage_item">
+                    <img src="<%=options.getBulletinPoster()%>" width="80px" height="60px" id="poster_img"/>
+                    上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_poster"/></div>
+                    <input type="hidden" name="posterImg" id="posterImg" value="<%=options.getBulletinPoster()%>"/>
+                </div>
+            </div>
+            <hr />
             <div><span class="tag">申请发布到学生清华：</span><span class="value">
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY ? "checked = \"true\"" : ""%>/>是
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" onclick="changePublicityState(2)" <%=options.getPublicityFlag() == StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY ? "checked = \"true\"" : ""%>/>否
@@ -274,6 +299,14 @@
             }
         }
         
+        function changeBulletinState(state){
+            if(state == 1){
+                $("#bulletinInfo").show();
+            }else{
+                $("#bulletinInfo").hide();
+            }
+        }
+        
         function changePublicityState(state){
             if(state == 1){
                 $("#publicityInfo").show();
@@ -296,6 +329,23 @@
 		json=eval('('+data+')');
 		$("#main_img").attr("src","/"+json.url);
                 $("#mainImg").val("/"+json.url);
+	    }
+        });
+        
+        $("#upbtn_poster").uploadify({
+            'multi'    : false,
+            'height':'35px',
+            'width':'710px',
+            'buttonText' : '上传图片',
+            'fileSizeLimit' : '4000KB',
+            'fileTypeDesc' : '图片文件',
+            'fileTypeExts' : '*.gif; *.jpg; *.png',
+            'swf'      : '/uploadify/uploadify.swf',
+            'uploader' : '/ueditor/jsp/imageUp.jsp',
+            'onUploadSuccess' : function(file, data, response) {
+		json=eval('('+data+')');
+		$("#poster_img").attr("src","/"+json.url);
+                $("#posterImg").val("/"+json.url);
 	    }
         });
         
@@ -424,6 +474,22 @@
             if($("input[name='boardFlag']")[0].checked){
                 $("#boardMaterial").val(be.getContent());
                 $("#boardInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='bulletinFlag']")[0].checked){
+                $("#bulletinInfo input").each(function(){
+                    if($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+                $("#bulletinInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;

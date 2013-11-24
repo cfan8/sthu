@@ -40,6 +40,14 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int BOARDSIZE_LARGE = 1;
     public static final int BOARDSIZE_MEDIUMONE = 2;
     public static final int BOARDSIZE_SMALL = 3;
+    public static final int BULLETINFLAG_NOTAPPLY = 0;
+    public static final int BULLETINFLAG_APPLY = 1;
+    public static final int BULLETINAREA_CBUILDING = 1;
+    public static final int BULLETINAREA_ZICAO = 2;
+    public static final int BULLETINAREA_TAOLI = 3;
+    public static final int BULLETINAREA_ZIJING = 4;
+    public static final int BULLETINAREA_DONGSUSHE = 5;
+    public static final int BULLETINAREA_XISUSHE = 6;
     public static final int PUBLICITYFLAG_NOTAPPLY = 0;
     public static final int PUBLICITYFLAG_APPLY = 1;
     public static final int TICKETFLAG_NOTAPPLY = 0;
@@ -67,7 +75,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     private String overseasIntro; //境外人员情况简介
     @Column(length = 1024)
     private String overseasOrganizationIntro; //境外合作单位情况介绍
-    @Column(length = 4000)
+    @Column(length = 3000)
     private String overseasMaterial; //相关材料
     
     private int croomFlag; //标记是否申请教室
@@ -98,7 +106,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     
     private int boardFlag; //标记是否申请展板
     //展板申请
-    @Column(length = 4000)
+    @Column(length = 3000)
     private String boardMaterial; //活动材料 附件
     private int boardSize; //规格
     private int boardNum; //块数
@@ -107,9 +115,16 @@ public class StudentApplyOptionsEntity extends BaseEntity{
   //  @Temporal(javax.persistence.TemporalType.DATE)
     private String BoardEndTime; //结束日期和时间
     
+    private int bulletinFlag; //标记是否申请宣传栏
+    //宣传栏申请
+    private int bulletinArea;  //申请区域
+    private String bulletinIndex; //申请展板编号
+    private String bulletinApplyReason; //申请试用原因
+    private String bulletinPoster; //宣传栏海报
+    
     private int publicityFlag; //标记是否申请发布学生清华
     //学生清华发布申请
-    @Column(length=80000)
+    @Column(length=3000)
     private String publicityMaterials; //宣传材料
     private int digestFlag; //标记是否是精华活动
     private String publicityImg; //宣传材料单独的照片
@@ -736,6 +751,94 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setPublicityImg(String publicityImg) {
         this.publicityImg = publicityImg;
+    }
+
+    /**
+     * @return the bulletinFlag
+     */
+    public int getBulletinFlag() {
+        return bulletinFlag;
+    }
+
+    /**
+     * @param bulletinFlag the bulletinFlag to set
+     */
+    public void setBulletinFlag(int bulletinFlag) {
+        this.bulletinFlag = bulletinFlag;
+    }
+
+    /**
+     * @return the bulletinArea
+     */
+    public int getBulletinArea() {
+        return bulletinArea;
+    }
+
+    public String getBulletinAreaText(){
+        switch(this.bulletinArea){
+            case BULLETINAREA_CBUILDING:
+                return "C楼区";
+            case BULLETINAREA_ZICAO:
+                return "紫操区";
+            case BULLETINAREA_TAOLI:
+                return "桃李园区";
+            case BULLETINAREA_ZIJING:
+                return "紫荆园区";
+            case BULLETINAREA_DONGSUSHE:
+                return "东侧宿舍区";
+            case BULLETINAREA_XISUSHE:
+                return "西侧宿舍区";
+            default:
+                return "";
+        }
+    }
+    /**
+     * @param bulletinArea the bulletinArea to set
+     */
+    public void setBulletinArea(int bulletinArea) {
+        this.bulletinArea = bulletinArea;
+    }
+
+    /**
+     * @return the bulletinApplyReason
+     */
+    public String getBulletinApplyReason() {
+        return bulletinApplyReason;
+    }
+
+    /**
+     * @param bulletinApplyReason the bulletinApplyReason to set
+     */
+    public void setBulletinApplyReason(String bulletinApplyReason) {
+        this.bulletinApplyReason = bulletinApplyReason;
+    }
+
+    /**
+     * @return the bulletinPoster
+     */
+    public String getBulletinPoster() {
+        return bulletinPoster;
+    }
+
+    /**
+     * @param bulletinPoster the bulletinPoster to set
+     */
+    public void setBulletinPoster(String bulletinPoster) {
+        this.bulletinPoster = bulletinPoster;
+    }
+
+    /**
+     * @return the bulletinIndex
+     */
+    public String getBulletinIndex() {
+        return bulletinIndex;
+    }
+
+    /**
+     * @param bulletinIndex the bulletinIndex to set
+     */
+    public void setBulletinIndex(String bulletinIndex) {
+        this.bulletinIndex = bulletinIndex;
     }
 
 }

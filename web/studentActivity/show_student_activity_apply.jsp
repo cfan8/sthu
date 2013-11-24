@@ -407,6 +407,13 @@
             <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getBoardStartTime()%></td></tr>
             <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getBoardEndTime()%></td></tr>
             <%}%>
+            <%if(options.getBulletinFlag() == 1) {%>
+            <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">宣传栏申请：</td></tr>
+            <tr><td class="tag">申请区域：</td><td class="value"><%=options.getBulletinAreaText()%></td></tr>
+            <tr><td class="tag">申请展板编号</td><td class="value"><%=options.getBulletinIndex()%></td></tr>
+            <tr><td class="tag">使用原因：</td><td class="value"><%=options.getBulletinApplyReason()%></td></tr>
+            <tr><td class="tag">宣传栏海报：</td><td class="value"><img src="<%=options.getBulletinPoster()%>" width="80px" height="60px"></td></tr>
+            <%}%>
             <%if(options.getPublicityFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">学生清华发布申请:</td></tr>
             <tr><td class="tag">宣传图片:</td><td class="value"><img src="<%=options.getPublicityImg()%>" width="80px" height="60px"></td></tr>

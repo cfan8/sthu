@@ -65,6 +65,7 @@
                 <input id ="check_LED" type="checkbox"  value ="0" onclick ="f1()" >电子屏申请</input>
                 <input id ="check_outdoor" type="checkbox"  value ="0" onclick ="f1()" >室外场地申请</input>
                 <input id ="check_broad" type="checkbox"  value ="0" onclick ="f1()" >展板申请</input>
+                <input id ="check_bulletin" type="checkbox"  value ="0" onclick ="f1()" >宣传栏申请</input>
                 <input id ="check_sthu" type="checkbox" value ="0" onclick ="f1()" >学生清华发布申请</input>
                 <input id ="check_ticket" type="checkbox" value ="0" onclick ="f1()" >门票抽签申请</input>
             </p>
@@ -91,6 +92,7 @@
                var searchKeywords = $("#keywordInput").val(); 
             var searchStatus = $("#check_in").attr("value")+","+$("#check_out").attr("value")+","+$("#check_classroom").attr("value")
                                +","+$("#check_LED").attr("value")+","+$("#check_outdoor").attr("value")+","+$("#check_broad").attr("value")
+                               +","+$("#check_bulletin").attr("value")
                                +","+$("#check_sthu").attr("value")+","+$("#check_ticket").attr("value");
              //  alert(searchStatus);
                self.location.href = "showStudentActivityApplyList.do?viewType="+1+"&approveType=<%=ShowStudentActivityApplyListPageAction.APPROVE_TYPE_APPROVED%>"+"&searchStatus="+searchStatus+"&searchKeywords="+searchKeywords;
