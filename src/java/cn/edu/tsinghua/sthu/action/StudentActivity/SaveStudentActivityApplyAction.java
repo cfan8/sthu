@@ -116,6 +116,16 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     @XSSProtect(XSSProtectLevel.Strict)
     private String BoardEndTime; //结束日期和时间
     
+    //宣传栏申请
+    private int bulletinFlag;
+    private int bulletinArea;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String bulletinIndex;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String bulletinApplyReason;
+    @XSSProtect(XSSProtectLevel.Strict)
+    private String posterImg;
+    
     //学生清华发布申请
     private int publicityFlag; //标记是否申请发布学生清华，1：申请，0：不申请
     @XSSProtect(XSSProtectLevel.RichText)
@@ -142,7 +152,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	if (applyId == null || applyId == -1) {
             option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getBulletinFlag(), 
+                    getBulletinArea(), getBulletinIndex(), getBulletinApplyReason(), getPosterImg(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation());
 	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option);
@@ -153,7 +164,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 		    getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
-                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
+                    getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(),getBulletinFlag(), 
+                    getBulletinArea(), getBulletinIndex(), getBulletinApplyReason(), getPosterImg(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
 	    if (entity == null) {
 		alertMessage.setSimpleAlert("只能修改未确认的活动申请！");
@@ -972,6 +984,76 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setMainImg(String mainImg) {
         this.mainImg = mainImg;
+    }
+
+    /**
+     * @return the bulletinFlag
+     */
+    public int getBulletinFlag() {
+        return bulletinFlag;
+    }
+
+    /**
+     * @param bulletinFlag the bulletinFlag to set
+     */
+    public void setBulletinFlag(int bulletinFlag) {
+        this.bulletinFlag = bulletinFlag;
+    }
+
+    /**
+     * @return the bulletinArea
+     */
+    public int getBulletinArea() {
+        return bulletinArea;
+    }
+
+    /**
+     * @param bulletinArea the bulletinArea to set
+     */
+    public void setBulletinArea(int bulletinArea) {
+        this.bulletinArea = bulletinArea;
+    }
+
+    /**
+     * @return the bulletinIndex
+     */
+    public String getBulletinIndex() {
+        return bulletinIndex;
+    }
+
+    /**
+     * @param bulletinIndex the bulletinIndex to set
+     */
+    public void setBulletinIndex(String bulletinIndex) {
+        this.bulletinIndex = bulletinIndex;
+    }
+
+    /**
+     * @return the bulletinApplyReason
+     */
+    public String getBulletinApplyReason() {
+        return bulletinApplyReason;
+    }
+
+    /**
+     * @param bulletinApplyReason the bulletinApplyReason to set
+     */
+    public void setBulletinApplyReason(String bulletinApplyReason) {
+        this.bulletinApplyReason = bulletinApplyReason;
+    }
+
+    /**
+     * @return the posterImg
+     */
+    public String getPosterImg() {
+        return posterImg;
+    }
+
+    /**
+     * @param posterImg the posterImg to set
+     */
+    public void setPosterImg(String posterImg) {
+        this.posterImg = posterImg;
     }
     
 }

@@ -182,6 +182,31 @@
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;">必须上传附件。</script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
+            <div><span class="tag">申请宣传栏：</span><span class="value">
+                    <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_APPLY%>" onclick="changeBulletinState(1)"/>是
+                    <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY%>" checked="true" onclick="changeBulletinState(2)"/>否
+                </span>
+            </div>
+            <div id="bulletinInfo" style="display:none">
+                <div><span class="tag">申请区域：</span><span class="value_select">
+                        <select name="bulletinArea">
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_CBUILDING%>" selected="selected">C楼区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_ZICAO%>">紫操区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_TAOLI%>">桃李园区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_ZIJING%>">紫荆园区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_DONGSUSHE%>">东侧宿舍区</option>
+                            <option value="<%=StudentApplyOptionsEntity.BULLETINAREA_XISUSHE%>">西侧宿舍区</option>
+                        </select>
+                    </span></div>
+                <div><span class="tag">展板编号：</span><span class="value"><input type="text" name="bulletinIndex" placeholder="请使用连续数字字符，如1-5"/></span></div>
+                <div><span class="tag">使用原因：</span><span class="value"><textarea name="bulletinApplyReason" rows="3"></textarea></span></div>
+                <div class="manage_item">
+                    <img src="/images/banner.jpg" width="80px" height="60px" id="poster_img"/>
+                    上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_poster"/></div>
+                    <input type="hidden" name="posterImg" id="posterImg" value="/images/banner.jpg"/>
+                </div>
+            </div>
+            <hr />
             <div><span class="tag">申请发布到学生清华：</span><span class="value">
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)"/>是
                     <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" checked="true" onclick="changePublicityState(2)"/>否
@@ -192,7 +217,7 @@
                 <div class="manage_item">
                     <img src="/images/banner.jpg" width="80px" height="60px" id="main_img"/>
                     上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
-                    <input type="hidden" name="mainImg" id="mainImg" value="/images/banner.jpg"/>
+                    <input type="hidden" name="mainImg" id=mainImg" value="/images/banner.jpg"/>
                 </div>
                 </div>
                 <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
@@ -274,6 +299,14 @@
             }
         }
         
+        function changeBulletinState(state){
+            if(state == 1){
+                $("#bulletinInfo").show();
+            }else{
+                $("#bulletinInfo").hide();
+            }
+        }
+        
         function changePublicityState(state){
             if(state == 1){
                 $("#publicityInfo").show();
@@ -296,6 +329,23 @@
 		json=eval('('+data+')');
 		$("#main_img").attr("src","/"+json.url);
                 $("#mainImg").val("/"+json.url);
+	    }
+        });
+        
+        $("#upbtn_poster").uploadify({
+            'multi'    : false,
+            'height':'35px',
+            'width':'710px',
+            'buttonText' : '上传图片',
+            'fileSizeLimit' : '4000KB',
+            'fileTypeDesc' : '图片文件',
+            'fileTypeExts' : '*.gif; *.jpg; *.png',
+            'swf'      : '/uploadify/uploadify.swf',
+            'uploader' : '/ueditor/jsp/imageUp.jsp',
+            'onUploadSuccess' : function(file, data, response) {
+		json=eval('('+data+')');
+		$("#poster_img").attr("src","/"+json.url);
+                $("#posterImg").val("/"+json.url);
 	    }
         });
         
@@ -420,6 +470,22 @@
             if($("input[name='boardFlag']")[0].checked){
                 $("#boardMaterial").val(be.getContent());
                 $("#boardInfo input").each(function(){
+                    if ($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+            }
+            if($("input[name='bulletinFlag']")[0].checked){
+                $("#bulletinInfo input").each(function(){
+                    if($(this).val() == "")
+                    {
+                        needalert = true;
+                        return false;
+                    }
+                });
+                $("#bulletinInfo textarea").each(function(){
                     if ($(this).val() == "")
                     {
                         needalert = true;

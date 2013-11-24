@@ -28,7 +28,8 @@ public class StudentApplyOptionsService {
     public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int externalFlag, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
-    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
+    String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime, 
+    int bulletinFlag, int bulletinArea, String bulletinIndex, String bulletinApplyReason, String bulletinPoster,
     int publicityFlag, String publicityMaterials, String mainImg, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation){
         StudentApplyOptionsEntity entity = new StudentApplyOptionsEntity();
         entity.setApplyUserid(userid);
@@ -60,6 +61,11 @@ public class StudentApplyOptionsService {
         entity.setBoardNum(boardNum);
         entity.setBoardStartTime(BoardStartTime);
         entity.setBoardEndTime(BoardEndTime);
+        entity.setBulletinFlag(bulletinFlag);
+        entity.setBulletinArea(bulletinArea);
+        entity.setBulletinIndex(bulletinIndex);
+        entity.setBulletinApplyReason(bulletinApplyReason);
+        entity.setBulletinPoster(bulletinPoster);
         entity.setPublicityFlag(publicityFlag);
         entity.setPublicityMaterials(publicityMaterials);
         entity.setPublicityImg(mainImg);
@@ -77,6 +83,7 @@ public class StudentApplyOptionsService {
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
     String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
+    int bulletinFlag, int bulletinArea, String bulletinIndex, String bulletinApplyReason, String bulletinPoster,
     int publicityFlag, String publicityMaterials, String mainImg, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation, int optionId){
         StudentApplyOptionsEntity entity = studentApplyOptionsDAO.getStudentApplyOptionsById(optionId);
         entity.setApplyUserid(userid);
@@ -108,6 +115,11 @@ public class StudentApplyOptionsService {
         entity.setBoardNum(boardNum);
         entity.setBoardStartTime(BoardStartTime);
         entity.setBoardEndTime(BoardEndTime);
+        entity.setBulletinFlag(bulletinFlag);
+        entity.setBulletinArea(bulletinArea);
+        entity.setBulletinIndex(bulletinIndex);
+        entity.setBulletinApplyReason(bulletinApplyReason);
+        entity.setBulletinPoster(bulletinPoster);
         entity.setPublicityFlag(publicityFlag);
         entity.setPublicityMaterials(publicityMaterials);
         entity.setPublicityImg(mainImg);
