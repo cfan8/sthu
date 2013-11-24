@@ -183,7 +183,7 @@
                 <div><span class="tag">活动材料（附件）:</span><div class="ueditorBlock"><script id="boardEditor" type="text/plain" style="width: 400px;"><%=options.getBoardMaterial().equals("") ? "必须上传附件。" : options.getBoardMaterial()%></script><input type="hidden" name="boardMaterial" id="boardMaterial"/></div></div>
             </div>
             <hr />
-            <div><span class="tag">申请宣传栏：</span><span class="value">
+            <div  style="display:none;"><span class="tag">申请宣传栏：</span><span class="value">
                     <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_APPLY%>" onclick="changeBulletinState(1)" <%=options.getBulletinFlag() == StudentApplyOptionsEntity.BULLETINFLAG_APPLY ? "checked = \"true\"":""%>/>是
                     <input type="radio" name="bulletinFlag" value="<%=StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY%>" onclick="changeBulletinState(2)" <%=options.getBulletinFlag() == StudentApplyOptionsEntity.BULLETINFLAG_NOTAPPLY ? "checked = \"true\"":""%>/>否
                 </span>

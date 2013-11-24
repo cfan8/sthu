@@ -54,11 +54,14 @@ public class NewEntity extends BaseEntity
     
     @Column(name="allowForward")
     private Boolean allowForward = false;
+    
+    @Column(name="highlight")
+    private Boolean highlight = false;
 
     public NewEntity() {
     }
 
-    public NewEntity(String title, String content, String author, String newAbstract, Date updateTime, String redirectURL, boolean isPlacedInColumnTop, ColumnEntity columnBelong) {
+    public NewEntity(String title, String content, String author, String newAbstract, Date updateTime, String redirectURL, boolean isPlacedInColumnTop, ColumnEntity columnBelong, boolean highlight) {
         this.title = title;
         this.content = content;
         this.author = author;
@@ -68,6 +71,7 @@ public class NewEntity extends BaseEntity
         this.isPlacedInColumnTop = isPlacedInColumnTop;
         this.columnBelong = columnBelong;
         this.browseNumber = 0;
+        this.highlight = highlight;
     }
 
     public String getTitle() {
@@ -156,6 +160,20 @@ public class NewEntity extends BaseEntity
 
     public void setAllowForward(boolean allowForward) {
         this.allowForward = allowForward;
+    }
+
+    /**
+     * @return the highlight
+     */
+    public Boolean getHighlight() {
+        return highlight;
+    }
+
+    /**
+     * @param highlight the highlight to set
+     */
+    public void setHighlight(Boolean highlight) {
+        this.highlight = highlight;
     }
 
 }

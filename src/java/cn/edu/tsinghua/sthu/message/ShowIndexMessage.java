@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.message;
 
 import cn.edu.tsinghua.sthu.entity.IndexSettingEntity;
 import cn.edu.tsinghua.sthu.entity.NewEntity;
+import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public class ShowIndexMessage {
     private List<NewEntity> indexBottomCenterNews;
     private List<NewEntity> indexBottomRightNews;
     private List<IndexSettingEntity> indexSettings;
+    private List<StudentActivityApplyEntity> studentActivityApplyEntitys;
 
     public List<NewEntity> getIndexTopNews() {
         return indexTopNews;
@@ -57,6 +59,20 @@ public class ShowIndexMessage {
 
     public void setIndexSettings(List<IndexSettingEntity> indexSettings) {
 	this.indexSettings = indexSettings;
+    }
+
+    /**
+     * @return the studentActivityApplyEntitys
+     */
+    public List<StudentActivityApplyEntity> getStudentActivityApplyEntitys() {
+        return studentActivityApplyEntitys;
+    }
+
+    /**
+     * @param studentActivityApplyEntitys the studentActivityApplyEntitys to set
+     */
+    public void setStudentActivityApplyEntitys(List<StudentActivityApplyEntity> studentActivityApplyEntitys) {
+        this.studentActivityApplyEntitys = studentActivityApplyEntitys;
     }
 
 }

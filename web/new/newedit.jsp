@@ -56,6 +56,10 @@
                 <input type="radio" name="isPlacedInColumnTop" value="false" checked="checked"/> 否 &nbsp;&nbsp;
                 <input type="radio" name="isPlacedInColumnTop" value="true" /> 是
             </div>
+            <div class="onTop">是否高亮：
+                <input type="radio" name="isHighlight" value="false" checked="checked"/> 否 &nbsp;&nbsp;
+                <input type="radio" name="isHighlight" value="true" /> 是
+            </div>
             <div class="redirect">设置重定向URL：<input type="text" name="redirectURL"/></div>
             <div class="button"><center><input id="submit" type="image" src="/css/new/submit_new.png"/></center></div>
         </form>
@@ -89,6 +93,10 @@
             <div class="onTop">是否置顶：
                 <input type="radio" name="isPlacedInColumnTop" value="false" <% if (!newEPM.getNewEntity().isIsPlacedInColumnTop()) { %> checked="checked" <% } %>/> 否 &nbsp;&nbsp;
                 <input type="radio" name="isPlacedInColumnTop" value="true" <% if (newEPM.getNewEntity().isIsPlacedInColumnTop()) { %> checked="checked" <% } %>/> 是
+            </div>
+            <div class="onTop">是否高亮：
+                <input type="radio" name="isHighlight" value="false" <% if (!newEPM.getNewEntity().getHighlight()) { %> checked="checked" <% } %>/> 否 &nbsp;&nbsp;
+                <input type="radio" name="isHighlight" value="true" <% if (newEPM.getNewEntity().getHighlight()) { %> checked="checked" <% } %>/> 是
             </div>
             <div class="redirect">重定向URL：<input type="text" name="redirectURL" value="<%=newEPM.getNewEntity().getRedirectURL()%> "/></div>
             <div class="button"><center><input id="submit" type="image" src="/css/new/update_new.png"/></center></div>

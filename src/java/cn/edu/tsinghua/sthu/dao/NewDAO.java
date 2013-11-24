@@ -32,15 +32,15 @@ public class NewDAO extends BaseDAO<NewEntity>
 	super(NewEntity.class);
     }
     
-    public static NewEntity getNewEntityInstance(String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, ColumnEntity columnBelong)
+    public static NewEntity getNewEntityInstance(String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, ColumnEntity columnBelong, boolean highlight)
     {
-        NewEntity entity = new NewEntity(title, content, author, newAbstract, date, redirectURL, onTop, columnBelong);
+        NewEntity entity = new NewEntity(title, content, author, newAbstract, date, redirectURL, onTop, columnBelong, highlight);
         return entity;
     }
     
-    public NewEntity addNew(String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, ColumnEntity columnBelong)
+    public NewEntity addNew(String title, String content, String author, String newAbstract, Date date, String redirectURL, boolean onTop, ColumnEntity columnBelong, boolean highlight)
     {
-        NewEntity entity = getNewEntityInstance(title, content, author, newAbstract, date, redirectURL, onTop, columnBelong);
+        NewEntity entity = getNewEntityInstance(title, content, author, newAbstract, date, redirectURL, onTop, columnBelong, highlight);
         insert(entity);
         return entity;
     }

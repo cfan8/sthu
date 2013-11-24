@@ -555,6 +555,17 @@
             <p><label>地点</label><input type="text" id="croomLocation" name="croomLocation"/></p>
 
             <script id="editor" type="text/plain" name="editor">请填写审批意见</script>
+            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP  || message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE || message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE) {%>
+	    <select id="moduleSelect" style="margin: 5px 0px 0px 0px;max-width: 600px;">
+		<option value="0">使用审批模板</option>
+                <option value="1">[C楼教室]同意，借用C楼XXX教室，请到校团委门厅【已批文件夹】领取此单，放到C楼306门口文件袋内。</option>
+		<option value="2">[多媒体教室]同意，请到校团委门厅【已批文件夹】领取此单，持单到老12号楼416注册中心办理，望贵处大力支持。</option>
+		<option value="3">[普通教室]同意，请到校团委门厅【已批文件夹】领取此单，持单到四教二层物业中心办理，望贵处大力支持。</option>
+		<option value="4">[室外活动]同意，请注意不要影响交通。请到校团委门厅领取审批表，并交到C楼107物业中心综合治理办公室审批，电话62785656。</option>
+		<option value="5">[展板]同意。请到校团委领取审批表交至环保办（62783077善斋312房间）审批。室外宣传品请注意以下事项：1.地点不得阻碍交通，不得立于道路交叉口黄色区域，如在区域内，环保办和保卫处将及时清理；2.展板规格不超过 2*3m，数量1块，放置不超过7天，到期及时撤架。逾期2日内环保办进行撤除清理并暂停申请方申请资格；3.展板应干净整洁，粘贴的小广告需负责清理；4.展板须确保牢固， 大风天气要加强检查防范；不能压着小树苗。谢谢大家。我们共同努力，让校园更美好！</option>
+		<option value="6">[LED屏幕]同意。电子屏宣传经校团委审批通过后，可直接转到物业中心录入并显示在大屏幕上。</option>
+	    </select>
+	    <% }%>
             <input type="hidden" id="comment" name="comment"><div id="approveSubmitDiv"><a class="button" id="submitApprove" href="#">提交</a></div>
         </form>
         <script type="text/javascript">
@@ -575,6 +586,20 @@
                 }
                 return false;
             });
+            <% if (message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_GROUP  || message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_ALLOCATE || message.getApproveType() == ShowStudentActivityApplyMessage.APPROVE_TYPE_RESOURCE) {%>
+	    $("#moduleSelect").change(function(){
+		if ( $("#moduleSelect").val() != "0")
+		{
+		    var text = $("#moduleSelect").find("option:selected").text();
+		    text = text.replace(/\[.*\]/, "");
+		}
+		else
+		{
+		    var text = "";
+		}
+		ue.setContent('<p>' + text + '</p>');
+	    });
+	    <% }%>
         </script>
     </div>
     <% }}%>

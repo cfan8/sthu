@@ -353,6 +353,13 @@ img
     font-size: 12px;
 }
 
+.listContent .hightlight1 a:link, .listContent .hightlight1 a:visited
+{
+    text-decoration: none;
+    color: red;
+    font-size: 12px;
+}
+
 #rightList
 {
     margin-left: 40px;
@@ -398,6 +405,21 @@ img
     color: #9e0b00;
     text-decoration: none;
 }
+
+#note .content .top0 .hightlight1 a:link, #note .content .top0 .hightlight1 a:visited
+{
+    font-size: 12px;
+    color: red;
+    text-decoration: none;
+}
+
+#note .content .top1 .hightlight1 a:link, #note .content .top1 .hightlight1 a:visited
+{
+    font-size: 12px;
+    color: red;
+    text-decoration: none;
+}
+
 
 
 #express
