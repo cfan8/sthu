@@ -458,8 +458,18 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
                    Restrictions.and(
                         Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
                         Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                        Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY),
                         Restrictions.eq("a.digestFlag", StudentApplyOptionsEntity.DIGEST_ACTIVITY)
                    )).add(Restrictions.sqlRestriction("1=1 order by rand()")).setMaxResults(maxNum).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+           return list;
+       }
+        public List<StudentActivityApplyEntity> getIndexActivities(int maxNum){
+           List<StudentActivityApplyEntity> list = select().createAlias("option", "a").add(
+                   Restrictions.and(
+                        Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                        Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED),
+                        Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY)
+                   )).addOrder(Order.desc("a.digestFlag")).addOrder(Order.desc("activityDate")).setMaxResults(maxNum).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
            return list;
        }
 }

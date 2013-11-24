@@ -28,6 +28,7 @@ public class EditNewAction extends BaseAction
     private String columnBelong;
     private String redirectURL;
     private boolean isPlacedInColumnTop;
+    private boolean isHighlight;
     private NewService newService;
     private ColumnService columnService;
     private int id = -1;
@@ -42,7 +43,7 @@ public class EditNewAction extends BaseAction
             {
                 columnBelong = Constant.DEFAULT_COLUMN;
             }
-            int ret = newService.addNew(title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            int ret = newService.addNew(title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong, isIsHighlight());
             if (ret == 0)
             {
                 return SUCCESS;
@@ -60,7 +61,7 @@ public class EditNewAction extends BaseAction
         }
         else
         {
-            int ret = newService.updateNew(id, title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong);
+            int ret = newService.updateNew(id, title, content, author, newAbstract, date, redirectURL, isPlacedInColumnTop, columnBelong, isIsHighlight());
             switch (ret)
             {
                 case 0:
@@ -210,6 +211,20 @@ public class EditNewAction extends BaseAction
 
     public void setNewAbstract(String newAbstract) {
         this.newAbstract = newAbstract;
+    }
+
+    /**
+     * @return the isHighlight
+     */
+    public boolean isIsHighlight() {
+        return isHighlight;
+    }
+
+    /**
+     * @param isHighlight the isHighlight to set
+     */
+    public void setIsHighlight(boolean isHighlight) {
+        this.isHighlight = isHighlight;
     }
     
 }

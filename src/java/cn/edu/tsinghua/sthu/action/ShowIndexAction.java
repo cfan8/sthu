@@ -8,6 +8,7 @@ import cn.edu.tsinghua.sthu.constant.IndexColumnMapping;
 import cn.edu.tsinghua.sthu.entity.ColumnEntity;
 import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.message.ShowIndexMessage;
+import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 import cn.edu.tsinghua.sthu.service.IndexManageService;
 import cn.edu.tsinghua.sthu.service.NewService;
@@ -22,6 +23,7 @@ public class ShowIndexAction extends BaseAction{
     private IndexManageService indexManageService;
     private NewService newService;
     private ColumnService columnService;
+    private ApplyStudentActivityService applyStudentActivityService;
 
     @Override
     public String onExecute() {
@@ -99,7 +101,9 @@ public class ShowIndexAction extends BaseAction{
         {
             return false;
         }
-        showIndexMessage.setIndexBottomRightNews(newService.getNewsByColumn(0, newMaxResult-1, entity));
+        //showIndexMessage.setIndexBottomRightNews(newService.getNewsByColumn(0, newMaxResult-1, entity));
+        showIndexMessage.setStudentActivityApplyEntitys(applyStudentActivityService.getIndexActivities(newMaxResult));
+        
         return true;
     }
 
@@ -143,6 +147,20 @@ public class ShowIndexAction extends BaseAction{
 
     public void setIndexManageService(IndexManageService indexManageService) {
 	this.indexManageService = indexManageService;
+    }
+
+    /**
+     * @return the applyStudentActivityService
+     */
+    public ApplyStudentActivityService getApplyStudentActivityService() {
+        return applyStudentActivityService;
+    }
+
+    /**
+     * @param applyStudentActivityService the applyStudentActivityService to set
+     */
+    public void setApplyStudentActivityService(ApplyStudentActivityService applyStudentActivityService) {
+        this.applyStudentActivityService = applyStudentActivityService;
     }
     
 }

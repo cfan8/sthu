@@ -74,10 +74,12 @@
 			    for (int i = 0; i < max; i++) {%>
 			<div <% if (showIndexMessage.getIndexTopNews().get(i).isIsPlacedInColumnTop()) {%> class="noteitem top1" 
 													   <% } else {%> class="noteitem top0" <% }%> >
+                            <span <% if(showIndexMessage.getIndexTopNews().get(i).getHighlight()){%> class="hightlight1" <% }else {%> <%}%>>
 			    <a href="/new/new.do?id=<%=showIndexMessage.getIndexTopNews().get(i).getID()%>" target="_blank"
 			       title="<%=showIndexMessage.getIndexTopNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexTopNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexTopNews().get(i).getTitle().substring(0, 18).concat("..")%>
 				<% } else {%> <%=showIndexMessage.getIndexTopNews().get(i).getTitle()%> <% }%> </a>
-			</div>
+                            </span>
+                        </div>
 			<% }%>
 		    </div>
 		</div>
@@ -91,9 +93,12 @@
 				    <% max = showIndexMessage.getIndexBottomLeftNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomLeftNews().size();
 					for (int i = 0; i < max; i++) {
 				    %>
-				    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" target="_blank"
+				    <li>
+                                            <span <% if(showIndexMessage.getIndexBottomLeftNews().get(i).getHighlight()){%> class="hightlight1" <% }else {%> <%}%>>
+                                            <span class="newstitle">
+                                                <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomLeftNews().get(i).getID()%>" target="_blank"
 								   title="<%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().length() > 17) {%>  <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle().substring(0, 17).concat("..")%> 
-                                                <% } else {%> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime())%></span></li>
+                                                <% } else {%> <%=showIndexMessage.getIndexBottomLeftNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomLeftNews().get(i).getUpdateTime())%></span></span></li>
 						<%}%>
 				</ul>
 			    </div>
@@ -106,9 +111,13 @@
 				    <% max = showIndexMessage.getIndexBottomCenterNews().size() > 6 ? 6 : showIndexMessage.getIndexBottomCenterNews().size();
 					for (int i = 0; i < max; i++) {
 				    %>
-                                    <li><span class="newstitle"><a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" target="_blank"
+                                    <li>
+                                        
+                                            <span <% if(showIndexMessage.getIndexBottomCenterNews().get(i).getHighlight()){%> class="hightlight1" <% }else {%> <%}%>>
+                                            <span class="newstitle">
+                                                <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomCenterNews().get(i).getID()%>" target="_blank"
 								   title="<%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().length() > 18) {%>  <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle().substring(0, 18).concat("..")%>
-                                                <% } else {%> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime())%></span></li>
+                                                <% } else {%> <%=showIndexMessage.getIndexBottomCenterNews().get(i).getTitle()%> <% }%> </a></span><span class="newsdate"><%=Util.dateToStringAccurateToDayFormat1(showIndexMessage.getIndexBottomCenterNews().get(i).getUpdateTime())%></span></span></li>
 						<%}%>
 				</ul>				
 			    </div>
@@ -116,14 +125,14 @@
 		    </div>
 		</div>
 		<div id="event">	
-                    <div class="title"><div class="morediv"><a href="/column/column.do?id=<%=IndexColumnMapping.IndexBottomRightColumnId%>" target="_blank">&gt;&gt;more</a></div></div>
+                    <div class="title"><div class="morediv"><a href="/studentActivity/showActivitiesList.do" target="_blank">&gt;&gt;more</a></div></div>
 		    <div class="content">
-			<% max = showIndexMessage.getIndexBottomRightNews().size() > 7 ? 7 : showIndexMessage.getIndexBottomRightNews().size();
+			<% max = showIndexMessage.getStudentActivityApplyEntitys().size() > 7 ? 7 : showIndexMessage.getStudentActivityApplyEntitys().size();
 			    for (int i = 0; i < max; i++) {%>
 			<div class="eventitem">
-                            <a href="/new/new.do?id=<%=showIndexMessage.getIndexBottomRightNews().get(i).getID()%>" target="_blank"
-                               title="<%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%>"><% if (showIndexMessage.getIndexBottomRightNews().get(i).getTitle().length() > 16) {%>  <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle().substring(0, 16).concat("..")%>
-				<% } else {%> <%=showIndexMessage.getIndexBottomRightNews().get(i).getTitle()%> <% }%></a>
+                            <a href="/studentActivity/showStudentActivityDetail.do?activityID=<%=showIndexMessage.getStudentActivityApplyEntitys().get(i).getID()%>" target="_blank"
+                               title="<%=showIndexMessage.getStudentActivityApplyEntitys().get(i).getActivityTheme()%>"><% if (showIndexMessage.getStudentActivityApplyEntitys().get(i).getActivityTheme().length() > 16) {%>  <%=showIndexMessage.getStudentActivityApplyEntitys().get(i).getActivityTheme().substring(0, 16).concat("..")%>
+				<% } else {%> <%=showIndexMessage.getStudentActivityApplyEntitys().get(i).getActivityTheme()%> <% }%></a>
 			</div>
 			<% }%>
 		    </div>

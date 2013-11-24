@@ -898,6 +898,11 @@ public class ApplyStudentActivityService extends BaseService{
     public List<StudentActivityApplyEntity> getRandomHotActivities(int maxNum){
         return applyStudentActivityDAO.getRandomHotActivities(maxNum);
     }
+    
+    @Transactional
+    public List<StudentActivityApplyEntity> getIndexActivities(int maxNum){
+        return applyStudentActivityDAO.getIndexActivities(maxNum);
+    }
       
     /**
      * @return the applyStudentActivityDAO
