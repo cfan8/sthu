@@ -50,12 +50,17 @@
 		<div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">博学网</a><span class="splitspan">|</span><a href="http://old.student.tsinghua.edu.cn/" target="_blank">怀念老学清</a></div>
 	    </div>
 	    <div id="banner">
-		<div id="bannerimg"><img src="/css/index/banner6.png"></img></div>
+		<div id="bannerimg"><img src="/css/index/banner8.jpg" width="1024px" height="295px">
+                        
+                    </img></div>
+                <div id="bannerbottomimg">
+                    <img src="/css/index/triangle.png"></img>
+                </div>
 		<div id="navibar">
 		    <div class="navibutton"><a href="/index.do"><img src="/css/index/navi0.png" /></a></div>
                     <div class="navibutton"><a href="/column/column.do?id=2" target="_blank"><img src="/css/index/navi1.png" /></a></div>
 		    <div class="navibutton"><a href="/column/column.do?id=8" target="_blank"><img src="/css/index/navi2.png" /></a></div>
-		    <div class="navibutton"><a href="/studentActivity/showActivitiesList.do" target="_blank"><img src="/css/index/navi3.png" /></a></div>
+		    <div class="navibutton"><a href="/studentActivity/showActivitiesList.do" target="_blank"><img src="/css/index/navi3-0.png" /></a></div>
 		    <div class="navibutton"><a href="http://146.tsinghua.me" target="_blank"><img src="/css/index/navi4.png" /></a></div>
 		    <div class="navibutton"><a href="/column/column.do?id=6" target="_blank"><img src="/css/index/navi5.png" /></a></div>
 		    <div class="navibutton"><a href="/activity/applyNotice.jsp" target="_blank"><img src="/css/index/navi6.png" /></a></div>
