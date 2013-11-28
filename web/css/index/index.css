@@ -135,7 +135,7 @@ img
 
 #banner #bannerimg
 {
-    width: 1044px;
+    width: 1024px;
     height: 292px;
     margin: 0 auto;
 }
@@ -166,7 +166,7 @@ img
 {
     width: 1024px;
     height: 812px;
-    margin: 3px auto 0px auto;
+    margin: 11px auto 0px auto;
     position: relative;
     background-image: url("/css/index/bgp.png");
 }
