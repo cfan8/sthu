@@ -217,7 +217,7 @@
                 <div class="manage_item">
                     <img src="/images/banner.jpg" width="80px" height="60px" id="main_img"/>
                     上传图片（400*300）：<div class="upbtn"><input type="button" id="upbtn_main"/></div>
-                    <input type="hidden" name="mainImg" id=mainImg" value="/images/banner.jpg"/>
+                    <input type="hidden" name="mainImg" id="mainImg" value="/images/banner.jpg"/>
                 </div>
                 </div>
                 <div><span class="tag">宣传材料:</span><div class="ueditorBlock"><script id="publicityEditor" type="text/plain" style="width: 400px;">如内容较多请使用上传附件功能上传说明文档。</script><input type="hidden" name="publicityMaterials" id="publicityMaterials"/></div></div>
