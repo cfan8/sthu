@@ -101,6 +101,7 @@ img{
 .content-main-style {
     background-color:#fff;
     min-height:300px;
+    height: auto;
 }
 .bottom-content-style {
     height:160px;
