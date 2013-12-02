@@ -58,6 +58,10 @@ and open the template in the editor.
 	</action>
 	<action name="saveIndexSetting" class="cn.edu.tsinghua.sthu.action.SaveIndexSettingAction">
 	</action>
+        
+        <action name="followGroupInBatchPage" class="cn.edu.tsinghua.sthu.action.FollowGroupInBatchPageAction">
+            <result name="success">groupList_page.jsp</result>
+        </action>
         <action name="showGroupHome" class="cn.edu.tsinghua.sthu.action.ShowGroupHomeAction">
             <result name="success">grouphome.jsp</result>
         </action>
@@ -70,6 +74,7 @@ and open the template in the editor.
         <action name="saveGroupHomeManage" class="cn.edu.tsinghua.sthu.action.SaveGroupHomeManageAction">
         </action>
         <action name="followGroup" class="cn.edu.tsinghua.sthu.action.FollowGroupAction">
+           
         </action>
         <action name="showInsertUserPage" class="cn.edu.tsinghua.sthu.action.ShowInserUserAction">
             <result name="success">insert_user.jsp</result>

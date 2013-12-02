@@ -216,7 +216,15 @@ public class UserService extends BaseService {
         followDAO.addFollowGroup(user.getID(), group.getID());
         return user;
     }
-    
+       @Transactional
+    public UserEntity followGroupByID(UserEntity user, int groupID){
+        if(followDAO.isGroupFollowedByUser(user.getID(), groupID) == true)
+            return null;
+//        user.getInterestedGroups().add(group);
+//        userDAO.updateUserEntity(user);
+        followDAO.addFollowGroup(user.getID(), groupID);
+        return user;
+    }
     @Transactional
     public UserEntity unfollowGroup(UserEntity user, UserEntity group){
         if(!checkGroupFollowedByUser(user, group))
@@ -225,6 +233,24 @@ public class UserService extends BaseService {
 //        userDAO.updateUserEntity(user);
         followDAO.cancelFollowGroup(user.getID(), group.getID());
         return user;
+    }
+        @Transactional
+    public UserEntity unfollowGroupByID(UserEntity user, int groupID){
+        if(followDAO.isGroupFollowedByUser(user.getID(), groupID)==false)
+            return null;
+//        user.getInterestedGroups().remove(group);
+//        userDAO.updateUserEntity(user);
+        followDAO.cancelFollowGroup(user.getID(), groupID);
+        return user;
+    }
+     @Transactional
+    public boolean followGroupInBatch(UserEntity user, List<UserEntity> groups){
+      //  boolean flag = false;
+        
+        for(int i=0;i<groups.size();i++){
+            followGroup(user,groups.get(i));
+        }
+        return true;
     }
     
     @Transactional
@@ -236,7 +262,20 @@ public class UserService extends BaseService {
 //        return false;
         return getFollowDAO().isGroupFollowedByUser(user.getID(), group.getID());
     }
-    
+        @Transactional
+    public List<Integer> checkAllGroupFollowedByUser(UserEntity user, List<UserEntity> group){
+        List<Integer> list = new ArrayList<Integer>();
+        for(int i=0;i<group.size();i++){
+        boolean flag = getFollowDAO().isGroupFollowedByUser(user.getID(), group.get(i).getID());
+        if(flag == true) {
+                list.add(1);
+            }
+        else {
+                list.add(0);
+            }
+        }
+        return list;
+    }
     @Transactional
     public UserEntity modifyGroupInfo(int groupId, String introduction, String mainImg, String logoImg){
         UserEntity entity = userDAO.getUserById(groupId);
@@ -306,7 +345,24 @@ public class UserService extends BaseService {
         }
         return list;
     }
-    
+     @Transactional
+    public List<UserEntity> getAllGroups( ){
+        List<UserEntity> list = new ArrayList<UserEntity>();
+        list = userDAO.getAllGroup( );
+        return list;
+    }
+
+      @Transactional
+    public int getAllGroupsPageNumber(int PerNum ){
+        int totalNum = userDAO.getAllGroup().size();
+        if(totalNum % PerNum == 0){
+            return totalNum / PerNum;
+        }
+        else{
+            return totalNum/PerNum +1;
+        }
+        
+    }
     @Transactional
     public List<UserEntity> getFollowGroupsByUserId(int userID, int maxNum){
         List<UserEntity> list = new ArrayList<UserEntity>();

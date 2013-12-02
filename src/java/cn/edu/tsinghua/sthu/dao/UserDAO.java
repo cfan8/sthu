@@ -80,4 +80,13 @@ public class UserDAO extends BaseDAO<UserEntity>
         List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.opAllocateCode", allocateCode)).list();       
 	return list;
     }
+    /**anna  add */
+    public List<UserEntity> getAllGroup(int begin, int PerNum){
+        List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.role",AuthEntity.GROUP_ROLE)).setFirstResult(begin).setMaxResults(PerNum).list();
+        return list;
+    }
+      public List<UserEntity> getAllGroup(){
+        List<UserEntity> list = select().createAlias("auth", "a").add(Restrictions.eq("a.role",AuthEntity.GROUP_ROLE)).list();
+        return list;
+    }
 }

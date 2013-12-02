@@ -50,6 +50,8 @@
     <bean id="userHomeMessage" class="cn.edu.tsinghua.sthu.message.UserHomeMessage" scope="prototype" autowire="byName" />
     <bean id="showTicketRandomResultMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowTicketRandomResultMessage" scope="prototype" autowire="byName" />
     <bean id="showRandomHotActivitiesMessage" class="cn.edu.tsinghua.sthu.message.studentActivity.ShowRandomHotActivitiesMessage" scope="prototype" autowire="byName" />
-
+   
+    <bean id="FollowGroupInBatchPageMessage" class="cn.edu.tsinghua.sthu.message.FollowGroupInBatchPageMessage" scope="prototype" autowire="byName"/>
+   
 </beans>
 
