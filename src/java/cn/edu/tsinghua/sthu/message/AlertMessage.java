@@ -14,6 +14,7 @@ public class AlertMessage
     private String redirectURL = REFERER_URL;
     private String alertContent;
     private int alertType = ALERT_TYPE;
+    private int noAlert;
 
     public AlertMessage()
     {
@@ -80,5 +81,19 @@ public class AlertMessage
 
     public void setRedirectURL(String redirectURL) {
 	this.redirectURL = redirectURL;
+    }
+
+    /**
+     * @return the noAlert
+     */
+    public int getNoAlert() {
+        return noAlert;
+    }
+
+    /**
+     * @param noAlert the noAlert to set
+     */
+    public void setNoAlert(int noAlert) {
+        this.noAlert = noAlert;
     }
 }

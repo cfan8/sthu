@@ -76,7 +76,8 @@
                         </div>
                         <div style="font-family: Microsoft YaHei, LiHei Pro Medium; margin-top:20px;">
                         <a style="font-size:36px;"><b><%=organizeName%> </b></a> 
-                        
+                        <a style="font-size: 14px;color: blue;margin-left: 10px" href="/followGroupInBatchPage.do">全部组织</a>
+                          
                         </div>
                     </div>
                         
@@ -84,8 +85,8 @@
                             <a><b>已有</b></a>
                             <a id="follow_num" style="color: #d55;font-size: 18px; font-family: Impact"><b><%=message.getFollowNum()%></b></a>
                             <a><b>人关注</b></a>
-                        
-                        
+                              
+                      
                         <div id="follow_part">                                                             
                             <%if(showFollow == 1){%>
                                 <div class="btn-border">

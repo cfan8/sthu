@@ -67,7 +67,7 @@
 				<section class="block follows">
 					<h1>关注
                                             <div style="float: right;font-size: 14px;color: #888;margin-right: 50px;">
-                                            <a href="/followGroupInBatchPage.do?groupID=-1">全部组织</a>
+                                            <a href="/followGroupInBatchPage.do">全部组织</a>
                                             </div>
                                         </h1>
                                          
