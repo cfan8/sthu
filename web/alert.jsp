@@ -27,7 +27,9 @@
     </head>
     <% if (message.getAlertType() == AlertMessage.ALERT_TYPE) {%>
     <script type="text/javascript">
+        <%if(message.getNoAlert()!=1){%>
 	alert("<%=message.getAlertContent()%>");
+        <%}%>
 	window.location.href = "<%=message.getRedirectURL()%>";
     </script>
     <% } else if (message.getAlertType() == AlertMessage.BOX_TYPE) {%>

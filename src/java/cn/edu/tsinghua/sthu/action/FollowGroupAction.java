@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.action;
 
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
+import cn.edu.tsinghua.sthu.message.AlertMessage;
 import cn.edu.tsinghua.sthu.service.UserService;
 
 /**
@@ -17,9 +18,13 @@ public class FollowGroupAction extends BaseAction{
     private Integer groupId;
     private UserService userService;
     private UserEntity entity;
-
+    private Integer noAlert;
     @Override
     public String onExecute() throws Exception {
+        if(noAlert==1){
+            alertMessage.setNoAlert(1);
+        }
+      
         if(type != 0){
             if(userService.followGroup(getCurrentUser(), entity) != null)
                 alertMessage.setSimpleAlert("关注成功");
@@ -139,6 +144,20 @@ public class FollowGroupAction extends BaseAction{
      */
     public void setEntity(UserEntity entity) {
         this.entity = entity;
+    }
+
+    /**
+     * @return the doAlert
+     */
+    public Integer getNoAlert() {
+        return noAlert;
+    }
+
+    /**
+     * @param doAlert the doAlert to set
+     */
+    public void setNoAlert(Integer noAlert) {
+        this.noAlert = noAlert;
     }
     
 }

@@ -17,7 +17,7 @@ public class FollowGroupInBatchPageMessage extends BaseMessage{
     private List<Integer> groupsFollowNum;
     private List<UserEntity> allGroups;
     private List<Integer> isFollowed;
-
+    private Integer showFollowed;
    
 
     /**
@@ -60,5 +60,19 @@ public class FollowGroupInBatchPageMessage extends BaseMessage{
      */
     public void setIsFollowed(List<Integer> isFollowed) {
         this.isFollowed = isFollowed;
+    }
+
+    /**
+     * @return the showFollowed
+     */
+    public Integer getShowFollowed() {
+        return showFollowed;
+    }
+
+    /**
+     * @param showFollowed the showFollowed to set
+     */
+    public void setShowFollowed(Integer showFollowed) {
+        this.showFollowed = showFollowed;
     }
 }
