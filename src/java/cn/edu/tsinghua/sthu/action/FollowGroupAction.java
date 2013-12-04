@@ -21,7 +21,9 @@ public class FollowGroupAction extends BaseAction{
     private Integer noAlert;
     @Override
     public String onExecute() throws Exception {
-        if(noAlert==1){
+        if(noAlert == null){
+        }
+        else if(noAlert==1){
             alertMessage.setNoAlert(1);
         }
       

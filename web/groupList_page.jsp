@@ -57,8 +57,8 @@
     
     <%@include file="/templates/new_general_header.jsp" %>
    
-    <div id="title-board"  style="width: 900px;height: 64px; margin:30px auto;background-color:#DAD8D8" >
-            <div style="float:left;margin-top:10px;"><p style="margin-top:10px;font-size:25px;">全部学生组织</p></div>
+    <div id="title-board"  style="width: 900px;height: 64px; margin:30px auto;background-color:rgb(112, 194, 206)" >
+            <div style="float:left;margin-top:10px;"><p style="margin-top:10px;margin-left: 40px;font-size:25px;color:white;">全部学生组织</p></div>
         </div>
 
     <div id="main_content" class="main-style">
@@ -74,20 +74,19 @@
                             <input type="checkbox" name="chooseAll2" id="All" style="margin-left: 45px;margin-bottom: 5px;" onclick="chooseAll()" >全选</input>
                             </div>
                          
-                         <form id="followForm"method="post" action="/followGroupInBatchPage.do">
-                        <div style="margin-left: 45px;margin-bottom: 5px;">
-                        <input type="image"onclick="follow()"id="batchFollowed" src="/css/activity/followInBatch_btn.jpg" style="width:100px;height: 30px;"></input>
+                         <form id="followForm"method="post" action="/showGroups.do">
+                        <div style="margin:10px 40px;">
+                        <input type="image" onclick="follow()"id="batchFollowed" src="/css/activity/followInBatch_btn.jpg" style="width:100px;height: 30px;"></input>
+                        </div>
                         <%}%>
-                          </div>
-                       
                         <%for(int i = 0; i < groups.size(); i ++){
                           UserEntity group = groups.get(i);
                           int followNum = groupsFollowNumbers.get(i);
                           //int isFollowed = isGroupFollowed.get(i);
                          %>
                          <div style="float:left;margin-left:45px; margin-bottom:10px;width:240px;height: 100px;">
-                        <div style="float: right;width:240px;height:100px;border: 2px dashed #DBDBDB;"> 
-                            <div style="float:left;width: 90px;height: 100px;">
+                        <div style="float: right;width:240px;height:100px;border: 2px dashed #DBDBDB;padding-bottom: 2px;"> 
+                            <div style="float:left;width: 90px;height: 100px;text-align: center;">
                                  <a  style="text-decoration:none;"href="/showGroupHome.do?groupId=<%=group.getID()%>" target="_blank"> 
                                      <%if(group.getLogoImg() != null  && group.getLogoImg().compareTo("null") != 0){%>
                                      <img src="<%=group.getLogoImg()%>" style="margin-left:13px;padding:5px; width:64px;height:64px;"/>
