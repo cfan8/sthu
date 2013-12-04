@@ -168,7 +168,7 @@
         </ol>
     </div>
     <div style="margin-left:40px;">
-        <p id="buttonP"><a class="button" href="/activity/applyClassroom.do">申请借用教室</a><a class="button" href="/outdoor/applyActivity.do">申请活动资源</a><a class="button" style="width:230px;" href="/studentActivity/applyStudentActivity.do">申请学生活动(试运行)</a></p>
+        <p id="buttonP"><a class="button" style="display: none;" href="/activity/applyClassroom.do">申请借用教室</a><a class="button"  style="display: none;" href="/outdoor/applyActivity.do">申请活动资源</a><a class="button" style="width:220px;" href="/studentActivity/applyStudentActivity.do">申请学生活动</a></p>
     </div>
     <%@include file="/templates/general_footer.jsp" %>
     

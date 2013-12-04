@@ -208,11 +208,11 @@
             </div>
             <hr />
             <div><span class="tag">申请发布到学生清华：</span><span class="value">
-                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" onclick="changePublicityState(1)"/>是
-                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" checked="true" onclick="changePublicityState(2)"/>否
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY%>" checked="true" onclick="changePublicityState(1)"/>是
+                    <input type="radio" name="publicityFlag" value="<%=StudentApplyOptionsEntity.PUBLICITYFLAG_NOTAPPLY%>" onclick="changePublicityState(2)"/>否
                 </span>
             </div>
-            <div id="publicityInfo" style="display: none">
+            <div id="publicityInfo">
                 <div><span class="tag">宣传图片：</span>
                 <div class="manage_item">
                     <img src="/images/banner.jpg" width="80px" height="60px" id="main_img"/>

@@ -127,6 +127,10 @@
     </head>
     <%@include file="/templates/general_header.jsp" %>
     <div id="welcome"><div id="welcometext">欢迎来到我的学清！</div><a class="trynew" href="/showUserHome.do">体验新版</a><a class="logout" href="/logout.do">登出</a></div>
+    <div id="activityapply">
+	<div class="title">我的学生活动申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请学生活动</a></div>
+	<div class="content"><iframe id="frame1" src="/studentActivity/showMyStudentActivityApply.do"></iframe></div>
+    </div>
     <div id="classapply">
 	<div class="title">我的教室申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请借用教室</a></div>
 	<div class="content"><iframe id="frame0" src="/activity/showMyApply.do"></iframe></div>
@@ -135,10 +139,7 @@
 	<div class="title">我的活动资源申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请活动资源</a></div>
 	<div class="content"><iframe id="frame1" src="/outdoor/showMyActivityApply.do"></iframe></div>
     </div>
-    <div id="activityapply">
-	<div class="title">我的学生活动申请</div><div class="newbtn"><a class="button add" href="/activity/applyNotice.jsp" target="_blank" >申请学生活动</a></div>
-	<div class="content"><iframe id="frame1" src="/studentActivity/showMyStudentActivityApply.do"></iframe></div>
-    </div>
+    
     <div id="ticketapply">
 	<div class="title"><a name="ticket">我的订票</a></div>
 	<div class="content" style="text-align: center;padding: 12px;width: 656px;" >没有订票！</div>

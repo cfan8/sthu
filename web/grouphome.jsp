@@ -76,7 +76,6 @@
                         </div>
                         <div style="font-family: Microsoft YaHei, LiHei Pro Medium; margin-top:20px;">
                         <a style="font-size:36px;"><b><%=organizeName%> </b></a> 
-                        <a style="font-size: 14px;color: blue;margin-left: 10px" href="/followGroupInBatchPage.do">全部组织</a>
                           
                         </div>
                     </div>
