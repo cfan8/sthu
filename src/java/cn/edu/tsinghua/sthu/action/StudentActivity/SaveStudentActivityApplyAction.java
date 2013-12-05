@@ -83,10 +83,13 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
     private int croomCapacity; //教室容量
+    //@XSSProtect(XSSProtectLevel.Strict)
+    //private String croomStartTime; //开始日期和时间
+    //@XSSProtect(XSSProtectLevel.Strict)
+    //private String croomEndTime; //结束日期和时间
+    private int croomWeek;  //借用周次
     @XSSProtect(XSSProtectLevel.Strict)
-    private String croomStartTime; //开始日期和时间
-    @XSSProtect(XSSProtectLevel.Strict)
-    private String croomEndTime; //结束日期和时间
+    private String croomClassTime;  //借用节次
     
     //电子屏申请
     private int LEDFlag; //标记是否申请电子屏，1：申请，0：不申请
@@ -151,7 +154,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
         StudentApplyOptionsEntity option;
 	if (applyId == null || applyId == -1) {
             option = getStudentApplyOptionsService().createStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
-                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
+                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomWeek(), getCroomClassTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
                     getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getBulletinFlag(), 
                     getBulletinArea(), getBulletinIndex(), getBulletinApplyReason(), getPosterImg(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation());
@@ -163,7 +166,7 @@ public class SaveStudentActivityApplyAction extends BaseAction{
 	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
-                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
+                    getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomWeek(), getCroomClassTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
                     getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(),getBulletinFlag(), 
                     getBulletinArea(), getBulletinIndex(), getBulletinApplyReason(), getPosterImg(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation(), entity.getOption().getID());
@@ -625,30 +628,30 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     /**
      * @return the croomStartTime
      */
-    public String getCroomStartTime() {
-        return croomStartTime;
-    }
+//    public String getCroomStartTime() {
+//        return croomStartTime;
+//    }
 
     /**
      * @param croomStartTime the croomStartTime to set
      */
-    public void setCroomStartTime(String croomStartTime) {
-        this.croomStartTime = croomStartTime;
-    }
-
-    /**
-     * @return the croomEndTime
-     */
-    public String getCroomEndTime() {
-        return croomEndTime;
-    }
-
-    /**
-     * @param croomEndTime the croomEndTime to set
-     */
-    public void setCroomEndTime(String croomEndTime) {
-        this.croomEndTime = croomEndTime;
-    }
+//    public void setCroomStartTime(String croomStartTime) {
+//        this.croomStartTime = croomStartTime;
+//    }
+//
+//    /**
+//     * @return the croomEndTime
+//     */
+//    public String getCroomEndTime() {
+//        return croomEndTime;
+//    }
+//
+//    /**
+//     * @param croomEndTime the croomEndTime to set
+//     */
+//    public void setCroomEndTime(String croomEndTime) {
+//        this.croomEndTime = croomEndTime;
+//    }
 
     /**
      * @return the LEDFlag
@@ -1054,6 +1057,34 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setPosterImg(String posterImg) {
         this.posterImg = posterImg;
+    }
+
+    /**
+     * @return the croomWeek
+     */
+    public int getCroomWeek() {
+        return croomWeek;
+    }
+
+    /**
+     * @param croomWeek the croomWeek to set
+     */
+    public void setCroomWeek(int croomWeek) {
+        this.croomWeek = croomWeek;
+    }
+
+    /**
+     * @return the croomClassTime
+     */
+    public String getCroomClassTime() {
+        return croomClassTime;
+    }
+
+    /**
+     * @param croomClassTime the croomClassTime to set
+     */
+    public void setCroomClassTime(String croomClassTime) {
+        this.croomClassTime = croomClassTime;
     }
     
 }

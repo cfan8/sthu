@@ -37,13 +37,7 @@
             <div id="navi">
                 <div id="navi_text_left" class="navi-left">
                     <div class="navi-main-name">
-                        <%if(type == AuthEntity.USER_ROLE){%>
-                        <a href="/login.do?redirectURL=%2FshowUserHome.do">
-                            <%}else if(type == AuthEntity.GROUP_ROLE){%>
-                            <a href="/login.do?redirectURL=%2FshowGroupHome.do?groupId=<%=id%>">
-                            <%}%>
-                            
-                            <b><%=nickName%></b></a></div>
+                        <a href="/login.do?redirectURL=%2FshowUserHome.do"><b><%=nickName%></b></a></div>
                     <div class="navi-main"><a id="activity_link" href="/studentActivity/showActivitiesList.do" target="_blank"><b>活动</b></a></div>
                     <div class="navi-main"><a id="group_link" href="/showGroups.do" target="_blank"><b>社团组织</b></a></div>
                     <div class="navi-main">
