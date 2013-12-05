@@ -27,7 +27,7 @@ public class StudentApplyOptionsService {
     @Transactional
     public StudentApplyOptionsEntity createStudentApplyOptions(int userid, int externalFlag, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
-    String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
+    int croomWeek, String croomClassTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime, 
     int bulletinFlag, int bulletinArea, String bulletinIndex, String bulletinApplyReason, String bulletinPoster,
     int publicityFlag, String publicityMaterials, String mainImg, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation){
@@ -45,8 +45,8 @@ public class StudentApplyOptionsService {
         entity.setCroomType(croomType);
         entity.setAllowAdjust(allowAdjust);
         entity.setCroomCapacity(croomCapacity);
-        entity.setCroomStartTime(croomStartTime);
-        entity.setCroomEndTime(croomEndTime);
+        entity.setCroomWeek(croomWeek);
+        entity.setCroomClassTime(croomClassTime);
         entity.setLEDFlag(LEDFlag);
         entity.setLEDContent(LEDContent);
         entity.setLEDStartTime(LEDStartTime);
@@ -81,7 +81,7 @@ public class StudentApplyOptionsService {
     @Transactional
     public StudentApplyOptionsEntity modifyStudentApplyOptions(int userid, int externalFlag, String externalIntro, String externalOrganizationIntro,
     String securityPreparedness, int overseasFlag, String overseasIntro, String overseasOrganizationIntro, String overseasMaterial, int croomFlag, int croomType, int allowAdjust,int croomCapacity,
-    String croomStartTime, String croomEndTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
+    int croomWeek, String croomClassTime, int LEDFlag, String LEDContent, String LEDStartTime, String LEDEndTime, int outsideFlag, int activityLocation,
     String outsideBorrowDate, String outsideTimePeriod, int boardFlag, String boardMaterial, int boardSize, int boardNum, String BoardStartTime, String BoardEndTime,
     int bulletinFlag, int bulletinArea, String bulletinIndex, String bulletinApplyReason, String bulletinPoster,
     int publicityFlag, String publicityMaterials, String mainImg, int ticketFlag, int ticketNum, Date ticketRandomDate, String ticketTime, String ticketLocation, int optionId){
@@ -99,8 +99,8 @@ public class StudentApplyOptionsService {
         entity.setCroomType(croomType);
         entity.setAllowAdjust(allowAdjust);
         entity.setCroomCapacity(croomCapacity);
-        entity.setCroomStartTime(croomStartTime);
-        entity.setCroomEndTime(croomEndTime);
+        entity.setCroomWeek(croomWeek);
+        entity.setCroomClassTime(croomClassTime);
         entity.setLEDFlag(LEDFlag);
         entity.setLEDContent(LEDContent);
         entity.setLEDStartTime(LEDStartTime);

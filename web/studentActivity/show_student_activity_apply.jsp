@@ -384,8 +384,8 @@
             <tr><td class="tag">教室类型要求：</td><td class="value"><%=options.getCroomTypeText()%></td></tr>
             <tr><td class="tag">是否服从调剂：</td><td class="value"><%=options.getAllowAdjustText()%></td></tr>
             <tr><td class="tag">教室容量：</td><td class="value"><%=options.getCroomCapacity()%></td></tr>
-            <tr><td class="tag">开始日期和时间:</td><td class="value"><%=options.getCroomStartTime()%></td></tr>
-            <tr><td class="tag">结束日期和时间:</td><td class="value"><%=options.getCroomEndTime()%></td></tr>
+            <tr><td class="tag">借用周次:</td><td class="value"><%=options.getCroomWeek()%></td></tr>
+            <tr><td class="tag">借用具体时间:</td><td class="value"><%=options.getCroomClassTime()%></td></tr>
             <%}%>
             <%if(options.getLEDFlag() == 1) {%>
             <tr><td class="tag" colspan="2" style="border-top:1px solid #BBB; padding-top:10px">电子屏申请:</td></tr>

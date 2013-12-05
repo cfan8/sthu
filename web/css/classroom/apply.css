@@ -77,3 +77,32 @@ form input[type="submit"]
     font-size: 14.67px;
     letter-spacing: 4px;
 }
+
+.biaodan_table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0px;
+        BORDER-top: #BADBE6 1px solid;
+        BORDER-left: #BADBE6 1px solid;
+        margin: 0px;
+        float: left;
+}
+
+.biaodan_table td {
+        padding: 2px;
+        line-height: 150%;
+        BORDER-bottom: #BADBE6 1px solid;
+        BORDER-right: #BADBE6 1px solid;
+        height: 22px;
+}
+
+.biaodan_table .title {
+        line-height: 120%;
+        BACKGROUND-COLOR: #E0F7FF;
+        color: #146EA1;
+        font-weight: bold;
+        height: 22px;
+        margin-left: 12px;
+        margin-right: 14px;
+        text-align: center;
+}

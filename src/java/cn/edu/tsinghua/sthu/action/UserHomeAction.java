@@ -25,16 +25,18 @@ public class UserHomeAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
         if(getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE){
-            alertMessage.setAlertTitle("新版学生清华");
-            alertMessage.setAlertContent("点此进入社团主页");
-            alertMessage.setAlertType(AlertMessage.BOX_TYPE);
+            alertMessage.setNoAlert(1);
+            //alertMessage.setAlertTitle("新版学生清华");
+            //alertMessage.setAlertContent("点此进入社团主页");
+            //alertMessage.setAlertType(AlertMessage.BOX_TYPE);
             alertMessage.setRedirectURL("showGroupHome.do?groupId="+getCurrentUser().getID());
             return ALERT;
         }
         else if(getCurrentUser().getAuth().getRole() == AuthEntity.ADMIN_ROLE){
-            alertMessage.setAlertTitle("管理员个人主页仍为旧版");
-            alertMessage.setAlertContent("点此进入学清管理页面");
-            alertMessage.setAlertType(AlertMessage.BOX_TYPE);
+            alertMessage.setNoAlert(1);
+            //alertMessage.setAlertTitle("管理员个人主页仍为旧版");
+            //alertMessage.setAlertContent("点此进入学清管理页面");
+            //alertMessage.setAlertType(AlertMessage.BOX_TYPE);
             alertMessage.setRedirectURL("mysthu.do");
             return ALERT;
         }

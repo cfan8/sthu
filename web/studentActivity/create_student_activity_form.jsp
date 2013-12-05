@@ -35,6 +35,7 @@
                     resize: none;
                     width:200px;
                 }
+                
             </style>
     </head>
         <%@include file="/templates/general_header.jsp" %>
@@ -130,8 +131,292 @@
                     <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_REJECT%>"/>否
                 </span></div>
                 <div><span class="tag">教室容量：</span><span class="value"><input type="text" name="croomCapacity"/></span></div>
-                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" name="croomStartTime"/></span></div>
-                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" name="croomEndTime"/></span></div>
+                <div><span class="tag">借用周次:</span><span class="value"><input type="text" name="croomWeek"/></span></div>
+                <div><span class="tag"></span><span class="value">
+                        <table class="biaodan_table" style="border-collapse:collapse;width:85%!important">
+                                <tbody>
+                                <tr>
+                                        <td class="td_bg_blue" style="text-align:center!important" colspan="2">
+                                                节次
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周一<label id="monday" name="monday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周二<label id="tuesday" name="tuesday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周三 <label id="wednesday" name="wednesday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周四<label id="thursday" name="thursday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周五<label id="friday" name="friday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周六<label id="saturday" name="saturday" style="display:none"></label>
+                                        </td>
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                周日<label id="sunday" name="sunday" style="display:none"></label>
+                                        </td>
+                                </tr>
+
+                                <tr>
+
+                                        <td class="td_bg_blue" style="text-align:center!important" rowspan="2">
+                                                上午
+                                        </td>
+
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                1
+                                                大节(8:00-9:35)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="1">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="1">
+                                        </td>
+
+                                </tr>
+
+                                <tr>
+
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                2
+                                                大节(9:50-12:15)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="2">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="2">
+                                        </td>
+
+                                </tr>
+
+                                <tr>
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important" rowspan="3">
+                                                中午
+                                        </td>
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                3
+                                                大节(13:30-15:05)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="3">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="3">
+                                        </td>
+
+                                </tr>
+
+                                <tr>
+
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                4
+                                                大节(15:20-16:55)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="4">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="4">
+                                        </td>
+
+                                </tr>
+
+                                <tr>
+
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                5
+                                                大节(17:05-18:40)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="5">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="5">
+                                        </td>
+
+                                </tr>
+
+                                <tr>
+
+
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                晚上
+                                        </td>
+
+                                        <td class="td_bg_blue" style="text-align:center!important">
+                                                第
+                                                6
+                                                大节(19:20-21:50)
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_1" id="seg_1" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_2" id="seg_2" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_3" id="seg_3" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_4" id="seg_4" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_5" id="seg_5" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_6" id="seg_6" value="6">
+                                        </td>
+
+                                        <td style="text-align:center; vertical-align:middle">
+                                                <input type="checkbox" name="seg_7" id="seg_7" value="6">
+                                        </td>
+
+                                </tr>
+                        </tbody></table>
+                    </span></div>
+                <div><span class="tag">借用具体时间:</span><span class="value"><input type="text" id="croomClassTime" name="croomClassTime" readonly="true"/></span></div>
+            
             </div>
             <hr />
             <div><span class="tag">申请电子屏：</span><span class="value">
@@ -245,6 +530,56 @@
     
     <script type="text/javascript" charset="utf-8" src="/uploadify/jquery.uploadify.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function(){ 
+                $("input[name^='seg_']").change(function() { 
+                        getcheck();
+                }); 
+        }); 
+        function getcheck(){
+            document.getElementById("croomClassTime").value="";
+            var x1 = document.getElementsByName("seg_1");
+            for(var i = 0; i < x1.length; i ++){
+                    if (x1[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周一第"+x1[i].value.toString()+"大节 ";
+                    }
+            }
+            var x2 = document.getElementsByName("seg_2");
+            for(var i = 0; i < x2.length; i ++){
+                    if (x2[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周二第"+x2[i].value.toString()+"大节 ";
+                    }
+            }
+            var x3 = document.getElementsByName("seg_3");
+            for(var i = 0; i < x3.length; i ++){
+                    if (x3[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周三第"+x3[i].value.toString()+"大节 ";
+                    }
+            }
+            var x4 = document.getElementsByName("seg_4");
+            for(var i = 0; i < x4.length; i ++){
+                    if (x4[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周四第"+x4[i].value.toString()+"大节 ";
+                    }
+            }
+            var x5 = document.getElementsByName("seg_5");
+            for(var i = 0; i < x5.length; i ++){
+                    if (x5[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周五第"+x5[i].value.toString()+"大节 ";
+                    }
+            }
+            var x6 = document.getElementsByName("seg_6");
+            for(var i = 0; i < x6.length; i ++){
+                    if (x6[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周六第"+x6[i].value.toString()+"大节 ";
+                    }
+            }
+            var x7 = document.getElementsByName("seg_7");
+            for(var i = 0; i < x7.length; i ++){
+                    if (x7[i].checked == true) {
+                            document.getElementById("croomClassTime").value+="周日第"+x7[i].value.toString()+"大节 ";
+                    }
+            }
+    }
 	var ce = UE.getEditor('contentEditor');
         var se = UE.getEditor('securityEditor');
         var oe = UE.getEditor('overseasEditor');
