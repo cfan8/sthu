@@ -50,7 +50,7 @@
 		<div id="toplink"><a href="http://166.111.17.5/shijian/" target="_blank">社会实践在线平台</a><span class="splitspan">|</span><a href="http://sutuo.student.tsinghua.edu.cn" target="_blank" >素质拓展计划</a><span class="splitspan">|</span><a href="http://www.bv2008.cn/" target="_blank">志愿北京平台</a><span class="splitspan">|</span><a href="http://daf.tsinghua.edu.cn/" target="_blank">博学网</a><span class="splitspan">|</span><a href="http://old.student.tsinghua.edu.cn/" target="_blank">怀念老学清</a></div>
 	    </div>
 	    <div id="banner">
-		<div id="bannerimg"><img src="/css/index/banner10.jpg" width="1024px" height="295px">
+		<div id="bannerimg"><img src="/css/index/banner11.jpg" width="1024px" height="295px">
                         
                     </img></div>
                 <div id="bannerbottomimg">

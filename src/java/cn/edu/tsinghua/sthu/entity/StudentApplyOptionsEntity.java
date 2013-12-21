@@ -83,12 +83,13 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
     private int croomCapacity; //教室容量
-    //private String croomStartTime; //开始日期和时间
-  //  @Temporal(javax.persistence.TemporalType.DATE)
-    //private String croomEndTime; //结束日期和时间
+    private String croomStartTime; //开始日期和时间
+    //@Temporal(javax.persistence.TemporalType.DATE)
+    private String croomEndTime; //结束日期和时间
     private String croomLocation; //教室位置
     private int croomWeek;  //借用周次
     private String croomClassTime;  //借用节次
+    private String HDSJ;    //活动时间 借用周次和借用节次的字符表示
     
     private int LEDFlag; //标记是否申请电子屏
     //电子屏申请
@@ -310,30 +311,30 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     /**
      * @return the croomStartTime
      */
-//    public String getCroomStartTime() {
-//        return croomStartTime;
-//    }
-//
-//    /**
-//     * @param croomStartTime the croomStartTime to set
-//     */
-//    public void setCroomStartTime(String croomStartTime) {
-//        this.croomStartTime = croomStartTime;
-//    }
+    public String getCroomStartTime() {
+        return croomStartTime;
+    }
+
+    /**
+     * @param croomStartTime the croomStartTime to set
+     */
+    public void setCroomStartTime(String croomStartTime) {
+        this.croomStartTime = croomStartTime;
+    }
 
     /**
      * @return the croomEndTime
      */
-//    public String getCroomEndTime() {
-//        return croomEndTime;
-//    }
-//
-//    /**
-//     * @param croomEndTime the croomEndTime to set
-//     */
-//    public void setCroomEndTime(String croomEndTime) {
-//        this.croomEndTime = croomEndTime;
-//    }
+    public String getCroomEndTime() {
+        return croomEndTime;
+    }
+
+    /**
+     * @param croomEndTime the croomEndTime to set
+     */
+    public void setCroomEndTime(String croomEndTime) {
+        this.croomEndTime = croomEndTime;
+    }
 
     /**
      * @return the LEDContent
@@ -869,6 +870,20 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      */
     public void setCroomClassTime(String croomClassTime) {
         this.croomClassTime = croomClassTime;
+    }
+
+    /**
+     * @return the HDSJ
+     */
+    public String getHDSJ() {
+        return HDSJ;
+    }
+
+    /**
+     * @param HDSJ the HDSJ to set
+     */
+    public void setHDSJ(String HDSJ) {
+        this.HDSJ = HDSJ;
     }
 
 }
