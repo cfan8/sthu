@@ -131,7 +131,26 @@
                     <input type="radio" name="allowAdjust" value="<%=StudentApplyOptionsEntity.ALLOWADJUST_REJECT%>"/>否
                 </span></div>
                 <div><span class="tag">教室容量：</span><span class="value"><input type="text" name="croomCapacity"/></span></div>
-                <div><span class="tag">借用周次:</span><span class="value"><input type="text" name="croomWeek"/></span></div>
+                <div><span class="tag">借用周次:</span><span class="value_select">
+                        <select name="croomWeek" id="croomWeek">
+                            <option value="1" selected ="selected">第1周</option>
+                            <option value="2" >第2周</option>
+                            <option value="3" >第3周</option>
+                            <option value="4" >第4周</option>
+                            <option value="5" >第5周</option>
+                            <option value="6" >第6周</option>
+                            <option value="7" >第7周</option>
+                            <option value="8" >第8周</option>
+                            <option value="9" >第9周</option>
+                            <option value="10" >第10周</option>
+                            <option value="11" >第11周</option>
+                            <option value="12" >第12周</option>
+                            <option value="13" >第13周</option>
+                            <option value="14" >第14周</option>
+                            <option value="15" >第15周</option>
+                            <option value="16" >第16周</option>
+                        </select>
+                    </span></div>
                 <div><span class="tag"></span><span class="value">
                         <table class="biaodan_table" style="border-collapse:collapse;width:85%!important">
                                 <tbody>
@@ -415,7 +434,14 @@
                                 </tr>
                         </tbody></table>
                     </span></div>
-                <div><span class="tag">借用具体时间:</span><span class="value"><input type="text" id="croomClassTime" name="croomClassTime" readonly="true"/></span></div>
+                <div><span class="tag">借用具体时间:</span>
+                    <span class="value">
+                        <input type="text" id="croomClassTime" name="croomClassTime" readonly="true"/>
+                        <input type="text"  style="display:none;" id="HDSJ" name="HDSJ"/>
+                    </span></div>
+                
+                <div><span class="tag">开始日期和时间:</span><span class="value"><input type="text" id="croomStartTime" name="croomStartTime" /></span></div>
+                <div><span class="tag">结束日期和时间:</span><span class="value"><input type="text" id="croomEndTime" name="croomEndTime" /></span></div>
             
             </div>
             <hr />
@@ -534,49 +560,73 @@
                 $("input[name^='seg_']").change(function() { 
                         getcheck();
                 }); 
+                $("#croomWeek").change(function(){
+                    getcheck();
+                });
         }); 
         function getcheck(){
             document.getElementById("croomClassTime").value="";
+            document.getElementById("HDSJ").value = "";
+            var week = document.getElementById("croomWeek").options[document.getElementById("croomWeek").selectedIndex].value;
+            var a = parseInt(week) - 1;
+            var str="";
+            for(var i = 0; i < 16; i ++){
+                if(i == a)
+                    str +="1";
+                else
+                    str +="0";
+            }
+            str += ";"
+            document.getElementById("HDSJ").value=str;
+            
+            
             var x1 = document.getElementsByName("seg_1");
             for(var i = 0; i < x1.length; i ++){
                     if (x1[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周一第"+x1[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "1"+x1[i].value.toString()+";";
                     }
             }
             var x2 = document.getElementsByName("seg_2");
             for(var i = 0; i < x2.length; i ++){
                     if (x2[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周二第"+x2[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "2"+x2[i].value.toString()+";";
                     }
             }
             var x3 = document.getElementsByName("seg_3");
             for(var i = 0; i < x3.length; i ++){
                     if (x3[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周三第"+x3[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "3"+x3[i].value.toString()+";";
                     }
             }
             var x4 = document.getElementsByName("seg_4");
             for(var i = 0; i < x4.length; i ++){
                     if (x4[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周四第"+x4[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "4"+x4[i].value.toString()+";";
                     }
             }
             var x5 = document.getElementsByName("seg_5");
             for(var i = 0; i < x5.length; i ++){
                     if (x5[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周五第"+x5[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "5"+x5[i].value.toString()+";";
                     }
             }
             var x6 = document.getElementsByName("seg_6");
             for(var i = 0; i < x6.length; i ++){
                     if (x6[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周六第"+x6[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "6"+x6[i].value.toString()+";";
                     }
             }
             var x7 = document.getElementsByName("seg_7");
             for(var i = 0; i < x7.length; i ++){
                     if (x7[i].checked == true) {
                             document.getElementById("croomClassTime").value+="周日第"+x7[i].value.toString()+"大节 ";
+                            document.getElementById("HDSJ").value += "7"+x7[i].value.toString()+";";
                     }
             }
     }
