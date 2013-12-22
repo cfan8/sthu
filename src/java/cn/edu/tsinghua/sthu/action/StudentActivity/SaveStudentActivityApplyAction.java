@@ -32,6 +32,8 @@ public class SaveStudentActivityApplyAction extends BaseAction{
     @XSSProtect(XSSProtectLevel.Strict)
     private String applicantName;	//申请人
     
+    private int applicantStudentID;	//申请人学号
+    
     @XSSProtect(XSSProtectLevel.Strict)
     private String applicantCell;    //申请人联系电话
     
@@ -160,12 +162,12 @@ public class SaveStudentActivityApplyAction extends BaseAction{
                     getOutsideBorrowDate(), getOutsideTimePeriod(), getBoardFlag(), getBoardMaterial(), getBoardSize(), getBoardNum(), getBoardStartTime(), getBoardEndTime(), getBulletinFlag(), 
                     getBulletinArea(), getBulletinIndex(), getBulletinApplyReason(), getPosterImg(), getPublicityFlag(), getPublicityMaterials(), getMainImg(), getTicketFlag(),
                     getTicketNum(), getTicketRandomDate(), getTicketTime(), getTicketLocation());
-	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
+	    entity = getApplyStudentActivityService().createStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantStudentID(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getCurrentUser().getID(), getActivityRange(), getApplyType(), option);
             
 	} else {
             
-	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
+	    entity = getApplyStudentActivityService().modifyStudentActivityApply(getOrganizerName(), getAssociateOrganizerName(),getApplicantName(), getApplicantStudentID(), getApplicantCell(), getActivityType(), getUsageComment(), getActivityContent(), getManagerName(), getManagerCell(), getActivityDate(), getTimePeriod(), getParticipantsNumber(), getActivityTheme(),
 		    getActivityRange(), getApplyType(), applyId, getCurrentUser().getAuth().getOpGroupCode());
             option = getStudentApplyOptionsService().modifyStudentApplyOptions(getCurrentUser().getID(), getExternalFlag(), getExternalIntro(), getExternalOrganizationIntro(), getSecurityPreparedness(), getOverseasFlag(), getOverseasIntro(), getOverseasOrganizationIntro(), getOverseasMaterial(),
                     getCroomFlag(), getCroomType(), getAllowAdjust(), getCroomCapacity(), getCroomWeek(), getCroomClassTime(), getHDSJ(), getCroomStartTime(), getCroomEndTime(), getLEDFlag(), getLEDContent(), getLEDStartTime(), getLEDEndTime(), getOutsideFlag(), getActivityLocation(),
@@ -1101,6 +1103,20 @@ public class SaveStudentActivityApplyAction extends BaseAction{
      */
     public void setHDSJ(String HDSJ) {
         this.HDSJ = HDSJ;
+    }
+
+    /**
+     * @return the applicantStudentID
+     */
+    public int getApplicantStudentID() {
+        return applicantStudentID;
+    }
+
+    /**
+     * @param applicantStudentID the applicantStudentID to set
+     */
+    public void setApplicantStudentID(int applicantStudentID) {
+        this.applicantStudentID = applicantStudentID;
     }
     
 }

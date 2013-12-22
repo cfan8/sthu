@@ -66,9 +66,10 @@ public class StudentActivityApplyEntity extends BaseEntity{
     private String associateOrganizerName; //协办方（者）名称
     @Column(length = 32)
     private String applicantName; //申请人
+    private int applicantStudentID; //申请人ID
     @Column(length = 20)
     private String applicantCell; //申请人联系电话
-    private int activityType; //活动类型
+    private short activityType; //活动类型
     private String usageComment; //活动类型为其他时用户所填
     @Column(length = 32)
     private String managerName; //负责人
@@ -231,14 +232,14 @@ public class StudentActivityApplyEntity extends BaseEntity{
     /**
      * @return the activityType
      */
-    public int getActivityType() {
+    public short getActivityType() {
         return activityType;
     }
 
     /**
      * @param activityType the activityType to set
      */
-    public void setActivityType(int activityType) {
+    public void setActivityType(short activityType) {
         this.activityType = activityType;
     }
 
@@ -798,6 +799,20 @@ public class StudentActivityApplyEntity extends BaseEntity{
      */
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    /**
+     * @return the applicantStudentID
+     */
+    public int getApplicantStudentID() {
+        return applicantStudentID;
+    }
+
+    /**
+     * @param applicantStudentID the applicantStudentID to set
+     */
+    public void setApplicantStudentID(int applicantStudentID) {
+        this.applicantStudentID = applicantStudentID;
     }
     
 }

@@ -51,9 +51,10 @@ public class FollowDAO extends BaseDAO<FollowEntity> {
         insert(follow); 
     }
     
-    public void addFollowTicket(int userID, int activityID){
+    public void addFollowTicket(int userID, String userName, int activityID){
         FollowEntity follow = new FollowEntity();
         follow.setUserID(userID);
+        follow.setUserName(userName);
         follow.setActivityID(activityID);
         follow.setFollowType(FollowEntity.FOLLOW_TYPE_TICKET);
         follow.setTicketStatus(FollowEntity.TICKET_STATUS_WAIT);

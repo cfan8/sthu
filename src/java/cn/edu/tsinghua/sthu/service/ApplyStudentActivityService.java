@@ -282,7 +282,7 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
      @Transactional
-    public StudentActivityApplyEntity createStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
+    public StudentActivityApplyEntity createStudentActivityApply(String organizerName, String associateOrganizerName,String applicant, int applicantStudentID,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
 	     int number, String title, int userid, int applyRange, int applyType, StudentApplyOptionsEntity option) {
@@ -290,8 +290,9 @@ public class ApplyStudentActivityService extends BaseService{
 	entity.setOrganizerName(organizerName);
         entity.setAssociateOrganizerName(associateOrganizerName);
 	entity.setApplicantName(applicant);
+        entity.setApplicantStudentID(applicantStudentID);
 	entity.setApplicantCell(applicantCell);
-	entity.setActivityType(activityType);
+	entity.setActivityType((short)activityType);
         entity.setUsageComment(usageComment);
 	entity.setActivityContent(content);
 	entity.setManagerName(manager);
@@ -324,7 +325,7 @@ public class ApplyStudentActivityService extends BaseService{
     }
      
     @Transactional
-    public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant,
+    public StudentActivityApplyEntity modifyStudentActivityApply(String organizerName, String associateOrganizerName,String applicant, int applicantStudentID,
 	    String applicantCell, int activityType, String usageComment, String content,
 	    String manager, String managerCell, Date activityDate, String timePeriod,
 	     int number, String title, int applyRange, int applyType, int applyId, int groupAuth) {
@@ -336,8 +337,9 @@ public class ApplyStudentActivityService extends BaseService{
         entity.setOrganizerName(organizerName);
         entity.setAssociateOrganizerName(associateOrganizerName);
 	entity.setApplicantName(applicant);
+        entity.setApplicantStudentID(applicantStudentID);
 	entity.setApplicantCell(applicantCell);
-	entity.setActivityType(activityType);
+	entity.setActivityType((short)activityType);
         entity.setUsageComment(usageComment);
 	entity.setActivityContent(content);
 	entity.setManagerName(manager);
@@ -713,7 +715,7 @@ public class ApplyStudentActivityService extends BaseService{
     public UserEntity followTicketByUser(UserEntity user, StudentActivityApplyEntity activity){
         if(checkActivityTicketFollowedByUser(user, activity))
             return null;
-        followDAO.addFollowTicket(user.getID(), activity.getID());
+        followDAO.addFollowTicket(user.getID(), user.getNickname(), activity.getID());
         return user;
     }
     
@@ -865,12 +867,12 @@ public class ApplyStudentActivityService extends BaseService{
     }
     
     @Transactional
-    public List<UserEntity> getTicketRandomResult(int activityId){
-        List<UserEntity> list = new ArrayList<UserEntity>();
+    public List<FollowEntity> getTicketRandomResult(int activityId){
+        List<FollowEntity> list = new ArrayList<FollowEntity>();
         List<FollowEntity> followlist = followDAO.getFollowTicketsByActivityId(activityId);
         for (FollowEntity followEntity : followlist) {
             if(followEntity.getTicketStatus() == FollowEntity.TICKET_STATUS_SUCCESS){
-                list.add(userDAO.getUserById(followEntity.getUserID()));
+                list.add(followEntity);
             }
         }
         return list;

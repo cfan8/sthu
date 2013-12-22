@@ -52,6 +52,7 @@
                 <div><span class="tag">协办方（者）名称：</span><span><input type="text" name="associateOrganizerName"/></span></div>
 
                 <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=message.getApplyUserNickname() %>" /></span></div>
+                <div><span class="tag">申请人学号：</span><span class="value"><input disabled="disabled" type="text" name="applicantStudentID" value="<%=message.getApplyUserStudentID() %>" /></span></div>
                 <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell"/></span></div>
                 <div><span class="tag">活动类型：</span><span class="value_select">
                         <select name="activityType" id="activityUsage">
