@@ -4,6 +4,7 @@
     Author     : xiaoyou
 --%>
 
+<%@page import="cn.edu.tsinghua.sthu.entity.FollowEntity"%>
 <%@page import="java.util.List"%>
 <%@page import="cn.edu.tsinghua.sthu.message.studentActivity.ShowTicketRandomResultMessage"%>
 <%@page import="cn.edu.tsinghua.sthu.action.StudentActivity.ShowTicketRandomResultAction"%>
@@ -11,7 +12,7 @@
 <%@page import="cn.edu.tsinghua.sthu.Util"%>
 <%
     ShowTicketRandomResultMessage message = Util.getMessage(ShowTicketRandomResultAction.class);
-    List<UserEntity> resultList = message.getResultList();
+    List<FollowEntity> resultList = message.getResultList();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
@@ -27,7 +28,7 @@
             抽票结果：
             <ul>
                 <%for(int i = 0; i < resultList.size(); i ++){%>
-                <li style="float:left; margin-left:50px"><%=resultList.get(i).getUsername()%>&nbsp;&nbsp;<%=resultList.get(i).getNickname()%></li>
+                <li style="float:left; margin-left:50px"><%=resultList.get(i).getUserID()%>&nbsp;&nbsp;<%=resultList.get(i).getUserName()%></li>
                 <%}%>
             </ul>
             <div style="font: 0px/0px sans-serif;clear: both;display: block"> </div>

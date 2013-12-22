@@ -21,6 +21,7 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
     private StudentActivityApplyEntity studentActivityApplyEntity;
     private StudentApplyOptionsEntity studentApplyOptionsEntity;
     private String applyUserNickname;
+    private int applyUserStudentID;
     private String organizerName;
     private int applyType = USER_APPLY;
     private int groupType;
@@ -184,5 +185,19 @@ public class ShowApplyStudentActivityPageMessage extends BaseMessage{
      */
     public void setGroupType(int groupType) {
         this.groupType = groupType;
+    }
+
+    /**
+     * @return the applyUserStudentID
+     */
+    public int getApplyUserStudentID() {
+        return applyUserStudentID;
+    }
+
+    /**
+     * @param applyUserStudentID the applyUserStudentID to set
+     */
+    public void setApplyUserStudentID(int applyUserStudentID) {
+        this.applyUserStudentID = applyUserStudentID;
     }
 }

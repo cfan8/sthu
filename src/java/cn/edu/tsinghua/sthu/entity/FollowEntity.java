@@ -28,6 +28,7 @@ public class FollowEntity extends BaseEntity{
     public static final int TICKET_STATUS_FAIL = 3;
     @Index(name="userIDIndex") 
     private int userID;
+    private String userName;
     @Index(name="groupIDIndex")
     private int groupID;
     @Index(name="activityIDIndex")
@@ -119,6 +120,20 @@ public class FollowEntity extends BaseEntity{
      */
     public void setIsResultPublished(int isResultPublished) {
         this.isResultPublished = isResultPublished;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     

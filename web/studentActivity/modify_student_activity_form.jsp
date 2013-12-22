@@ -51,7 +51,9 @@
 	    <div><span class="tag">协办方（者）名称：</span><span class="value"><input type="text" name="associateOrganizerName" value="<%=entity.getAssociateOrganizerName()%>"/></span></div>
 	    
             <div><span class="tag">申请人：</span><span class="value"><input disabled="disabled" type="text" name="applicantName" value="<%=entity.getApplicantName() %>" /></span></div>
-	    <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell" value="<%=entity.getApplicantCell()%>"/></span></div>
+	    <div><span class="tag">申请人学号：</span><span class="value"><input disabled="disabled" type="text" name="applicantStudentID" value="<%=entity.getApplicantStudentID() %>" /></span></div>
+	    
+            <div><span class="tag">申请人联系电话：</span><span class="value"><input type="text" name="applicantCell" value="<%=entity.getApplicantCell()%>"/></span></div>
 	    <div><span class="tag">活动类型：</span><span class="value_select">
 		    <select name="activityType" id="activityUsage">
 			<option value="<%=StudentActivityApplyEntity.USAGE_GROUP%>" <%=entity.getActivityType() == StudentActivityApplyEntity.USAGE_GROUP ? "selected = \"selected\"" : ""%>>党团活动</option>

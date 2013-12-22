@@ -360,6 +360,7 @@
             <tr><td class="tag">主办方（者）名称：</td><td class="value"><%=entity.getOrganizerName()%></td></tr>
             <tr><td class="tag">协办方（者）名称：</td><td class="value"><%=entity.getAssociateOrganizerName() %></td></tr>
             <tr><td class="tag">申请人：</td><td class="value"><%=entity.getApplicantName()%></td></tr>
+            <tr><td class="tag">申请人学号：</td><td class="value"><%=entity.getApplicantStudentID()%></td></tr>
             <tr><td class="tag">申请人联系电话：</td><td class="value"><%=entity.getApplicantCell()%></td></tr>
             <tr><td class="tag">负责人：</td><td class="value"><%=entity.getManagerName()%></td></tr>
             <tr><td class="tag">负责人联系电话：</td><td class="value"><%=entity.getManagerCell()%></td></tr>

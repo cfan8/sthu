@@ -6,6 +6,7 @@ package cn.edu.tsinghua.sthu.action.StudentActivity;
 
 import cn.edu.tsinghua.sthu.action.BaseAction;
 import cn.edu.tsinghua.sthu.entity.AuthEntity;
+import cn.edu.tsinghua.sthu.entity.FollowEntity;
 import cn.edu.tsinghua.sthu.entity.StudentActivityApplyEntity;
 import cn.edu.tsinghua.sthu.entity.StudentApplyOptionsEntity;
 import cn.edu.tsinghua.sthu.entity.UserEntity;
@@ -26,7 +27,7 @@ public class ShowTicketRandomResultAction extends BaseAction{
     @Override
     public String onExecute() throws Exception {
    //     applyStudentActivityService.randomTickets(activityID);
-        List<UserEntity> resultList = applyStudentActivityService.getTicketRandomResult(activityID);
+        List<FollowEntity> resultList = applyStudentActivityService.getTicketRandomResult(activityID);
         showTicketRandomResultMessage.setResultList(resultList);
         return SUCCESS;
     }

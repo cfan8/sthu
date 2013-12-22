@@ -48,10 +48,12 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
                 if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.USER_APPLY);
                     getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
+                    getShowApplyStudentActivityPageMessage().setApplyUserStudentID(getCurrentUser().getID());
                 }else if(getCurrentUser().getAuth().getRole() == AuthEntity.GROUP_ROLE){
                     getShowApplyStudentActivityPageMessage().setApplyType(ShowApplyStudentActivityPageMessage.GROUP_APPLY);
                     getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());
                     getShowApplyStudentActivityPageMessage().setApplyUserNickname(entity.getApplicantName());
+
                     if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_SHETUAN){
                         getShowApplyStudentActivityPageMessage().setGroupType(ShowApplyStudentActivityPageMessage.GROUP_TYPE_SHETUAN);
                     }else if(getCurrentUser().getAuth().getGroupType() == AuthEntity.GROUP_TYPE_STUDENTUNION){
@@ -70,6 +72,7 @@ public class ShowApplyStudentActivityPageAction extends BaseAction{
 	{
             if(getCurrentUser().getAuth().getRole() == AuthEntity.USER_ROLE){
                 getShowApplyStudentActivityPageMessage().setApplyUserNickname(getCurrentUser().getNickname());
+                getShowApplyStudentActivityPageMessage().setApplyUserStudentID(getCurrentUser().getID());
                 return RETURN_CREATE;
             }else{
                 getShowApplyStudentActivityPageMessage().setOrganizerName(getCurrentUser().getNickname());

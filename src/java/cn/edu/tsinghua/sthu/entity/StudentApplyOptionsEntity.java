@@ -83,7 +83,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     //教室申请
     private int croomType; //借用教室类型
     private int allowAdjust; //服从调剂
-    private int croomCapacity; //教室容量
+    private short croomCapacity; //教室容量
     private String croomStartTime; //开始日期和时间
     //@Temporal(javax.persistence.TemporalType.DATE)
     private String croomEndTime; //结束日期和时间
@@ -306,7 +306,7 @@ public class StudentApplyOptionsEntity extends BaseEntity{
      * @param croomCapacity the croomCapacity to set
      */
     public void setCroomCapacity(int croomCapacity) {
-        this.croomCapacity = croomCapacity;
+        this.croomCapacity = (short)croomCapacity;
     }
 
     /**
