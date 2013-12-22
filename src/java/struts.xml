@@ -227,6 +227,8 @@ and open the template in the editor.
         </action>
         <action name="randomTickets" class="cn.edu.tsinghua.sthu.action.StudentActivity.RandomTicketsAction">
         </action>
+        <action name="publishTicketResult" class="cn.edu.tsinghua.sthu.action.StudentActivity.PublishTicketResultAction">
+        </action>
         <action name="followActivity" class="cn.edu.tsinghua.sthu.action.StudentActivity.FollowActivityAction">
         </action>
         <action name="followTicket" class="cn.edu.tsinghua.sthu.action.StudentActivity.FollowTicketAction">

@@ -15,15 +15,15 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
  *
  * @author xiaoyou
  */
-public class RandomTicketsAction extends BaseAction{
+public class PublishTicketResultAction extends BaseAction{
     private Integer activityId;
     private ApplyStudentActivityService applyStudentActivityService;
     private StudentActivityApplyEntity entity;
     
     @Override
     public String onExecute() throws Exception {
-        applyStudentActivityService.randomTickets(activityId);
-        alertMessage.setSimpleAlert("抽票成功");
+        getApplyStudentActivityService().publishTicketResult(getActivityId());
+        alertMessage.setSimpleAlert("发布抽票结果成功");
         return ALERT;
     }
     
@@ -54,10 +54,6 @@ public class RandomTicketsAction extends BaseAction{
                 alertMessage.setSimpleAlert("您不是该活动的主办方！");
                 return false;
             }
-        }
-        if(getEntity().getOption().getTicketStatus() >= StudentApplyOptionsEntity.TICKET_SELECTED_UNPUBLISHED){
-            alertMessage.setSimpleAlert("抽票已完成，不能重复抽票！");
-            return false;
         }
 	return true;
     }

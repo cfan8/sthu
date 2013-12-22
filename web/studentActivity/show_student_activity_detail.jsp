@@ -105,6 +105,9 @@
                                 报名截止,<a href="randomTickets.do?activityId=<%=entity.getID()%>">开始抽票</a>
                             <%}else if(message.getShowTicket() == -3) {%>
                                 抽票结束,<a href="showTicketRandomResult.do?activityID=<%=entity.getID()%>">查看结果</a>
+                                <%if(message.isShowPublishResult()){%>
+                                <a href="publishTicketResult.do?activityId=<%=entity.getID()%>">公布结果</a>
+                                <%}%>
                             <%}%>
                         </div>
                     <div id="text_content" style="height:auto; min-height: 400px; padding:20px 60px 20px 60px; margin-top: 60px;font-family:NSimSun,LiSong Pro Light, '宋体', SimSun,Arial;color:black"> 

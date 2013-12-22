@@ -27,7 +27,7 @@
             抽票结果：
             <ul>
                 <%for(int i = 0; i < resultList.size(); i ++){%>
-                <li style="float:left; margin-left:20px"><%=resultList.get(i).getUsername()%></li>
+                <li style="float:left; margin-left:50px"><%=resultList.get(i).getUsername()%>&nbsp;&nbsp;<%=resultList.get(i).getNickname()%></li>
                 <%}%>
             </ul>
             <div style="font: 0px/0px sans-serif;clear: both;display: block"> </div>

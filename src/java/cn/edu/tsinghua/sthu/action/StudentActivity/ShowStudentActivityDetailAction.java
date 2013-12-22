@@ -33,6 +33,7 @@ public class ShowStudentActivityDetailAction extends BaseAction{
             applyStudentActivityService.addClickCount(activityID);
         }
         getShowStudentActivityDetailMessage().setShowFollow(1);
+        getShowStudentActivityDetailMessage().setShowPublishResult(false);
         if(getCurrentUser() != null){
             if(applyStudentActivityService.checkActivityFollowedByUser(getCurrentUser(), activity))
                 getShowStudentActivityDetailMessage().setShowFollow(0);
@@ -47,6 +48,9 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                             getShowStudentActivityDetailMessage().setShowTicket(-2);//申请者抽票
                         }else{
                             getShowStudentActivityDetailMessage().setShowTicket(-3);//抽票结束
+                            if(activity.getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_SELECTED_UNPUBLISHED){
+                                getShowStudentActivityDetailMessage().setShowPublishResult(true);
+                            }
                         }     
                     }
                 }else{
@@ -57,7 +61,7 @@ public class ShowStudentActivityDetailAction extends BaseAction{
                             getShowStudentActivityDetailMessage().setShowTicket(1);
                         }
                     }else{
-                        if(activity.getOption().getTicketStatus() == StudentApplyOptionsEntity.TICKET_SELECTED){
+                        if(activity.getOption().getTicketStatus() >= StudentApplyOptionsEntity.TICKET_SELECTED_UNPUBLISHED){
                             getShowStudentActivityDetailMessage().setShowTicket(3);//抽票结束
                         }else{
                             getShowStudentActivityDetailMessage().setShowTicket(4);//门票预订停止，等待抽票结果
