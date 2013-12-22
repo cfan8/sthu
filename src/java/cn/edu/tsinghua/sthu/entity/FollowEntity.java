@@ -21,6 +21,8 @@ public class FollowEntity extends BaseEntity{
     public static final int FOLLOW_TYPE_GROUP = 1;
     public static final int FOLLOW_TYPE_ACTIVITY = 2;
     public static final int FOLLOW_TYPE_TICKET = 3;
+    public static final int TICKET_RESULT_UNPUBLISH = 0;
+    public static final int TICKET_RESULT_PUBLISH = 1;
     public static final int TICKET_STATUS_WAIT = 1;
     public static final int TICKET_STATUS_SUCCESS = 2;
     public static final int TICKET_STATUS_FAIL = 3;
@@ -32,6 +34,8 @@ public class FollowEntity extends BaseEntity{
     private int activityID;
     private int followType;
     private int ticketStatus;
+    private int isResultPublished = TICKET_RESULT_UNPUBLISH;
+    
     /**
      * @return the userID
      */
@@ -101,6 +105,20 @@ public class FollowEntity extends BaseEntity{
      */
     public void setTicketStatus(int ticketStatus) {
         this.ticketStatus = ticketStatus;
+    }
+
+    /**
+     * @return the isResultPublished
+     */
+    public int getIsResultPublished() {
+        return isResultPublished;
+    }
+
+    /**
+     * @param isResultPublished the isResultPublished to set
+     */
+    public void setIsResultPublished(int isResultPublished) {
+        this.isResultPublished = isResultPublished;
     }
 
     

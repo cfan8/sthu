@@ -120,6 +120,8 @@
                                         <a href="studentActivity/showStudentActivityDetail.do?activityID=<%=ticket.getActivityID()%>"><%=ticketApply.getActivityTheme()%></a>&nbsp;
                                         <%if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_WAIT){%>
                                         等待抽签
+                                        <%}else if(ticket.getIsResultPublished() == FollowEntity.TICKET_RESULT_UNPUBLISH){%>
+                                        抽签结束，等待公布结果
                                         <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_SUCCESS){%>
                                         抽签成功 领票时间：<%=ticketApply.getOption().getTicketTime()%> 领票地点：<%=ticketApply.getOption().getTicketLocation()%>
                                         <%}else if(ticket.getTicketStatus() == FollowEntity.TICKET_STATUS_FAIL){%>

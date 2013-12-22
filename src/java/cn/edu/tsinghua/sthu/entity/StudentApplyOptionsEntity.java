@@ -53,7 +53,8 @@ public class StudentApplyOptionsEntity extends BaseEntity{
     public static final int TICKETFLAG_NOTAPPLY = 0;
     public static final int TICKETFLAG_APPLY = 1;
     public static final int TICKET_UNSELECTED = 0;
-    public static final int TICKET_SELECTED = 1;
+    public static final int TICKET_SELECTED_UNPUBLISHED = 1;
+    public static final int TICKET_SELECTED_PUBLISHED = 2;
     public static final int ORDINARY_ACTIVITY = 0;
     public static final int DIGEST_ACTIVITY = 1;
     

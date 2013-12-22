@@ -788,8 +788,20 @@ public class ApplyStudentActivityService extends BaseService{
             }
         }
         StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(activityId);
-        entity.getOption().setTicketStatus(StudentApplyOptionsEntity.TICKET_SELECTED);
+        entity.getOption().setTicketStatus(StudentApplyOptionsEntity.TICKET_SELECTED_UNPUBLISHED);
         applyStudentActivityDAO.updateStudentActivityApplyEntity(entity);
+    }
+    
+    @Transactional
+    public void publishTicketResult(int activityId){
+        List<FollowEntity> followlist = followDAO.getFollowTicketByActivityId(activityId);
+        int ticketFollowNum = followlist.size();
+        for(int j = 0; j < ticketFollowNum; j++){
+            FollowEntity followEntity = followlist.get(j);
+            followEntity.setIsResultPublished(FollowEntity.TICKET_RESULT_PUBLISH);
+        }
+        StudentActivityApplyEntity entity = applyStudentActivityDAO.getStudentActivityApplyEntityById(activityId);
+        entity.getOption().setTicketStatus(StudentApplyOptionsEntity.TICKET_SELECTED_PUBLISHED);
     }
     
     @Transactional
