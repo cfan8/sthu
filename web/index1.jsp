@@ -139,7 +139,7 @@
                         </div>
                          
 			 <div id="calendar">
-                             <span id="date"></span>
+                             <span id="date" style="top: 0px;"></span>
                              <a style="color: #8CCCD6;"href="/studentActivity/showActivitiesList.do"target="_blank">
                                  <% int eventNum=showIndexMessage.getStudentActivityOfTodayEntitys().size() > 2? 2:showIndexMessage.getStudentActivityOfTodayEntitys().size();
                                    
@@ -384,7 +384,7 @@
 						<div class="boxcontent" align="left">《马兰花开》是反映“两弹一星”元勋邓稼先同志投身新中国核事业的人生历程及伟大精神的大型话剧</div>
 					</li>
 					<li>
-						<a href="/topic/photography_contest/index.html" target="_blank"><img src="/css/index/topic2.png"/></a>
+						<a href="/topic/photography_contest/index.html" target="_blank"><img style="width: 202px;height:115px;"src="/css/index/topic2.png"/></a>
 						<div class="title">“清影华光”摄影大赛</div>
 						<hr>
 						<div class="boxcontent" align="left">在我们美丽的清华园中，发生着各种多姿多彩的故事，演绎着无数拨动心弦的瞬间。</div>
