@@ -214,6 +214,27 @@ public class ApplyStudentActivityDAO extends BaseDAO<StudentActivityApplyEntity>
         List<StudentActivityApplyEntity> list = temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setFirstResult(begin).setMaxResults(number).list();
         return list;
     }
+        public List<StudentActivityApplyEntity> getAcceptedPublicActivitiesByDate( Date date,int maxNum){
+        Criteria temp =  select().createAlias("option", "a").add(Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 
+                 Restrictions.eq("applyStatus", StudentActivityApplyEntity.APPLY_STATUS_ACCEPTED),
+                 Restrictions.eq("publishStatus", StudentActivityApplyEntity.PUBLISH_STATUS_ACCEPTED)));
+       
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date fromDate = calendar.getTime();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date toDate = calendar.getTime();
+        
+        temp.add(Restrictions.between("activityDate", fromDate, toDate));
+        List<StudentActivityApplyEntity> list = temp.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).addOrder(Order.desc("activityDate")).setMaxResults(maxNum).list();
+        return list;
+    }
     public int getAcceptedPublicActivitiesCountByDate(int activityType, int digest, Date date){
         Criteria temp = select().createAlias("option", "a").add(
                  Restrictions.and(Restrictions.eq("a.publicityFlag", StudentApplyOptionsEntity.PUBLICITYFLAG_APPLY), 

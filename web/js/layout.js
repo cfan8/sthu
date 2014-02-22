@@ -8,6 +8,7 @@
 			currentTab = $('ul.navigationTabs a:first');
 		}
 		showTab.apply(currentTab.get(0));
+                /*
 		$('#date').DatePicker({
 			flat: true,
 			date: '2008-07-31',
@@ -15,7 +16,25 @@
 			calendars: 1,
 			starts: 1,
 			view: 'years'
+		});*/
+            $('#date').DatePicker({
+			flat: true,
+			date: new Date(),
+			current: new Date(),
+			calendars: 1,
+			starts: 1,
+			view: 'days'
 		});
+                /*
+                var day = new Date();
+                $('#nowdate').DataPicker({
+                        flat: true,
+                        date: new Date(day),
+                        current: new Date(day),
+                        calendars:1,
+                        starts:1,
+                        view:'days'
+                });*/
 		var now = new Date();
 		now.addDays(-10);
 		var now2 = new Date();

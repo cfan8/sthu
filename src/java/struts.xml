@@ -30,6 +30,9 @@ and open the template in the editor.
 	<action name="index" class="cn.edu.tsinghua.sthu.action.ShowIndexAction">
 	    <result name="success">/index.jsp</result>
 	</action>
+        <action name="index1" class="cn.edu.tsinghua.sthu.action.ShowIndexAction">
+	    <result name="success">/index1.jsp</result>
+	</action>
 	<action name="login" class="cn.edu.tsinghua.sthu.action.ShowLoginPageAction">
 	    <result name="redirect" type="redirect">${url}</result>
 	    <result name="success">/login.jsp</result>
