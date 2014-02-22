@@ -12,6 +12,7 @@ import cn.edu.tsinghua.sthu.service.ApplyStudentActivityService;
 import cn.edu.tsinghua.sthu.service.ColumnService;
 import cn.edu.tsinghua.sthu.service.IndexManageService;
 import cn.edu.tsinghua.sthu.service.NewService;
+import java.util.Date;
 
 /**
  *
@@ -58,6 +59,12 @@ public class ShowIndexAction extends BaseAction{
         if (!getNewsInIndexBottomRight()) {
             flag = false;
         }
+        if(!getStudentActivitiesOfToday()){
+            flag = false;
+        }
+        if(!getNewsInStudyColumnNews()){
+            flag = false;
+        }
         return flag;
     }
     
@@ -75,6 +82,7 @@ public class ShowIndexAction extends BaseAction{
     public boolean getNewsInIndexBottomLeft()
     {
         ColumnEntity entity = columnService.getColumnById(IndexColumnMapping.IndexBottomLeftColumnId);
+     //   ColumnEntity entity = columnService.getColumnById(9);
         if (entity == null)
         {
             return false;
@@ -82,7 +90,17 @@ public class ShowIndexAction extends BaseAction{
         showIndexMessage.setIndexBottomLeftNews(newService.getNewsByColumn(0, newMaxResult-1, entity));
         return true;
     }
-    
+    public boolean getNewsInStudyColumnNews()
+    {
+        ColumnEntity entity = columnService.getColumnById(IndexColumnMapping.IndexStudyColumnId);
+       //  ColumnEntity entity = columnService.getColumnById(10);
+        if(entity == null)
+        {
+            return false;
+        }
+        showIndexMessage.setIndexStudyColumnNews(newService.getNewsByColumn(0, newMaxResult-1, entity));
+        return true;
+    }
     public boolean getNewsInIndexBottomCenter()
     {
         ColumnEntity entity = columnService.getColumnById(IndexColumnMapping.IndexBottomCenterColumnId);
@@ -106,7 +124,11 @@ public class ShowIndexAction extends BaseAction{
         
         return true;
     }
-
+    public boolean getStudentActivitiesOfToday()
+    {
+        showIndexMessage.setStudentActivityOfTodayEntitys(applyStudentActivityService.getAcceptedPublicActivitiesListByDate(new Date(),2));
+        return true;
+    }
     @Override
     public boolean valid() {
         return true;

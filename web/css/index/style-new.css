@@ -1,0 +1,502 @@
+html {
+	background-color: #f7f7f7;
+}
+
+body {
+	text-align: center;
+	margin: 0px;
+}
+
+a {
+	width: 100%;
+	text-decoration: none;
+        color: black;
+	/*color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+        display: inline-block;
+        overflow: hidden;*/
+}
+
+img {
+	width: 100%
+}
+
+#headline {
+	width: 100%;
+	min-width: 1044px;
+	height: 6px;
+	background-image: url("img/headline.jpg");
+}
+
+#top {
+	width: 920px;
+	padding-bottom: 4px;
+	margin:0 auto;
+	height: auto;
+	overflow: auto;
+}
+
+#logo {
+	position: relative;
+	margin: 10px;
+	width: 18%;
+	float: left
+}
+
+#index {
+	position: relative;
+	float: right;
+	height: 100%;
+	top: 44px;
+	font-size: 13px;
+	color: #696969;
+	font-family: Microsoft YaHei;
+}
+
+#mainbody {
+	width: 1000px;
+	margin:0 auto;
+}
+
+
+#navDiv {
+	text-align: center;
+	width: 100%;
+	margin: 5px;
+	height: auto;
+	overflow: auto;
+}
+
+.navigator {
+	position: relative;
+	left: 100px;
+	text-align: center;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	width: 800px;
+	height: auto;
+	overflow: auto;
+}
+
+.navigator li {
+	text-align: center;
+	vertical-align: middle;
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	float: left;
+	background: url(img/unchosenNav.PNG);
+	font-size: 16px;
+	color: #696969;
+	font-family: Microsoft YaHei;
+}
+
+.navigator a {
+
+}
+
+.Line {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+
+#news {
+	position: relative;
+	float: left;
+	margin: 3px;
+	width: 25%; /*29*/
+	height: 300px;
+	background-color: #FFFFFF;
+}
+
+#roller {
+	position: relative;
+	float: left;
+	margin: 3px;
+	width: 355px;
+	height: 300px;
+        background-color: white;
+}
+.rollernews{
+       color: #737373;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	font-weight: bold;
+        margin-left: 5px;
+        margin-top: 10px;
+}
+#slide{
+    	position: relative;
+	float: left;
+	margin: 3px;
+	width: 355px;
+	height: 210px;
+        background-color: white;
+        overflow: hidden;
+}
+#imagebox
+{
+    width: 345px;
+    height: 200px;
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+    position: relative;
+}
+
+#imagebox img
+{
+    width: 345px;
+    height: 200px;
+    position: relative;
+    display: none;
+}
+
+#tipbox
+{
+    position: absolute;
+    width: 350px;
+    height: 60px;
+    background-image: url("/css/index/tip_bg.png");
+    bottom: 0px;
+    right: 1px;
+    z-index: 999;
+}
+
+#tiptextarea
+{
+    display: table;
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    margin-left: 21px;
+}
+
+#tiptext
+{
+    line-height: 24px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#tiptext a:link, #tiptext a:visited
+{
+    font-size: 13.34px;
+    font-family: 黑体;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+#tipbtn img{
+    width: 9px;
+    height: 9px;
+    margin-right: 5px;
+    float: right;
+    opacity: 0.5;
+}
+
+#tipbtn
+{
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+#calendar{
+    	position: relative;
+	border-radius: 5px;
+	float: left;
+	width: 323px;
+	height: 300px;
+       background-color: white;
+        border-color: #8CCCD6;
+    border-width: 5px;
+    border-style: solid;
+}
+/*
+#date {
+	position: relative;
+	border-radius: 5px;
+	float: left;
+	margin: 3px;
+	width: 328px;
+	height: 251px;
+        background-color: white;
+       
+}*/
+.datewords{
+        position: relative;
+        float: left;
+        width: 323px;
+        height: 49px;
+        background-color: black;
+        border-color: #00ffff;
+    border-width: 5px;
+    border-style: solid;
+        color: #00ffff;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	font-weight: bold;
+}
+.currentenvent{
+        color: #8CCCD6;
+	font-size: 13px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	font-weight: bold;
+        margin-left: 30px;
+        margin-top: 5px;
+        line-height: 110%;
+}
+.inform {
+	position: relative;
+	float: left;
+	margin: 3px;
+	width: 24%;
+	background-color: #FFFFFF;
+}
+
+#footer {
+	background-color: #223f4c;
+	text-align: center;
+	width: 100%;
+	height: 80px;
+	padding-top: 40px;
+}
+
+#footnote {
+	position: relative;
+	color: #bdc0c2;
+	font-size: 10px;
+	font-family: Microsoft YaHei;
+}
+
+.title {
+	margin-left: 20px;
+	color: #737373;
+	font-size: 15px;
+}
+
+.subtitle {
+	color: #737373;
+	font-size: 18px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	font-weight: bold;
+}
+
+.boxcontent {
+	padding: 10px;
+	color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+}
+.boxcontent a{
+	padding: 10px;
+	color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+}
+
+.subcontent {
+	color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	line-height: 190%;
+}
+.subcontent a{
+    color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+        display: inline-block;
+        overflow: hidden;
+}
+.subcontent .newsrow{
+        color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+        display: inline-block;
+        overflow: hidden;
+	/*line-height: 190%;*/
+}
+.subcontenttime {
+	color: #62d0a8;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: left;
+	line-height: 190%;
+}
+
+.subcontentaboutend {
+	color: #737373;
+	font-size: 12px;
+	font-family: "Microsoft YaHei";
+	text-align: center;
+	line-height: 150%;
+}
+
+.subcontentaboutcenter {
+	color: #737373;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+	text-align: center;
+	/*line-height: 150%;*/
+        line-height: 120%;
+	font-weight: bold;
+}
+
+#theme {
+	float: left;
+	width: 65%;
+	margin: 5px;
+	font-size: 12px;
+	font-family: Microsoft YaHei;
+}
+
+.themeul {
+	width: 100%;
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+.themeul li {
+	width: 31%;
+	float: left;
+	margin: 5px;
+}
+
+#themebanner {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	background-color: #f1356f;
+	color: #efefef;
+	font-family: Microsoft YaHei;
+}
+
+#study {
+	float: left;
+	width: 33%;
+	margin: 5px;
+	font-size: 12px;
+	font-family: Microsoft YaHei;
+}
+
+#studybanner {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	background-color: #f5a917;
+	color: #efefef;
+	font-family: Microsoft YaHei;
+}
+
+#people {
+	float: left;
+	width: 38%;
+	margin: 5px;
+	font-size: 12px;
+	font-family: Microsoft YaHei;
+}
+
+#peoplebanner {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	background-color: #7bc2e0;
+	color: #efefef;
+	font-family: Microsoft YaHei;
+}
+
+#organization {
+	float: left;
+	width: 60%;
+	margin: 5px;
+}
+
+.orgalink {
+	float: left;
+	width: 13%;
+	margin: 10px;
+}
+
+.orgalogo {
+	
+}
+
+#organibanner {
+	height: 40px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	background-color: #8dce84;
+	color: #efefef;
+	font-family: Microsoft YaHei;
+}
+
+.person {
+	background-color: #ffffff;
+	float: left;
+	width: 49%;
+	margin-right: 2px;
+}
+
+.portrait {
+	width: 50%;
+}
+
+#fifthLine {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+}
+
+#photo {
+	float: left;
+	width: 63%;
+	color: #ffffff;
+	height: auto;
+	overflow: auto;
+	margin: 10px;
+}
+
+.photocontent {
+	float: left;
+	width: 30%;
+	margin: 10px;
+}
+
+#ads2 {
+	float: left;
+	width: 33%;
+	margin: 10px;
+}
+
+.biglogo {
+	width: 30px;
+}
+
+.divbackground {
+	background:#fff;
+	color:#fff;
+}

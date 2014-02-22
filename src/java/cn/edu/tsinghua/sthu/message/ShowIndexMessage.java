@@ -18,8 +18,10 @@ public class ShowIndexMessage {
     private List<NewEntity> indexBottomLeftNews;
     private List<NewEntity> indexBottomCenterNews;
     private List<NewEntity> indexBottomRightNews;
+    private List<NewEntity> indexStudyColumnNews;
     private List<IndexSettingEntity> indexSettings;
     private List<StudentActivityApplyEntity> studentActivityApplyEntitys;
+    private List<StudentActivityApplyEntity> studentActivityOfTodayEntitys;
 
     public List<NewEntity> getIndexTopNews() {
         return indexTopNews;
@@ -75,4 +77,40 @@ public class ShowIndexMessage {
         this.studentActivityApplyEntitys = studentActivityApplyEntitys;
     }
 
+    /**
+     * @return the indexStudyColumnNews
+     */
+    public List<NewEntity> getIndexStudyColumnNews() {
+        return indexStudyColumnNews;
+    }
+
+    /**
+     * @param indexStudyColumnNews the indexStudyColumnNews to set
+     */
+    public void setIndexStudyColumnNews(List<NewEntity> indexStudyColumnNews) {
+        this.indexStudyColumnNews = indexStudyColumnNews;
+    }
+
+    /**
+     * @return the studentActivityOfTodayEntitys
+     */
+    public List<StudentActivityApplyEntity> getStudentActivityOfTodayEntitys() {
+        return studentActivityOfTodayEntitys;
+    }
+
+    /**
+     * @param studentActivityOfTodayEntitys the studentActivityOfTodayEntitys to set
+     */
+    public void setStudentActivityOfTodayEntitys(List<StudentActivityApplyEntity> studentActivityOfTodayEntitys) {
+        this.studentActivityOfTodayEntitys = studentActivityOfTodayEntitys;
+        
+    }
+    /**
+     * @return the start time of an activity
+     */
+    public String getStartTimeInStudentActivityOfToday(String timeperiod){
+        String str = "";
+        str = timeperiod.substring(0, timeperiod.indexOf("-"));
+        return str;
+    }
 }
